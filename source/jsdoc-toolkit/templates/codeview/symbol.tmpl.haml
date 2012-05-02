@@ -1,0 +1,29 @@
+%symbol{:alias => "{+data.alias+}"}
+  %name {+data.name+}
+  %memberOf {+data.memberOf+}
+  %isStatic {+data.isStatic+}
+  %isa {+data.isa+}
+  %desc {+data.desc+}
+  %classDesc {+data.classDesc+}
+  %methods
+    %for{:each => "method", :in => "data.methods"}
+      %method
+        %name {+method.name+}
+        %memberOf {+method.memberOf+}
+        %isStatic {+method.isStatic+}
+        %desc {+method.desc+}
+        %params
+          %for{:each => "param", :in => "method.params"}
+            %param
+              %type {+param.type+}
+              %name {+param.name+}
+              %desc {+param.desc+}
+              %defaultValue {+param.defaultValue+}
+  %properties
+    %for{:each => "property", :in => "data.properties"}
+      %property
+        %name {+property.name+}
+        %memberOf {+property.memberOf+}
+        %isStatic {+property.isStatic+}
+        %desc {+property.desc+}
+        %type {+property.type+}

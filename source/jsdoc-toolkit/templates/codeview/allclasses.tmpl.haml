@@ -1,0 +1,18 @@
+%h2.heading1 Classes
+%ul.classList
+  %for{:each => "thisClass", :in => "data"}
+    %li
+      {!
+      if(!thisClass.comment.getTag("module").length) {
+      output += new Link().toClass(thisClass.alias);
+      }
+      \!}
+%h2.heading1 Modules
+%ul.classList
+  %for{:each => "thisClass", :in => "data"}
+    %li
+      {!
+      if(thisClass.comment.getTag("module").length) {
+      output += new Link().toClass(thisClass.alias);
+      }
+      \!}

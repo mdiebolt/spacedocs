@@ -1,4 +1,4 @@
-TOOLKIT_DIR = "jsdoc-toolkit/"
+TOOLKIT_DIR = "source/jsdoc-toolkit/"
 
 desc "Build docs"
 task :doc do

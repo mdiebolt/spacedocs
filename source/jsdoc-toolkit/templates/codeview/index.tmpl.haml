@@ -1,0 +1,19 @@
+<!doctype html>
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset={+IO.encoding+}", "http-equiv" => "content-type"}/
+    %title JsDoc Reference - Index
+    %meta{:content => "JsDoc Toolkit", :name => "generator"}/
+    =stylesheet_link_tag 'docs'
+  %body
+    .index
+      .menu
+        {+publish.classesIndex+}
+    .content
+      .innerContent
+        %h1.classTitle Class Index
+        %ul
+          %for{:each => "thisClass", :in => "data"}
+            %li
+              %h2.classname {+(new Link().toSymbol(thisClass.alias))+}
+              %p {+resolveLinks(summarize(thisClass.classDesc))+}

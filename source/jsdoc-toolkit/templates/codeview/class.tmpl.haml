@@ -1,0 +1,466 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset={+IO.encoding+}", "http-equiv" => "content-type"}/
+    %meta{:content => "JsDoc Toolkit", :name => "generator"}/
+    {! Link.base = "../"; /* all generated links will be relative to this */ !}
+    %title JsDoc Reference - {+data.alias+}
+    =stylesheet_link_tag 'docs'
+  %body
+    .index
+      .menu
+        / begin publish.classesIndex
+        {+publish.classesIndex+}
+        / end publish.classesIndex
+    .content
+      .innerContent
+        %h1.classTitle
+          {!
+          var classType = "";
+
+          if (data.comment.getTag("module").length) {
+          classType += "Module ";
+          } else {
+          classType += "Class ";
+          }
+          \!}
+          %span {+data.alias+}
+        %p.description.summary
+          %if{:test => "data.version"}
+            %strong Version {+ data.version +}.
+            %br/
+          %if{:test => "data.augments.length"}
+            %br>/
+            Extends
+            {+
+            data.augments
+            \.sort()
+            \.map(
+            function($) { return new Link().toSymbol($); }
+            )
+            \.join(", ")
+            +}.
+            %br/
+          {+resolveLinks(data.classDesc)+}
+        %if{:test => "!data.isBuiltin() && (data.isNamespace || data.is('CONSTRUCTOR'))"}
+          .props
+            %table.summaryTable{:cellspacing => "0", :summary => "A summary of the constructor documented in the class {+data.alias+}."}
+              %caption {+classType+}Summary
+              %tbody
+                %tr
+                  <td class="nameDescription" {!if (data.comment.getTag("hilited").length){output += 'style="color: red"'}!}>
+                  .fixedFont
+                    %b {+ new Link().toSymbol(data.alias).inner('constructor')+}
+                    %if{:test => "classType != 'Namespace '"} {+ makeSignature(data.params) +}
+                  .description {+resolveLinks(summarize(data.desc))+}
+                %tr
+                  %td.instanceVariables
+                    {!
+                    if (data.comment.getTag("instanceVariables").length) {
+                    output += "
+                    %b Instance Variables (I):
+                    ";
+                    output += data.comment.getTag("instanceVariables")[0];
+                    }
+                    \!} 
+        %if{:test => "data.properties.length"}
+          {! var ownProperties = data.properties.filter(function($){return $.memberOf == data.alias && !$.isNamespace}).sort(makeSortby("name")); !}
+          %if{:test => "ownProperties.length"}
+            .props
+              %table.summaryTable{:cellspacing => "0", :summary => "A summary of the fields documented in the class {+data.alias+}."}
+                %caption Field Summary
+                %tbody
+                  %for{:each => "member", :in => "ownProperties"}
+                    %tr
+                      %td.nameDescription
+                        .fixedFont
+                          %if{:test => "member.isStatic && member.memberOf != '_global_'"} {+member.memberOf+}.
+                          %b {+new Link().toSymbol(member.alias).withText(member.name)+}
+                          %span.lighter
+                            {!
+                            if (member.isPrivate) output += "<private> ";
+                            if (member.isInner) output += "<inner> ";
+                            if (member.isStatic) output += "
+                            %em> static
+                            ";
+                            if (member.isConstant) output += "<constant> ";
+                            \!}
+                        .description {+resolveLinks(summarize(member.desc))+}
+          %if{:test => "data.inheritsFrom.length"}
+            %dl.inheritsList
+              {!
+              var borrowedMembers = data.properties.filter(function($) {return $.memberOf != data.alias});
+
+              var contributers = [];
+              borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
+              for (var i = 0, l = contributers.length; i < l; i++) {
+              output +=
+              "
+              %dt> Fields borrowed from class "+new Link().toSymbol(contributers[i])+":
+              "
+              +
+              "
+              %dd>
+                " +
+                borrowedMembers
+                \.filter(
+                function($) { return $.memberOf == contributers[i] }
+                )
+                \.sort(makeSortby("name"))
+                \.map(
+                function($) { return new Link().toSymbol($.alias).withText($.name) }
+                )
+                \.join(", ")
+                +
+                "
+              ";
+              }
+              \!}
+        /
+          \#### METHODS SUMMARY
+        %if{:test => "data.methods.length"}
+          {! var ownMethods = data.methods.filter(function($){return $.memberOf == data.alias  && !$.isNamespace}).sort(makeSortby("name")); !}
+          %if{:test => "ownMethods.length"}
+            .props
+              %table.summaryTable{:cellspacing => "0", :summary => "A summary of the methods documented in the class {+data.alias+}."}
+                %caption Method Summary
+                %tbody
+                  %for{:each => "member", :in => "ownMethods"}
+                    %tr
+                      %td.nameDescription
+                        .fixedFont
+                          %if{:test => "member.isStatic && member.memberOf != '_global_'"} {+member.memberOf+}.
+                          = succeed "{+makeSignature(member.params)+}" do
+                            %b {+new Link().toSymbol(member.alias).withText(member.name.replace(/\^\d+$/, ''))+}
+                        .description {+resolveLinks(summarize(member.desc))+}
+          %if{:test => "data.inheritsFrom.length"}
+            %dl.inheritsList
+              {!
+              var borrowedMembers = data.methods.filter(function($) {return $.memberOf != data.alias});
+              var contributers = [];
+              borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
+              for (var i = 0, l = contributers.length; i < l; i++) {
+              output +=
+              "
+              %dt> Methods borrowed from class "+new Link().toSymbol(contributers[i])+":
+              "
+              +
+              "
+              %dd>
+                " +
+                borrowedMembers
+                \.filter(
+                function($) { return $.memberOf == contributers[i] }
+                )
+                \.sort(makeSortby("name"))
+                \.map(
+                function($) { return new Link().toSymbol($.alias).withText($.name) }
+                )
+                \.join(", ")
+                +
+                "
+              ";
+              }
+              \!}
+        /
+          \#### EVENTS SUMMARY
+        %if{:test => "data.events.length"}
+          {! var ownEvents = data.events.filter(function($){return $.memberOf == data.alias  && !$.isNamespace}).sort(makeSortby("name")); !}
+          %if{:test => "ownEvents.length"}
+            .props
+              %table.summaryTable{:cellspacing => "0", :summary => "A summary of the events documented in the class {+data.alias+}."}
+                %caption Event Summary
+                %tbody
+                  %for{:each => "member", :in => "ownEvents"}
+                    %tr
+                      %td.nameDescription
+                        .fixedFont
+                          %if{:test => "member.isStatic && member.memberOf != '_global_'"} {+member.memberOf+}.
+                          = succeed "{+makeSignature(member.params)+}" do
+                            %b {+new Link().toSymbol(member.alias).withText(member.name)+}
+                        .description {+resolveLinks(summarize(member.desc))+}
+          %if{:test => "data.inheritsFrom.length"}
+            %dl.inheritsList
+              {!
+              var borrowedMembers = data.events.filter(function($) {return $.memberOf != data.alias});
+              var contributers = [];
+              borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
+              for (var i = 0, l = contributers.length; i < l; i++) {
+              output +=
+              "
+              %dt> Events borrowed from class "+new Link().toSymbol(contributers[i])+":
+              "
+              +
+              "
+              %dd>
+                " +
+                borrowedMembers
+                \.filter(
+                function($) { return $.memberOf == contributers[i] }
+                )
+                \.sort(makeSortby("name"))
+                \.map(
+                function($) { return new Link().toSymbol($.alias).withText($.name) }
+                )
+                \.join(", ")
+                +
+                "
+              ";
+              }
+
+              \!}
+        /
+          \#### CONSTRUCTOR DETAILS
+        %if{:test => "!data.isBuiltin() && (data.isNamespace || data.is('CONSTRUCTOR'))"}
+          .details.props
+            .innerProps
+              %a{:name => "constructor"}
+              .fixedFont
+                {!
+                if (data.isPrivate) output += "<private> ";
+                if (data.isInner) output += "<inner> ";
+                \!}
+                %b {+ data.alias +}
+                %if{:test => "classType != 'Namespace '"} {+ makeSignature(data.params) +}
+              .description
+                {+resolveLinks(data.desc)+}
+                %if{:test => "data.author"}
+                  %br/
+                  = succeed "{+data.author+}." do
+                    %i Author:
+              %if{:test => "data.example.length"}
+                %for{:each => "example", :in => "data.example"}
+                  %pre.code {+example+}
+              %if{:test => "data.params.length"}
+                %dl.detailList.params
+                  %dt.heading Parameters:
+                  %for{:each => "item", :in => "data.params"}
+                    %dt
+                      %b> {+item.name+}
+                      {+((item.type)?"<span class='light fixedFont'> "+(new Link().toSymbol(item.type))+"</span> " : "")+}
+                      %if{:test => "item.isOptional"}
+                        %i
+                          Optional
+                          %if{:test => "item.defaultValue"} , Default: {+item.defaultValue+}
+                    %dd {+resolveLinks(item.desc)+}
+              %if{:test => "data.deprecated || data.since || data.exceptions.length || data.returns.length || data.requires.length || data.see.length"}
+                %dl.detailList.nomargin
+                  %if{:test => "data.deprecated"}
+                    %dt
+                      {+resolveLinks(data.deprecated)+}
+                  %if{:test => "data.since"}
+                    %dt.heading Since:
+                    %dd {+ data.since +}
+                  %if{:test => "data.exceptions.length"}
+                    %dt.heading Throws:
+                    %for{:each => "item", :in => "data.exceptions"}
+                      %dt
+                        {+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}
+                        %b {+item.name+}
+                      %dd {+resolveLinks(item.desc)+}
+                  %if{:test => "data.returns.length"}
+                    %for{:each => "item", :in => "data.returns"}
+                      %dt.heading
+                        Returns {+((item.type)?"<span class=\"light fixedFont\">"+(new Link().toSymbol(item.type))+"</span> " : "")+}:
+                      %dd {+resolveLinks(item.desc)+}
+                  %if{:test => "data.requires.length"}
+                    %dt.heading Requires:
+                    %for{:each => "item", :in => "data.requires"}
+                      %dd {+ resolveLinks(item) +}
+                  %if{:test => "data.see.length"}
+                    %dt.heading See:
+                    %for{:each => "item", :in => "data.see"}
+                      %dd {+ new Link().toSymbol(item) +}
+        /
+          \#### FIELD DETAILS
+        %if{:test => "defined(ownProperties) && ownProperties.length"}
+          .details.props
+            .innerProps
+              %for{:each => "member", :in => "ownProperties"}
+                .fixedFont.heading
+                  %a{:name => "{+Link.symbolNameToLinkName(member)+}"}
+                  %if{:test => "member.type"}
+                    %span.light {{+new Link().toSymbol(member.type)+}}
+                  %if{:test => "member.isStatic && member.memberOf != '_global_'"}
+                    %span.light {+member.memberOf+}.
+                  %b {+member.name+}
+                  %span.lighter
+                    {!
+                    if (member.isPrivate) output += "<private> ";
+                    if (member.isInner) output += "<inner> ";
+                    if (member.isStatic) output += "
+                    %em> static
+                    ";
+                    if (member.isConstant) output += "<constant> ";
+                    \!}
+                .description
+                  {+resolveLinks(member.desc)+}
+                  %if{:test => "member.author"}
+                    %br/
+                    = succeed "{+member.author+}." do
+                      %i Author:
+                %if{:test => "member.example.length"}
+                  %for{:each => "example", :in => "member.example"}
+                    %pre.code {+example+}
+                %if{:test => "member.deprecated || member.since || member.see.length || member.defaultValue"}
+                  %dl.detailList.nomargin
+                    %if{:test => "member.deprecated"}
+                      %dt.heading Deprecated:
+                      %dt
+                        {+ resolveLinks(member.deprecated) +}
+                    %if{:test => "member.since"}
+                      %dt.heading Since:
+                      %dd {+ member.since +}
+                    %if{:test => "member.see.length"}
+                      %dt.heading See:
+                      %for{:each => "item", :in => "member.see"}
+                        %dd {+ new Link().toSymbol(item) +}
+                    %if{:test => "member.defaultValue"}
+                      %dt.heading Default Value:
+                      %dd
+                        {+resolveLinks(member.defaultValue)+}
+        /
+          \#### METHOD DETAILS
+        %if{:test => "defined(ownMethods) && ownMethods.length"}
+          .details.props
+            .innerProps
+              %for{:each => "member", :in => "ownMethods"}
+                .fixedFont.heading
+                  %a{:name => "{+Link.symbolNameToLinkName(member)+}"}
+                  %span.lighter
+                    {!
+                    if (member.isPrivate) output += "<private> ";
+                    if (member.isInner) output += "<inner> ";
+                    if (member.isStatic) output += "
+                    %em> static
+                    ";
+                    \!}
+                  %if{:test => "member.isStatic && member.memberOf != '_global_'"}
+                    %span.light {+member.memberOf+}.
+                  = succeed "{+makeSignature(member.params)+}" do
+                    %b {+member.name.replace(/\^\d+$/, '')+}
+                .description
+                  {+resolveLinks(member.desc)+}
+                  %if{:test => "member.author"}
+                    %br/
+                    = succeed "{+member.author+}." do
+                      %i Author:
+                %if{:test => "member.example.length"}
+                  %for{:each => "example", :in => "member.example"}
+                    %pre.code {+example+}
+                %if{:test => "member.params.length"}
+                  %dl.detailList.params
+                    %dt.heading Parameters:
+                    %for{:each => "item", :in => "member.params"}
+                      %dt
+                        %b> {+item.name+}
+                        {+((item.type)?"<span class='light fixedFont'> "+(new Link().toSymbol(item.type))+"</span> " : "")+}
+                        %if{:test => "item.isOptional"}
+                          %i
+                            Optional
+                            %if{:test => "item.defaultValue"} , Default: {+item.defaultValue+}
+                      %dd {+resolveLinks(item.desc)+}
+                %if{:test => "member.deprecated || member.since || member.exceptions.length || member.returns.length || member.requires.length || member.see.length"}
+                  %dl.detailList.nomargin
+                    %if{:test => "member.deprecated"}
+                      %dt.heading Deprecated:
+                      %dt
+                        {+ resolveLinks(member.deprecated) +}
+                    %if{:test => "member.since"}
+                      %dt.heading Since:
+                      %dd {+ member.since +}
+                    %if{:test => "member.exceptions.length"}
+                      %dt.heading Throws:
+                      %for{:each => "item", :in => "member.exceptions"}
+                        %dt
+                          {+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+} <b>{+item.name+}
+                          %b {+item.name+}
+                        %dd {+resolveLinks(item.desc)+}
+                    %if{:test => "member.returns.length"}
+                      %for{:each => "item", :in => "member.returns"}
+                        %dt.heading
+                          Returns {+((item.type)?"<span class=\"light fixedFont\">"+(new Link().toSymbol(item.type))+"</span> " : "")+}:
+                        %dd {+resolveLinks(item.desc)+}
+                    %if{:test => "member.requires.length"}
+                      %dt.heading Requires:
+                      %for{:each => "item", :in => "member.requires"}
+                        %dd {+ resolveLinks(item) +}
+                    %if{:test => "member.see.length"}
+                      %dt.heading See:
+                      %for{:each => "item", :in => "member.see"}
+                        %dd {+ new Link().toSymbol(item) +}
+        /
+          \#### EVENT DETAILS
+        %if{:test => "defined(ownEvents) && ownEvents.length"}
+          .details.props
+            .innerProps
+              %for{:each => "member", :in => "ownEvents"}
+                .fixedFont.heading
+                  %a{:name => "{+Link.symbolNameToLinkName(member)+}"}
+                  %span.lighter
+                    {!
+                    if (member.isPrivate) output += "<private> ";
+                    if (member.isInner) output += "<inner> ";
+                    if (member.isStatic) output += "
+                    %em> static
+                    ";
+                    \!}
+                  %if{:test => "member.type"}
+                    %span.light {{+new Link().toSymbol(member.type)+}}
+                  %if{:test => "member.isStatic && member.memberOf != '_global_'"}
+                    %span.light {+member.memberOf+}.
+                  = succeed "{+makeSignature(member.params)+}" do
+                    %b {+member.name+}
+                  %span.lighter
+                    %em event
+                .description
+                  {+resolveLinks(member.desc)+}
+                  %if{:test => "member.author"}
+                    %br/
+                    = succeed "{+member.author+}." do
+                      %i Author:
+                %if{:test => "member.example.length"}
+                  %for{:each => "example", :in => "member.example"}
+                    %pre.code {+example+}
+                %if{:test => "member.params.length"}
+                  %dl.detailList.params
+                    %dt.heading Parameters:
+                    %for{:each => "item", :in => "member.params"}
+                      %dt
+                        %b> {+item.name+}
+                        {+((item.type)?"<span class='light fixedFont'> "+(new Link().toSymbol(item.type))+"</span> " : "")+}
+                        %if{:test => "item.isOptional"}
+                          %i
+                            Optional
+                            %if{:test => "item.defaultValue"} , Default: {+item.defaultValue+}
+                      %dd {+ resolveLinks(item.desc) +}
+                %if{:test => "member.deprecated || member.since || member.exceptions.length || member.returns.length || member.see.length"}
+                  %dl.detailList.nomargin
+                    %if{:test => "member.deprecated"}
+                      %dt.heading Deprecated:
+                      %dt {+ resolveLinks(member.deprecated) +}
+                    %if{:test => "member.since"}
+                      %dt.heading Since:
+                      %dd {+ member.since +}
+                    %if{:test => "member.exceptions.length"}
+                      %dt.heading Throws:
+                      %for{:each => "item", :in => "member.exceptions"}
+                        %dt
+                          {+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}
+                          %b {+item.name+}
+                        %dd {+ resolveLinks(item.desc) +}
+                    %if{:test => "member.returns.length"}
+                      %for{:each => "item", :in => "member.returns"}
+                        %dt.heading
+                          Returns {+((item.type)?"<span class=\"light fixedFont\">"+(new Link().toSymbol(item.type))+"</span> " : "")+}:
+                        %dd {+resolveLinks(item.desc)+}
+                    %if{:test => "member.requires.length"}
+                      %dt.heading Requires:
+                      %for{:each => "item", :in => "member.requires"}
+                        %dd {+ resolveLinks(item) +}
+                    %if{:test => "member.see.length"}
+                      %dt.heading See:
+                      %for{:each => "item", :in => "member.see"}
+                        %dd {+ new Link().toSymbol(item) +}
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"}
+    %script{:src => "/assets/docs.js"}

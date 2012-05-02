@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset={+IO.encoding+}" http-equiv="content-type" />
+    <title>JsDoc Reference - Index</title>
+    <meta content="JsDoc Toolkit" name="generator" />
+    <link href="/stylesheets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="index">
+      <div class="menu">
+        {+publish.classesIndex+}
+      </div>
+    </div>
+    <div class="content">
+      <div class="innerContent">
+        <h1 class="classTitle">Class Index</h1>
+        <ul>
+          <for each="thisClass" in="data">
+            <li>
+              <h2 class="classname">{+(new Link().toSymbol(thisClass.alias))+}</h2>
+              <p>{+resolveLinks(summarize(thisClass.classDesc))+}</p>
+            </li>
+          </for>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
