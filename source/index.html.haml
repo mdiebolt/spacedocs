@@ -1,8 +1,17 @@
----
-title: Welcome to Middleman
----
+.documentation
+  :ruby
+    require 'json'
 
-.welcome
-  %h1 Middleman is Watching
-  %p.doc
-    = link_to "Read Online Documentation", "http://middlemanapp.com/"
+    def doc_json
+      buffer = File.read('test.json')
+      result = JSON.parse(buffer)
+    end
+
+  - doc_json.each do |method|
+    -context = method['ctx']
+    %h2= context['constructor'] + "#" + context['name']
+    .summary= method['description']['full']
+
+    - method['tags'].each do |tag|
+      - if tag['type'] == 'returns'
+        %p= "Returns " + tag['string']

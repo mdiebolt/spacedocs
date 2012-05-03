@@ -1,0 +1,84 @@
+[
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Array} A new array that is a copy of the array"
+      }
+    ],
+    "description": {
+      "full": "<p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p>\n\n<pre><code>a = [\"a\", \"b\", \"c\"]\nb = a.copy()\n\n# their elements are equal\na[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]\n# =&gt; true\n\n# but they aren't the same object in memory\na === b\n# =&gt; false\n</code></pre>",
+      "summary": "<p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p>",
+      "body": "<pre><code>a = [\"a\", \"b\", \"c\"]\nb = a.copy()\n\n# their elements are equal\na[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]\n# =&gt; true\n\n# but they aren't the same object in memory\na === b\n# =&gt; false\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Array.prototype.copy = function() {\n  return this.concat();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Array",
+      "name": "copy",
+      "string": "Array.prototype.copy()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "name",
+        "string": "clear"
+      },
+      {
+        "type": "methodOf",
+        "string": "Array#"
+      },
+      {
+        "type": "returns",
+        "string": "{Array} this, now emptied."
+      }
+    ],
+    "description": {
+      "full": "<p>Empties the array of its contents. It is modified in place.</p>\n\n<pre><code>\nfullArray = [1, 2, 3]\nfullArray.clear()\nfullArray\n# =&gt; []\n</code></pre>",
+      "summary": "<p>Empties the array of its contents. It is modified in place.</p>",
+      "body": "<pre><code>fullArray = [1, 2, 3]\nfullArray.clear()\nfullArray\n# =&gt; []\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Array.prototype.clear = function() {\n  this.length = 0;\n  return this;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Array",
+      "name": "clear",
+      "string": "Array.prototype.clear()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "name",
+        "string": "flatten"
+      },
+      {
+        "type": "methodOf",
+        "string": "Array#"
+      },
+      {
+        "type": "returns",
+        "string": "{Array} A new array with all the sub-arrays flattened to the top."
+      }
+    ],
+    "description": {
+      "full": "<p>Flatten out an array of arrays into a single array of elements.</p>\n\n<pre><code>[[1, 2], [3, 4], 5].flatten()\n# =&gt; [1, 2, 3, 4, 5]\n\n# won't flatten twice nested arrays. call\n# flatten twice if that is what you want\n[[1, 2], [3, [4, 5]], 6].flatten()\n# =&gt; [1, 2, 3, [4, 5], 6]\n</code></pre>",
+      "summary": "<p>Flatten out an array of arrays into a single array of elements.</p>",
+      "body": "<pre><code>[[1, 2], [3, 4], 5].flatten()\n# =&gt; [1, 2, 3, 4, 5]\n\n# won't flatten twice nested arrays. call\n# flatten twice if that is what you want\n[[1, 2], [3, [4, 5]], 6].flatten()\n# =&gt; [1, 2, 3, [4, 5], 6]\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Array.prototype.flatten = function() {\n  return this.inject([], function(a, b) {\n    return a.concat(b);\n  });\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Array",
+      "name": "flatten",
+      "string": "Array.prototype.flatten()"
+    }
+  }
+]
