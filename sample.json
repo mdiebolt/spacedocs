@@ -1,6 +1,7 @@
 [
   {
     "Array": {
+      "summary": "Arrays are rad",
       "method_list": ["each", "remove", "reverse"],
       "methods": {
         "each": {
@@ -16,15 +17,15 @@
               "description": "Context to execute function",
               "optional": true
             },
-            "returns": {
-              "type": "Array",
-              "description": "this for chaining"
-            }
+          "returns": {
+            "type": "Array",
+            "description": "this for chaining"
+          },
+          "see": "GameObject",
+          "source": "Array.prototype.each = function(iterator, context) {}"
           }
         },
-        "remove": {
-
-        },
+        "remove": {},
         "reverse": {}
       }
     }

@@ -13,6 +13,32 @@ body
   height: 100%
   margin: 0
 
+.method_list
+  +border-radius(5px)
+  +box-shadow(rgba(0,0,0,0.15) 0 0 15px)
+
+  position: fixed
+  top: 20px
+  right: 20px
+  background-color: white
+  border: 1px solid rgba(0, 0, 0, 0.3)
+
+  h3
+    text-align: center
+    margin: 0
+    margin-top: 0.5em
+
+  ul
+    list-style: none
+    margin: 0
+    text-align: center
+    max-width: 400px
+    padding: 0.25em 0.5em
+
+    li
+      display: inline-block
+      padding: 0.4em 0.5em
+
 nav
   +background-image(linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent))
   +box-shadow(rgba(0, 0, 0, 0.15) -1px 0 4px inset)
@@ -47,6 +73,7 @@ nav
 .documentation
   display: inline-block
   padding-left: 145px
+  padding-top: 1em
   vertical-align: top
 
   a, a:active, a:visited, a:hover
@@ -72,7 +99,7 @@ nav
   .source pre
     display: none
 
-  .source_toggle
+  .toggle_source
     cursor: pointer
 
   pre
