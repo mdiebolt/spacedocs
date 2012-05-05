@@ -159,12 +159,11 @@ module Spacedocs
             "methods" => data
           }
         }
-
       end
 
       docs_data
       File.open("sanity.json", 'w') do |f|
-        f.write(docs_data)
+        f.write(docs_data.to_json)
       end
     end
   end
