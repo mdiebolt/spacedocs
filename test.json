@@ -37,7 +37,7 @@
       }
     ],
     "description": {
-      "full": "<p>Empties the array of its contents. It is modified in place.</p>\n\n<pre><code>\nfullArray = [1, 2, 3]\nfullArray.clear()\nfullArray\n# =&gt; []\n</code></pre>",
+      "full": "<p>Empties the array of its contents. It is modified in place.</p>\n\n<pre><code>fullArray = [1, 2, 3]\nfullArray.clear()\nfullArray\n# =&gt; []\n</code></pre>",
       "summary": "<p>Empties the array of its contents. It is modified in place.</p>",
       "body": "<pre><code>fullArray = [1, 2, 3]\nfullArray.clear()\nfullArray\n# =&gt; []\n</code></pre>"
     },
@@ -80,5 +80,97 @@
       "name": "flatten",
       "string": "Array.prototype.flatten()"
     }
+  },
+  {
+    "tags": [
+      {
+        "type": "name",
+        "string": "remove"
+      },
+      {
+        "type": "methodOf",
+        "string": "Array#"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "object",
+        "description": "The object to remove from the array if present."
+      },
+      {
+        "type": "returns",
+        "string": "{Object} The removed object if present otherwise undefined."
+      }
+    ],
+    "description": {
+      "full": "<p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p>\n\n<pre><code>a = [1, 1, \"a\", \"b\"]\na.remove(1)\n# =&gt; 1\n\na\n# =&gt; [1, \"a\", \"b\"]\n</code></pre>",
+      "summary": "<p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p>",
+      "body": "<pre><code>a = [1, 1, \"a\", \"b\"]\na.remove(1)\n# =&gt; 1\n\na\n# =&gt; [1, \"a\", \"b\"]\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Array.prototype.remove = function(object) {\n  var index;\n  index = this.indexOf(object);\n  if (index >= 0) {\n    return this.splice(index, 1)[0];\n  } else {\n    return;\n  }\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Array",
+      "name": "remove",
+      "string": "Array.prototype.remove()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "name",
+        "string": "Bindable"
+      },
+      {
+        "type": "module",
+        "string": ""
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Bindable module.</p>\n\n<p><code><pre><br />player = Core<br />  x: 5<br />  y: 10</p>\n\n<p>player.bind \"update\", -><br />  updatePlayer()</p>\n\n<h1>=> Uncaught TypeError: Object has no method 'bind'</h1>\n\n<p>player.include(Bindable)</p>\n\n<p>player.bind \"update\", -><br />  updatePlayer()</p>\n\n<h1>=> this will call updatePlayer each time through the main loop</h1>\n\n<p></pre></code></p>",
+      "summary": "<p>Bindable module.</p>",
+      "body": "<p><code><pre><br />player = Core<br />  x: 5<br />  y: 10</p>\n\n<p>player.bind \"update\", -><br />  updatePlayer()</p>\n\n<h1>=> Uncaught TypeError: Object has no method 'bind'</h1>\n\n<p>player.include(Bindable)</p>\n\n<p>player.bind \"update\", -><br />  updatePlayer()</p>\n\n<h1>=> this will call updatePlayer each time through the main loop</h1>\n\n<p></pre></code></p>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Bindable,\n  __slice = Array.prototype.slice;\n\nBindable = function() {\n  var eventCallbacks;\n  eventCallbacks = {};\n  return {"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>The bind method adds a function as an event listener.</p>\n\n<pre><code>&lt;code&gt;&lt;pre&gt;\n# this will call coolEventHandler after\n# yourObject.trigger \"someCustomEvent\" is called.\nyourObject.bind \"someCustomEvent\", coolEventHandler\n\n#or\nyourObject.bind \"anotherCustomEvent\", -&gt;\n  doSomething()\n&lt;/pre&gt;&lt;/code&gt;\n\n@name bind\n@methodOf Bindable#\n@param {String} event The event to listen to.\n@param {Function} callback The function to be called when the specified event\nis triggered.\n</code></pre>",
+      "summary": "<p>The bind method adds a function as an event listener.</p>",
+      "body": "<pre><code>&lt;code&gt;&lt;pre&gt;\n# this will call coolEventHandler after\n# yourObject.trigger \"someCustomEvent\" is called.\nyourObject.bind \"someCustomEvent\", coolEventHandler\n\n#or\nyourObject.bind \"anotherCustomEvent\", -&gt;\n  doSomething()\n&lt;/pre&gt;&lt;/code&gt;\n\n@name bind\n@methodOf Bindable#\n@param {String} event The event to listen to.\n@param {Function} callback The function to be called when the specified event\nis triggered.\n</code></pre>"
+    },
+    "ignore": false,
+    "code": "bind: function(event, callback) {\n      eventCallbacks[event] = eventCallbacks[event] || [];\n      return eventCallbacks[event].push(callback);\n    },"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>The unbind method removes a specific event listener, or all event listeners if<br />    no specific listener is given.</p>\n\n<pre><code>&lt;code&gt;&lt;pre&gt;\n#  removes the handler coolEventHandler from the event\n# \"someCustomEvent\" while leaving the other events intact.\nyourObject.unbind \"someCustomEvent\", coolEventHandler\n\n# removes all handlers attached to \"anotherCustomEvent\"\nyourObject.unbind \"anotherCustomEvent\"\n&lt;/pre&gt;&lt;/code&gt;\n\n@name unbind\n@methodOf Bindable#\n@param {String} event The event to remove the listener from.\n@param {Function} [callback] The listener to remove.\n</code></pre>",
+      "summary": "<p>The unbind method removes a specific event listener, or all event listeners if<br />    no specific listener is given.</p>",
+      "body": "<pre><code>&lt;code&gt;&lt;pre&gt;\n#  removes the handler coolEventHandler from the event\n# \"someCustomEvent\" while leaving the other events intact.\nyourObject.unbind \"someCustomEvent\", coolEventHandler\n\n# removes all handlers attached to \"anotherCustomEvent\"\nyourObject.unbind \"anotherCustomEvent\"\n&lt;/pre&gt;&lt;/code&gt;\n\n@name unbind\n@methodOf Bindable#\n@param {String} event The event to remove the listener from.\n@param {Function} [callback] The listener to remove.\n</code></pre>"
+    },
+    "ignore": false,
+    "code": "unbind: function(event, callback) {\n      eventCallbacks[event] = eventCallbacks[event] || [];\n      if (callback) {\n        return eventCallbacks[event].remove(callback);\n      } else {\n        return eventCallbacks[event] = [];\n      }\n    },"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>The trigger method calls all listeners attached to the specified event.</p>\n\n<pre><code>&lt;code&gt;&lt;pre&gt;\n# calls each event handler bound to \"someCustomEvent\"\nyourObject.trigger \"someCustomEvent\"\n&lt;/pre&gt;&lt;/code&gt;\n\n@name trigger\n@methodOf Bindable#\n@param {String} event The event to trigger.\n@param {Array} [parameters] Additional parameters to pass to the event listener.\n</code></pre>",
+      "summary": "<p>The trigger method calls all listeners attached to the specified event.</p>",
+      "body": "<pre><code>&lt;code&gt;&lt;pre&gt;\n# calls each event handler bound to \"someCustomEvent\"\nyourObject.trigger \"someCustomEvent\"\n&lt;/pre&gt;&lt;/code&gt;\n\n@name trigger\n@methodOf Bindable#\n@param {String} event The event to trigger.\n@param {Array} [parameters] Additional parameters to pass to the event listener.\n</code></pre>"
+    },
+    "ignore": false,
+    "code": "trigger: function() {\n      var callbacks, event, parameters, self;\n      event = arguments[0], parameters = 2 <= arguments.length ? __slice.call(arguments, 1) : [];\n      callbacks = eventCallbacks[event];\n      if (callbacks && callbacks.length) {\n        self = this;\n        return callbacks.each(function(callback) {\n          return callback.apply(self, parameters);\n        });\n      }\n    }\n  };\n};"
   }
 ]

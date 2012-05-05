@@ -4,6 +4,13 @@
 # require color
 
 $ ->
+  $('nav p:first').addClass('active')
+
+  $(".documentation").on "click", ".toggle_source", (e) ->
+    e.preventDefault()
+
+    $(this).next().toggle()
+
   $("code.run").each ->
     # Assume it's a PixieCanvas example
     codeElement = $(this)

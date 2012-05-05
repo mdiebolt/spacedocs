@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    <title>Spacedocs</title>
+    <link href='/stylesheets/docs.css' media='screen, projection' rel='stylesheet' type='text/css' />
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>
+    <script src='/javascripts/docs.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <nav>
+      <p>Array</p>
+      <p>Bindable</p>
+      <p>Boolean</p>
+      <p>Bounded</p>
+      <p>Clampable</p>
+      <p>Collision</p>
+      <p>Controllable</p>
+      <p>Cooldown</p>
+      <p>Core</p>
+      <p>Date</p>
+      <p>Debuggable</p>
+      <p>Drawable</p>
+      <p>Durable</p>
+      <p>Fadeable</p>
+      <p>Flickerable</p>
+      <p>Follow</p>
+      <p>Framerate</p>
+      <p>Function</p>
+      <p>GameObject</p>
+      <p>GameOver</p>
+      <p>LevelState</p>
+      <p>Math</p>
+      <p>Metered</p>
+      <p>Movable</p>
+      <p>Number</p>
+      <p>Object</p>
+      <p>Oscillator</p>
+      <p>RegExp</p>
+      <p>Rotatable</p>
+      <p>Sprite</p>
+      <p>String</p>
+      <p>TextEffect</p>
+      <p>TextScreen</p>
+      <p>TimedEvents</p>
+      <p>TitleScreen</p>
+      <p>Tween</p>
+    </nav>
+    <h1>Methods</h1>
+    <div class='documentation'>
+      <h1>FPSCounter(I, self)</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>The <code>FPSCounter</code> module tracks and displays the framerate.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>
+            <pre><code>window.engine = Engine
+              includedModules: ["FPSCounter"]
+              FPSColor: "#080"
+            </code></pre>
+          </p>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>I</span>
+               -
+              <span class='param_description'>Instance variables</span>
+            </li>
+            <li>
+              <span class='param_name'>self</span>
+               -
+              <span class='param_description'>Reference to the engine</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+        </section>
+        <section class='source'>
+          <h3>
+            Source
+          </h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>Engine.FPSCounter = function(I, self) {
+            var framerate;
+            Object.reverseMerge(I, {
+              showFPS: true,
+              FPSColor: "#FFF"
+            });
+            framerate = Framerate();
+            return self.bind("overlay", function(canvas) {
+              if (I.showFPS) {
+                canvas.font("bold 9pt consolas, 'Courier New', 'andale mono', 'lucida console', monospace");
+                canvas.drawText({
+                  color: I.FPSColor,
+                  position: Point(6, 18),
+                  text: "fps: " + framerate.fps
+                });
+              }
+              return framerate.rendered();
+            });
+          };
+          ;
+          
+          Engine.GameState = function(I, self) {
+            var requestedState;
+            Object.reverseMerge(I, {
+              currentState: GameState()
+            });
+            requestedState = null;
+            self.bind("update", function() {
+              I.currentState.trigger("beforeUpdate");
+              I.currentState.trigger("update");
+              return I.currentState.trigger("afterUpdate");
+            });
+            self.bind("afterUpdate", function() {
+              var previousState;
+              if (requestedState != null) {
+                I.currentState.trigger("exit", requestedState);
+                self.trigger('stateExited', I.currentState);
+                previousState = I.currentState;
+                I.currentState = requestedState;
+                I.currentState.trigger("enter", previousState);
+                self.trigger('stateEntered', I.currentState);
+                return requestedState = null;
+              }
+            });
+            self.bind("draw", function(canvas) {
+              I.currentState.trigger("beforeDraw", canvas);
+              I.currentState.trigger("draw", canvas);
+              return I.currentState.trigger("overlay", canvas);
+            });
+            return {
+              add: function(entityData) {
+                var object;
+                self.trigger("beforeAdd", entityData);
+                object = I.currentState.add(entityData);
+                self.trigger("afterAdd", object);
+                return object;
+              },
+              camera: function(n) {
+                if (n == null) n = 0;
+                return self.cameras()[n];
+              },
+              cameras: function(newCameras) {
+                if (newCameras != null) {
+                  I.currentState.cameras(newCameras);
+                  return self;
+                } else {
+                  return I.currentState.cameras();
+                }
+              },
+              fadeIn: function(options) {
+                if (options == null) options = {};
+                return self.cameras().invoke('fadeIn', options);
+              },
+              fadeOut: function(options) {
+                if (options == null) options = {};
+                return self.cameras().invoke('fadeOut', options);
+              },
+              flash: function(options) {
+                if (options == null) options = {};
+                return self.camera(options.camera).flash(options);
+              },
+              objects: function() {
+                return I.currentState.objects();
+              },
+              setState: function(newState) {
+                return requestedState = newState;
+              },
+              shake: function(options) {
+                if (options == null) options = {};
+                return self.camera(options.camera).shake(options);
+              },
+              saveState: function() {
+                return I.currentState.saveState();
+              },
+              loadState: function(newState) {
+                return I.currentState.loadState(newState);
+              },
+              reload: function() {
+                return I.currentState.reload();
+              }
+            };
+          };
+          ;</code></pre>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
