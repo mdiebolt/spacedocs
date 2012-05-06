@@ -10,7 +10,13 @@ module Spacedocs
       buffer = File.read 'game.json'
       doc_json = JSON.parse buffer
 
-      process_data doc_json
+      processed_data = process_data doc_json
+
+      template = Tilt.new("source/all.html.haml")
+
+      File.open("source/all.html", 'w') do |f|
+        f.write(template.render(self, doc_json: processed_data[:docs_data], class_names: processed_data[:class_names]))
+      end
 
       natives(doc_json).each do |native_json|
         template = Tilt.new("source/native.html.haml")
@@ -88,7 +94,11 @@ module Spacedocs
 
         (item['tags']).each do |tag|
           name = tag['string'] if tag['type'] == 'name'
-          returns = tag['string'] if tag['type'] == 'returns'
+
+          if tag['type'] == 'returns'
+            returns = { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
+          end
+
           see = tag['local'] if tag['type'] == 'see'
 
           if tag['type'] == 'param'
@@ -161,10 +171,7 @@ module Spacedocs
         }
       end
 
-      docs_data
-      File.open("sanity.json", 'w') do |f|
-        f.write(docs_data.to_json)
-      end
+      return { docs_data: docs_data, class_names: class_names }
     end
   end
 end

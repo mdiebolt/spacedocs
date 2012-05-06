@@ -11,7 +11,7 @@
     %script(src="/javascripts/docs.js" type="text/javascript")
 
   %body
-    = partial('nav.html.haml', { doc_json: doc_json })
+    /= partial('nav.html.haml', { doc_json: doc_json })
     = partial('method_list.html.haml', { doc_json: doc_json })
     .documentation
       - name = nil
