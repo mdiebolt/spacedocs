@@ -4,8 +4,6 @@
 # require color
 
 $ ->
-  $('nav p:first').addClass('active')
-
   $(".documentation").on "click", ".toggle_source", (e) ->
     e.preventDefault()
 

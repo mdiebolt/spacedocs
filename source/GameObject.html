@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    <title>Spacedocs</title>
+    <link href='/stylesheets/docs.css' media='screen, projection' rel='stylesheet' type='text/css' />
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>
+    <script src='/javascripts/docs.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <nav>
+      <a href='/Array.html'>Array</a>
+      <a href='/Bindable.html'>Bindable</a>
+      <a href='/Boolean.html'>Boolean</a>
+      <a href='/Bounded.html'>Bounded</a>
+      <a href='/Clampable.html'>Clampable</a>
+      <a href='/Collision.html'>Collision</a>
+      <a href='/Controllable.html'>Controllable</a>
+      <a href='/Cooldown.html'>Cooldown</a>
+      <a href='/Core.html'>Core</a>
+      <a href='/Date.html'>Date</a>
+      <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Drawable.html'>Drawable</a>
+      <a href='/Durable.html'>Durable</a>
+      <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Flickerable.html'>Flickerable</a>
+      <a href='/Follow.html'>Follow</a>
+      <a href='/Framerate.html'>Framerate</a>
+      <a href='/Function.html'>Function</a>
+      <a class='active' href='/GameObject.html'>GameObject</a>
+      <a href='/GameOver.html'>GameOver</a>
+      <a href='/LevelState.html'>LevelState</a>
+      <a href='/Math.html'>Math</a>
+      <a href='/Metered.html'>Metered</a>
+      <a href='/Movable.html'>Movable</a>
+      <a href='/Number.html'>Number</a>
+      <a href='/Object.html'>Object</a>
+      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/RegExp.html'>RegExp</a>
+      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/Sprite.html'>Sprite</a>
+      <a href='/String.html'>String</a>
+      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/Tween.html'>Tween</a>
+    </nav>
+    <section class='method_list'>
+      <h3>Methods</h3>
+      <div class='methods'>
+        <a href='GameObject.html#create'>create</a>
+        <a href='GameObject.html#destroy'>destroy</a>
+        <a href='GameObject.html#step'>step</a>
+        <a href='GameObject.html#update'>update</a>
+        <a href='GameObject.html#remove'>remove</a>
+      </div>
+    </section>
+    <div class='documentation'>
+      <a name='create'></a>
+      <h1>create</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>Triggered when the object is created.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>
+            <pre><code>enemyCount = 0
+            
+            enemy = engine.add
+              class: "Enemy"
+            
+            enemy.bind 'create', -&gt;
+              enemyCount++
+            </code></pre>
+          </p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code></code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='destroy'></a>
+      <h1>destroy</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>Triggered when object is destroyed. Use<br />the destroy event to add particle effects, play sounds, etc.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>
+            <pre><code>bomb = GameObject()
+            
+            bomb.bind 'destroy', -&gt;
+              bomb.explode()
+              Sound.play "Kaboom"
+            </code></pre>
+          </p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code></code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='step'></a>
+      <h1>step</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>Triggered during every update step.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>
+            <p>player = GameObject()</p>
+            
+            <pre><code>player.bind 'step', -&gt;
+              # check to see if keys are being pressed and
+              # change the player's velocity
+              if keydown.left
+                player.velocity(Point(-1, 0))
+              else if keydown.right
+                player.velocity(Point(1, 0))
+              else
+                player.velocity(Point(0, 0))
+            </code></pre>
+          </p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code></code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='update'></a>
+      <h1>update</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>Goes to the next level on any user input.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code></code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='remove'></a>
+      <h1>remove</h1>
+      <div class='description'>
+        <section class='summary'>
+          <p><p>Triggered when the object is removed from<br />the engine. Use the remove event to handle any clean up.</p></p>
+        </section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>
+            <pre><code>boss = GameObject()
+            
+            boss.bind 'remove', -&gt;
+              unlockDoorToLevel2()
+            </code></pre>
+          </p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>var GameObject;&#x000A;&#x000A;GameObject = function(I) {&#x000A;  var autobindEvents, defaultModules, modules, self;&#x000A;  I || (I = {});</code></pre>
+        </section>
+      </div>
+      <hr />
+    </div>
+  </body>
+</html>

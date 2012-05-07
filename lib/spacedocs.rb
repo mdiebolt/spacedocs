@@ -16,13 +16,16 @@ module Spacedocs
 
       processed_data = process_data doc_json
 
-      template = Tilt.new("source/all.html.haml")
+      template = Tilt.new("source/class.html.haml")
 
-      File.open("source/all.html", 'w') do |f|
-        doc_json = processed_data[:docs_data]
-        class_names = processed_data[:class_names]
+      processed_data[:docs_data].each do |class_data|
+        class_data.each_pair do |class_name, data|
+          File.open("source/#{class_name}.html", 'w') do |f|
+            class_names = processed_data[:class_names]
 
-        f.write(template.render(self, doc_json: doc_json, class_names: class_names))
+            f.write(template.render(self, class_name: class_name, class_data: data, class_names: class_names))
+          end
+        end
       end
     end
 
