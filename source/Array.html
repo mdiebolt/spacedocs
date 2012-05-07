@@ -102,7 +102,7 @@
     </section>
     <div class='documentation'>
       <a name='average'></a>
-      <h1>average</h1>
+      <h1>average()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Calculate the average value of an array. Returns undefined if some elements<br />are not numbers.</p></p>
@@ -135,7 +135,7 @@
       </div>
       <hr />
       <a name='compact'></a>
-      <h1>compact</h1>
+      <h1>compact()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns a copy of the array without null and undefined values.</p></p>
@@ -168,7 +168,7 @@
       </div>
       <hr />
       <a name='copy'></a>
-      <h1>copy</h1>
+      <h1>copy()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p></p>
@@ -209,7 +209,7 @@
       </div>
       <hr />
       <a name='clear'></a>
-      <h1>clear</h1>
+      <h1>clear()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Empties the array of its contents. It is modified in place.</p></p>
@@ -244,7 +244,7 @@
       </div>
       <hr />
       <a name='flatten'></a>
-      <h1>flatten</h1>
+      <h1>flatten()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Flatten out an array of arrays into a single array of elements.</p></p>
@@ -282,7 +282,7 @@
       </div>
       <hr />
       <a name='invoke'></a>
-      <h1>invoke</h1>
+      <h1>invoke(method, Optional)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Invoke the named method on each element in the array<br />and return a new array containing the results of the invocation.</p></p>
@@ -333,7 +333,7 @@
       </div>
       <hr />
       <a name='rand'></a>
-      <h1>rand</h1>
+      <h1>rand()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Randomly select an element from the array.</p></p>
@@ -366,7 +366,7 @@
       </div>
       <hr />
       <a name='remove'></a>
-      <h1>remove</h1>
+      <h1>remove()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Triggered when the object is removed from<br />the engine. Use the remove event to handle any clean up.</p></p>
@@ -389,7 +389,7 @@
       </div>
       <hr />
       <a name='include'></a>
-      <h1>include</h1>
+      <h1>include(element)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns true if the element is present in the array.</p></p>
@@ -435,7 +435,7 @@
       </div>
       <hr />
       <a name='each'></a>
-      <h1>each</h1>
+      <h1>each(iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p></p>
@@ -494,7 +494,7 @@
       </div>
       <hr />
       <a name='map'></a>
-      <h1>map</h1>
+      <h1>map(Function)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Creates a new array with the results of calling a provided function on every<br />element in this array.</p></p>
@@ -521,7 +521,7 @@
       </div>
       <hr />
       <a name='eachPair'></a>
-      <h1>eachPair</h1>
+      <h1>eachPair(iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Call the given iterator once for each pair of objects in the array.</p></p>
@@ -562,7 +562,7 @@
       </div>
       <hr />
       <a name='eachWithObject'></a>
-      <h1>eachWithObject</h1>
+      <h1>eachWithObject(object, iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument and the given object<br />as the second argument. Additional arguments are passed similar to<br /><code>each</code>.</p></p>
@@ -611,7 +611,7 @@
       </div>
       <hr />
       <a name='eachSlice'></a>
-      <h1>eachSlice</h1>
+      <h1>eachSlice(n, iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Call the given iterator once for each group of elements in the array,<br />passing in the elements in groups of n. Additional argumens are<br />passed as in each.</p></p>
@@ -669,7 +669,7 @@
       </div>
       <hr />
       <a name='pipeline'></a>
-      <h1>pipeline</h1>
+      <h1>pipeline(input)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Pipe the input through each function in the array in turn. For example, if you have a<br />list of objects you can perform a series of selection, sorting, and other processing<br />methods and then receive the processed list. This array must contain functions that<br />accept a single input and return the processed input. The output of the first function<br />is fed to the input of the second and so on until the final processed output is returned.</p></p>
@@ -708,7 +708,7 @@
       </div>
       <hr />
       <a name='shuffle'></a>
-      <h1>shuffle</h1>
+      <h1>shuffle()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns a new array with the elements all shuffled up.</p></p>
@@ -745,7 +745,7 @@
       </div>
       <hr />
       <a name='first'></a>
-      <h1>first</h1>
+      <h1>first()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns the first element of the array, undefined if the array is empty.</p></p>
@@ -778,7 +778,7 @@
       </div>
       <hr />
       <a name='last'></a>
-      <h1>last</h1>
+      <h1>last()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns the last element of the array, undefined if the array is empty.</p></p>
@@ -811,7 +811,7 @@
       </div>
       <hr />
       <a name='extremes'></a>
-      <h1>extremes</h1>
+      <h1>extremes(fn)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns an object containing the extremes of this array.</p></p>
@@ -854,7 +854,7 @@
       </div>
       <hr />
       <a name='wrap'></a>
-      <h1>wrap</h1>
+      <h1>wrap(start, length)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Pretend the array is a circle and grab a new array containing length elements.<br />If length is not given return the element at start, again assuming the array<br />is a circle.</p></p>
@@ -908,7 +908,7 @@
       </div>
       <hr />
       <a name='partition'></a>
-      <h1>partition</h1>
+      <h1>partition(iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Partitions the elements into two groups: those for which the iterator returns<br />true, and those for which it returns false.</p></p>
@@ -962,7 +962,7 @@
       </div>
       <hr />
       <a name='select'></a>
-      <h1>select</h1>
+      <h1>select(iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Return the group of elements for which the return value of the iterator is true.</p></p>
@@ -1006,7 +1006,7 @@
       </div>
       <hr />
       <a name='without'></a>
-      <h1>without</h1>
+      <h1>without(values)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Return the group of elements that are not in the passed in set.</p></p>
@@ -1049,7 +1049,7 @@
       </div>
       <hr />
       <a name='reject'></a>
-      <h1>reject</h1>
+      <h1>reject(iterator, context)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Return the group of elements for which the return value of the iterator is false.</p></p>
@@ -1093,7 +1093,7 @@
       </div>
       <hr />
       <a name='inject'></a>
-      <h1>inject</h1>
+      <h1>inject()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Combines all elements of the array by applying a binary operation.<br />for each element in the arra the iterator is passed an accumulator<br />value (memo) and the element.</p></p>
@@ -1122,7 +1122,7 @@
       </div>
       <hr />
       <a name='sum'></a>
-      <h1>sum</h1>
+      <h1>sum()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Add all the elements in the array.</p></p>
@@ -1155,7 +1155,7 @@
       </div>
       <hr />
       <a name='product'></a>
-      <h1>product</h1>
+      <h1>product()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Multiply all the elements in the array.</p></p>
@@ -1188,7 +1188,7 @@
       </div>
       <hr />
       <a name='zip'></a>
-      <h1>zip</h1>
+      <h1>zip()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Merges together the values of each of the arrays with the values at the corresponding position.</p></p>
@@ -1221,7 +1221,7 @@
       </div>
       <hr />
       <a name='pop'></a>
-      <h1>pop</h1>
+      <h1>pop()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Removes the last element from an array and returns that element.</p></p>
@@ -1238,7 +1238,7 @@
       </div>
       <hr />
       <a name='push'></a>
-      <h1>push</h1>
+      <h1>push(...,)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Mutates an array by appending the given elements and returning the new length of<br />the array.</p></p>
@@ -1265,7 +1265,7 @@
       </div>
       <hr />
       <a name='reverse'></a>
-      <h1>reverse</h1>
+      <h1>reverse()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Reverses an array in place.  The first array element becomes the last and the<br />last becomes the first.</p></p>
@@ -1282,7 +1282,7 @@
       </div>
       <hr />
       <a name='shift'></a>
-      <h1>shift</h1>
+      <h1>shift()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Removes the first element from an array and returns that element. This method<br />changes the length of the array.</p></p>
@@ -1299,7 +1299,7 @@
       </div>
       <hr />
       <a name='sort'></a>
-      <h1>sort</h1>
+      <h1>sort(Specifies)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Sorts the elements of an array in place.</p></p>
@@ -1326,7 +1326,7 @@
       </div>
       <hr />
       <a name='splice'></a>
-      <h1>splice</h1>
+      <h1>splice(Index, An, ...,)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Changes the content of an array, adding new elements while removing old<br />elements.</p></p>
@@ -1363,7 +1363,7 @@
       </div>
       <hr />
       <a name='unshift'></a>
-      <h1>unshift</h1>
+      <h1>unshift(...,)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Adds one or more elements to the beginning of an array and returns the new<br />length of the array.</p></p>
@@ -1390,7 +1390,7 @@
       </div>
       <hr />
       <a name='concat'></a>
-      <h1>concat</h1>
+      <h1>concat(Arrays)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns a new array comprised of this array joined with other array(s) and/or<br />value(s).</p></p>
@@ -1417,7 +1417,7 @@
       </div>
       <hr />
       <a name='join'></a>
-      <h1>join</h1>
+      <h1>join(Specifies)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Joins all elements of an array into a string.</p></p>
@@ -1444,7 +1444,7 @@
       </div>
       <hr />
       <a name='slice'></a>
-      <h1>slice</h1>
+      <h1>slice(Zero-based)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns a one-level deep copy of a portion of an array.</p></p>
@@ -1456,11 +1456,6 @@
         <section class='parameters'>
           <h3>Parameters</h3>
           <ul>
-            <li>
-              <span class='param_name'>Zero-based</span>
-               -
-              <span class='param_description'>index at which to begin extraction.As a negative index,</span>
-            </li>
             <li>
               <span class='param_name'>Zero-based</span>
                -
@@ -1476,7 +1471,7 @@
       </div>
       <hr />
       <a name='toString'></a>
-      <h1>toString</h1>
+      <h1>toString()</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns a string representing the specified Date object.</p></p>
@@ -1493,7 +1488,7 @@
       </div>
       <hr />
       <a name='indexOf'></a>
-      <h1>indexOf</h1>
+      <h1>indexOf(fromIndex)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns the first index at which a given element can be found in the array, or<br />-1 if it is not present.</p></p>
@@ -1520,7 +1515,7 @@
       </div>
       <hr />
       <a name='lastIndexOf'></a>
-      <h1>lastIndexOf</h1>
+      <h1>lastIndexOf(fromIndex)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Returns the last index at which a given element can be found in the array, or -1<br />if it is not present. The array is searched backwards, starting at fromIndex.</p></p>
@@ -1547,7 +1542,7 @@
       </div>
       <hr />
       <a name='filter'></a>
-      <h1>filter</h1>
+      <h1>filter(thisObject)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Creates a new array with all elements that pass the test implemented by the<br />provided function.</p></p>
@@ -1574,7 +1569,7 @@
       </div>
       <hr />
       <a name='forEach'></a>
-      <h1>forEach</h1>
+      <h1>forEach(thisObject)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Executes a provided function once per array element.</p></p>
@@ -1601,7 +1596,7 @@
       </div>
       <hr />
       <a name='every'></a>
-      <h1>every</h1>
+      <h1>every(Function)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Tests whether all elements in the array pass the test implemented by the<br />provided function.</p></p>
@@ -1628,7 +1623,7 @@
       </div>
       <hr />
       <a name='some'></a>
-      <h1>some</h1>
+      <h1>some(thisObject)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Tests whether some element in the array passes the test implemented by the<br />provided function.</p></p>
@@ -1655,7 +1650,7 @@
       </div>
       <hr />
       <a name='reduce'></a>
-      <h1>reduce</h1>
+      <h1>reduce(Function)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Apply a function against an accumulator and each value of the array (from<br />left-to-right) as to reduce it to a single value.</p></p>
@@ -1682,7 +1677,7 @@
       </div>
       <hr />
       <a name='reduceRight'></a>
-      <h1>reduceRight</h1>
+      <h1>reduceRight(initialValue)</h1>
       <div class='description'>
         <section class='summary'>
           <p><p>Apply a function simultaneously against two values of the array (from<br />right-to-left) as to reduce it to a single value.</p></p>

@@ -29,16 +29,6 @@ module Spacedocs
       end
     end
 
-    def signature(method)
-      param_list(method).map{ |p| p[:name] }.join ', '
-    end
-
-    def param_list(method)
-      method['tags'].map do |tag|
-        { name: tag['name'], description: tag['description'] } if tag['type'] == 'param'
-      end.compact
-    end
-
     def methods_of(source_class, tags)
       output = []
       matching_tags = []
@@ -71,7 +61,7 @@ module Spacedocs
         name = nil
         returns = nil
         see = nil
-        params = []
+        params = {}
 
         (item['tags']).each do |tag|
           name = tag['string'] if tag['type'] == 'name'
@@ -83,13 +73,12 @@ module Spacedocs
           see = tag['local'] if tag['type'] == 'see'
 
           if tag['type'] == 'param'
-            params << {
-              "#{tag['name'].gsub(/[\[\]]/, '')}" => {
-                  "type" => tag['types'].join(', '),
-                  "description" => tag['description'],
-                  "optional" => tag['name'].start_with?('[')
-                }
-              }
+            params["#{tag['name'].gsub(/[\[\]]/, '')}"] = {
+              "type" => tag['types'].join(', '),
+              "description" => tag['description'],
+              "optional" => tag['name'].start_with?('[')
+            }
+
           end
 
           if tag['type'] == 'methodOf'
@@ -107,7 +96,7 @@ module Spacedocs
           "summary" => item['description']['summary'],
           "code_sample" => item['description']['body'],
           "source" => item['code'],
-          "params" => params,
+          "parameters" => params,
           "returns" => returns,
           "see" => see
         }
