@@ -12,7 +12,7 @@
 
   %body
     %nav
-      -class_names.each do |doc_class|
+      -class_names.sort.each do |doc_class|
         %p= doc_class
     = partial('method_list.html.haml')
     .documentation
@@ -48,3 +48,10 @@
                         Type:
                         %a(href='#')= method_data['returns']['type']
                     %p.return_description= method_data['returns']['description']
+
+              %section.source
+                %h3 Source
+                %a.toggle_source Toggle
+                %pre
+                  %code= method_data['source']
+            %hr
