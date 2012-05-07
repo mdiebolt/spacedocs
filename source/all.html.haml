@@ -16,3 +16,35 @@
         %p= doc_class
     = partial('method_list.html.haml')
     .documentation
+      -doc_json.each do |class_data|
+        -class_data.each_pair do |class_name, data|
+          -data['methods'].each_pair do |method_name, method_data|
+            %h1= method_name
+            .description
+              %section.summary
+                %p= method_data['summary']
+
+              %section.usage
+                %h3 Usage
+                %p= method_data['code_sample']
+
+              - if method_data['params'].length > 0
+                %section.parameters
+                  %h3 Parameters
+                  %ul
+                    - method_data['params'].each do |param|
+                      - param.each_pair do |param_name, param_data|
+                        %li
+                          %span.param_name= param_name
+                          = " - "
+                          %span.param_description= param_data['description']
+
+              -if method_data['returns']
+                %section.returns
+                  %h3 Returns
+                  %p
+                    %span.type
+                      %p
+                        Type:
+                        %a(href='#')= method_data['returns']['type']
+                    %p.return_description= method_data['returns']['description']
