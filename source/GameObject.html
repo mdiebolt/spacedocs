@@ -61,21 +61,17 @@
       <a name='create'></a>
       <h1>create()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Triggered when the object is created.</p></p>
-        </section>
+        <section class='summary'><p>Triggered when the object is created.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <pre><code>enemyCount = 0
-            
-            enemy = engine.add
-              class: "Enemy"
-            
-            enemy.bind 'create', -&gt;
-              enemyCount++
-            </code></pre>
-          </p>
+          <pre><code>enemyCount = 0
+          
+          enemy = engine.add
+            class: "Enemy"
+          
+          enemy.bind 'create', -&gt;
+            enemyCount++
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -87,19 +83,15 @@
       <a name='destroy'></a>
       <h1>destroy()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Triggered when object is destroyed. Use<br />the destroy event to add particle effects, play sounds, etc.</p></p>
-        </section>
+        <section class='summary'><p>Triggered when object is destroyed. Use<br />the destroy event to add particle effects, play sounds, etc.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <pre><code>bomb = GameObject()
-            
-            bomb.bind 'destroy', -&gt;
-              bomb.explode()
-              Sound.play "Kaboom"
-            </code></pre>
-          </p>
+          <pre><code>bomb = GameObject()
+          
+          bomb.bind 'destroy', -&gt;
+            bomb.explode()
+            Sound.play "Kaboom"
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -111,25 +103,21 @@
       <a name='step'></a>
       <h1>step()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Triggered during every update step.</p></p>
-        </section>
+        <section class='summary'><p>Triggered during every update step.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <p>player = GameObject()</p>
-            
-            <pre><code>player.bind 'step', -&gt;
-              # check to see if keys are being pressed and
-              # change the player's velocity
-              if keydown.left
-                player.velocity(Point(-1, 0))
-              else if keydown.right
-                player.velocity(Point(1, 0))
-              else
-                player.velocity(Point(0, 0))
-            </code></pre>
-          </p>
+          <p>player = GameObject()</p>
+          
+          <pre><code>player.bind 'step', -&gt;
+            # check to see if keys are being pressed and
+            # change the player's velocity
+            if keydown.left
+              player.velocity(Point(-1, 0))
+            else if keydown.right
+              player.velocity(Point(1, 0))
+            else
+              player.velocity(Point(0, 0))
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -141,12 +129,10 @@
       <a name='update'></a>
       <h1>update()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Goes to the next level on any user input.</p></p>
-        </section>
+        <section class='summary'><p>Goes to the next level on any user input.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p></p>
+          
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -158,18 +144,14 @@
       <a name='remove'></a>
       <h1>remove()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Triggered when the object is removed from<br />the engine. Use the remove event to handle any clean up.</p></p>
-        </section>
+        <section class='summary'><p>Triggered when the object is removed from<br />the engine. Use the remove event to handle any clean up.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <pre><code>boss = GameObject()
-            
-            boss.bind 'remove', -&gt;
-              unlockDoorToLevel2()
-            </code></pre>
-          </p>
+          <pre><code>boss = GameObject()
+          
+          boss.bind 'remove', -&gt;
+            unlockDoorToLevel2()
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>

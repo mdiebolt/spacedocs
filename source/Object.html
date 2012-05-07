@@ -62,35 +62,31 @@
       <a name=''></a>
       <h1>()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Modify the object's properties over time.</p></p>
-        </section>
+        <section class='summary'><p>Modify the object's properties over time.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <pre><code>    player = GameObject()
-            
-                player.tween 30,
-                  x: 50
-                  y: 50
-                  easing: "quadratic"
-                &lt;/pre&gt;&lt;/code&gt;
-            
-                &lt;code&gt;&lt;pre&gt;
-                player = GameObject()
-            
-                player.tween 30,
-                  x: 150
-                  y: 150
-                  complete: -&gt;
-                    player.dance()
-            
-            @name tween
-            @methodOf Tween#
-            @param {Number} duration How long (in frames) until the object's properties reach their final values.
-            @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
-            </code></pre>
-          </p>
+          <pre><code>    player = GameObject()
+          
+              player.tween 30,
+                x: 50
+                y: 50
+                easing: "quadratic"
+              &lt;/pre&gt;&lt;/code&gt;
+          
+              &lt;code&gt;&lt;pre&gt;
+              player = GameObject()
+          
+              player.tween 30,
+                x: 150
+                y: 150
+                complete: -&gt;
+                  player.dance()
+          
+          @name tween
+          @methodOf Tween#
+          @param {Number} duration How long (in frames) until the object's properties reach their final values.
+          @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -102,12 +98,10 @@
       <a name='hasOwnProperty'></a>
       <h1>hasOwnProperty(The)</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Returns a boolean indicating whether the object has the specified property.</p></p>
-        </section>
+        <section class='summary'><p>Returns a boolean indicating whether the object has the specified property.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p><p><code><em>obj</em>.hasOwnProperty(<em>prop</em>)</code></p></p>
+          <p><code><em>obj</em>.hasOwnProperty(<em>prop</em>)</code></p>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>

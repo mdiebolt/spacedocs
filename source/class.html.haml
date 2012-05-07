@@ -9,10 +9,9 @@
     %link(href="/stylesheets/docs.css" media="screen, projection" rel="stylesheet" type="text/css")
     %script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript")
     %script(src="/javascripts/docs.js" type="text/javascript")
-
   %body
     %nav
-      -class_names.sort.each do |doc_class|
+      -class_names.each do |doc_class|
         -if doc_class == class_name
           %a.active(href="/#{doc_class}.html")= doc_class
         -else
@@ -27,12 +26,11 @@
         %a(name="#{method_name}")
         %h1= "#{method_name}(#{method_data['parameters'].keys.join ', '})"
         .description
-          %section.summary
-            %p= method_data['summary']
+          %section.summary= method_data['summary']
 
           %section.usage
             %h3 Usage
-            %p= method_data['code_sample']
+            = method_data['code_sample']
 
           - if method_data['parameters'].keys.length > 0
             %section.parameters
@@ -48,11 +46,9 @@
             %section.returns
               %h3 Returns
               %p
-                %span.type
-                  %p
-                    Type:
-                    %a(href="#{method_data['returns']['type']}.html")= method_data['returns']['type']
-                %p.return_description= method_data['returns']['description']
+                Type:
+                %a(href="#{method_data['returns']['type']}.html")= method_data['returns']['type']
+              %p.return_description= method_data['returns']['description']
 
           %section.source
             %h3 Source

@@ -57,35 +57,31 @@
       <a name=''></a>
       <h1>()</h1>
       <div class='description'>
-        <section class='summary'>
-          <p><p>Modify the object's properties over time.</p></p>
-        </section>
+        <section class='summary'><p>Modify the object's properties over time.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>
-            <pre><code>    player = GameObject()
-            
-                player.tween 30,
-                  x: 50
-                  y: 50
-                  easing: "quadratic"
-                &lt;/pre&gt;&lt;/code&gt;
-            
-                &lt;code&gt;&lt;pre&gt;
-                player = GameObject()
-            
-                player.tween 30,
-                  x: 150
-                  y: 150
-                  complete: -&gt;
-                    player.dance()
-            
-            @name tween
-            @methodOf Tween#
-            @param {Number} duration How long (in frames) until the object's properties reach their final values.
-            @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
-            </code></pre>
-          </p>
+          <pre><code>    player = GameObject()
+          
+              player.tween 30,
+                x: 50
+                y: 50
+                easing: "quadratic"
+              &lt;/pre&gt;&lt;/code&gt;
+          
+              &lt;code&gt;&lt;pre&gt;
+              player = GameObject()
+          
+              player.tween 30,
+                x: 150
+                y: 150
+                complete: -&gt;
+                  player.dance()
+          
+          @name tween
+          @methodOf Tween#
+          @param {Number} duration How long (in frames) until the object's properties reach their final values.
+          @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>

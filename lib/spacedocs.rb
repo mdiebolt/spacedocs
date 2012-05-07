@@ -46,8 +46,13 @@ module Spacedocs
       output
     end
 
+    def returns_data(tag)
+      if tag['type'] == 'returns'
+        { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
+      end
+    end
+
     def process_data(json)
-      output = []
       constructors = []
       class_names = []
       tags_list = []
@@ -66,9 +71,7 @@ module Spacedocs
         (item['tags']).each do |tag|
           name = tag['string'] if tag['type'] == 'name'
 
-          if tag['type'] == 'returns'
-            returns = { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
-          end
+          returns = returns_data(tag)
 
           see = tag['local'] if tag['type'] == 'see'
 
@@ -78,7 +81,6 @@ module Spacedocs
               "description" => tag['description'],
               "optional" => tag['name'].start_with?('[')
             }
-
           end
 
           if tag['type'] == 'methodOf'
@@ -111,7 +113,7 @@ module Spacedocs
         end
       end
 
-      class_names = class_names.uniq
+      class_names = class_names.uniq.sort
 
       tags_list.each do |tags|
         tags.each do |tag|
