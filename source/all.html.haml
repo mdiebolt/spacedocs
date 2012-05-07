@@ -14,10 +14,14 @@
     %nav
       -class_names.sort.each do |doc_class|
         %p= doc_class
-    = partial('method_list.html.haml')
     .documentation
       -doc_json.each do |class_data|
         -class_data.each_pair do |class_name, data|
+          %section.method_list
+            %h3 Methods
+            %ul.methods
+              -data['method_list'].each do |m|
+                %li= m
           -data['methods'].each_pair do |method_name, method_data|
             %h1= method_name
             .description
