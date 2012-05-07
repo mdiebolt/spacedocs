@@ -18,7 +18,7 @@
         -else
           %a(href="/#{doc_class}.html")= doc_class
     %section.method_list
-      %h3 Methods
+      %h3= "#{class_name} Methods"
       .methods
         -class_data['method_list'].each do |m|
           %a(href="#{class_name}.html##{m}")= m
@@ -52,7 +52,7 @@
                 %span.type
                   %p
                     Type:
-                    %a(href='#')= method_data['returns']['type']
+                    %a(href="#{method_data['returns']['type']}.html")= method_data['returns']['type']
                 %p.return_description= method_data['returns']['description']
 
           %section.source

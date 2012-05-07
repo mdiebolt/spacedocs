@@ -53,6 +53,8 @@ nav
   overflow: auto
 
   a
+    +box-sizing(border-box)
+
     color: #222
     display: block
     text-decoration: none
@@ -70,11 +72,11 @@ nav
       border-right: 1px white
       box-shadow: white 2px 0 0 0
       border: 1px solid rgba(0, 0, 0, 0.3)
-      font-weight: bold
       border-right: 1px solid rgba(0, 0, 0, 0.15)
 
 .documentation
   display: inline-block
+  max-width: 500px
   padding-left: 145px
   padding-top: 1em
   vertical-align: top

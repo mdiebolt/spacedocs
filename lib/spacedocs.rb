@@ -67,7 +67,6 @@ module Spacedocs
 
       json.each do |item|
         tags_list << item['tags']
-        methods_of('Date', item['tags'])
 
         name = nil
         returns = nil
