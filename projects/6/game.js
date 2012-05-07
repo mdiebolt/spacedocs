@@ -713,22 +713,24 @@ Bindable = function() {
       eventCallbacks[event] = eventCallbacks[event] || [];
       return eventCallbacks[event].push(callback);
     },
-    /**
-    Removes a specific event listener, or all event listeners if
-    no specific listener is given.
+/**
+Removes a specific event listener, or all event listeners if
+no specific listener is given.
 
-        #  removes the handler coolEventHandler from the event
-        # "someCustomEvent" while leaving the other events intact.
-        yourObject.unbind "someCustomEvent", coolEventHandler
+Another paragraph.
 
-        # removes all handlers attached to "anotherCustomEvent"
-        yourObject.unbind "anotherCustomEvent"
+    #  removes the handler coolEventHandler from the event
+    # "someCustomEvent" while leaving the other events intact.
+    yourObject.unbind "someCustomEvent", coolEventHandler
 
-    @name unbind
-    @methodOf Bindable#
-    @param {String} event The event to remove the listener from.
-    @param {Function} [callback] The listener to remove.
-    */
+    # removes all handlers attached to "anotherCustomEvent"
+    yourObject.unbind "anotherCustomEvent"
+
+@name unbind
+@methodOf Bindable#
+@param {String} event The event to remove the listener from.
+@param {Function} [callback] The listener to remove.
+*/
     unbind: function(event, callback) {
       eventCallbacks[event] = eventCallbacks[event] || [];
       if (callback) {

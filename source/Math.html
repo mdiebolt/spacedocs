@@ -50,43 +50,40 @@
     <section class='method_list'>
       <h3>Math Methods</h3>
       <div class='methods'>
-        <a href='Math.html#'></a>
+        <a href='Math.html#uuid'>uuid</a>
       </div>
     </section>
     <div class='documentation'>
-      <a name=''></a>
-      <h1>()</h1>
+      <a name='uuid'></a>
+      <h1>uuid(The)</h1>
       <div class='description'>
-        <section class='summary'><p>Modify the object's properties over time.</p></section>
+        <section class='summary'><p>Generate a random uuid.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <pre><code>    player = GameObject()
+          <p><code><pre><br />   // No arguments  - returns RFC4122, version 4 ID<br />   Math.uuid()<br />=> "92329D39-6F5C-4520-ABFC-AAB64544E172"</p>
           
-              player.tween 30,
-                x: 50
-                y: 50
-                easing: "quadratic"
-              &lt;/pre&gt;&lt;/code&gt;
+          <p>// One argument - returns ID of the specified length<br />   Math.uuid(15)     // 15 character ID (default base=62)<br />=> "VcydxgltxrVZSTV"</p>
           
-              &lt;code&gt;&lt;pre&gt;
-              player = GameObject()
+          <p>// Two arguments - returns ID of the specified length, and radix. (Radix must be &lt;= 62)<br />   Math.uuid(8, 2)  // 8 character ID (base=2)<br />=> "01001010"</p>
           
-              player.tween 30,
-                x: 150
-                y: 150
-                complete: -&gt;
-                  player.dance()
+          <p>Math.uuid(8, 10) // 8 character ID (base=10)<br />=> "47473046"</p>
           
-          @name tween
-          @methodOf Tween#
-          @param {Number} duration How long (in frames) until the object's properties reach their final values.
-          @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
-          </code></pre>
+          <p>Math.uuid(8, 16) // 8 character ID (base=16)<br />=> "098F4D35"<br /></pre></code></p>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>The</span>
+               -
+              <span class='param_description'>number of allowable values for each character.</span>
+            </li>
+          </ul>
         </section>
         <section class='source'>
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
-          <pre><code>tween: function(duration, properties) {&#x000A;      var complete, easing, property, target, _results;&#x000A;      properties = Object.extend({}, properties);&#x000A;      easing = properties.easing || "linear";&#x000A;      complete = properties.complete;&#x000A;      delete properties.easing;&#x000A;      delete properties.complete;&#x000A;      _results = [];&#x000A;      for (property in properties) {&#x000A;        target = properties[property];&#x000A;        _results.push(I.activeTweens[property] = {&#x000A;          complete: complete,&#x000A;          end: target,&#x000A;          start: I[property],&#x000A;          easing: easing,&#x000A;          duration: duration,&#x000A;          startTime: I.age,&#x000A;          endTime: I.age + duration&#x000A;        });&#x000A;      }&#x000A;      return _results;&#x000A;    }&#x000A;  };&#x000A;};&#x000A;;&#x000A;;</code></pre>
+          <pre><code>(function() {&#x000A;  // Private array of chars to use&#x000A;  var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');&#x000A;&#x000A;  Math.uuid = function (len, radix) {&#x000A;    var chars = CHARS, uuid = [];&#x000A;    radix = radix || chars.length;&#x000A;&#x000A;    if (len) {&#x000A;      // Compact form&#x000A;      for (var i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];&#x000A;    } else {&#x000A;      // rfc4122, version 4 form&#x000A;      var r;&#x000A;&#x000A;      // rfc4122 requires these characters&#x000A;      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';&#x000A;      uuid[14] = '4';&#x000A;&#x000A;      // Fill in random data.  At i==19 set the high bits of clock sequence as&#x000A;      // per rfc4122, sec. 4.1.5&#x000A;      for (var i = 0; i < 36; i++) {&#x000A;        if (!uuid[i]) {&#x000A;          r = 0 | Math.random()*16;&#x000A;          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;&#x000A;    return uuid.join('');&#x000A;  };&#x000A;&#x000A;  // A more performant, but slightly bulkier, RFC4122v4 solution.  We boost performance&#x000A;  // by minimizing calls to random()&#x000A;  Math.uuidFast = function() {&#x000A;    var chars = CHARS, uuid = new Array(36), rnd=0, r;&#x000A;    for (var i = 0; i < 36; i++) {&#x000A;      if (i==8 || i==13 ||  i==18 || i==23) {&#x000A;        uuid[i] = '-';&#x000A;      } else if (i==14) {&#x000A;        uuid[i] = '4';&#x000A;      } else {&#x000A;        if (rnd <= 0x02) rnd = 0x2000000 + (Math.random()*0x1000000)|0;&#x000A;        r = rnd & 0xf;&#x000A;        rnd = rnd >> 4;&#x000A;        uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];&#x000A;      }&#x000A;    }&#x000A;    return uuid.join('');&#x000A;  };&#x000A;&#x000A;  // A more compact, but less performant, RFC4122v4 solution:&#x000A;  Math.uuidCompact = function() {&#x000A;    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {&#x000A;      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);&#x000A;      return v.toString(16);&#x000A;    }).toUpperCase();&#x000A;  };&#x000A;})();;&#x000A;;&#x000A;;&#x000A;var ActiveBounds;&#x000A;&#x000A;ActiveBounds = function(I, self) {&#x000A;  if (I == null) I = {};&#x000A;  Object.reverseMerge(I, {&#x000A;    x: 0,&#x000A;    y: 0,&#x000A;    width: 8,&#x000A;    height: 8,&#x000A;    activeBounds: Rectangle(0, 0, App.width, App.height)&#x000A;  });&#x000A;  return self.bind('update', function() {&#x000A;    var _ref, _ref2;&#x000A;    if (!((I.activeBounds.left <= (_ref = I.x) && _ref <= I.activeBounds.right))) {&#x000A;      self.destroy();&#x000A;    }&#x000A;    if (!((I.activeBounds.top <= (_ref2 = I.y) && _ref2 <= I.activeBounds.bottom))) {&#x000A;      return self.destroy();&#x000A;    }&#x000A;  });&#x000A;};&#x000A;;</code></pre>
         </section>
       </div>
       <hr />

@@ -50,9 +50,48 @@
     <section class='method_list'>
       <h3>Bindable Methods</h3>
       <div class='methods'>
+        <a href='Bindable.html#unbind'>unbind</a>
       </div>
     </section>
     <div class='documentation'>
+      <a name='unbind'></a>
+      <h1>unbind(event, callback)</h1>
+      <div class='description'>
+        <section class='summary'><p>Removes a specific event listener, or all event listeners if<br />no specific listener is given.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p>Another paragraph.</p>
+          
+          <pre><code>#  removes the handler coolEventHandler from the event
+          # "someCustomEvent" while leaving the other events intact.
+          yourObject.unbind "someCustomEvent", coolEventHandler
+          
+          # removes all handlers attached to "anotherCustomEvent"
+          yourObject.unbind "anotherCustomEvent"
+          </code></pre>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>event</span>
+               -
+              <span class='param_description'>The event to remove the listener from.</span>
+            </li>
+            <li>
+              <span class='param_name'>callback</span>
+               -
+              <span class='param_description'>The listener to remove.</span>
+            </li>
+          </ul>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>unbind: function(event, callback) {&#x000A;      eventCallbacks[event] = eventCallbacks[event] || [];&#x000A;      if (callback) {&#x000A;        return eventCallbacks[event].remove(callback);&#x000A;      } else {&#x000A;        return eventCallbacks[event] = [];&#x000A;      }&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
     </div>
   </body>
 </html>

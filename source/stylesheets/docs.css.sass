@@ -1,5 +1,7 @@
 @import compass/css3
 
+$width: 600px
+
 html
   color: #222
   height: 100%
@@ -22,7 +24,7 @@ body
   right: 20px
   background-color: white
   border: 1px solid rgba(0, 0, 0, 0.3)
-  max-width: 400px
+  max-width: 450px
   text-align: center
   margin: 0
   padding: 0.25em 0.5em
@@ -55,6 +57,7 @@ nav
   a
     +box-sizing(border-box)
 
+    border: 1px solid transparent
     color: #222
     display: block
     text-decoration: none
@@ -75,7 +78,7 @@ nav
 
 .documentation
   display: inline-block
-  max-width: 600px
+  max-width: $width
   padding-left: 145px
   padding-top: 1em
   vertical-align: top
@@ -92,6 +95,11 @@ nav
 
   ul
     margin: 0
+    padding-left: 1em
+    list-style: none
+
+    li
+      padding-top: 0.5em
 
   .returns
     p
@@ -132,14 +140,14 @@ nav
 
       border: 1px solid rgba(0, 0, 0, 0.2)
       background-color: #EEE
-      max-width: 400px
+      max-width: $width
       padding: 0.5em 1em
 
   hr
     margin-left: 1px
     margin-top: 1em
     margin-bottom: 1em
-    max-width: 600px
+    max-width: $width
 
     &:last-child
       display: none

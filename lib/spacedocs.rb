@@ -34,7 +34,7 @@ module Spacedocs
       matching_tags = []
 
       tags.each do |tag|
-        matching_tags << tags if (tag['type'] == 'methodOf' && tag['string'] == "#{source_class}#")
+        matching_tags << tags if (tag['type'] == 'methodOf' && tag['string'].gsub(/#/, '') == "#{source_class}")
       end
 
       matching_tags.each do |tags|
@@ -46,10 +46,24 @@ module Spacedocs
       output
     end
 
-    def returns_data(tag)
-      if tag['type'] == 'returns'
-        { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
-      end
+    def name_data(tags)
+      tags.map do |tag|
+        tag['string'] if tag['type'] == 'name'
+      end.compact
+    end
+
+    def returns_data(tags)
+      tags.map do |tag|
+        if tag['type'] == 'returns'
+          { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
+        end
+      end.compact
+    end
+
+    def see_data(tags)
+      tags.map do |tag|
+        tag['local'] if tag['type'] == 'see'
+      end.compact
     end
 
     def process_data(json)
@@ -63,18 +77,13 @@ module Spacedocs
       json.each do |item|
         tags_list << item['tags']
 
-        name = nil
-        returns = nil
-        see = nil
+        name = name_data(item['tags']).first
+        returns = returns_data(item['tags']).first
+        see = see_data(item['tags']).first
+
         params = {}
 
         (item['tags']).each do |tag|
-          name = tag['string'] if tag['type'] == 'name'
-
-          returns = returns_data(tag)
-
-          see = tag['local'] if tag['type'] == 'see'
-
           if tag['type'] == 'param'
             params["#{tag['name'].gsub(/[\[\]]/, '')}"] = {
               "type" => tag['types'].join(', '),
@@ -86,7 +95,7 @@ module Spacedocs
           if tag['type'] == 'methodOf'
             source_class = tag['string'].gsub('#', '')
             class_names << source_class
-            method_map["#{source_class}"] = [] unless method_map["#{source_class}"]
+            method_map["#{source_class}"] ||= []
           end
 
           if tag['type'] == 'constructor' || tag['type'] == 'namespace'
@@ -108,7 +117,7 @@ module Spacedocs
         tags.each do |tag|
           if tag['type'] == 'name'
             class_names << tag['string']
-            method_map["#{tag['string']}"] = [] unless method_map["#{tag['string']}"]
+            method_map["#{tag['string']}"] ||= []
           end
         end
       end
