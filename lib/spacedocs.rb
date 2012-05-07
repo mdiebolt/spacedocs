@@ -6,6 +6,10 @@ module Spacedocs
   DIR = Dir.pwd
 
   class << self
+    def partial(template_name, locals={})
+      Tilt.new("#{DIR}/source/#{template_name}").render self, locals
+    end
+
     def doc
       buffer = File.read 'game.json'
       doc_json = JSON.parse buffer
@@ -15,15 +19,10 @@ module Spacedocs
       template = Tilt.new("source/all.html.haml")
 
       File.open("source/all.html", 'w') do |f|
-        f.write(template.render(self, doc_json: processed_data[:docs_data], class_names: processed_data[:class_names]))
-      end
+        doc_json = processed_data[:docs_data]
+        class_names = processed_data[:class_names]
 
-      natives(doc_json).each do |native_json|
-        template = Tilt.new("source/native.html.haml")
-
-        File.open("source/#{native_json['ctx']['name']}.html", 'w') do |f|
-          f.write(template.render(self, doc_json: doc_json, native_json: native_json))
-        end
+        f.write(template.render(self, doc_json: doc_json, class_names: class_names))
       end
     end
 
@@ -31,30 +30,10 @@ module Spacedocs
       param_list(method).map{ |p| p[:name] }.join ', '
     end
 
-    def partial(template_name, locals={})
-      Tilt.new("#{DIR}/source/#{template_name}").render self, locals
-    end
-
     def param_list(method)
       method['tags'].map do |tag|
         { name: tag['name'], description: tag['description'] } if tag['type'] == 'param'
       end.compact
-    end
-
-    def natives(json)
-      json.select do |item|
-        !item['ctx'].nil?
-      end
-    end
-
-    def tags_named(type, tags)
-      output = []
-
-      tags.each do |tag|
-        output << tags if tag['type'] == type
-      end
-
-      output
     end
 
     def methods_of(source_class, tags)
