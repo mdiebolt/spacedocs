@@ -20,10 +20,10 @@ module Spacedocs
 
       processed_data[:docs_data].each do |class_data|
         class_data.each_pair do |class_name, data|
-          File.open("source/#{class_name}.html", 'w') do |f|
+          File.open("source/#{class_name.gsub(/#/, '')}.html", 'w') do |f|
             class_names = processed_data[:class_names]
 
-            f.write(template.render(self, class_name: class_name, class_data: data, class_names: class_names))
+            f.write(template.render(self, class_name: class_name, method_list: (class_data[class_name]['method_list'] || []), methods: class_data[class_name]['methods'], class_names: class_names, module_map: processed_data[:module_map]))
           end
         end
       end
@@ -34,16 +34,22 @@ module Spacedocs
       matching_tags = []
 
       tags.each do |tag|
-        matching_tags << tags if (tag['type'] == 'methodOf' && tag['string'].gsub(/#/, '') == "#{source_class}")
+        matching_tags << tags if tag['type'] == 'methodOf'
       end
 
       matching_tags.each do |tags|
         tags.each do |tag|
-          output << tag['string'] if tag['type'] == 'name'
+          output << (source_class + tag['string']) if tag['type'] == 'name'
         end
       end
 
       output
+    end
+
+    def method_of_data(tags)
+      tags.map do |tag|
+        tag['string'] if tag['type'] == 'methodOf'
+      end.compact
     end
 
     def name_data(tags)
@@ -73,6 +79,7 @@ module Spacedocs
       method_map = {}
       method_data = {}
       docs_data = []
+      module_map = {}
 
       json.each do |item|
         tags_list << item['tags']
@@ -80,6 +87,7 @@ module Spacedocs
         name = name_data(item['tags']).first
         returns = returns_data(item['tags']).first
         see = see_data(item['tags']).first
+        method_of = method_of_data(item['tags']).first
 
         params = {}
 
@@ -93,7 +101,7 @@ module Spacedocs
           end
 
           if tag['type'] == 'methodOf'
-            source_class = tag['string'].gsub('#', '')
+            source_class = tag['string']
             class_names << source_class
             method_map["#{source_class}"] ||= []
           end
@@ -103,7 +111,7 @@ module Spacedocs
           end
         end
 
-        method_data[name] = {
+        method_data["#{method_of}#{name}"] = {
           "summary" => item['description']['summary'],
           "code_sample" => item['description']['body'],
           "source" => item['code'],
@@ -111,6 +119,18 @@ module Spacedocs
           "returns" => returns,
           "see" => see
         }
+
+        if name && method_of
+          module_map[method_of] ||= {}
+          module_map[method_of][name] = {
+            "summary" => item['description']['summary'],
+            "code_sample" => item['description']['body'],
+            "source" => item['code'],
+            "parameters" => params,
+            "returns" => returns,
+            "see" => see
+          }
+        end
       end
 
       constructors.each do |tags|
@@ -128,7 +148,7 @@ module Spacedocs
         tags.each do |tag|
           class_names.each do |source_class|
             if tag['type'] == 'methodOf'
-              if tag['string'].gsub(/#/, '') == source_class
+              if tag['string'] == source_class
                 methods = methods_of(source_class, tags)
                 method_map[source_class] << methods.first
               end
@@ -141,18 +161,22 @@ module Spacedocs
         data = {}
 
         (method_map[source_class]).each do |method|
-          data[method] = method_data[method]
+          data["#{method}"] = method_data[method]
         end
 
         docs_data << {
           "#{source_class}" => {
-            "method_list" => method_map[source_class],
+            "method_list" => (module_map[source_class].keys if module_map[source_class]),
             "methods" => data
           }
         }
       end
 
-      return { docs_data: docs_data, class_names: class_names }
+      # File.open("source/sanity.json", 'w') do |f|
+      #   f.write(docs_data.to_json)
+      # end
+
+      return { docs_data: docs_data, class_names: class_names, module_map: module_map }
     end
   end
 end

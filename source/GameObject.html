@@ -9,8 +9,10 @@
     <script src='/javascripts/docs.js' type='text/javascript'></script>
   </head>
   <body>
+    <pre></pre>
     <nav>
       <a href='/Array.html'>Array</a>
+      <a href='/Bindable.html'>Bindable</a>
       <a href='/Bindable.html'>Bindable</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
@@ -19,8 +21,10 @@
       <a href='/Controllable.html'>Controllable</a>
       <a href='/Cooldown.html'>Cooldown</a>
       <a href='/Core.html'>Core</a>
+      <a href='/Core.html'>Core</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Drawable.html'>Drawable</a>
       <a href='/Drawable.html'>Drawable</a>
       <a href='/Durable.html'>Durable</a>
       <a href='/Fadeable.html'>Fadeable</a>
@@ -28,13 +32,18 @@
       <a href='/Follow.html'>Follow</a>
       <a href='/Framerate.html'>Framerate</a>
       <a href='/Function.html'>Function</a>
+      <a href='/GameObject.html'>GameObject</a>
       <a class='active' href='/GameObject.html'>GameObject</a>
       <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver.html'>GameOver</a>
+      <a href='/LevelState.html'>LevelState</a>
       <a href='/LevelState.html'>LevelState</a>
       <a href='/Math.html'>Math</a>
+      <a href='/Matrix.html'>Matrix</a>
       <a href='/Metered.html'>Metered</a>
       <a href='/Movable.html'>Movable</a>
       <a href='/Number.html'>Number</a>
+      <a href='/Object.html'>Object</a>
       <a href='/Object.html'>Object</a>
       <a href='/Oscillator.html'>Oscillator</a>
       <a href='/RegExp.html'>RegExp</a>
@@ -42,13 +51,16 @@
       <a href='/Sprite.html'>Sprite</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect.html'>TextEffect</a>
       <a href='/TextScreen.html'>TextScreen</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/Tween.html'>Tween</a>
       <a href='/Tween.html'>Tween</a>
     </nav>
     <section class='method_list'>
-      <h3>GameObject Methods</h3>
+      <h3>GameObject# Methods</h3>
       <div class='methods'>
         <a href='GameObject.html#create'>create</a>
         <a href='GameObject.html#destroy'>destroy</a>
@@ -58,8 +70,8 @@
       </div>
     </section>
     <div class='documentation'>
-      <a name='create'></a>
-      <h1>create()</h1>
+      <a name='GameObject#create'></a>
+      <h1>GameObject#create()</h1>
       <div class='description'>
         <section class='summary'><p>Triggered when the object is created.</p></section>
         <section class='usage'>
@@ -80,8 +92,8 @@
         </section>
       </div>
       <hr />
-      <a name='destroy'></a>
-      <h1>destroy()</h1>
+      <a name='GameObject#destroy'></a>
+      <h1>GameObject#destroy()</h1>
       <div class='description'>
         <section class='summary'><p>Triggered when object is destroyed. Use<br />the destroy event to add particle effects, play sounds, etc.</p></section>
         <section class='usage'>
@@ -100,8 +112,8 @@
         </section>
       </div>
       <hr />
-      <a name='step'></a>
-      <h1>step()</h1>
+      <a name='GameObject#step'></a>
+      <h1>GameObject#step()</h1>
       <div class='description'>
         <section class='summary'><p>Triggered during every update step.</p></section>
         <section class='usage'>
@@ -126,13 +138,26 @@
         </section>
       </div>
       <hr />
-      <a name='update'></a>
-      <h1>update()</h1>
+      <a name='GameObject#update'></a>
+      <h1>GameObject#update()</h1>
       <div class='description'>
-        <section class='summary'><p>Goes to the next level on any user input.</p></section>
+        <section class='summary'><p>Triggered every update after the <code>step</code> event is triggered.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
+          <pre><code>player = GameObject()
           
+          # we can really use the update and
+          # step events almost interchangebly
+          player.bind 'update', -&gt;
+            # check to see if keys are being pressed and
+            # change the player's velocity
+            if keydown.left
+              player.velocity(Point(-1, 0))
+            else if keydown.right
+              player.velocity(Point(1, 0))
+            else
+              player.velocity(Point(0, 0))
+          </code></pre>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -141,8 +166,8 @@
         </section>
       </div>
       <hr />
-      <a name='remove'></a>
-      <h1>remove()</h1>
+      <a name='GameObject#remove'></a>
+      <h1>GameObject#remove()</h1>
       <div class='description'>
         <section class='summary'><p>Triggered when the object is removed from<br />the engine. Use the remove event to handle any clean up.</p></section>
         <section class='usage'>

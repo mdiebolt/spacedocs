@@ -9,8 +9,10 @@
     <script src='/javascripts/docs.js' type='text/javascript'></script>
   </head>
   <body>
+    <pre></pre>
     <nav>
       <a href='/Array.html'>Array</a>
+      <a href='/Bindable.html'>Bindable</a>
       <a href='/Bindable.html'>Bindable</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
@@ -19,8 +21,10 @@
       <a href='/Controllable.html'>Controllable</a>
       <a href='/Cooldown.html'>Cooldown</a>
       <a href='/Core.html'>Core</a>
+      <a href='/Core.html'>Core</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Drawable.html'>Drawable</a>
       <a href='/Drawable.html'>Drawable</a>
       <a href='/Durable.html'>Durable</a>
       <a href='/Fadeable.html'>Fadeable</a>
@@ -29,12 +33,17 @@
       <a href='/Framerate.html'>Framerate</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameOver.html'>GameOver</a>
       <a href='/GameOver.html'>GameOver</a>
       <a href='/LevelState.html'>LevelState</a>
+      <a href='/LevelState.html'>LevelState</a>
       <a href='/Math.html'>Math</a>
+      <a href='/Matrix.html'>Matrix</a>
       <a href='/Metered.html'>Metered</a>
       <a href='/Movable.html'>Movable</a>
       <a class='active' href='/Number.html'>Number</a>
+      <a href='/Object.html'>Object</a>
       <a href='/Object.html'>Object</a>
       <a href='/Oscillator.html'>Oscillator</a>
       <a href='/RegExp.html'>RegExp</a>
@@ -42,13 +51,16 @@
       <a href='/Sprite.html'>Sprite</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect.html'>TextEffect</a>
       <a href='/TextScreen.html'>TextScreen</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/Tween.html'>Tween</a>
       <a href='/Tween.html'>Tween</a>
     </nav>
     <section class='method_list'>
-      <h3>Number Methods</h3>
+      <h3>Number# Methods</h3>
       <div class='methods'>
         <a href='Number.html#abs'>abs</a>
         <a href='Number.html#ceil'>ceil</a>
@@ -78,8 +90,8 @@
       </div>
     </section>
     <div class='documentation'>
-      <a name='abs'></a>
-      <h1>abs()</h1>
+      <a name='Number#abs'></a>
+      <h1>Number#abs()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the absolute value of this number.</p></section>
         <section class='usage'>
@@ -103,8 +115,8 @@
         </section>
       </div>
       <hr />
-      <a name='ceil'></a>
-      <h1>ceil()</h1>
+      <a name='Number#ceil'></a>
+      <h1>Number#ceil()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the mathematical ceiling of this number.</p></section>
         <section class='usage'>
@@ -134,8 +146,8 @@
         </section>
       </div>
       <hr />
-      <a name='floor'></a>
-      <h1>floor()</h1>
+      <a name='Number#floor'></a>
+      <h1>Number#floor()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the mathematical floor of this number.</p></section>
         <section class='usage'>
@@ -165,8 +177,8 @@
         </section>
       </div>
       <hr />
-      <a name='round'></a>
-      <h1>round()</h1>
+      <a name='Number#round'></a>
+      <h1>Number#round()</h1>
       <div class='description'>
         <section class='summary'><p>Returns this number rounded to the nearest integer.</p></section>
         <section class='usage'>
@@ -193,8 +205,8 @@
         </section>
       </div>
       <hr />
-      <a name='circularPoint'></a>
-      <h1>circularPoint()</h1>
+      <a name='Number#circularPoint'></a>
+      <h1>Number#circularPoint()</h1>
       <div class='description'>
         <section class='summary'><p>Get a bunch of points equally spaced around the unit circle.</p></section>
         <section class='usage'>
@@ -211,8 +223,8 @@
         </section>
       </div>
       <hr />
-      <a name='clamp'></a>
-      <h1>clamp(min, max)</h1>
+      <a name='Number#clamp'></a>
+      <h1>Number#clamp(min, max)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a number whose value is limited to the given range.</p></section>
         <section class='usage'>
@@ -252,8 +264,8 @@
         </section>
       </div>
       <hr />
-      <a name='mod'></a>
-      <h1>mod(base)</h1>
+      <a name='Number#mod'></a>
+      <h1>Number#mod(base)</h1>
       <div class='description'>
         <section class='summary'><p>A mod method useful for array wrapping. The range of the function is<br />constrained to remain in bounds of array indices.</p></section>
         <section class='usage'>
@@ -287,8 +299,8 @@
         </section>
       </div>
       <hr />
-      <a name='sign'></a>
-      <h1>sign()</h1>
+      <a name='Number#sign'></a>
+      <h1>Number#sign()</h1>
       <div class='description'>
         <section class='summary'><p>Get the sign of this number as an integer (1, -1, or 0).</p></section>
         <section class='usage'>
@@ -318,8 +330,8 @@
         </section>
       </div>
       <hr />
-      <a name='even'></a>
-      <h1>even()</h1>
+      <a name='Number#even'></a>
+      <h1>Number#even()</h1>
       <div class='description'>
         <section class='summary'><p>Returns true if this number is even (evenly divisible by 2).</p></section>
         <section class='usage'>
@@ -349,8 +361,8 @@
         </section>
       </div>
       <hr />
-      <a name='odd'></a>
-      <h1>odd()</h1>
+      <a name='Number#odd'></a>
+      <h1>Number#odd()</h1>
       <div class='description'>
         <section class='summary'><p>Returns true if this number is odd (has remainder of 1 when divided by 2).</p></section>
         <section class='usage'>
@@ -380,8 +392,8 @@
         </section>
       </div>
       <hr />
-      <a name='times'></a>
-      <h1>times(iterator, context)</h1>
+      <a name='Number#times'></a>
+      <h1>Number#times(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Calls iterator the specified number of times, passing in the number of the<br />current iteration as a parameter: 0 on first call, 1 on the second call, etc.</p></section>
         <section class='usage'>
@@ -425,8 +437,8 @@
         </section>
       </div>
       <hr />
-      <a name='snap'></a>
-      <h1>snap(resolution)</h1>
+      <a name='Number#snap'></a>
+      <h1>Number#snap(resolution)</h1>
       <div class='description'>
         <section class='summary'><p>Returns the the nearest grid resolution less than or equal to the number.</p></section>
         <section class='usage'>
@@ -466,8 +478,8 @@
         </section>
       </div>
       <hr />
-      <a name='primeFactors'></a>
-      <h1>primeFactors()</h1>
+      <a name='Number#primeFactors'></a>
+      <h1>Number#primeFactors()</h1>
       <div class='description'>
         <section class='summary'><p>In number theory, integer factorization or prime factorization is the<br />breaking down of a composite number into smaller non-trivial divisors,<br />which when multiplied together equal the original integer.</p></section>
         <section class='usage'>
@@ -496,8 +508,8 @@
         </section>
       </div>
       <hr />
-      <a name='toColorPart'></a>
-      <h1>toColorPart()</h1>
+      <a name='Number#toColorPart'></a>
+      <h1>Number#toColorPart()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the two character hexidecimal<br />representation of numbers 0 through 255.</p></section>
         <section class='usage'>
@@ -527,8 +539,8 @@
         </section>
       </div>
       <hr />
-      <a name='approach'></a>
-      <h1>approach()</h1>
+      <a name='Number#approach'></a>
+      <h1>Number#approach()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a number that is maxDelta closer to target.</p></section>
         <section class='usage'>
@@ -555,8 +567,8 @@
         </section>
       </div>
       <hr />
-      <a name='approachByRatio'></a>
-      <h1>approachByRatio()</h1>
+      <a name='Number#approachByRatio'></a>
+      <h1>Number#approachByRatio()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a number that is closer to the target by the ratio.</p></section>
         <section class='usage'>
@@ -580,8 +592,8 @@
         </section>
       </div>
       <hr />
-      <a name='approachRotation'></a>
-      <h1>approachRotation()</h1>
+      <a name='Number#approachRotation'></a>
+      <h1>Number#approachRotation()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a number that is closer to the target angle by the delta.</p></section>
         <section class='usage'>
@@ -605,8 +617,8 @@
         </section>
       </div>
       <hr />
-      <a name='constrainRotation'></a>
-      <h1>constrainRotation()</h1>
+      <a name='Number#constrainRotation'></a>
+      <h1>Number#constrainRotation()</h1>
       <div class='description'>
         <section class='summary'><p>Constrains a rotation to between -PI and PI.</p></section>
         <section class='usage'>
@@ -630,8 +642,8 @@
         </section>
       </div>
       <hr />
-      <a name='d'></a>
-      <h1>d(sides)</h1>
+      <a name='Number#d'></a>
+      <h1>Number#d(sides)</h1>
       <div class='description'>
         <section class='summary'><p>The mathematical d operator. Useful for simulating dice rolls.</p></section>
         <section class='usage'>
@@ -668,8 +680,8 @@
         </section>
       </div>
       <hr />
-      <a name='toExponential'></a>
-      <h1>toExponential()</h1>
+      <a name='Number#toExponential'></a>
+      <h1>Number#toExponential()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a string representing the Number object in exponential notation</p></section>
         <section class='usage'>
@@ -693,8 +705,8 @@
         </section>
       </div>
       <hr />
-      <a name='toFixed'></a>
-      <h1>toFixed(The)</h1>
+      <a name='Number#toFixed'></a>
+      <h1>Number#toFixed(The)</h1>
       <div class='description'>
         <section class='summary'><p>Formats a number using fixed-point notation</p></section>
         <section class='usage'>
@@ -718,13 +730,13 @@
         </section>
       </div>
       <hr />
-      <a name='toLocaleString'></a>
-      <h1>toLocaleString()</h1>
+      <a name='Number#toLocaleString'></a>
+      <h1>Number#toLocaleString()</h1>
       <div class='description'>
-        <section class='summary'><p>Converts a date to a string, using the operating system's locale's conventions.</p></section>
+        <section class='summary'><p>number.toLocaleString();</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p><code><br />toLocaleString()<br /></code></p>
+          
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -733,8 +745,8 @@
         </section>
       </div>
       <hr />
-      <a name='toPrecision'></a>
-      <h1>toPrecision(An)</h1>
+      <a name='Number#toPrecision'></a>
+      <h1>Number#toPrecision(An)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a string representing the Number object to the specified precision.</p></section>
         <section class='usage'>
@@ -758,13 +770,23 @@
         </section>
       </div>
       <hr />
-      <a name='toString'></a>
-      <h1>toString()</h1>
+      <a name='Number#toString'></a>
+      <h1>Number#toString()</h1>
       <div class='description'>
-        <section class='summary'><p>Returns a string representing the specified Date object.</p></section>
+        <section class='summary'><p>Returns a string representing the specified Number object</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p><code> toString() </code></p>
+          <p><code><i>number</i>.toString( [<em>radix</em>] )</code></p>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'></span>
+               -
+              <span class='param_description'></span>
+            </li>
+          </ul>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -773,13 +795,13 @@
         </section>
       </div>
       <hr />
-      <a name='valueOf'></a>
-      <h1>valueOf()</h1>
+      <a name='Number#valueOf'></a>
+      <h1>Number#valueOf()</h1>
       <div class='description'>
-        <section class='summary'><p>Returns the primitive value of a String object.</p></section>
+        <section class='summary'><p>Returns the primitive value of a Number object.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p><code><em>string</em>.valueOf()</code></p>
+          
         </section>
         <section class='source'>
           <h3>Source</h3>

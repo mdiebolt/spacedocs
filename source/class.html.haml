@@ -10,19 +10,22 @@
     %script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript")
     %script(src="/javascripts/docs.js" type="text/javascript")
   %body
+    %pre
     %nav
       -class_names.each do |doc_class|
+        - name = doc_class.gsub('#', '')
+
         -if doc_class == class_name
-          %a.active(href="/#{doc_class}.html")= doc_class
+          %a.active(href="/#{name}.html")= name
         -else
-          %a(href="/#{doc_class}.html")= doc_class
+          %a(href="/#{name}.html")= name
     %section.method_list
       %h3= "#{class_name} Methods"
       .methods
-        -class_data['method_list'].each do |m|
-          %a(href="#{class_name}.html##{m}")= m
+        -method_list.each do |m|
+          %a(href="#{class_name.gsub('#', '')}.html##{m}")= m
     .documentation
-      -class_data['methods'].each_pair do |method_name, method_data|
+      -methods.each_pair do |method_name, method_data|
         %a(name="#{method_name}")
         %h1= "#{method_name}(#{method_data['parameters'].keys.join ', '})"
         .description

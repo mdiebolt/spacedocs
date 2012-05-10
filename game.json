@@ -15,9 +15,9 @@
       }
     ],
     "description": {
-      "full": "<p>Calculate the average value of an array. Returns undefined if some elements<br />are not numbers.</p>\n\n<pre><code>[1, 3, 5, 7].average()\n# =&gt; 4\n</code></pre>",
+      "full": "<p>Calculate the average value of an array. Returns undefined if some elements<br />are not numbers.</p>\n\n<p>[1, 3, 5, 7].average()<br />   # => 4</p>",
       "summary": "<p>Calculate the average value of an array. Returns undefined if some elements<br />are not numbers.</p>",
-      "body": "<pre><code>[1, 3, 5, 7].average()\n# =&gt; 4\n</code></pre>"
+      "body": "<p>[1, 3, 5, 7].average()<br />   # => 4</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -39,9 +39,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a copy of the array without null and undefined values.</p>\n\n<pre><code>[null, undefined, 3, 3, undefined, 5].compact()\n# =&gt; [3, 3, 5]\n</code></pre>",
+      "full": "<p>Returns a copy of the array without null and undefined values.</p>\n\n<p>[null, undefined, 3, 3, undefined, 5].compact()<br />   # => [3, 3, 5]</p>",
       "summary": "<p>Returns a copy of the array without null and undefined values.</p>",
-      "body": "<pre><code>[null, undefined, 3, 3, undefined, 5].compact()\n# =&gt; [3, 3, 5]\n</code></pre>"
+      "body": "<p>[null, undefined, 3, 3, undefined, 5].compact()<br />   # => [3, 3, 5]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -69,9 +69,9 @@
       }
     ],
     "description": {
-      "full": "<p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p>\n\n<pre><code>a = [\"a\", \"b\", \"c\"]\nb = a.copy()\n\n# their elements are equal\na[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]\n# =&gt; true\n\n# but they aren't the same object in memory\na === b\n# =&gt; false\n</code></pre>",
+      "full": "<p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p>\n\n<p>a = [\"a\", \"b\", \"c\"]<br />   b = a.copy()</p>\n\n<p># their elements are equal<br />   a[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]<br />   # => true</p>\n\n<p># but they aren't the same object in memory<br />   a === b<br />   # => false</p>",
       "summary": "<p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p>",
-      "body": "<pre><code>a = [\"a\", \"b\", \"c\"]\nb = a.copy()\n\n# their elements are equal\na[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]\n# =&gt; true\n\n# but they aren't the same object in memory\na === b\n# =&gt; false\n</code></pre>"
+      "body": "<p>a = [\"a\", \"b\", \"c\"]<br />   b = a.copy()</p>\n\n<p># their elements are equal<br />   a[0] == b[0] &amp;&amp; a[1] == b[1] &amp;&amp; a[2] == b[2]<br />   # => true</p>\n\n<p># but they aren't the same object in memory<br />   a === b<br />   # => false</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -129,9 +129,9 @@
       }
     ],
     "description": {
-      "full": "<p>Flatten out an array of arrays into a single array of elements.</p>\n\n<pre><code>[[1, 2], [3, 4], 5].flatten()\n# =&gt; [1, 2, 3, 4, 5]\n\n# won't flatten twice nested arrays. call\n# flatten twice if that is what you want\n[[1, 2], [3, [4, 5]], 6].flatten()\n# =&gt; [1, 2, 3, [4, 5], 6]\n</code></pre>",
+      "full": "<p>Flatten out an array of arrays into a single array of elements.</p>\n\n<p>[[1, 2], [3, 4], 5].flatten()<br />   # => [1, 2, 3, 4, 5]</p>\n\n<p># won't flatten twice nested arrays. call<br />   # flatten twice if that is what you want<br />   [[1, 2], [3, [4, 5]], 6].flatten()<br />   # => [1, 2, 3, [4, 5], 6]</p>",
       "summary": "<p>Flatten out an array of arrays into a single array of elements.</p>",
-      "body": "<pre><code>[[1, 2], [3, 4], 5].flatten()\n# =&gt; [1, 2, 3, 4, 5]\n\n# won't flatten twice nested arrays. call\n# flatten twice if that is what you want\n[[1, 2], [3, [4, 5]], 6].flatten()\n# =&gt; [1, 2, 3, [4, 5], 6]\n</code></pre>"
+      "body": "<p>[[1, 2], [3, 4], 5].flatten()<br />   # => [1, 2, 3, 4, 5]</p>\n\n<p># won't flatten twice nested arrays. call<br />   # flatten twice if that is what you want<br />   [[1, 2], [3, [4, 5]], 6].flatten()<br />   # => [1, 2, 3, [4, 5], 6]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -175,9 +175,9 @@
       }
     ],
     "description": {
-      "full": "<p>Invoke the named method on each element in the array<br />and return a new array containing the results of the invocation.</p>\n\n<pre><code>[1.1, 2.2, 3.3, 4.4].invoke(\"floor\")\n# =&gt; [1, 2, 3, 4]\n\n['hello', 'world', 'cool!'].invoke('substring', 0, 3)\n# =&gt; ['hel', 'wor', 'coo']\n</code></pre>",
+      "full": "<p>Invoke the named method on each element in the array<br />and return a new array containing the results of the invocation.</p>\n\n<p>[1.1, 2.2, 3.3, 4.4].invoke(\"floor\")<br />   # => [1, 2, 3, 4]</p>\n\n<p>['hello', 'world', 'cool!'].invoke('substring', 0, 3)<br />   # => ['hel', 'wor', 'coo']</p>",
       "summary": "<p>Invoke the named method on each element in the array<br />and return a new array containing the results of the invocation.</p>",
-      "body": "<pre><code>[1.1, 2.2, 3.3, 4.4].invoke(\"floor\")\n# =&gt; [1, 2, 3, 4]\n\n['hello', 'world', 'cool!'].invoke('substring', 0, 3)\n# =&gt; ['hel', 'wor', 'coo']\n</code></pre>"
+      "body": "<p>[1.1, 2.2, 3.3, 4.4].invoke(\"floor\")<br />   # => [1, 2, 3, 4]</p>\n\n<p>['hello', 'world', 'cool!'].invoke('substring', 0, 3)<br />   # => ['hel', 'wor', 'coo']</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -205,9 +205,9 @@
       }
     ],
     "description": {
-      "full": "<p>Randomly select an element from the array.</p>\n\n<pre><code>[1, 2, 3].rand()\n# =&gt; 2\n</code></pre>",
+      "full": "<p>Randomly select an element from the array.</p>\n\n<p>[1, 2, 3].rand()<br />   # => 2</p>",
       "summary": "<p>Randomly select an element from the array.</p>",
-      "body": "<pre><code>[1, 2, 3].rand()\n# =&gt; 2\n</code></pre>"
+      "body": "<p>[1, 2, 3].rand()<br />   # => 2</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -243,9 +243,9 @@
       }
     ],
     "description": {
-      "full": "<p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p>\n\n<pre><code>a = [1, 1, \"a\", \"b\"]\na.remove(1)\n# =&gt; 1\n\na\n# =&gt; [1, \"a\", \"b\"]\n</code></pre>",
+      "full": "<p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p>\n\n<p>a = [1, 1, \"a\", \"b\"]<br />   a.remove(1)<br />   # => 1</p>\n\n<p>a<br />   # => [1, \"a\", \"b\"]</p>",
       "summary": "<p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p>",
-      "body": "<pre><code>a = [1, 1, \"a\", \"b\"]\na.remove(1)\n# =&gt; 1\n\na\n# =&gt; [1, \"a\", \"b\"]\n</code></pre>"
+      "body": "<p>a = [1, 1, \"a\", \"b\"]<br />   a.remove(1)<br />   # => 1</p>\n\n<p>a<br />   # => [1, \"a\", \"b\"]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -281,9 +281,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns true if the element is present in the array.</p>\n\n<pre><code>[\"a\", \"b\", \"c\"].include(\"c\")\n# =&gt; true\n\n[40, \"a\"].include(700)\n# =&gt; false\n</code></pre>",
+      "full": "<p>Returns true if the element is present in the array.</p>\n\n<p>[\"a\", \"b\", \"c\"].include(\"c\")<br />   # => true</p>\n\n<p>[40, \"a\"].include(700)<br />   # => false</p>",
       "summary": "<p>Returns true if the element is present in the array.</p>",
-      "body": "<pre><code>[\"a\", \"b\", \"c\"].include(\"c\")\n# =&gt; true\n\n[40, \"a\"].include(700)\n# =&gt; false\n</code></pre>"
+      "body": "<p>[\"a\", \"b\", \"c\"].include(\"c\")<br />   # => true</p>\n\n<p>[40, \"a\"].include(700)<br />   # => false</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -327,9 +327,9 @@
       }
     ],
     "description": {
-      "full": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>\n\n<pre><code>word = \"\"\nindices = []\n[\"r\", \"a\", \"d\"].each (letter, index) -&gt;\n  word += letter\n  indices.push(index)\n\n# =&gt; [\"r\", \"a\", \"d\"]\n\nword\n# =&gt; \"rad\"\n\nindices\n# =&gt; [0, 1, 2]\n</code></pre>",
+      "full": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>\n\n<p>word = \"\"<br />   indices = []<br />   [\"r\", \"a\", \"d\"].each (letter, index) -><br />     word += letter<br />     indices.push(index)</p>\n\n<p># => [\"r\", \"a\", \"d\"]</p>\n\n<p>word<br />   # => \"rad\"</p>\n\n<p>indices<br />   # => [0, 1, 2]</p>",
       "summary": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>",
-      "body": "<pre><code>word = \"\"\nindices = []\n[\"r\", \"a\", \"d\"].each (letter, index) -&gt;\n  word += letter\n  indices.push(index)\n\n# =&gt; [\"r\", \"a\", \"d\"]\n\nword\n# =&gt; \"rad\"\n\nindices\n# =&gt; [0, 1, 2]\n</code></pre>"
+      "body": "<p>word = \"\"<br />   indices = []<br />   [\"r\", \"a\", \"d\"].each (letter, index) -><br />     word += letter<br />     indices.push(index)</p>\n\n<p># => [\"r\", \"a\", \"d\"]</p>\n\n<p>word<br />   # => \"rad\"</p>\n\n<p>indices<br />   # => [0, 1, 2]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -373,9 +373,9 @@
       }
     ],
     "description": {
-      "full": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>\n\n<pre><code>[1, 2, 3].map (number) -&gt;\n  number * number\n# =&gt; [1, 4, 9]\n</code></pre>",
+      "full": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>\n\n<p>[1, 2, 3].map (number) -><br />     number * number<br />   # => [1, 4, 9]</p>",
       "summary": "<p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p>",
-      "body": "<pre><code>[1, 2, 3].map (number) -&gt;\n  number * number\n# =&gt; [1, 4, 9]\n</code></pre>"
+      "body": "<p>[1, 2, 3].map (number) -><br />     number * number<br />   # => [1, 4, 9]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -409,9 +409,9 @@
       }
     ],
     "description": {
-      "full": "<p>Call the given iterator once for each pair of objects in the array.</p>\n\n<pre><code>[1, 2, 3, 4].eachPair (a, b) -&gt;\n  # 1, 2\n  # 1, 3\n  # 1, 4\n  # 2, 3\n  # 2, 4\n  # 3, 4\n</code></pre>",
+      "full": "<p>Call the given iterator once for each pair of objects in the array.</p>\n\n<p>[1, 2, 3, 4].eachPair (a, b) -><br />     # 1, 2<br />     # 1, 3<br />     # 1, 4<br />     # 2, 3<br />     # 2, 4<br />     # 3, 4</p>",
       "summary": "<p>Call the given iterator once for each pair of objects in the array.</p>",
-      "body": "<pre><code>[1, 2, 3, 4].eachPair (a, b) -&gt;\n  # 1, 2\n  # 1, 3\n  # 1, 4\n  # 2, 3\n  # 2, 4\n  # 3, 4\n</code></pre>"
+      "body": "<p>[1, 2, 3, 4].eachPair (a, b) -><br />     # 1, 2<br />     # 1, 3<br />     # 1, 4<br />     # 2, 3<br />     # 2, 4<br />     # 3, 4</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -527,9 +527,9 @@
       }
     ],
     "description": {
-      "full": "<p>Call the given iterator once for each group of elements in the array,<br />passing in the elements in groups of n. Additional argumens are<br />passed as in each.</p>\n\n<pre><code>results = []\n[1, 2, 3, 4].eachSlice 2, (slice) -&gt;\n  results.push(slice)\n# =&gt; [1, 2, 3, 4]\n\nresults\n# =&gt; [[1, 2], [3, 4]]\n</code></pre>",
+      "full": "<p>Call the given iterator once for each group of elements in the array,<br />passing in the elements in groups of n. Additional argumens are<br />passed as in each.</p>\n\n<p>results = []<br />   [1, 2, 3, 4].eachSlice 2, (slice) -><br />     results.push(slice)<br />   # => [1, 2, 3, 4]</p>\n\n<p>results<br />   # => [[1, 2], [3, 4]]</p>",
       "summary": "<p>Call the given iterator once for each group of elements in the array,<br />passing in the elements in groups of n. Additional argumens are<br />passed as in each.</p>",
-      "body": "<pre><code>results = []\n[1, 2, 3, 4].eachSlice 2, (slice) -&gt;\n  results.push(slice)\n# =&gt; [1, 2, 3, 4]\n\nresults\n# =&gt; [[1, 2], [3, 4]]\n</code></pre>"
+      "body": "<p>results = []<br />   [1, 2, 3, 4].eachSlice 2, (slice) -><br />     results.push(slice)<br />   # => [1, 2, 3, 4]</p>\n\n<p>results<br />   # => [[1, 2], [3, 4]]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -599,9 +599,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a new array with the elements all shuffled up.</p>\n\n<pre><code>a = [1, 2, 3]\n\na.shuffle()\n# =&gt; [2, 3, 1]\n\na # =&gt; [1, 2, 3]\n</code></pre>",
+      "full": "<p>Returns a new array with the elements all shuffled up.</p>\n\n<p>a = [1, 2, 3]</p>\n\n<p>a.shuffle()<br />   # => [2, 3, 1]</p>\n\n<p>a # => [1, 2, 3]</p>",
       "summary": "<p>Returns a new array with the elements all shuffled up.</p>",
-      "body": "<pre><code>a = [1, 2, 3]\n\na.shuffle()\n# =&gt; [2, 3, 1]\n\na # =&gt; [1, 2, 3]\n</code></pre>"
+      "body": "<p>a = [1, 2, 3]</p>\n\n<p>a.shuffle()<br />   # => [2, 3, 1]</p>\n\n<p>a # => [1, 2, 3]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -629,9 +629,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns the first element of the array, undefined if the array is empty.</p>\n\n<pre><code>[\"first\", \"second\", \"third\"].first()\n# =&gt; \"first\"\n</code></pre>",
+      "full": "<p>Returns the first element of the array, undefined if the array is empty.</p>\n\n<p>[\"first\", \"second\", \"third\"].first()<br />   # => \"first\"</p>",
       "summary": "<p>Returns the first element of the array, undefined if the array is empty.</p>",
-      "body": "<pre><code>[\"first\", \"second\", \"third\"].first()\n# =&gt; \"first\"\n</code></pre>"
+      "body": "<p>[\"first\", \"second\", \"third\"].first()<br />   # => \"first\"</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -659,9 +659,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns the last element of the array, undefined if the array is empty.</p>\n\n<pre><code>[\"first\", \"second\", \"third\"].last()\n# =&gt; \"third\"\n</code></pre>",
+      "full": "<p>Returns the last element of the array, undefined if the array is empty.</p>\n\n<p>[\"first\", \"second\", \"third\"].last()<br />   # => \"third\"</p>",
       "summary": "<p>Returns the last element of the array, undefined if the array is empty.</p>",
-      "body": "<pre><code>[\"first\", \"second\", \"third\"].last()\n# =&gt; \"third\"\n</code></pre>"
+      "body": "<p>[\"first\", \"second\", \"third\"].last()<br />   # => \"third\"</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -697,9 +697,9 @@
       }
     ],
     "description": {
-      "full": "<p>Returns an object containing the extremes of this array.</p>\n\n<pre><code>[-1, 3, 0].extremes()\n# =&gt; {min: -1, max: 3}\n</code></pre>",
+      "full": "<p>Returns an object containing the extremes of this array.</p>\n\n<p>[-1, 3, 0].extremes()<br />   # => {min: -1, max: 3}</p>",
       "summary": "<p>Returns an object containing the extremes of this array.</p>",
-      "body": "<pre><code>[-1, 3, 0].extremes()\n# =&gt; {min: -1, max: 3}\n</code></pre>"
+      "body": "<p>[-1, 3, 0].extremes()<br />   # => {min: -1, max: 3}</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -743,9 +743,9 @@
       }
     ],
     "description": {
-      "full": "<p>Pretend the array is a circle and grab a new array containing length elements.<br />If length is not given return the element at start, again assuming the array<br />is a circle.</p>\n\n<pre><code>[1, 2, 3].wrap(-1)\n# =&gt; 3\n\n[1, 2, 3].wrap(6)\n# =&gt; 1\n\n[\"l\", \"o\", \"o\", \"p\"].wrap(0, 16)\n# =&gt; [\"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\"]\n</code></pre>",
+      "full": "<p>Pretend the array is a circle and grab a new array containing length elements.<br />If length is not given return the element at start, again assuming the array<br />is a circle.</p>\n\n<p>[1, 2, 3].wrap(-1)<br />   # => 3</p>\n\n<p>[1, 2, 3].wrap(6)<br />   # => 1</p>\n\n<p>[\"l\", \"o\", \"o\", \"p\"].wrap(0, 16)<br />   # => [\"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\"]</p>",
       "summary": "<p>Pretend the array is a circle and grab a new array containing length elements.<br />If length is not given return the element at start, again assuming the array<br />is a circle.</p>",
-      "body": "<pre><code>[1, 2, 3].wrap(-1)\n# =&gt; 3\n\n[1, 2, 3].wrap(6)\n# =&gt; 1\n\n[\"l\", \"o\", \"o\", \"p\"].wrap(0, 16)\n# =&gt; [\"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\"]\n</code></pre>"
+      "body": "<p>[1, 2, 3].wrap(-1)<br />   # => 3</p>\n\n<p>[1, 2, 3].wrap(6)<br />   # => 1</p>\n\n<p>[\"l\", \"o\", \"o\", \"p\"].wrap(0, 16)<br />   # => [\"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\", \"l\", \"o\", \"o\", \"p\"]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -789,9 +789,9 @@
       }
     ],
     "description": {
-      "full": "<p>Partitions the elements into two groups: those for which the iterator returns<br />true, and those for which it returns false.</p>\n\n<pre><code>[evens, odds] = [1, 2, 3, 4].partition (n) -&gt;\n  n.even()\n\nevens\n# =&gt; [2, 4]\n\nodds\n# =&gt; [1, 3]\n</code></pre>",
+      "full": "<p>Partitions the elements into two groups: those for which the iterator returns<br />true, and those for which it returns false.</p>\n\n<p>[evens, odds] = [1, 2, 3, 4].partition (n) -><br />     n.even()</p>\n\n<p>evens<br />   # => [2, 4]</p>\n\n<p>odds<br />   # => [1, 3]</p>",
       "summary": "<p>Partitions the elements into two groups: those for which the iterator returns<br />true, and those for which it returns false.</p>",
-      "body": "<pre><code>[evens, odds] = [1, 2, 3, 4].partition (n) -&gt;\n  n.even()\n\nevens\n# =&gt; [2, 4]\n\nodds\n# =&gt; [1, 3]\n</code></pre>"
+      "body": "<p>[evens, odds] = [1, 2, 3, 4].partition (n) -><br />     n.even()</p>\n\n<p>evens<br />   # => [2, 4]</p>\n\n<p>odds<br />   # => [1, 3]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -873,9 +873,9 @@
       }
     ],
     "description": {
-      "full": "<p>Return the group of elements that are not in the passed in set.</p>\n\n<pre><code>[1, 2, 3, 4].without ([2, 3])\n# =&gt; [1, 4]\n</code></pre>",
+      "full": "<p>Return the group of elements that are not in the passed in set.</p>\n\n<p>[1, 2, 3, 4].without ([2, 3])<br />   # => [1, 4]</p>",
       "summary": "<p>Return the group of elements that are not in the passed in set.</p>",
-      "body": "<pre><code>[1, 2, 3, 4].without ([2, 3])\n# =&gt; [1, 4]\n</code></pre>"
+      "body": "<p>[1, 2, 3, 4].without ([2, 3])<br />   # => [1, 4]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -979,9 +979,9 @@
       }
     ],
     "description": {
-      "full": "<p>Add all the elements in the array.</p>\n\n<pre><code>[1, 2, 3, 4].sum()\n# =&gt; 10\n</code></pre>",
+      "full": "<p>Add all the elements in the array.</p>\n\n<p>[1, 2, 3, 4].sum()<br />   # => 10</p>",
       "summary": "<p>Add all the elements in the array.</p>",
-      "body": "<pre><code>[1, 2, 3, 4].sum()\n# =&gt; 10\n</code></pre>"
+      "body": "<p>[1, 2, 3, 4].sum()<br />   # => 10</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -1009,9 +1009,9 @@
       }
     ],
     "description": {
-      "full": "<p>Multiply all the elements in the array.</p>\n\n<pre><code>[1, 2, 3, 4].product()\n# =&gt; 24\n</code></pre>",
+      "full": "<p>Multiply all the elements in the array.</p>\n\n<p>[1, 2, 3, 4].product()<br />   # => 24</p>",
       "summary": "<p>Multiply all the elements in the array.</p>",
-      "body": "<pre><code>[1, 2, 3, 4].product()\n# =&gt; 24\n</code></pre>"
+      "body": "<p>[1, 2, 3, 4].product()<br />   # => 24</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -1039,9 +1039,9 @@
       }
     ],
     "description": {
-      "full": "<p>Merges together the values of each of the arrays with the values at the corresponding position.</p>\n\n<pre><code>['a', 'b', 'c'].zip([1, 2, 3])\n# =&gt; [['a', 1], ['b', 2], ['c', 3]]\n</code></pre>",
+      "full": "<p>Merges together the values of each of the arrays with the values at the corresponding position.</p>\n\n<p>['a', 'b', 'c'].zip([1, 2, 3])<br />   # => [['a', 1], ['b', 2], ['c', 3]]</p>",
       "summary": "<p>Merges together the values of each of the arrays with the values at the corresponding position.</p>",
-      "body": "<pre><code>['a', 'b', 'c'].zip([1, 2, 3])\n# =&gt; [['a', 1], ['b', 2], ['c', 3]]\n</code></pre>"
+      "body": "<p>['a', 'b', 'c'].zip([1, 2, 3])<br />   # => [['a', 1], ['b', 2], ['c', 3]]</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -1069,21 +1069,51 @@
       }
     ],
     "description": {
-      "full": "<p>Bindable module.</p>\n\n<pre><code>player = Core\n  x: 5\n  y: 10\n\nplayer.bind \"update\", -&gt;\n  updatePlayer()\n# =&gt; Uncaught TypeError: Object has no method 'bind'\n\nplayer.include(Bindable)\n\nplayer.bind \"update\", -&gt;\n  updatePlayer()\n# =&gt; this will call updatePlayer each time through the main loop\n</code></pre>",
+      "full": "<p>Bindable module.</p>\n\n<p>player = Core<br />     x: 5<br />     y: 10</p>\n\n<p>player.bind \"update\", -><br />     updatePlayer()<br />   # => Uncaught TypeError: Object has no method 'bind'</p>\n\n<p>player.include(Bindable)</p>\n\n<p>player.bind \"update\", -><br />     updatePlayer()<br />   # => this will call updatePlayer each time through the main loop</p>",
       "summary": "<p>Bindable module.</p>",
-      "body": "<pre><code>player = Core\n  x: 5\n  y: 10\n\nplayer.bind \"update\", -&gt;\n  updatePlayer()\n# =&gt; Uncaught TypeError: Object has no method 'bind'\n\nplayer.include(Bindable)\n\nplayer.bind \"update\", -&gt;\n  updatePlayer()\n# =&gt; this will call updatePlayer each time through the main loop\n</code></pre>"
+      "body": "<p>player = Core<br />     x: 5<br />     y: 10</p>\n\n<p>player.bind \"update\", -><br />     updatePlayer()<br />   # => Uncaught TypeError: Object has no method 'bind'</p>\n\n<p>player.include(Bindable)</p>\n\n<p>player.bind \"update\", -><br />     updatePlayer()<br />   # => this will call updatePlayer each time through the main loop</p>"
     },
     "isPrivate": false,
     "ignore": false,
     "code": "var Bindable,\n  __slice = Array.prototype.slice;\n\nBindable = function() {\n  var eventCallbacks;\n  eventCallbacks = {};\n  return {"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "bind"
+      },
+      {
+        "type": "methodOf",
+        "string": "Bindable#"
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "event",
+        "description": "The event to listen to."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": "The function to be called when the specified event"
+      },
+      {
+        "type": "is",
+        "string": "triggered."
+      }
+    ],
     "description": {
-      "full": "<p>Adds a function as an event listener.</p>\n\n<pre><code>    # this will call coolEventHandler after\n    # yourObject.trigger \"someCustomEvent\" is called.\n    yourObject.bind \"someCustomEvent\", coolEventHandler\n\n    #or\n    yourObject.bind \"anotherCustomEvent\", -&gt;\n      doSomething()\n\n@name bind\n@methodOf Bindable#\n@param {String} event The event to listen to.\n@param {Function} callback The function to be called when the specified event\nis triggered.\n</code></pre>",
+      "full": "<p>Adds a function as an event listener.</p>\n\n<p># this will call coolEventHandler after<br />   # yourObject.trigger \"someCustomEvent\" is called.<br />   yourObject.bind \"someCustomEvent\", coolEventHandler</p>\n\n<p>#or<br />   yourObject.bind \"anotherCustomEvent\", -><br />     doSomething()</p>",
       "summary": "<p>Adds a function as an event listener.</p>",
-      "body": "<pre><code>    # this will call coolEventHandler after\n    # yourObject.trigger \"someCustomEvent\" is called.\n    yourObject.bind \"someCustomEvent\", coolEventHandler\n\n    #or\n    yourObject.bind \"anotherCustomEvent\", -&gt;\n      doSomething()\n\n@name bind\n@methodOf Bindable#\n@param {String} event The event to listen to.\n@param {Function} callback The function to be called when the specified event\nis triggered.\n</code></pre>"
+      "body": "<p># this will call coolEventHandler after<br />   # yourObject.trigger \"someCustomEvent\" is called.<br />   yourObject.bind \"someCustomEvent\", coolEventHandler</p>\n\n<p>#or<br />   yourObject.bind \"anotherCustomEvent\", -><br />     doSomething()</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "bind: function(event, callback) {\n      eventCallbacks[event] = eventCallbacks[event] || [];\n      return eventCallbacks[event].push(callback);\n    },"
   },
@@ -1115,21 +1145,47 @@
       }
     ],
     "description": {
-      "full": "<p>Removes a specific event listener, or all event listeners if<br />no specific listener is given.</p>\n\n<p>Another paragraph.</p>\n\n<pre><code>#  removes the handler coolEventHandler from the event\n# \"someCustomEvent\" while leaving the other events intact.\nyourObject.unbind \"someCustomEvent\", coolEventHandler\n\n# removes all handlers attached to \"anotherCustomEvent\"\nyourObject.unbind \"anotherCustomEvent\"\n</code></pre>",
+      "full": "<p>Removes a specific event listener, or all event listeners if<br />no specific listener is given.</p>\n\n<p>Another paragraph.</p>\n\n<p>#  removes the handler coolEventHandler from the event<br />   # \"someCustomEvent\" while leaving the other events intact.<br />   yourObject.unbind \"someCustomEvent\", coolEventHandler</p>\n\n<p># removes all handlers attached to \"anotherCustomEvent\"<br />   yourObject.unbind \"anotherCustomEvent\"</p>",
       "summary": "<p>Removes a specific event listener, or all event listeners if<br />no specific listener is given.</p>",
-      "body": "<p>Another paragraph.</p>\n\n<pre><code>#  removes the handler coolEventHandler from the event\n# \"someCustomEvent\" while leaving the other events intact.\nyourObject.unbind \"someCustomEvent\", coolEventHandler\n\n# removes all handlers attached to \"anotherCustomEvent\"\nyourObject.unbind \"anotherCustomEvent\"\n</code></pre>"
+      "body": "<p>Another paragraph.</p>\n\n<p>#  removes the handler coolEventHandler from the event<br />   # \"someCustomEvent\" while leaving the other events intact.<br />   yourObject.unbind \"someCustomEvent\", coolEventHandler</p>\n\n<p># removes all handlers attached to \"anotherCustomEvent\"<br />   yourObject.unbind \"anotherCustomEvent\"</p>"
     },
     "isPrivate": false,
     "ignore": false,
     "code": "unbind: function(event, callback) {\n      eventCallbacks[event] = eventCallbacks[event] || [];\n      if (callback) {\n        return eventCallbacks[event].remove(callback);\n      } else {\n        return eventCallbacks[event] = [];\n      }\n    },"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "trigger"
+      },
+      {
+        "type": "methodOf",
+        "string": "Bindable#"
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "event",
+        "description": "The event to trigger."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Array"
+        ],
+        "name": "[parameters]",
+        "description": "Additional parameters to pass to the event listener."
+      }
+    ],
     "description": {
-      "full": "<p>Calls all listeners attached to the specified event.</p>\n\n<pre><code>    # calls each event handler bound to \"someCustomEvent\"\n    yourObject.trigger \"someCustomEvent\"\n\n@name trigger\n@methodOf Bindable#\n@param {String} event The event to trigger.\n@param {Array} [parameters] Additional parameters to pass to the event listener.\n</code></pre>",
+      "full": "<p>Calls all listeners attached to the specified event.</p>\n\n<p># calls each event handler bound to \"someCustomEvent\"<br />   yourObject.trigger \"someCustomEvent\"</p>",
       "summary": "<p>Calls all listeners attached to the specified event.</p>",
-      "body": "<pre><code>    # calls each event handler bound to \"someCustomEvent\"\n    yourObject.trigger \"someCustomEvent\"\n\n@name trigger\n@methodOf Bindable#\n@param {String} event The event to trigger.\n@param {Array} [parameters] Additional parameters to pass to the event listener.\n</code></pre>"
+      "body": "<p># calls each event handler bound to \"someCustomEvent\"<br />   yourObject.trigger \"someCustomEvent\"</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "trigger: function() {\n      var callbacks, event, parameters, self;\n      event = arguments[0], parameters = 2 <= arguments.length ? __slice.call(arguments, 1) : [];\n      callbacks = eventCallbacks[event];\n      if (callbacks && callbacks.length) {\n        self = this;\n        return callbacks.each(function(callback) {\n          return callback.apply(self, parameters);\n        });\n      }\n    }\n  };\n};\n\n(typeof exports !== \"undefined\" && exports !== null ? exports : this)[\"Bindable\"] = Bindable;\n;\nvar CommandStack;\n\nCommandStack = function() {\n  var index, stack;\n  stack = [];\n  index = 0;\n  return {\n    execute: function(command) {\n      stack[index] = command;\n      command.execute();\n      return stack.length = index += 1;\n    },\n    undo: function() {\n      var command;\n      if (this.canUndo()) {\n        index -= 1;\n        command = stack[index];\n        command.undo();\n        return command;\n      }\n    },\n    redo: function() {\n      var command;\n      if (this.canRedo()) {\n        command = stack[index];\n        command.execute();\n        index += 1;\n        return command;\n      }\n    },\n    canUndo: function() {\n      return index > 0;\n    },\n    canRedo: function() {\n      return stack[index] != null;\n    }\n  };\n};\n;"
   },
@@ -1166,52 +1222,119 @@
     "code": "var Core,\n  __slice = Array.prototype.slice;\n\nCore = function(I) {\n  var self;\n  if (I == null) I = {};\n  return self = {"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "I"
+      },
+      {
+        "type": "fieldOf",
+        "string": "Core#"
+      }
+    ],
     "description": {
-      "full": "<p>External access to instance variables. Use of this property should be avoided<br />    in general, but can come in handy from time to time.</p>\n\n<pre><code>    I =\n      r: 255\n      g: 0\n      b: 100\n\n    myObject = Core(I)\n\n    # a bad idea most of the time, but it's\n    # pretty convenient to have available.\n    myObject.I.r\n    # =&gt; 255\n\n    myObject.I.g\n    # =&gt; 0\n\n    myObject.I.b\n    # =&gt; 100\n\n@name I\n@fieldOf Core#\n</code></pre>",
-      "summary": "<p>External access to instance variables. Use of this property should be avoided<br />    in general, but can come in handy from time to time.</p>",
-      "body": "<pre><code>    I =\n      r: 255\n      g: 0\n      b: 100\n\n    myObject = Core(I)\n\n    # a bad idea most of the time, but it's\n    # pretty convenient to have available.\n    myObject.I.r\n    # =&gt; 255\n\n    myObject.I.g\n    # =&gt; 0\n\n    myObject.I.b\n    # =&gt; 100\n\n@name I\n@fieldOf Core#\n</code></pre>"
+      "full": "<p>External access to instance variables. Use of this property should be avoided<br />in general, but can come in handy from time to time.</p>\n\n<p>I =<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject = Core(I)</p>\n\n<p># a bad idea most of the time, but it's<br />   # pretty convenient to have available.<br />   myObject.I.r<br />   # => 255</p>\n\n<p>myObject.I.g<br />   # => 0</p>\n\n<p>myObject.I.b<br />   # => 100</p>",
+      "summary": "<p>External access to instance variables. Use of this property should be avoided<br />in general, but can come in handy from time to time.</p>",
+      "body": "<p>I =<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject = Core(I)</p>\n\n<p># a bad idea most of the time, but it's<br />   # pretty convenient to have available.<br />   myObject.I.r<br />   # => 255</p>\n\n<p>myObject.I.g<br />   # => 0</p>\n\n<p>myObject.I.b<br />   # => 100</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "I: I,"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "attrAccessor"
+      },
+      {
+        "type": "methodOf",
+        "string": "Core#"
+      }
+    ],
     "description": {
-      "full": "<p>Generates a public jQuery style getter / setter method for each<br />    String argument.</p>\n\n<pre><code>    myObject = Core\n      r: 255\n      g: 0\n      b: 100\n\n    myObject.attrAccessor \"r\", \"g\", \"b\"\n\n    myObject.r(254)\n    myObject.r()\n\n    =&gt; 254\n\n@name attrAccessor\n@methodOf Core#\n</code></pre>",
-      "summary": "<p>Generates a public jQuery style getter / setter method for each<br />    String argument.</p>",
-      "body": "<pre><code>    myObject = Core\n      r: 255\n      g: 0\n      b: 100\n\n    myObject.attrAccessor \"r\", \"g\", \"b\"\n\n    myObject.r(254)\n    myObject.r()\n\n    =&gt; 254\n\n@name attrAccessor\n@methodOf Core#\n</code></pre>"
+      "full": "<p>Generates a public jQuery style getter / setter method for each<br />String argument.</p>\n\n<p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject.attrAccessor \"r\", \"g\", \"b\"</p>\n\n<p>myObject.r(254)<br />   myObject.r()</p>\n\n<p>=> 254</p>",
+      "summary": "<p>Generates a public jQuery style getter / setter method for each<br />String argument.</p>",
+      "body": "<p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject.attrAccessor \"r\", \"g\", \"b\"</p>\n\n<p>myObject.r(254)<br />   myObject.r()</p>\n\n<p>=> 254</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "attrAccessor: function() {\n      var attrNames;\n      attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];\n      return attrNames.each(function(attrName) {\n        return self[attrName] = function(newValue) {\n          if (newValue != null) {\n            I[attrName] = newValue;\n            return self;\n          } else {\n            return I[attrName];\n          }\n        };\n      });\n    },"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "attrReader"
+      },
+      {
+        "type": "methodOf",
+        "string": "Core#"
+      }
+    ],
     "description": {
-      "full": "<p>Generates a public jQuery style getter method for each String argument.</p>\n\n<pre><code>    myObject = Core\n      r: 255\n      g: 0\n      b: 100\n\n    myObject.attrReader \"r\", \"g\", \"b\"\n\n    myObject.r()\n    =&gt; 255\n\n    myObject.g()\n    =&gt; 0\n\n    myObject.b()\n    =&gt; 100\n\n@name attrReader\n@methodOf Core#\n</code></pre>",
+      "full": "<p>Generates a public jQuery style getter method for each String argument.</p>\n\n<p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject.attrReader \"r\", \"g\", \"b\"</p>\n\n<p>myObject.r()<br />   => 255</p>\n\n<p>myObject.g()<br />   => 0</p>\n\n<p>myObject.b()<br />   => 100</p>",
       "summary": "<p>Generates a public jQuery style getter method for each String argument.</p>",
-      "body": "<pre><code>    myObject = Core\n      r: 255\n      g: 0\n      b: 100\n\n    myObject.attrReader \"r\", \"g\", \"b\"\n\n    myObject.r()\n    =&gt; 255\n\n    myObject.g()\n    =&gt; 0\n\n    myObject.b()\n    =&gt; 100\n\n@name attrReader\n@methodOf Core#\n</code></pre>"
+      "body": "<p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>\n\n<p>myObject.attrReader \"r\", \"g\", \"b\"</p>\n\n<p>myObject.r()<br />   => 255</p>\n\n<p>myObject.g()<br />   => 0</p>\n\n<p>myObject.b()<br />   => 100</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "attrReader: function() {\n      var attrNames;\n      attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];\n      return attrNames.each(function(attrName) {\n        return self[attrName] = function() {\n          return I[attrName];\n        };\n      });\n    },"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "extend"
+      },
+      {
+        "type": "methodOf",
+        "string": "Core#"
+      },
+      {
+        "type": "see",
+        "local": "Object.extend",
+        "visibility": "Object.extend"
+      },
+      {
+        "type": "returns",
+        "string": "self"
+      }
+    ],
     "description": {
-      "full": "<p>Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)</p>\n\n<pre><code>    I =\n      x: 30\n      y: 40\n      maxSpeed: 5\n\n    # we are using extend to give player\n    # additional methods that Core doesn't have\n    player = Core(I).extend\n      increaseSpeed: -&gt;\n        I.maxSpeed += 1\n\n    player.I.maxSpeed\n    =&gt; 5\n\n    player.increaseSpeed()\n\n    player.I.maxSpeed\n    =&gt; 6\n\n@name extend\n@methodOf Core#\n@see Object.extend\n@returns self\n</code></pre>",
+      "full": "<p>Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)</p>\n\n<p>I =<br />     x: 30<br />     y: 40<br />     maxSpeed: 5</p>\n\n<p># we are using extend to give player<br />   # additional methods that Core doesn't have<br />   player = Core(I).extend<br />     increaseSpeed: -><br />       I.maxSpeed += 1</p>\n\n<p>player.I.maxSpeed<br />   => 5</p>\n\n<p>player.increaseSpeed()</p>\n\n<p>player.I.maxSpeed<br />   => 6</p>",
       "summary": "<p>Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)</p>",
-      "body": "<pre><code>    I =\n      x: 30\n      y: 40\n      maxSpeed: 5\n\n    # we are using extend to give player\n    # additional methods that Core doesn't have\n    player = Core(I).extend\n      increaseSpeed: -&gt;\n        I.maxSpeed += 1\n\n    player.I.maxSpeed\n    =&gt; 5\n\n    player.increaseSpeed()\n\n    player.I.maxSpeed\n    =&gt; 6\n\n@name extend\n@methodOf Core#\n@see Object.extend\n@returns self\n</code></pre>"
+      "body": "<p>I =<br />     x: 30<br />     y: 40<br />     maxSpeed: 5</p>\n\n<p># we are using extend to give player<br />   # additional methods that Core doesn't have<br />   player = Core(I).extend<br />     increaseSpeed: -><br />       I.maxSpeed += 1</p>\n\n<p>player.I.maxSpeed<br />   => 5</p>\n\n<p>player.increaseSpeed()</p>\n\n<p>player.I.maxSpeed<br />   => 6</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "extend: function(options) {\n      Object.extend(self, options);\n      return self;\n    },"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "include"
+      },
+      {
+        "type": "methodOf",
+        "string": "Core#"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Module"
+        ],
+        "name": "Module",
+        "description": "the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with."
+      }
+    ],
     "description": {
-      "full": "<p>Includes a module in this object.</p>\n\n<pre><code>    myObject = Core()\n    myObject.include(Bindable)\n\n    # now you can bind handlers to functions\n    myObject.bind \"someEvent\", -&gt;\n      alert(\"wow. that was easy.\")\n\n@name include\n@methodOf Core#\n@param {Module} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.\n</code></pre>",
+      "full": "<p>Includes a module in this object.</p>\n\n<p>myObject = Core()<br />   myObject.include(Bindable)</p>\n\n<p># now you can bind handlers to functions<br />   myObject.bind \"someEvent\", -><br />     alert(\"wow. that was easy.\")<br />    i*</p>",
       "summary": "<p>Includes a module in this object.</p>",
-      "body": "<pre><code>    myObject = Core()\n    myObject.include(Bindable)\n\n    # now you can bind handlers to functions\n    myObject.bind \"someEvent\", -&gt;\n      alert(\"wow. that was easy.\")\n\n@name include\n@methodOf Core#\n@param {Module} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.\n</code></pre>"
+      "body": "<p>myObject = Core()<br />   myObject.include(Bindable)</p>\n\n<p># now you can bind handlers to functions<br />   myObject.bind \"someEvent\", -><br />     alert(\"wow. that was easy.\")<br />    i*</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "include: function() {\n      var Module, modules, _i, _len;\n      modules = 1 <= arguments.length ? __slice.call(arguments, 0) : [];\n      for (_i = 0, _len = modules.length; _i < _len; _i++) {\n        Module = modules[_i];\n        self.extend(Module(I, self));\n      }\n      return self;\n    }\n  };\n};\n;\nvar __slice = Array.prototype.slice;\n\nFunction.prototype.once = function() {\n  var func, memo, ran;\n  func = this;\n  ran = false;\n  memo = void 0;\n  return function() {\n    if (ran) return memo;\n    ran = true;\n    return memo = func.apply(this, arguments);\n  };\n};\n\nFunction.prototype.withBefore = function(interception) {\n  var method;\n  method = this;\n  return function() {\n    interception.apply(this, arguments);\n    return method.apply(this, arguments);\n  };\n};\n\nFunction.prototype.withAfter = function(interception) {\n  var method;\n  method = this;\n  return function() {\n    var result;\n    result = method.apply(this, arguments);\n    interception.apply(this, arguments);\n    return result;\n  };\n};"
   },
@@ -1231,9 +1354,9 @@
       }
     ],
     "description": {
-      "full": "<p>Calling a debounced function will postpone its execution until after<br />wait milliseconds have elapsed since the last time the function was<br />invoked. Useful for implementing behavior that should only happen after<br />the input has stopped arriving. For example: rendering a preview of a<br />Markdown comment, recalculating a layout after the window has stopped<br />being resized...</p>\n\n<pre><code>lazyLayout = calculateLayout.debounce(300)\n$(window).resize(lazyLayout)\n</code></pre>",
+      "full": "<p>Calling a debounced function will postpone its execution until after<br />wait milliseconds have elapsed since the last time the function was<br />invoked. Useful for implementing behavior that should only happen after<br />the input has stopped arriving. For example: rendering a preview of a<br />Markdown comment, recalculating a layout after the window has stopped<br />being resized...</p>\n\n<p>lazyLayout = calculateLayout.debounce(300)<br />   $(window).resize(lazyLayout)</p>",
       "summary": "<p>Calling a debounced function will postpone its execution until after<br />wait milliseconds have elapsed since the last time the function was<br />invoked. Useful for implementing behavior that should only happen after<br />the input has stopped arriving. For example: rendering a preview of a<br />Markdown comment, recalculating a layout after the window has stopped<br />being resized...</p>",
-      "body": "<pre><code>lazyLayout = calculateLayout.debounce(300)\n$(window).resize(lazyLayout)\n</code></pre>"
+      "body": "<p>lazyLayout = calculateLayout.debounce(300)<br />   $(window).resize(lazyLayout)</p>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -1300,12 +1423,70 @@
     "code": "(function() {"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "Matrix"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[a]",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[b]",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[c]",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[d]",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[tx]",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "[ty]",
+        "description": ""
+      },
+      {
+        "type": "constructor",
+        "string": ""
+      }
+    ],
     "description": {
-      "full": "<pre>\n     _        _\n    | a  c tx  |\n    | b  d ty  |\n    |_0  0  1 _|\n  </pre>\n\n<p>Creates a matrix for 2d affine transformations.</p>\n\n<p>concat, inverse, rotate, scale and translate return new matrices with the<br />  transformations applied. The matrix is not modified in place.</p>\n\n<p>Returns the identity matrix when called with no arguments.</p>\n\n<p>@name Matrix<br />  @param {Number} [a]<br />  @param {Number} [b]<br />  @param {Number} [c]<br />  @param {Number} [d]<br />  @param {Number} [tx]<br />  @param {Number} [ty]<br />  @constructor</p>",
-      "summary": "<pre>\n     _        _\n    | a  c tx  |\n    | b  d ty  |\n    |_0  0  1 _|\n  </pre>\n\n<p>Creates a matrix for 2d affine transformations.</p>",
-      "body": "<p>concat, inverse, rotate, scale and translate return new matrices with the<br />  transformations applied. The matrix is not modified in place.</p>\n\n<p>Returns the identity matrix when called with no arguments.</p>\n\n<p>@name Matrix<br />  @param {Number} [a]<br />  @param {Number} [b]<br />  @param {Number} [c]<br />  @param {Number} [d]<br />  @param {Number} [tx]<br />  @param {Number} [ty]<br />  @constructor</p>"
+      "full": "<pre>\n  _        _\n | a  c tx  |\n | b  d ty  |\n |_0  0  1 _|\n</pre>\n\n<p>Creates a matrix for 2d affine transformations.</p>\n\n<p>concat, inverse, rotate, scale and translate return new matrices with the<br />transformations applied. The matrix is not modified in place.</p>\n\n<p>Returns the identity matrix when called with no arguments.</p>",
+      "summary": "<pre>\n  _        _\n | a  c tx  |\n | b  d ty  |\n |_0  0  1 _|\n</pre>\n\n<p>Creates a matrix for 2d affine transformations.</p>",
+      "body": "<p>concat, inverse, rotate, scale and translate return new matrices with the<br />transformations applied. The matrix is not modified in place.</p>\n\n<p>Returns the identity matrix when called with no arguments.</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "var Matrix;\n  Matrix = function(a, b, c, d, tx, ty) {\n    return {\n      __proto__: Matrix.prototype,"
   },
@@ -9586,12 +9767,38 @@
     "code": "var Tween;\n\nTween = function(I, self) {\n  if (I == null) I = {};\n  Object.reverseMerge(I, {\n    activeTweens: {}\n  });\n  self.bind(\"update\", function() {\n    var data, f, property, t, _base, _ref, _results;\n    _ref = I.activeTweens;\n    _results = [];\n    for (property in _ref) {\n      data = _ref[property];\n      if (I.age >= data.endTime) {\n        I[property] = data.end;\n        if (typeof (_base = I.activeTweens[property]).complete === \"function\") {\n          _base.complete();\n        }\n        _results.push(delete I.activeTweens[property]);\n      } else {\n        f = Easing[data.easing](data.start, data.end);\n        t = (I.age - data.startTime) / data.duration;\n        _results.push(I[property] = f(t));\n      }\n    }\n    return _results;\n  });\n  return {"
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "name",
+        "string": "tween"
+      },
+      {
+        "type": "methodOf",
+        "string": "Tween#"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "duration",
+        "description": "How long (in frames) until the object's properties reach their final values."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "properties",
+        "description": "Which properties to tween. Set the `easing` property to specify the easing function."
+      }
+    ],
     "description": {
-      "full": "<p>Modify the object's properties over time.</p>\n\n<pre><code>    player = GameObject()\n\n    player.tween 30,\n      x: 50\n      y: 50\n      easing: \"quadratic\"\n    &lt;/pre&gt;&lt;/code&gt;\n\n    &lt;code&gt;&lt;pre&gt;\n    player = GameObject()\n\n    player.tween 30,\n      x: 150\n      y: 150\n      complete: -&gt;\n        player.dance()\n\n@name tween\n@methodOf Tween#\n@param {Number} duration How long (in frames) until the object's properties reach their final values.\n@param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.\n</code></pre>",
+      "full": "<p>Modify the object's properties over time.</p>\n\n<p>player = GameObject()</p>\n\n<p>player.tween 30,<br />     x: 50<br />     y: 50<br />     easing: \"quadratic\"<br />   </pre></code></p>\n\n<p><code><pre><br />   player = GameObject()</p>\n\n<p>player.tween 30,<br />     x: 150<br />     y: 150<br />     complete: -><br />       player.dance()</p>",
       "summary": "<p>Modify the object's properties over time.</p>",
-      "body": "<pre><code>    player = GameObject()\n\n    player.tween 30,\n      x: 50\n      y: 50\n      easing: \"quadratic\"\n    &lt;/pre&gt;&lt;/code&gt;\n\n    &lt;code&gt;&lt;pre&gt;\n    player = GameObject()\n\n    player.tween 30,\n      x: 150\n      y: 150\n      complete: -&gt;\n        player.dance()\n\n@name tween\n@methodOf Tween#\n@param {Number} duration How long (in frames) until the object's properties reach their final values.\n@param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.\n</code></pre>"
+      "body": "<p>player = GameObject()</p>\n\n<p>player.tween 30,<br />     x: 50<br />     y: 50<br />     easing: \"quadratic\"<br />   </pre></code></p>\n\n<p><code><pre><br />   player = GameObject()</p>\n\n<p>player.tween 30,<br />     x: 150<br />     y: 150<br />     complete: -><br />       player.dance()</p>"
     },
+    "isPrivate": false,
     "ignore": false,
     "code": "tween: function(duration, properties) {\n      var complete, easing, property, target, _results;\n      properties = Object.extend({}, properties);\n      easing = properties.easing || \"linear\";\n      complete = properties.complete;\n      delete properties.easing;\n      delete properties.complete;\n      _results = [];\n      for (property in properties) {\n        target = properties[property];\n        _results.push(I.activeTweens[property] = {\n          complete: complete,\n          end: target,\n          start: I[property],\n          easing: easing,\n          duration: duration,\n          startTime: I.age,\n          endTime: I.age + duration\n        });\n      }\n      return _results;\n    }\n  };\n};\n;\n;"
   }

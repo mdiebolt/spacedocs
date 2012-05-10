@@ -9,8 +9,10 @@
     <script src='/javascripts/docs.js' type='text/javascript'></script>
   </head>
   <body>
+    <pre></pre>
     <nav>
       <a href='/Array.html'>Array</a>
+      <a href='/Bindable.html'>Bindable</a>
       <a href='/Bindable.html'>Bindable</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
@@ -19,8 +21,10 @@
       <a href='/Controllable.html'>Controllable</a>
       <a href='/Cooldown.html'>Cooldown</a>
       <a href='/Core.html'>Core</a>
+      <a href='/Core.html'>Core</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Drawable.html'>Drawable</a>
       <a class='active' href='/Drawable.html'>Drawable</a>
       <a href='/Durable.html'>Durable</a>
       <a href='/Fadeable.html'>Fadeable</a>
@@ -29,12 +33,17 @@
       <a href='/Framerate.html'>Framerate</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameOver.html'>GameOver</a>
       <a href='/GameOver.html'>GameOver</a>
       <a href='/LevelState.html'>LevelState</a>
+      <a href='/LevelState.html'>LevelState</a>
       <a href='/Math.html'>Math</a>
+      <a href='/Matrix.html'>Matrix</a>
       <a href='/Metered.html'>Metered</a>
       <a href='/Movable.html'>Movable</a>
       <a href='/Number.html'>Number</a>
+      <a href='/Object.html'>Object</a>
       <a href='/Object.html'>Object</a>
       <a href='/Oscillator.html'>Oscillator</a>
       <a href='/RegExp.html'>RegExp</a>
@@ -42,13 +51,16 @@
       <a href='/Sprite.html'>Sprite</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect.html'>TextEffect</a>
       <a href='/TextScreen.html'>TextScreen</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/Tween.html'>Tween</a>
       <a href='/Tween.html'>Tween</a>
     </nav>
     <section class='method_list'>
-      <h3>Drawable Methods</h3>
+      <h3>Drawable# Methods</h3>
       <div class='methods'>
         <a href='Drawable.html#draw'>draw</a>
         <a href='Drawable.html#beforeTransform'>beforeTransform</a>
@@ -56,13 +68,26 @@
       </div>
     </section>
     <div class='documentation'>
-      <a name='draw'></a>
-      <h1>draw(canvas)</h1>
+      <a name='Drawable#draw'></a>
+      <h1>Drawable#draw(canvas)</h1>
       <div class='description'>
-        <section class='summary'><p>Draws the <code>textShadow</code> text and the <code>text</code> text.</p></section>
+        <section class='summary'><p>Triggered every time the object should be drawn. A canvas is passed as<br />the first argument.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
+          <pre><code>player = Core
+            x: 0
+            y: 10
+            width: 5
+            height: 5
           
+          player.bind "draw", (canvas) -&gt;
+            # Text will be drawn positioned relatively to the object.
+            canvas.drawText
+              text: "Hey, drawing stuff is pretty easy."
+              color: "white"
+              x: 5
+              y: 5
+          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
@@ -70,19 +95,19 @@
             <li>
               <span class='param_name'>canvas</span>
                -
-              <span class='param_description'></span>
+              <span class='param_description'>A reference to the canvas to draw on.</span>
             </li>
           </ul>
         </section>
         <section class='source'>
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
-          <pre><code>var TextEffect;&#x000A;&#x000A;TextEffect = function(I) {&#x000A;  var self;&#x000A;  if (I == null) I = {};&#x000A;  Object.reverseMerge(I, {&#x000A;    color: Color('green'),&#x000A;    duration: 40,&#x000A;    font: '20px Helvetica',&#x000A;    text: '100',&#x000A;    textShadow: Color('black'),&#x000A;    alpha: 1,&#x000A;    rotation: 0,&#x000A;    rotationalVelocity: 0,&#x000A;    velocity: Point(0, -1)&#x000A;  });&#x000A;  self = GameObject(I);&#x000A;  self.bind("update", function() {&#x000A;    I.rotation += I.rotationalVelocity;&#x000A;    I.x += I.velocity.x;&#x000A;    I.y += I.velocity.y;&#x000A;    return I.alpha = 1 - (I.age / I.duration);&#x000A;  });&#x000A;  self.unbind("draw");&#x000A;  self.bind("draw", function(canvas) {&#x000A;    if (!I.color.channels) I.color = Color(I.color);&#x000A;    if (!I.textShadow.channels) I.textShadow = Color(I.textShadow);&#x000A;    I.color.a = I.alpha;&#x000A;    I.textShadow.a = I.alpha;&#x000A;    canvas.font(I.font);&#x000A;    canvas.drawText({&#x000A;      color: I.textShadow,&#x000A;      x: 1,&#x000A;      y: 1,&#x000A;      text: I.text&#x000A;    });&#x000A;    return canvas.drawText({&#x000A;      color: I.color,&#x000A;      x: 0,&#x000A;      y: 0,&#x000A;      text: I.text&#x000A;    });&#x000A;  });&#x000A;  return self;&#x000A;};&#x000A;;</code></pre>
+          <pre><code></code></pre>
         </section>
       </div>
       <hr />
-      <a name='beforeTransform'></a>
-      <h1>beforeTransform(canvas)</h1>
+      <a name='Drawable#beforeTransform'></a>
+      <h1>Drawable#beforeTransform(canvas)</h1>
       <div class='description'>
         <section class='summary'><p>Triggered before the object should be drawn. A canvas is passed as<br />the first argument. This does not apply the current transform.</p></section>
         <section class='usage'>
@@ -106,8 +131,8 @@
         </section>
       </div>
       <hr />
-      <a name='afterTransform'></a>
-      <h1>afterTransform(canvas)</h1>
+      <a name='Drawable#afterTransform'></a>
+      <h1>Drawable#afterTransform(canvas)</h1>
       <div class='description'>
         <section class='summary'><p>Triggered after the object should be drawn. A canvas is passed as<br />the first argument. This applies the current transform.</p></section>
         <section class='usage'>

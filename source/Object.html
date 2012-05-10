@@ -9,8 +9,10 @@
     <script src='/javascripts/docs.js' type='text/javascript'></script>
   </head>
   <body>
+    <pre></pre>
     <nav>
       <a href='/Array.html'>Array</a>
+      <a href='/Bindable.html'>Bindable</a>
       <a href='/Bindable.html'>Bindable</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
@@ -19,8 +21,10 @@
       <a href='/Controllable.html'>Controllable</a>
       <a href='/Cooldown.html'>Cooldown</a>
       <a href='/Core.html'>Core</a>
+      <a href='/Core.html'>Core</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Drawable.html'>Drawable</a>
       <a href='/Drawable.html'>Drawable</a>
       <a href='/Durable.html'>Durable</a>
       <a href='/Fadeable.html'>Fadeable</a>
@@ -29,12 +33,17 @@
       <a href='/Framerate.html'>Framerate</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameOver.html'>GameOver</a>
       <a href='/GameOver.html'>GameOver</a>
       <a href='/LevelState.html'>LevelState</a>
+      <a href='/LevelState.html'>LevelState</a>
       <a href='/Math.html'>Math</a>
+      <a href='/Matrix.html'>Matrix</a>
       <a href='/Metered.html'>Metered</a>
       <a href='/Movable.html'>Movable</a>
       <a href='/Number.html'>Number</a>
+      <a href='/Object.html'>Object</a>
       <a class='active' href='/Object.html'>Object</a>
       <a href='/Oscillator.html'>Oscillator</a>
       <a href='/RegExp.html'>RegExp</a>
@@ -42,209 +51,23 @@
       <a href='/Sprite.html'>Sprite</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect.html'>TextEffect</a>
       <a href='/TextScreen.html'>TextScreen</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/Tween.html'>Tween</a>
       <a href='/Tween.html'>Tween</a>
     </nav>
     <section class='method_list'>
-      <h3>Object Methods</h3>
+      <h3>Object# Methods</h3>
       <div class='methods'>
-        <a href='Object.html#isArray'>isArray</a>
-        <a href='Object.html#isString'>isString</a>
-        <a href='Object.html#reverseMerge'>reverseMerge</a>
-        <a href='Object.html#extend'>extend</a>
-        <a href='Object.html#isObject'>isObject</a>
         <a href='Object.html#hasOwnProperty'>hasOwnProperty</a>
       </div>
     </section>
     <div class='documentation'>
-      <a name='isArray'></a>
-      <h1>isArray(object)</h1>
-      <div class='description'>
-        <section class='summary'><p>Checks whether an object is an array.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          <pre><code>Object.isArray([1, 2, 4])
-          # =&gt; true
-          
-          Object.isArray({key: "value"})
-          # =&gt; false
-          </code></pre>
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>object</span>
-               -
-              <span class='param_description'>The object to check for array-ness.</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='Boolean.html'>Boolean</a>
-          </p>
-          <p class='return_description'>A boolean expressing whether the object is an instance of Array</p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>var __slice = Array.prototype.slice;&#x000A;&#x000A;Object.isArray = function(object) {&#x000A;  return Object.prototype.toString.call(object) === "[object Array]";&#x000A;};</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='isString'></a>
-      <h1>isString()</h1>
-      <div class='description'>
-        <section class='summary'><p>Returns true.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='Boolean.html'>Boolean</a>
-          </p>
-          <p class='return_description'>true</p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>String.prototype.isString = function() {&#x000A;  return true;&#x000A;};</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='reverseMerge'></a>
-      <h1>reverseMerge(target)</h1>
-      <div class='description'>
-        <section class='summary'><p>Merges properties from objects into target without overiding.<br />First come, first served.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          <pre><code>I =
-            a: 1
-            b: 2
-            c: 3
-          
-          Object.reverseMerge I,
-            c: 6
-            d: 4
-          
-          I # =&gt; {a: 1, b:2, c:3, d: 4}
-          </code></pre>
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>target</span>
-               -
-              <span class='param_description'>The object to merge the properties into.</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='Object.html'>Object</a>
-          </p>
-          <p class='return_description'>target</p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>Object.reverseMerge = function() {&#x000A;  var name, object, objects, target, _i, _len;&#x000A;  target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];&#x000A;  for (_i = 0, _len = objects.length; _i < _len; _i++) {&#x000A;    object = objects[_i];&#x000A;    for (name in object) {&#x000A;      if (!target.hasOwnProperty(name)) target[name] = object[name];&#x000A;    }&#x000A;  }&#x000A;  return target;&#x000A;};</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='extend'></a>
-      <h1>extend(target)</h1>
-      <div class='description'>
-        <section class='summary'><p>Merges properties from sources into target with overiding.<br />Last in covers earlier properties.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          <pre><code>I =
-            a: 1
-            b: 2
-            c: 3
-          
-          Object.extend I,
-            c: 6
-            d: 4
-          
-          I # =&gt; {a: 1, b:2, c:6, d: 4}
-          </code></pre>
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>target</span>
-               -
-              <span class='param_description'>The object to merge the properties into.</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='Object.html'>Object</a>
-          </p>
-          <p class='return_description'>target</p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>Object.extend = function() {&#x000A;  var name, source, sources, target, _i, _len;&#x000A;  target = arguments[0], sources = 2 <= arguments.length ? __slice.call(arguments, 1) : [];&#x000A;  for (_i = 0, _len = sources.length; _i < _len; _i++) {&#x000A;    source = sources[_i];&#x000A;    for (name in source) {&#x000A;      target[name] = source[name];&#x000A;    }&#x000A;  }&#x000A;  return target;&#x000A;};</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='isObject'></a>
-      <h1>isObject(object)</h1>
-      <div class='description'>
-        <section class='summary'><p>Helper method that tells you if something is an object.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          <pre><code>object = {a: 1}
-          
-          Object.isObject(object)
-          # =&gt; true
-          </code></pre>
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>object</span>
-               -
-              <span class='param_description'>Maybe this guy is an object.</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='Boolean.html'>Boolean</a>
-          </p>
-          <p class='return_description'>true if this guy is an object.</p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>Object.isObject = function(object) {&#x000A;  return Object.prototype.toString.call(object) === '[object Object]';&#x000A;};&#x000A;;&#x000A;var __slice = Array.prototype.slice;&#x000A;&#x000A;(function() {</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='hasOwnProperty'></a>
-      <h1>hasOwnProperty(The)</h1>
+      <a name='Object#hasOwnProperty'></a>
+      <h1>Object#hasOwnProperty(The)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a boolean indicating whether the object has the specified property.</p></section>
         <section class='usage'>
