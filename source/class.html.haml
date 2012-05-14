@@ -19,43 +19,47 @@
           %a.active(href="/#{name}.html")= name
         -else
           %a(href="/#{name}.html")= name
-    %section.method_list
-      %h3= "#{class_name} Methods"
-      .methods
-        -method_list.each do |m|
-          %a(href="#{class_name.gsub('#', '')}.html##{class_name}#{m}")= m
+    - if method_list.length > 0
+      %section.method_list
+        %h3= "#{class_name} Methods"
+        .methods
+          -method_list.each do |m|
+            %a(href="#{class_name.gsub('#', '')}.html##{class_name}#{m}")= m
     .documentation
-      -methods.each_pair do |method_name, method_data|
-        %a(name="#{method_name}")
-        %h1= "#{method_name}(#{method_data['parameters'].keys.join ', '})"
-        .description
-          %section.summary= method_data['summary']
+      -if methods.first
+        -methods.each_pair do |method_name, method_data|
+          %a(name="#{method_name}")
+          / TODO make sure method_data isn't nil
+          - if method_data && method_data.first
+            %h1= "#{method_name}(#{method_data['parameters'].keys.join ', '})"
+            .description
+              %section.summary= method_data['summary']
 
-          %section.usage
-            %h3 Usage
-            = method_data['code_sample']
+              %section.usage
+                %h3 Usage
+                = method_data['code_sample']
 
-          - if method_data['parameters'].keys.length > 0
-            %section.parameters
-              %h3 Parameters
-              %ul
-                - method_data['parameters'].each_pair do |param_name, param_data|
-                  %li
-                    %span.param_name= param_name
-                    = " - "
-                    %span.param_description= param_data['description']
+              - if method_data['parameters'].keys.length > 0
+                %section.parameters
+                  %h3 Parameters
+                  %ul
+                    - method_data['parameters'].each_pair do |param_name, param_data|
+                      %li
+                        %span.param_name= param_name
+                        = " - "
+                        %span.param_description= param_data['description']
 
-          -if method_data['returns']
-            %section.returns
-              %h3 Returns
-              %p
-                Type:
-                %a(href="#{method_data['returns']['type']}.html")= method_data['returns']['type']
-              %p.return_description= method_data['returns']['description']
+              -if method_data['returns']
+                %section.returns
+                  %h3 Returns
+                  %p
+                    Type:
+                    %a(href="#{method_data['returns']['type']}.html")= method_data['returns']['type']
+                  %p.return_description= method_data['returns']['description']
 
-          %section.source
-            %h3 Source
-            %a.toggle_source Toggle
-            %pre
-              %code= method_data['source']
-        %hr
+              %section.source
+                %h3 Source
+                %a.toggle_source Toggle
+                %pre
+                  %code= method_data['source']
+            %hr

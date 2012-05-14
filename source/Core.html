@@ -13,51 +13,76 @@
     <nav>
       <a href='/Array.html'>Array</a>
       <a href='/Bindable.html'>Bindable</a>
-      <a href='/Bindable.html'>Bindable</a>
+      <a href='/Bindable..html'>Bindable.</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
+      <a href='/Bounded..html'>Bounded.</a>
+      <a href='/Camera.html'>Camera</a>
       <a href='/Clampable.html'>Clampable</a>
-      <a href='/Collision.html'>Collision</a>
-      <a href='/Controllable.html'>Controllable</a>
-      <a href='/Cooldown.html'>Cooldown</a>
-      <a href='/Core.html'>Core</a>
+      <a href='/Clampable..html'>Clampable.</a>
+      <a href='/Collidable..html'>Collidable.</a>
+      <a href='/Collision..html'>Collision.</a>
+      <a href='/Color.html'>Color</a>
+      <a href='/Color..html'>Color.</a>
+      <a href='/Controllable..html'>Controllable.</a>
+      <a href='/Cooldown..html'>Cooldown.</a>
       <a class='active' href='/Core.html'>Core</a>
+      <a href='/Core..html'>Core.</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Debuggable..html'>Debuggable.</a>
       <a href='/Drawable.html'>Drawable</a>
-      <a href='/Drawable.html'>Drawable</a>
-      <a href='/Durable.html'>Durable</a>
+      <a href='/Drawable..html'>Drawable.</a>
+      <a href='/Durable..html'>Durable.</a>
+      <a href='/Engine.html'>Engine</a>
+      <a href='/Engine..html'>Engine.</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Fadeable..html'>Fadeable.</a>
       <a href='/Flickerable.html'>Flickerable</a>
+      <a href='/Flickerable..html'>Flickerable.</a>
       <a href='/Follow.html'>Follow</a>
+      <a href='/Follow..html'>Follow.</a>
       <a href='/Framerate.html'>Framerate</a>
+      <a href='/Framerate..html'>Framerate.</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
-      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject..html'>GameObject.</a>
       <a href='/GameOver.html'>GameOver</a>
-      <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver..html'>GameOver.</a>
+      <a href='/GameState.html'>GameState</a>
       <a href='/LevelState.html'>LevelState</a>
-      <a href='/LevelState.html'>LevelState</a>
-      <a href='/Math.html'>Math</a>
+      <a href='/LevelState..html'>LevelState.</a>
+      <a href='/Math..html'>Math.</a>
       <a href='/Matrix.html'>Matrix</a>
+      <a href='/Matrix..html'>Matrix.</a>
       <a href='/Metered.html'>Metered</a>
-      <a href='/Movable.html'>Movable</a>
+      <a href='/Metered..html'>Metered.</a>
+      <a href='/Movable..html'>Movable.</a>
       <a href='/Number.html'>Number</a>
       <a href='/Object.html'>Object</a>
-      <a href='/Object.html'>Object</a>
-      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/Object..html'>Object.</a>
+      <a href='/Oscillator..html'>Oscillator.</a>
+      <a href='/Point.html'>Point</a>
+      <a href='/Point..html'>Point.</a>
+      <a href='/Random..html'>Random.</a>
       <a href='/RegExp.html'>RegExp</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/ResourceLoader.html'>ResourceLoader</a>
+      <a href='/Rotatable..html'>Rotatable.</a>
       <a href='/Sprite.html'>Sprite</a>
+      <a href='/Sprite..html'>Sprite.</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
-      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect..html'>TextEffect.</a>
       <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TextScreen..html'>TextScreen.</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TimedEvents..html'>TimedEvents.</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
-      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen..html'>TitleScreen.</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/Tween.html'>Tween</a>
+      <a href='/Tween..html'>Tween.</a>
+      <a href='/window..html'>window.</a>
     </nav>
     <section class='method_list'>
       <h3>Core# Methods</h3>
@@ -69,19 +94,33 @@
       </div>
     </section>
     <div class='documentation'>
-      <a name='Core#attrAccessor'></a>
-      <h1>Core#attrAccessor()</h1>
+      <a name='attrAccessor'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>attrAccessor()</h1>
       <div class='description'>
         <section class='summary'><p>Generates a public jQuery style getter / setter method for each<br />String argument.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>
+          <pre><code>myObject = Core
+            r: 255
+            g: 0
+            b: 100
           
-          <p>myObject.attrAccessor "r", "g", "b"</p>
+          myObject.attrAccessor "r", "g", "b"
           
-          <p>myObject.r(254)<br />   myObject.r()</p>
+          myObject.r(254)
+          myObject.r()
           
-          <p>=> 254</p>
+          =&gt; 254
+          </code></pre>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -90,21 +129,37 @@
         </section>
       </div>
       <hr />
-      <a name='Core#attrReader'></a>
-      <h1>Core#attrReader()</h1>
+      <a name='attrReader'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>attrReader()</h1>
       <div class='description'>
         <section class='summary'><p>Generates a public jQuery style getter method for each String argument.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>myObject = Core<br />     r: 255<br />     g: 0<br />     b: 100</p>
+          <pre><code>myObject = Core
+            r: 255
+            g: 0
+            b: 100
           
-          <p>myObject.attrReader "r", "g", "b"</p>
+          myObject.attrReader "r", "g", "b"
           
-          <p>myObject.r()<br />   => 255</p>
+          myObject.r()
+          =&gt; 255
           
-          <p>myObject.g()<br />   => 0</p>
+          myObject.g()
+          =&gt; 0
           
-          <p>myObject.b()<br />   => 100</p>
+          myObject.b()
+          =&gt; 100
+          </code></pre>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -113,21 +168,32 @@
         </section>
       </div>
       <hr />
-      <a name='Core#extend'></a>
-      <h1>Core#extend()</h1>
+      <a name='extend'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>extend()</h1>
       <div class='description'>
         <section class='summary'><p>Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>I =<br />     x: 30<br />     y: 40<br />     maxSpeed: 5</p>
+          <pre><code>I =
+            x: 30
+            y: 40
+            maxSpeed: 5
           
-          <p># we are using extend to give player<br />   # additional methods that Core doesn't have<br />   player = Core(I).extend<br />     increaseSpeed: -><br />       I.maxSpeed += 1</p>
+          # we are using extend to give player
+          # additional methods that Core doesn't have
+          player = Core(I).extend
+            increaseSpeed: -&gt;
+              I.maxSpeed += 1
           
-          <p>player.I.maxSpeed<br />   => 5</p>
+          player.I.maxSpeed
+          =&gt; 5
           
-          <p>player.increaseSpeed()</p>
+          player.increaseSpeed()
           
-          <p>player.I.maxSpeed<br />   => 6</p>
+          player.I.maxSpeed
+          =&gt; 6
+          </code></pre>
         </section>
         <section class='returns'>
           <h3>Returns</h3>
@@ -144,15 +210,20 @@
         </section>
       </div>
       <hr />
-      <a name='Core#include'></a>
-      <h1>Core#include(Module)</h1>
+      <a name='include'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>include(Module)</h1>
       <div class='description'>
         <section class='summary'><p>Includes a module in this object.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p>myObject = Core()<br />   myObject.include(Bindable)</p>
+          <pre><code>myObject = Core()
+          myObject.include(Bindable)
           
-          <p># now you can bind handlers to functions<br />   myObject.bind "someEvent", -><br />     alert("wow. that was easy.")<br />    i*</p>
+          # now you can bind handlers to functions
+          myObject.bind "someEvent", -&gt;
+            alert("wow. that was easy.")
+          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
@@ -163,6 +234,14 @@
               <span class='param_description'>the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.</span>
             </li>
           </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
         </section>
         <section class='source'>
           <h3>Source</h3>

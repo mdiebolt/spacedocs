@@ -72,12 +72,14 @@ module Spacedocs
       end.compact
     end
 
+    def format_class_name(name)
+      name.end_with?('#') ? name : name + '.'
+    end
+
     def process_data(json)
       constructors = []
       class_names = []
       tags_list = []
-      method_map = {}
-      method_data = {}
       docs_data = []
       module_map = {}
 
@@ -101,24 +103,14 @@ module Spacedocs
           end
 
           if tag['type'] == 'methodOf'
-            source_class = tag['string']
+            source_class = format_class_name(tag['string'])
             class_names << source_class
-            method_map["#{source_class}"] ||= []
           end
 
           if tag['type'] == 'constructor' || tag['type'] == 'namespace'
             constructors << item['tags']
           end
         end
-
-        method_data["#{method_of}#{name}"] = {
-          "summary" => item['description']['summary'],
-          "code_sample" => item['description']['body'],
-          "source" => item['code'],
-          "parameters" => params,
-          "returns" => returns,
-          "see" => see
-        }
 
         if name && method_of
           module_map[method_of] ||= {}
@@ -127,8 +119,8 @@ module Spacedocs
             "code_sample" => item['description']['body'],
             "source" => item['code'],
             "parameters" => params,
-            "returns" => returns,
-            "see" => see
+            "returns" => returns || {},
+            "see" => see || ""
           }
         end
       end
@@ -136,8 +128,8 @@ module Spacedocs
       constructors.each do |tags|
         tags.each do |tag|
           if tag['type'] == 'name'
-            class_names << tag['string']
-            method_map["#{tag['string']}"] ||= []
+            source_class = format_class_name(tag['string'])
+            class_names << source_class
           end
         end
       end
@@ -148,9 +140,9 @@ module Spacedocs
         tags.each do |tag|
           class_names.each do |source_class|
             if tag['type'] == 'methodOf'
-              if tag['string'] == source_class
+              class_name = format_class_name(tag['string'])
+              if class_name == source_class
                 methods = methods_of(source_class, tags)
-                method_map[source_class] << methods.first
               end
             end
           end
@@ -158,23 +150,20 @@ module Spacedocs
       end
 
       class_names.each do |source_class|
-        data = {}
-
-        (method_map[source_class]).each do |method|
-          data["#{method}"] = method_data[method]
-        end
+        method_list = module_map[source_class] ? module_map[source_class].keys : []
+        method_data = module_map[source_class] ? module_map[source_class] : {}
 
         docs_data << {
           "#{source_class}" => {
-            "method_list" => (module_map[source_class].keys if module_map[source_class]),
-            "methods" => data
+            "method_list" => method_list,
+            "methods" => method_data
           }
         }
       end
 
-      # File.open("source/sanity.json", 'w') do |f|
-      #   f.write(docs_data.to_json)
-      # end
+      File.open("source/sanity.json", 'w') do |f|
+        f.write(docs_data.to_json)
+      end
 
       return { docs_data: docs_data, class_names: class_names, module_map: module_map }
     end

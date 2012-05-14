@@ -13,58 +13,130 @@
     <nav>
       <a href='/Array.html'>Array</a>
       <a href='/Bindable.html'>Bindable</a>
-      <a href='/Bindable.html'>Bindable</a>
+      <a href='/Bindable..html'>Bindable.</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
+      <a href='/Bounded..html'>Bounded.</a>
+      <a href='/Camera.html'>Camera</a>
       <a href='/Clampable.html'>Clampable</a>
-      <a href='/Collision.html'>Collision</a>
-      <a href='/Controllable.html'>Controllable</a>
-      <a href='/Cooldown.html'>Cooldown</a>
+      <a href='/Clampable..html'>Clampable.</a>
+      <a href='/Collidable..html'>Collidable.</a>
+      <a href='/Collision..html'>Collision.</a>
+      <a href='/Color.html'>Color</a>
+      <a href='/Color..html'>Color.</a>
+      <a href='/Controllable..html'>Controllable.</a>
+      <a href='/Cooldown..html'>Cooldown.</a>
       <a href='/Core.html'>Core</a>
-      <a href='/Core.html'>Core</a>
+      <a href='/Core..html'>Core.</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Debuggable..html'>Debuggable.</a>
       <a href='/Drawable.html'>Drawable</a>
-      <a href='/Drawable.html'>Drawable</a>
-      <a href='/Durable.html'>Durable</a>
+      <a href='/Drawable..html'>Drawable.</a>
+      <a href='/Durable..html'>Durable.</a>
+      <a href='/Engine.html'>Engine</a>
+      <a href='/Engine..html'>Engine.</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Fadeable..html'>Fadeable.</a>
       <a href='/Flickerable.html'>Flickerable</a>
+      <a href='/Flickerable..html'>Flickerable.</a>
       <a href='/Follow.html'>Follow</a>
+      <a href='/Follow..html'>Follow.</a>
       <a href='/Framerate.html'>Framerate</a>
+      <a href='/Framerate..html'>Framerate.</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
-      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject..html'>GameObject.</a>
       <a href='/GameOver.html'>GameOver</a>
-      <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver..html'>GameOver.</a>
+      <a href='/GameState.html'>GameState</a>
       <a href='/LevelState.html'>LevelState</a>
-      <a href='/LevelState.html'>LevelState</a>
-      <a href='/Math.html'>Math</a>
+      <a href='/LevelState..html'>LevelState.</a>
+      <a href='/Math..html'>Math.</a>
       <a href='/Matrix.html'>Matrix</a>
+      <a href='/Matrix..html'>Matrix.</a>
       <a href='/Metered.html'>Metered</a>
-      <a href='/Movable.html'>Movable</a>
+      <a href='/Metered..html'>Metered.</a>
+      <a href='/Movable..html'>Movable.</a>
       <a href='/Number.html'>Number</a>
       <a href='/Object.html'>Object</a>
-      <a href='/Object.html'>Object</a>
-      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/Object..html'>Object.</a>
+      <a href='/Oscillator..html'>Oscillator.</a>
+      <a href='/Point.html'>Point</a>
+      <a href='/Point..html'>Point.</a>
+      <a href='/Random..html'>Random.</a>
       <a href='/RegExp.html'>RegExp</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/ResourceLoader.html'>ResourceLoader</a>
+      <a href='/Rotatable..html'>Rotatable.</a>
       <a href='/Sprite.html'>Sprite</a>
+      <a href='/Sprite..html'>Sprite.</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
-      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect..html'>TextEffect.</a>
       <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TextScreen..html'>TextScreen.</a>
       <a class='active' href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TimedEvents..html'>TimedEvents.</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
-      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen..html'>TitleScreen.</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/Tween.html'>Tween</a>
+      <a href='/Tween..html'>Tween.</a>
+      <a href='/window..html'>window.</a>
     </nav>
     <section class='method_list'>
-      <h3>TimedEvents Methods</h3>
+      <h3>TimedEvents# Methods</h3>
       <div class='methods'>
+        <a href='TimedEvents.html#TimedEvents#every'>every</a>
       </div>
     </section>
     <div class='documentation'>
+      <a name='every'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>every(n, fn)</h1>
+      <div class='description'>
+        <section class='summary'><p>Execute <code>fn</code> every <code>n</code> frames.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <pre><code>player = GameObject()
+          
+          player.include TimedEvents
+          
+          # doSomething is called every 4 frames
+          player.every 4, -&gt;
+            doSomething()
+          </code></pre>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>n</span>
+               -
+              <span class='param_description'>Number of frames to wait before executing the callback</span>
+            </li>
+            <li>
+              <span class='param_name'>fn</span>
+               -
+              <span class='param_description'>Code to execute after `n` frames has passed</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>every: function(n, fn) {&#x000A;      if (I.age.mod(n) === 0) return fn();&#x000A;    }&#x000A;  };&#x000A;};&#x000A;;</code></pre>
+        </section>
+      </div>
+      <hr />
     </div>
   </body>
 </html>

@@ -12,52 +12,77 @@
     <pre></pre>
     <nav>
       <a href='/Array.html'>Array</a>
-      <a href='/Bindable.html'>Bindable</a>
       <a class='active' href='/Bindable.html'>Bindable</a>
+      <a href='/Bindable..html'>Bindable.</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
+      <a href='/Bounded..html'>Bounded.</a>
+      <a href='/Camera.html'>Camera</a>
       <a href='/Clampable.html'>Clampable</a>
-      <a href='/Collision.html'>Collision</a>
-      <a href='/Controllable.html'>Controllable</a>
-      <a href='/Cooldown.html'>Cooldown</a>
+      <a href='/Clampable..html'>Clampable.</a>
+      <a href='/Collidable..html'>Collidable.</a>
+      <a href='/Collision..html'>Collision.</a>
+      <a href='/Color.html'>Color</a>
+      <a href='/Color..html'>Color.</a>
+      <a href='/Controllable..html'>Controllable.</a>
+      <a href='/Cooldown..html'>Cooldown.</a>
       <a href='/Core.html'>Core</a>
-      <a href='/Core.html'>Core</a>
+      <a href='/Core..html'>Core.</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Debuggable..html'>Debuggable.</a>
       <a href='/Drawable.html'>Drawable</a>
-      <a href='/Drawable.html'>Drawable</a>
-      <a href='/Durable.html'>Durable</a>
+      <a href='/Drawable..html'>Drawable.</a>
+      <a href='/Durable..html'>Durable.</a>
+      <a href='/Engine.html'>Engine</a>
+      <a href='/Engine..html'>Engine.</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Fadeable..html'>Fadeable.</a>
       <a href='/Flickerable.html'>Flickerable</a>
+      <a href='/Flickerable..html'>Flickerable.</a>
       <a href='/Follow.html'>Follow</a>
+      <a href='/Follow..html'>Follow.</a>
       <a href='/Framerate.html'>Framerate</a>
+      <a href='/Framerate..html'>Framerate.</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
-      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject..html'>GameObject.</a>
       <a href='/GameOver.html'>GameOver</a>
-      <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver..html'>GameOver.</a>
+      <a href='/GameState.html'>GameState</a>
       <a href='/LevelState.html'>LevelState</a>
-      <a href='/LevelState.html'>LevelState</a>
-      <a href='/Math.html'>Math</a>
+      <a href='/LevelState..html'>LevelState.</a>
+      <a href='/Math..html'>Math.</a>
       <a href='/Matrix.html'>Matrix</a>
+      <a href='/Matrix..html'>Matrix.</a>
       <a href='/Metered.html'>Metered</a>
-      <a href='/Movable.html'>Movable</a>
+      <a href='/Metered..html'>Metered.</a>
+      <a href='/Movable..html'>Movable.</a>
       <a href='/Number.html'>Number</a>
       <a href='/Object.html'>Object</a>
-      <a href='/Object.html'>Object</a>
-      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/Object..html'>Object.</a>
+      <a href='/Oscillator..html'>Oscillator.</a>
+      <a href='/Point.html'>Point</a>
+      <a href='/Point..html'>Point.</a>
+      <a href='/Random..html'>Random.</a>
       <a href='/RegExp.html'>RegExp</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/ResourceLoader.html'>ResourceLoader</a>
+      <a href='/Rotatable..html'>Rotatable.</a>
       <a href='/Sprite.html'>Sprite</a>
+      <a href='/Sprite..html'>Sprite.</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
-      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect..html'>TextEffect.</a>
       <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TextScreen..html'>TextScreen.</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TimedEvents..html'>TimedEvents.</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
-      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen..html'>TitleScreen.</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/Tween.html'>Tween</a>
+      <a href='/Tween..html'>Tween.</a>
+      <a href='/window..html'>window.</a>
     </nav>
     <section class='method_list'>
       <h3>Bindable# Methods</h3>
@@ -68,15 +93,21 @@
       </div>
     </section>
     <div class='documentation'>
-      <a name='Bindable#bind'></a>
-      <h1>Bindable#bind(event, callback)</h1>
+      <a name='bind'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>bind(event, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Adds a function as an event listener.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p># this will call coolEventHandler after<br />   # yourObject.trigger "someCustomEvent" is called.<br />   yourObject.bind "someCustomEvent", coolEventHandler</p>
+          <pre><code># this will call coolEventHandler after
+          # yourObject.trigger "someCustomEvent" is called.
+          yourObject.bind "someCustomEvent", coolEventHandler
           
-          <p>#or<br />   yourObject.bind "anotherCustomEvent", -><br />     doSomething()</p>
+          #or
+          yourObject.bind "anotherCustomEvent", -&gt;
+            doSomething()
+          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
@@ -89,9 +120,17 @@
             <li>
               <span class='param_name'>callback</span>
                -
-              <span class='param_description'>The function to be called when the specified event</span>
+              <span class='param_description'>The function to be called when the specified event is triggered.</span>
             </li>
           </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
         </section>
         <section class='source'>
           <h3>Source</h3>
@@ -100,17 +139,22 @@
         </section>
       </div>
       <hr />
-      <a name='Bindable#unbind'></a>
-      <h1>Bindable#unbind(event, callback)</h1>
+      <a name='unbind'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>unbind(event, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Removes a specific event listener, or all event listeners if<br />no specific listener is given.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
           <p>Another paragraph.</p>
           
-          <p>#  removes the handler coolEventHandler from the event<br />   # "someCustomEvent" while leaving the other events intact.<br />   yourObject.unbind "someCustomEvent", coolEventHandler</p>
+          <pre><code>#  removes the handler coolEventHandler from the event
+          # "someCustomEvent" while leaving the other events intact.
+          yourObject.unbind "someCustomEvent", coolEventHandler
           
-          <p># removes all handlers attached to "anotherCustomEvent"<br />   yourObject.unbind "anotherCustomEvent"</p>
+          # removes all handlers attached to "anotherCustomEvent"
+          yourObject.unbind "anotherCustomEvent"
+          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
@@ -127,6 +171,14 @@
             </li>
           </ul>
         </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
         <section class='source'>
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
@@ -134,13 +186,16 @@
         </section>
       </div>
       <hr />
-      <a name='Bindable#trigger'></a>
-      <h1>Bindable#trigger(event, parameters)</h1>
+      <a name='trigger'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>trigger(event, parameters)</h1>
       <div class='description'>
         <section class='summary'><p>Calls all listeners attached to the specified event.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <p># calls each event handler bound to "someCustomEvent"<br />   yourObject.trigger "someCustomEvent"</p>
+          <pre><code># calls each event handler bound to "someCustomEvent"
+          yourObject.trigger "someCustomEvent"
+          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
@@ -156,6 +211,14 @@
               <span class='param_description'>Additional parameters to pass to the event listener.</span>
             </li>
           </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
         </section>
         <section class='source'>
           <h3>Source</h3>

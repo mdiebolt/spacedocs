@@ -13,58 +13,233 @@
     <nav>
       <a href='/Array.html'>Array</a>
       <a href='/Bindable.html'>Bindable</a>
-      <a href='/Bindable.html'>Bindable</a>
+      <a href='/Bindable..html'>Bindable.</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
+      <a href='/Bounded..html'>Bounded.</a>
+      <a href='/Camera.html'>Camera</a>
       <a href='/Clampable.html'>Clampable</a>
-      <a href='/Collision.html'>Collision</a>
-      <a href='/Controllable.html'>Controllable</a>
-      <a href='/Cooldown.html'>Cooldown</a>
+      <a href='/Clampable..html'>Clampable.</a>
+      <a href='/Collidable..html'>Collidable.</a>
+      <a href='/Collision..html'>Collision.</a>
+      <a href='/Color.html'>Color</a>
+      <a href='/Color..html'>Color.</a>
+      <a href='/Controllable..html'>Controllable.</a>
+      <a href='/Cooldown..html'>Cooldown.</a>
       <a href='/Core.html'>Core</a>
-      <a href='/Core.html'>Core</a>
+      <a href='/Core..html'>Core.</a>
       <a href='/Date.html'>Date</a>
       <a class='active' href='/Debuggable.html'>Debuggable</a>
+      <a href='/Debuggable..html'>Debuggable.</a>
       <a href='/Drawable.html'>Drawable</a>
-      <a href='/Drawable.html'>Drawable</a>
-      <a href='/Durable.html'>Durable</a>
+      <a href='/Drawable..html'>Drawable.</a>
+      <a href='/Durable..html'>Durable.</a>
+      <a href='/Engine.html'>Engine</a>
+      <a href='/Engine..html'>Engine.</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Fadeable..html'>Fadeable.</a>
       <a href='/Flickerable.html'>Flickerable</a>
+      <a href='/Flickerable..html'>Flickerable.</a>
       <a href='/Follow.html'>Follow</a>
+      <a href='/Follow..html'>Follow.</a>
       <a href='/Framerate.html'>Framerate</a>
+      <a href='/Framerate..html'>Framerate.</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
-      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject..html'>GameObject.</a>
       <a href='/GameOver.html'>GameOver</a>
-      <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver..html'>GameOver.</a>
+      <a href='/GameState.html'>GameState</a>
       <a href='/LevelState.html'>LevelState</a>
-      <a href='/LevelState.html'>LevelState</a>
-      <a href='/Math.html'>Math</a>
+      <a href='/LevelState..html'>LevelState.</a>
+      <a href='/Math..html'>Math.</a>
       <a href='/Matrix.html'>Matrix</a>
+      <a href='/Matrix..html'>Matrix.</a>
       <a href='/Metered.html'>Metered</a>
-      <a href='/Movable.html'>Movable</a>
+      <a href='/Metered..html'>Metered.</a>
+      <a href='/Movable..html'>Movable.</a>
       <a href='/Number.html'>Number</a>
       <a href='/Object.html'>Object</a>
-      <a href='/Object.html'>Object</a>
-      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/Object..html'>Object.</a>
+      <a href='/Oscillator..html'>Oscillator.</a>
+      <a href='/Point.html'>Point</a>
+      <a href='/Point..html'>Point.</a>
+      <a href='/Random..html'>Random.</a>
       <a href='/RegExp.html'>RegExp</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/ResourceLoader.html'>ResourceLoader</a>
+      <a href='/Rotatable..html'>Rotatable.</a>
       <a href='/Sprite.html'>Sprite</a>
+      <a href='/Sprite..html'>Sprite.</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
-      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect..html'>TextEffect.</a>
       <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TextScreen..html'>TextScreen.</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TimedEvents..html'>TimedEvents.</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
-      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen..html'>TitleScreen.</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/Tween.html'>Tween</a>
+      <a href='/Tween..html'>Tween.</a>
+      <a href='/window..html'>window.</a>
     </nav>
     <section class='method_list'>
-      <h3>Debuggable Methods</h3>
+      <h3>Debuggable# Methods</h3>
       <div class='methods'>
+        <a href='Debuggable.html#Debuggable#debug'>debug</a>
+        <a href='Debuggable.html#Debuggable#toggleDebug'>toggleDebug</a>
       </div>
     </section>
     <div class='documentation'>
+      <a name='debug'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>debug(Options, bounds, color, filter, x, y, velocity)</h1>
+      <div class='description'>
+        <section class='summary'><p>Enable debugging display for the calling GameObject.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <pre><code>player = GameObject
+            x: 40
+            y: 14
+            spriteName: null
+            numericErrorProperty: NaN
+          
+          player.include Debuggable
+          
+          # sets up debug output for all player's properties
+          # at the starting position (0, 0)
+          player.debug
+            filter: 'all'
+          
+          player.I.y = 45
+          
+          # sets up debug output for only properties that have
+          # changed since initialization. In this case only y
+          # would be displayed.
+          player.debug
+            filter: 'changed'
+          
+          # sets up debug output for properties that are &lt;code&gt;undefined&lt;/code&gt;,
+          # &lt;code&gt;null&lt;/code&gt;, or &lt;code&gt;NaN&lt;/code&gt;. In this case spriteName and
+          # numericErrorProperty would be displayed.
+          player.debug
+            filter: 'undefined'
+          
+          # sets up debug output using all possible configuration options
+          player.debug
+            bounds: true # set this to false to disable visual debugging of the object's bounding box
+            color: 'red' # color of debug text
+            filter: 'all'
+            x: 30 # x position to start printing debug information
+            y: 50 # y position to start printing debug information
+            velocity: true # set this to false to disable visual debugging of the object's velocity
+          </code></pre>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>Options</span>
+               -
+              <span class='param_description'>to configure debug output</span>
+            </li>
+            <li>
+              <span class='param_name'>bounds</span>
+               -
+              <span class='param_description'>Whether or not to visually debug the object's bounds</span>
+            </li>
+            <li>
+              <span class='param_name'>color</span>
+               -
+              <span class='param_description'>The color of the debug text</span>
+            </li>
+            <li>
+              <span class='param_name'>filter</span>
+               -
+              <span class='param_description'>Choices include 'all', 'changed', and 'undefined'</span>
+            </li>
+            <li>
+              <span class='param_name'>x</span>
+               -
+              <span class='param_description'>The x position to start drawing the debug information</span>
+            </li>
+            <li>
+              <span class='param_name'>y</span>
+               -
+              <span class='param_description'>The y position to start drawing the debug information</span>
+            </li>
+            <li>
+              <span class='param_name'>velocity</span>
+               -
+              <span class='param_description'>Whether or not to visually debug the object's velocity</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>debug: function(options) {&#x000A;      var x, y;&#x000A;      if (options == null) options = {};&#x000A;      x = options.x, y = options.y;&#x000A;      if (x != null) I.debug.position.x = x;&#x000A;      if (y != null) I.debug.position.y = y;&#x000A;      Object.extend(I.debug, options);&#x000A;      return I.debug.enabled = true;&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='toggleDebug'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>toggleDebug(newVal)</h1>
+      <div class='description'>
+        <section class='summary'><p>Toggle display of debug information.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <pre><code>player = GameObject()
+          
+          player.include Debuggable
+          
+          # enables debug display
+          player.debug()
+          
+          # disables debug display
+          player.toggleDisable()
+          
+          # if false is passed to toggleDisplay, then debugging is disabled.
+          player.toggleDisplay(false)
+          
+          # if true is passed to toggleDisplay, then debugging is enabled.
+          player.toggleDisplay(true)
+          </code></pre>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>newVal</span>
+               -
+              <span class='param_description'>If true is passed then debugging is enabled, if false is passed then debugging is disabled, if nothing is passed, then debug state is toggled.</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>toggleDebug: function(newVal) {&#x000A;      if (newVal != null) {&#x000A;        return I.debug.enabled = newVal;&#x000A;      } else {&#x000A;        return I.debug.enabled = !I.debug.enabled;&#x000A;      }&#x000A;    }&#x000A;  };&#x000A;};&#x000A;;</code></pre>
+        </section>
+      </div>
+      <hr />
     </div>
   </body>
 </html>

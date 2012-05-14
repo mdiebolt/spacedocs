@@ -1,13 +1,13 @@
 /**
-*Calculate the average value of an array. Returns undefined if some elements
-*are not numbers.
-*
-*    [1, 3, 5, 7].average()
-*    # => 4
-*
-*@name average
-*@methodOf Array#
-*@returns {Number} The average (arithmetic mean) of the list of numbers.
+Calculate the average value of an array. Returns undefined if some elements
+are not numbers.
+
+    [1, 3, 5, 7].average()
+    # => 4
+
+@name average
+@methodOf Array#
+@returns {Number} The average (arithmetic mean) of the list of numbers.
 */
 var _base,
   __slice = Array.prototype.slice;
@@ -17,14 +17,14 @@ Array.prototype.average = function() {
 };
 
 /**
-*Returns a copy of the array without null and undefined values.
-*
-*    [null, undefined, 3, 3, undefined, 5].compact()
-*    # => [3, 3, 5]
-*
-*@name compact
-*@methodOf Array#
-*@returns {Array} A new array that contains only the non-null values.
+Returns a copy of the array without null and undefined values.
+
+    [null, undefined, 3, 3, undefined, 5].compact()
+    # => [3, 3, 5]
+
+@name compact
+@methodOf Array#
+@returns {Array} A new array that contains only the non-null values.
 */
 
 Array.prototype.compact = function() {
@@ -34,23 +34,23 @@ Array.prototype.compact = function() {
 };
 
 /**
-*Creates and returns a copy of the array. The copy contains
-*the same objects.
-*
-*    a = ["a", "b", "c"]
-*    b = a.copy()
-*
-*    # their elements are equal
-*    a[0] == b[0] && a[1] == b[1] && a[2] == b[2]
-*    # => true
-*
-*    # but they aren't the same object in memory
-*    a === b
-*    # => false
-*
-*@name copy
-*@methodOf Array#
-*@returns {Array} A new array that is a copy of the array
+Creates and returns a copy of the array. The copy contains
+the same objects.
+
+    a = ["a", "b", "c"]
+    b = a.copy()
+
+    # their elements are equal
+    a[0] == b[0] && a[1] == b[1] && a[2] == b[2]
+    # => true
+
+    # but they aren't the same object in memory
+    a === b
+    # => false
+
+@name copy
+@methodOf Array#
+@returns {Array} A new array that is a copy of the array
 */
 
 Array.prototype.copy = function() {
@@ -58,16 +58,16 @@ Array.prototype.copy = function() {
 };
 
 /**
-*Empties the array of its contents. It is modified in place.
-*
-*<pre><code>fullArray = [1, 2, 3]
-*fullArray.clear()
-*fullArray
-*# => []</code></pre>
-*
-*@name clear
-*@methodOf Array#
-*@returns {Array} this, now emptied.
+Empties the array of its contents. It is modified in place.
+
+<pre><code>fullArray = [1, 2, 3]
+fullArray.clear()
+fullArray
+# => []</code></pre>
+
+@name clear
+@methodOf Array#
+@returns {Array} this, now emptied.
 */
 
 Array.prototype.clear = function() {
@@ -76,19 +76,19 @@ Array.prototype.clear = function() {
 };
 
 /**
-*Flatten out an array of arrays into a single array of elements.
-*
-*    [[1, 2], [3, 4], 5].flatten()
-*    # => [1, 2, 3, 4, 5]
-*
-*    # won't flatten twice nested arrays. call
-*    # flatten twice if that is what you want
-*    [[1, 2], [3, [4, 5]], 6].flatten()
-*    # => [1, 2, 3, [4, 5], 6]
-*
-*@name flatten
-*@methodOf Array#
-*@returns {Array} A new array with all the sub-arrays flattened to the top.
+Flatten out an array of arrays into a single array of elements.
+
+    [[1, 2], [3, 4], 5].flatten()
+    # => [1, 2, 3, 4, 5]
+
+    # won't flatten twice nested arrays. call
+    # flatten twice if that is what you want
+    [[1, 2], [3, [4, 5]], 6].flatten()
+    # => [1, 2, 3, [4, 5], 6]
+
+@name flatten
+@methodOf Array#
+@returns {Array} A new array with all the sub-arrays flattened to the top.
 */
 
 Array.prototype.flatten = function() {
@@ -98,20 +98,20 @@ Array.prototype.flatten = function() {
 };
 
 /**
-*Invoke the named method on each element in the array
-*and return a new array containing the results of the invocation.
-*
-*    [1.1, 2.2, 3.3, 4.4].invoke("floor")
-*    # => [1, 2, 3, 4]
-*
-*    ['hello', 'world', 'cool!'].invoke('substring', 0, 3)
-*    # => ['hel', 'wor', 'coo']
-*
-*@param {String} method The name of the method to invoke.
-*@param [arg...] Optional arguments to pass to the method being invoked.
-*@name invoke
-*@methodOf Array#
-*@returns {Array} A new array containing the results of invoking the named method on each element.
+Invoke the named method on each element in the array
+and return a new array containing the results of the invocation.
+
+    [1.1, 2.2, 3.3, 4.4].invoke("floor")
+    # => [1, 2, 3, 4]
+
+    ['hello', 'world', 'cool!'].invoke('substring', 0, 3)
+    # => ['hel', 'wor', 'coo']
+
+@param {String} method The name of the method to invoke.
+@param [arg...] Optional arguments to pass to the method being invoked.
+@name invoke
+@methodOf Array#
+@returns {Array} A new array containing the results of invoking the named method on each element.
 */
 
 Array.prototype.invoke = function() {
@@ -123,14 +123,14 @@ Array.prototype.invoke = function() {
 };
 
 /**
-*Randomly select an element from the array.
-*
-*    [1, 2, 3].rand()
-*    # => 2
-*
-*@name rand
-*@methodOf Array#
-*@returns {Object} A random element from an array
+Randomly select an element from the array.
+
+    [1, 2, 3].rand()
+    # => 2
+
+@name rand
+@methodOf Array#
+@returns {Object} A random element from an array
 */
 
 Array.prototype.rand = function() {
@@ -138,20 +138,20 @@ Array.prototype.rand = function() {
 };
 
 /**
-*Remove the first occurrence of the given object from the array if it is
-*present. The array is modified in place.
-*
-*    a = [1, 1, "a", "b"]
-*    a.remove(1)
-*    # => 1
-*
-*    a
-*    # => [1, "a", "b"]
-*
-*@name remove
-*@methodOf Array#
-*@param {Object} object The object to remove from the array if present.
-*@returns {Object} The removed object if present otherwise undefined.
+Remove the first occurrence of the given object from the array if it is
+present. The array is modified in place.
+
+    a = [1, 1, "a", "b"]
+    a.remove(1)
+    # => 1
+
+    a
+    # => [1, "a", "b"]
+
+@name remove
+@methodOf Array#
+@param {Object} object The object to remove from the array if present.
+@returns {Object} The removed object if present otherwise undefined.
 */
 
 Array.prototype.remove = function(object) {
@@ -165,18 +165,18 @@ Array.prototype.remove = function(object) {
 };
 
 /**
-*Returns true if the element is present in the array.
-*
-*    ["a", "b", "c"].include("c")
-*    # => true
-*
-*    [40, "a"].include(700)
-*    # => false
-*
-*@name include
-*@methodOf Array#
-*@param {Object} element The element to check if present.
-*@returns {Boolean} true if the element is in the array, false otherwise.
+Returns true if the element is present in the array.
+
+    ["a", "b", "c"].include("c")
+    # => true
+
+    [40, "a"].include(700)
+    # => false
+
+@name include
+@methodOf Array#
+@param {Object} element The element to check if present.
+@returns {Boolean} true if the element is in the array, false otherwise.
 */
 
 Array.prototype.include = function(element) {
@@ -184,30 +184,30 @@ Array.prototype.include = function(element) {
 };
 
 /**
-*Call the given iterator once for each element in the array,
-*passing in the element as the first argument, the index of
-*the element as the second argument, and `this` array as the
-*third argument.
-*
-*    word = ""
-*    indices = []
-*    ["r", "a", "d"].each (letter, index) ->
-*      word += letter
-*      indices.push(index)
-*
-*    # => ["r", "a", "d"]
-*
-*    word
-*    # => "rad"
-*
-*    indices
-*    # => [0, 1, 2]
-*
-*@name each
-*@methodOf Array#
-*@param {Function} iterator Function to be called once for each element in the array.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} this to enable method chaining.
+Call the given iterator once for each element in the array,
+passing in the element as the first argument, the index of
+the element as the second argument, and `this` array as the
+third argument.
+
+    word = ""
+    indices = []
+    ["r", "a", "d"].each (letter, index) ->
+      word += letter
+      indices.push(index)
+
+    # => ["r", "a", "d"]
+
+    word
+    # => "rad"
+
+    indices
+    # => [0, 1, 2]
+
+@name each
+@methodOf Array#
+@param {Function} iterator Function to be called once for each element in the array.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} this to enable method chaining.
 */
 
 Array.prototype.each = function(iterator, context) {
@@ -224,20 +224,20 @@ Array.prototype.each = function(iterator, context) {
 };
 
 /**
-*Call the given iterator once for each element in the array,
-*passing in the element as the first argument, the index of
-*the element as the second argument, and `this` array as the
-*third argument.
-*
-*    [1, 2, 3].map (number) ->
-*      number * number
-*    # => [1, 4, 9]
-*
-*@name map
-*@methodOf Array#
-*@param {Function} iterator Function to be called once for each element in the array.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} An array of the results of the iterator function being called on the original array elements.
+Call the given iterator once for each element in the array,
+passing in the element as the first argument, the index of
+the element as the second argument, and `this` array as the
+third argument.
+
+    [1, 2, 3].map (number) ->
+      number * number
+    # => [1, 4, 9]
+
+@name map
+@methodOf Array#
+@param {Function} iterator Function to be called once for each element in the array.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} An array of the results of the iterator function being called on the original array elements.
 */
 
 (_base = Array.prototype).map || (_base.map = function(iterator, context) {
@@ -251,20 +251,20 @@ Array.prototype.each = function(iterator, context) {
 });
 
 /**
-*Call the given iterator once for each pair of objects in the array.
-*
-*    [1, 2, 3, 4].eachPair (a, b) ->
-*      # 1, 2
-*      # 1, 3
-*      # 1, 4
-*      # 2, 3
-*      # 2, 4
-*      # 3, 4
-*
-*@name eachPair
-*@methodOf Array#
-*@param {Function} iterator Function to be called once for each pair of elements in the array.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+Call the given iterator once for each pair of objects in the array.
+
+    [1, 2, 3, 4].eachPair (a, b) ->
+      # 1, 2
+      # 1, 3
+      # 1, 4
+      # 2, 3
+      # 2, 4
+      # 3, 4
+
+@name eachPair
+@methodOf Array#
+@param {Function} iterator Function to be called once for each pair of elements in the array.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
 */
 
 Array.prototype.eachPair = function(iterator, context) {
@@ -291,18 +291,18 @@ Array.prototype.eachPair = function(iterator, context) {
 };
 
 /**
-*Call the given iterator once for each element in the array,
-*passing in the element as the first argument and the given object
-*as the second argument. Additional arguments are passed similar to
-*`each`.
-*
-*@see Array#each
-*@name eachWithObject
-*@methodOf Array#
-*@param {Object} object The object to pass to the iterator on each visit.
-*@param {Function} iterator Function to be called once for each element in the array.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} this
+Call the given iterator once for each element in the array,
+passing in the element as the first argument and the given object
+as the second argument. Additional arguments are passed similar to
+`each`.
+
+@see Array#each
+@name eachWithObject
+@methodOf Array#
+@param {Object} object The object to pass to the iterator on each visit.
+@param {Function} iterator Function to be called once for each element in the array.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} this
 */
 
 Array.prototype.eachWithObject = function(object, iterator, context) {
@@ -313,25 +313,25 @@ Array.prototype.eachWithObject = function(object, iterator, context) {
 };
 
 /**
-*Call the given iterator once for each group of elements in the array,
-*passing in the elements in groups of n. Additional argumens are
-*passed as in each.
-*
-*    results = []
-*    [1, 2, 3, 4].eachSlice 2, (slice) ->
-*      results.push(slice)
-*    # => [1, 2, 3, 4]
-*
-*    results
-*    # => [[1, 2], [3, 4]]
-*
-*@see Array#each
-*@name eachSlice
-*@methodOf Array#
-*@param {Number} n The number of elements in each group.
-*@param {Function} iterator Function to be called once for each group of elements in the array.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} this
+Call the given iterator once for each group of elements in the array,
+passing in the elements in groups of n. Additional argumens are
+passed as in each.
+
+    results = []
+    [1, 2, 3, 4].eachSlice 2, (slice) ->
+      results.push(slice)
+    # => [1, 2, 3, 4]
+
+    results
+    # => [[1, 2], [3, 4]]
+
+@see Array#each
+@name eachSlice
+@methodOf Array#
+@param {Number} n The number of elements in each group.
+@param {Function} iterator Function to be called once for each group of elements in the array.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} this
 */
 
 Array.prototype.eachSlice = function(n, iterator, context) {
@@ -347,17 +347,17 @@ Array.prototype.eachSlice = function(n, iterator, context) {
 };
 
 /**
-*Pipe the input through each function in the array in turn. For example, if you have a
-*list of objects you can perform a series of selection, sorting, and other processing
-*methods and then receive the processed list. This array must contain functions that
-*accept a single input and return the processed input. The output of the first function
-*is fed to the input of the second and so on until the final processed output is returned.
-*
-*@name pipeline
-*@methodOf Array#
-*
-*@param {Object} input The initial input to pass to the first function in the pipeline.
-*@returns {Object} The result of processing the input by each function in the array.
+Pipe the input through each function in the array in turn. For example, if you have a
+list of objects you can perform a series of selection, sorting, and other processing
+methods and then receive the processed list. This array must contain functions that
+accept a single input and return the processed input. The output of the first function
+is fed to the input of the second and so on until the final processed output is returned.
+
+@name pipeline
+@methodOf Array#
+
+@param {Object} input The initial input to pass to the first function in the pipeline.
+@returns {Object} The result of processing the input by each function in the array.
 */
 
 Array.prototype.pipeline = function(input) {
@@ -370,18 +370,18 @@ Array.prototype.pipeline = function(input) {
 };
 
 /**
-*Returns a new array with the elements all shuffled up.
-*
-*    a = [1, 2, 3]
-*
-*    a.shuffle()
-*    # => [2, 3, 1]
-*
-*    a # => [1, 2, 3]
-*
-*@name shuffle
-*@methodOf Array#
-*@returns {Array} A new array that is randomly shuffled.
+Returns a new array with the elements all shuffled up.
+
+    a = [1, 2, 3]
+
+    a.shuffle()
+    # => [2, 3, 1]
+
+    a # => [1, 2, 3]
+
+@name shuffle
+@methodOf Array#
+@returns {Array} A new array that is randomly shuffled.
 */
 
 Array.prototype.shuffle = function() {
@@ -394,14 +394,14 @@ Array.prototype.shuffle = function() {
 };
 
 /**
-*Returns the first element of the array, undefined if the array is empty.
-*
-*    ["first", "second", "third"].first()
-*    # => "first"
-*
-*@name first
-*@methodOf Array#
-*@returns {Object} The first element, or undefined if the array is empty.
+Returns the first element of the array, undefined if the array is empty.
+
+    ["first", "second", "third"].first()
+    # => "first"
+
+@name first
+@methodOf Array#
+@returns {Object} The first element, or undefined if the array is empty.
 */
 
 Array.prototype.first = function() {
@@ -409,14 +409,14 @@ Array.prototype.first = function() {
 };
 
 /**
-*Returns the last element of the array, undefined if the array is empty.
-*
-*    ["first", "second", "third"].last()
-*    # => "third"
-*
-*@name last
-*@methodOf Array#
-*@returns {Object} The last element, or undefined if the array is empty.
+Returns the last element of the array, undefined if the array is empty.
+
+    ["first", "second", "third"].last()
+    # => "third"
+
+@name last
+@methodOf Array#
+@returns {Object} The last element, or undefined if the array is empty.
 */
 
 Array.prototype.last = function() {
@@ -424,15 +424,15 @@ Array.prototype.last = function() {
 };
 
 /**
-*Returns an object containing the extremes of this array.
-*
-*    [-1, 3, 0].extremes()
-*    # => {min: -1, max: 3}
-*
-*@name extremes
-*@methodOf Array#
-*@param {Function} [fn] An optional funtion used to evaluate each element to calculate its value for determining extremes.
-*@returns {Object} {min: minElement, max: maxElement}
+Returns an object containing the extremes of this array.
+
+    [-1, 3, 0].extremes()
+    # => {min: -1, max: 3}
+
+@name extremes
+@methodOf Array#
+@param {Function} [fn] An optional funtion used to evaluate each element to calculate its value for determining extremes.
+@returns {Object} {min: minElement, max: maxElement}
 */
 
 Array.prototype.extremes = function(fn) {
@@ -471,24 +471,24 @@ Array.prototype.extremes = function(fn) {
 };
 
 /**
-*Pretend the array is a circle and grab a new array containing length elements.
-*If length is not given return the element at start, again assuming the array
-*is a circle.
-*
-*    [1, 2, 3].wrap(-1)
-*    # => 3
-*
-*    [1, 2, 3].wrap(6)
-*    # => 1
-*
-*    ["l", "o", "o", "p"].wrap(0, 16)
-*    # => ["l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p"]
-*
-*@name wrap
-*@methodOf Array#
-*@param {Number} start The index to start wrapping at, or the index of the sole element to return if no length is given.
-*@param {Number} [length] Optional length determines how long result array should be.
-*@returns {Object} or {Array} The element at start mod array.length, or an array of length elements, starting from start and wrapping.
+Pretend the array is a circle and grab a new array containing length elements.
+If length is not given return the element at start, again assuming the array
+is a circle.
+
+    [1, 2, 3].wrap(-1)
+    # => 3
+
+    [1, 2, 3].wrap(6)
+    # => 1
+
+    ["l", "o", "o", "p"].wrap(0, 16)
+    # => ["l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p"]
+
+@name wrap
+@methodOf Array#
+@param {Number} start The index to start wrapping at, or the index of the sole element to return if no length is given.
+@param {Number} [length] Optional length determines how long result array should be.
+@returns {Object} or {Array} The element at start mod array.length, or an array of length elements, starting from start and wrapping.
 */
 
 Array.prototype.wrap = function(start, length) {
@@ -507,23 +507,23 @@ Array.prototype.wrap = function(start, length) {
 };
 
 /**
-*Partitions the elements into two groups: those for which the iterator returns
-*true, and those for which it returns false.
-*
-*    [evens, odds] = [1, 2, 3, 4].partition (n) ->
-*      n.even()
-*
-*    evens
-*    # => [2, 4]
-*
-*    odds
-*    # => [1, 3]
-*
-*@name partition
-*@methodOf Array#
-*@param {Function} iterator
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} An array in the form of [trueCollection, falseCollection]
+Partitions the elements into two groups: those for which the iterator returns
+true, and those for which it returns false.
+
+    [evens, odds] = [1, 2, 3, 4].partition (n) ->
+      n.even()
+
+    evens
+    # => [2, 4]
+
+    odds
+    # => [1, 3]
+
+@name partition
+@methodOf Array#
+@param {Function} iterator
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} An array in the form of [trueCollection, falseCollection]
 */
 
 Array.prototype.partition = function(iterator, context) {
@@ -541,13 +541,13 @@ Array.prototype.partition = function(iterator, context) {
 };
 
 /**
-*Return the group of elements for which the return value of the iterator is true.
-*
-*@name select
-*@methodOf Array#
-*@param {Function} iterator The iterator receives each element in turn as the first agument.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} An array containing the elements for which the iterator returned true.
+Return the group of elements for which the return value of the iterator is true.
+
+@name select
+@methodOf Array#
+@param {Function} iterator The iterator receives each element in turn as the first agument.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} An array containing the elements for which the iterator returned true.
 */
 
 Array.prototype.select = function(iterator, context) {
@@ -555,15 +555,15 @@ Array.prototype.select = function(iterator, context) {
 };
 
 /**
-*Return the group of elements that are not in the passed in set.
-*
-*    [1, 2, 3, 4].without ([2, 3])
-*    # => [1, 4]
-*
-*@name without
-*@methodOf Array#
-*@param {Array} values List of elements to exclude.
-*@returns {Array} An array containing the elements that are not passed in.
+Return the group of elements that are not in the passed in set.
+
+    [1, 2, 3, 4].without ([2, 3])
+    # => [1, 4]
+
+@name without
+@methodOf Array#
+@param {Array} values List of elements to exclude.
+@returns {Array} An array containing the elements that are not passed in.
 */
 
 Array.prototype.without = function(values) {
@@ -573,13 +573,13 @@ Array.prototype.without = function(values) {
 };
 
 /**
-*Return the group of elements for which the return value of the iterator is false.
-*
-*@name reject
-*@methodOf Array#
-*@param {Function} iterator The iterator receives each element in turn as the first agument.
-*@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
-*@returns {Array} An array containing the elements for which the iterator returned false.
+Return the group of elements for which the return value of the iterator is false.
+
+@name reject
+@methodOf Array#
+@param {Function} iterator The iterator receives each element in turn as the first agument.
+@param {Object} [context] Optional context parameter to be used as `this` when calling the iterator function.
+@returns {Array} An array containing the elements for which the iterator returned false.
 */
 
 Array.prototype.reject = function(iterator, context) {
@@ -587,13 +587,13 @@ Array.prototype.reject = function(iterator, context) {
 };
 
 /**
-*Combines all elements of the array by applying a binary operation.
-*for each element in the arra the iterator is passed an accumulator
-*value (memo) and the element.
-*
-*@name inject
-*@methodOf Array#
-*@returns {Object} The result of a
+Combines all elements of the array by applying a binary operation.
+for each element in the arra the iterator is passed an accumulator
+value (memo) and the element.
+
+@name inject
+@methodOf Array#
+@returns {Object} The result of a
 */
 
 Array.prototype.inject = function(initial, iterator) {
@@ -604,14 +604,14 @@ Array.prototype.inject = function(initial, iterator) {
 };
 
 /**
-*Add all the elements in the array.
-*
-*    [1, 2, 3, 4].sum()
-*    # => 10
-*
-*@name sum
-*@methodOf Array#
-*@returns {Number} The sum of the elements in the array.
+Add all the elements in the array.
+
+    [1, 2, 3, 4].sum()
+    # => 10
+
+@name sum
+@methodOf Array#
+@returns {Number} The sum of the elements in the array.
 */
 
 Array.prototype.sum = function() {
@@ -621,14 +621,14 @@ Array.prototype.sum = function() {
 };
 
 /**
-*Multiply all the elements in the array.
-*
-*    [1, 2, 3, 4].product()
-*    # => 24
-*
-*@name product
-*@methodOf Array#
-*@returns {Number} The product of the elements in the array.
+Multiply all the elements in the array.
+
+    [1, 2, 3, 4].product()
+    # => 24
+
+@name product
+@methodOf Array#
+@returns {Number} The product of the elements in the array.
 */
 
 Array.prototype.product = function() {
@@ -638,14 +638,14 @@ Array.prototype.product = function() {
 };
 
 /**
-*Merges together the values of each of the arrays with the values at the corresponding position.
-*
-*    ['a', 'b', 'c'].zip([1, 2, 3])
-*    # => [['a', 1], ['b', 2], ['c', 3]]
-*
-*@name zip
-*@methodOf Array#
-*@returns {Array} Array groupings whose values are arranged by their positions in the original input arrays.
+Merges together the values of each of the arrays with the values at the corresponding position.
+
+    ['a', 'b', 'c'].zip([1, 2, 3])
+    # => [['a', 1], ['b', 2], ['c', 3]]
+
+@name zip
+@methodOf Array#
+@returns {Array} Array groupings whose values are arranged by their positions in the original input arrays.
 */
 
 Array.prototype.zip = function() {
@@ -662,25 +662,25 @@ Array.prototype.zip = function() {
 };
 ;
 /**
-*Bindable module.
-*
-*    player = Core
-*      x: 5
-*      y: 10
-*
-*    player.bind "update", ->
-*      updatePlayer()
-*    # => Uncaught TypeError: Object has no method 'bind'
-*
-*    player.include(Bindable)
-*
-*    player.bind "update", ->
-*      updatePlayer()
-*    # => this will call updatePlayer each time through the main loop
-*
-*@name Bindable
-*@module
-*@constructor
+Bindable module.
+
+    player = Core
+      x: 5
+      y: 10
+
+    player.bind "update", ->
+      updatePlayer()
+    # => Uncaught TypeError: Object has no method 'bind'
+
+    player.include(Bindable)
+
+    player.bind "update", ->
+      updatePlayer()
+    # => this will call updatePlayer each time through the main loop
+
+@name Bindable
+@module
+@constructor
 */
 var Bindable,
   __slice = Array.prototype.slice;
@@ -690,43 +690,42 @@ Bindable = function() {
   eventCallbacks = {};
   return {
     /**
-    *Adds a function as an event listener.
-    *
-    *    # this will call coolEventHandler after
-    *    # yourObject.trigger "someCustomEvent" is called.
-    *    yourObject.bind "someCustomEvent", coolEventHandler
-    *
-    *    #or
-    *    yourObject.bind "anotherCustomEvent", ->
-    *      doSomething()
-    *
-    *@name bind
-    *@methodOf Bindable#
-    *@param {String} event The event to listen to.
-    *@param {Function} callback The function to be called when the specified event
-    *is triggered.
+    Adds a function as an event listener.
+
+        # this will call coolEventHandler after
+        # yourObject.trigger "someCustomEvent" is called.
+        yourObject.bind "someCustomEvent", coolEventHandler
+
+        #or
+        yourObject.bind "anotherCustomEvent", ->
+          doSomething()
+
+    @name bind
+    @methodOf Bindable#
+    @param {String} event The event to listen to.
+    @param {Function} callback The function to be called when the specified event is triggered.
     */
     bind: function(event, callback) {
       eventCallbacks[event] = eventCallbacks[event] || [];
       return eventCallbacks[event].push(callback);
     },
     /**
-    *Removes a specific event listener, or all event listeners if
-    *no specific listener is given.
-    *
-    *Another paragraph.
-    *
-    *    #  removes the handler coolEventHandler from the event
-    *    # "someCustomEvent" while leaving the other events intact.
-    *    yourObject.unbind "someCustomEvent", coolEventHandler
-    *
-    *    # removes all handlers attached to "anotherCustomEvent"
-    *    yourObject.unbind "anotherCustomEvent"
-    *
-    *@name unbind
-    *@methodOf Bindable#
-    *@param {String} event The event to remove the listener from.
-    *@param {Function} [callback] The listener to remove.
+    Removes a specific event listener, or all event listeners if
+    no specific listener is given.
+
+    Another paragraph.
+
+        #  removes the handler coolEventHandler from the event
+        # "someCustomEvent" while leaving the other events intact.
+        yourObject.unbind "someCustomEvent", coolEventHandler
+
+        # removes all handlers attached to "anotherCustomEvent"
+        yourObject.unbind "anotherCustomEvent"
+
+    @name unbind
+    @methodOf Bindable#
+    @param {String} event The event to remove the listener from.
+    @param {Function} [callback] The listener to remove.
     */
     unbind: function(event, callback) {
       eventCallbacks[event] = eventCallbacks[event] || [];
@@ -737,15 +736,15 @@ Bindable = function() {
       }
     },
     /**
-    *Calls all listeners attached to the specified event.
-    *
-    *    # calls each event handler bound to "someCustomEvent"
-    *    yourObject.trigger "someCustomEvent"
-    *
-    *@name trigger
-    *@methodOf Bindable#
-    *@param {String} event The event to trigger.
-    *@param {Array} [parameters] Additional parameters to pass to the event listener.
+    Calls all listeners attached to the specified event.
+
+        # calls each event handler bound to "someCustomEvent"
+        yourObject.trigger "someCustomEvent"
+
+    @name trigger
+    @methodOf Bindable#
+    @param {String} event The event to trigger.
+    @param {Array} [parameters] Additional parameters to pass to the event listener.
     */
     trigger: function() {
       var callbacks, event, parameters, self;
@@ -803,14 +802,14 @@ CommandStack = function() {
 };
 ;
 /**
-*The Core class is used to add extended functionality to objects without
-*extending the object class directly. Inherit from Core to gain its utility
-*methods.
-*
-*@name Core
-*@constructor
-*
-*@param {Object} I Instance variables
+The Core class is used to add extended functionality to objects without
+extending the object class directly. Inherit from Core to gain its utility
+methods.
+
+@name Core
+@constructor
+
+@param {Object} I Instance variables
 */
 var Core,
   __slice = Array.prototype.slice;
@@ -820,49 +819,49 @@ Core = function(I) {
   if (I == null) I = {};
   return self = {
     /**
-    *External access to instance variables. Use of this property should be avoided
-    *in general, but can come in handy from time to time.
-    *
-    *    I =
-    *      r: 255
-    *      g: 0
-    *      b: 100
-    *
-    *    myObject = Core(I)
-    *
-    *    # a bad idea most of the time, but it's
-    *    # pretty convenient to have available.
-    *    myObject.I.r
-    *    # => 255
-    *
-    *    myObject.I.g
-    *    # => 0
-    *
-    *    myObject.I.b
-    *    # => 100
-    *
-    *@name I
-    *@fieldOf Core#
+    External access to instance variables. Use of this property should be avoided
+    in general, but can come in handy from time to time.
+
+        I =
+          r: 255
+          g: 0
+          b: 100
+
+        myObject = Core(I)
+
+        # a bad idea most of the time, but it's
+        # pretty convenient to have available.
+        myObject.I.r
+        # => 255
+
+        myObject.I.g
+        # => 0
+
+        myObject.I.b
+        # => 100
+
+    @name I
+    @fieldOf Core#
     */
     I: I,
     /**
-    *Generates a public jQuery style getter / setter method for each
-    *String argument.
-    *
-    *    myObject = Core
-    *      r: 255
-    *      g: 0
-    *      b: 100
-    *
-    *    myObject.attrAccessor "r", "g", "b"
-    *
-    *    myObject.r(254)
-    *    myObject.r()
-    *
-    *    => 254
-    *
-    *@name attrAccessor
-    *@methodOf Core#
+    Generates a public jQuery style getter / setter method for each
+    String argument.
+
+        myObject = Core
+          r: 255
+          g: 0
+          b: 100
+
+        myObject.attrAccessor "r", "g", "b"
+
+        myObject.r(254)
+        myObject.r()
+
+        => 254
+
+    @name attrAccessor
+    @methodOf Core#
     */
     attrAccessor: function() {
       var attrNames;
@@ -879,26 +878,26 @@ Core = function(I) {
       });
     },
     /**
-    *Generates a public jQuery style getter method for each String argument.
-    *
-    *    myObject = Core
-    *      r: 255
-    *      g: 0
-    *      b: 100
-    *
-    *    myObject.attrReader "r", "g", "b"
-    *
-    *    myObject.r()
-    *    => 255
-    *
-    *    myObject.g()
-    *    => 0
-    *
-    *    myObject.b()
-    *    => 100
-    *
-    *@name attrReader
-    *@methodOf Core#
+    Generates a public jQuery style getter method for each String argument.
+
+        myObject = Core
+          r: 255
+          g: 0
+          b: 100
+
+        myObject.attrReader "r", "g", "b"
+
+        myObject.r()
+        => 255
+
+        myObject.g()
+        => 0
+
+        myObject.b()
+        => 100
+
+    @name attrReader
+    @methodOf Core#
     */
     attrReader: function() {
       var attrNames;
@@ -910,49 +909,49 @@ Core = function(I) {
       });
     },
     /**
-    *Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)
-    *
-    *    I =
-    *      x: 30
-    *      y: 40
-    *      maxSpeed: 5
-    *
-    *    # we are using extend to give player
-    *    # additional methods that Core doesn't have
-    *    player = Core(I).extend
-    *      increaseSpeed: ->
-    *        I.maxSpeed += 1
-    *
-    *    player.I.maxSpeed
-    *    => 5
-    *
-    *    player.increaseSpeed()
-    *
-    *    player.I.maxSpeed
-    *    => 6
-    *
-    *@name extend
-    *@methodOf Core#
-    *@see Object.extend
-    *@returns self
+    Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)
+
+        I =
+          x: 30
+          y: 40
+          maxSpeed: 5
+
+        # we are using extend to give player
+        # additional methods that Core doesn't have
+        player = Core(I).extend
+          increaseSpeed: ->
+            I.maxSpeed += 1
+
+        player.I.maxSpeed
+        => 5
+
+        player.increaseSpeed()
+
+        player.I.maxSpeed
+        => 6
+
+    @name extend
+    @methodOf Core#
+    @see Object.extend
+    @returns self
     */
     extend: function(options) {
       Object.extend(self, options);
       return self;
     },
     /**
-    *Includes a module in this object.
-    *
-    *    myObject = Core()
-    *    myObject.include(Bindable)
-    *
-    *    # now you can bind handlers to functions
-    *    myObject.bind "someEvent", ->
-    *      alert("wow. that was easy.")
-    i*
-    *@name include
-    *@methodOf Core#
-    *@param {Module} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.
+    Includes a module in this object.
+
+        myObject = Core()
+        myObject.include(Bindable)
+
+        # now you can bind handlers to functions
+        myObject.bind "someEvent", ->
+          alert("wow. that was easy.")
+
+    @name include
+    @methodOf Core#
+    @param {Module} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.
     */
     include: function() {
       var Module, modules, _i, _len;
@@ -1001,19 +1000,19 @@ Function.prototype.withAfter = function(interception) {
 };
 
 /**
-*Calling a debounced function will postpone its execution until after
-*wait milliseconds have elapsed since the last time the function was
-*invoked. Useful for implementing behavior that should only happen after
-*the input has stopped arriving. For example: rendering a preview of a
-*Markdown comment, recalculating a layout after the window has stopped
-*being resized...
-*
-*    lazyLayout = calculateLayout.debounce(300)
-*    $(window).resize(lazyLayout)
-*
-*@name debounce
-*@methodOf Function#
-*@returns {Function} The debounced version of this function.
+Calling a debounced function will postpone its execution until after
+wait milliseconds have elapsed since the last time the function was
+invoked. Useful for implementing behavior that should only happen after
+the input has stopped arriving. For example: rendering a preview of a
+Markdown comment, recalculating a layout after the window has stopped
+being resized...
+
+    lazyLayout = calculateLayout.debounce(300)
+    $(window).resize(lazyLayout)
+
+@name debounce
+@methodOf Function#
+@returns {Function} The debounced version of this function.
 */
 
 Function.prototype.debounce = function(wait) {
@@ -1058,15 +1057,15 @@ Function.prototype.defer = function() {
 };
 ;
 /**
-*@name Logging
-*@namespace
-*
-*Gives you some convenience methods for outputting data while developing.
-*
-*    log "Testing123"
-*    info "Hey, this is happening"
-*    warn "Be careful, this might be a problem"
-*    error "Kaboom!"
+@name Logging
+@namespace
+
+Gives you some convenience methods for outputting data while developing.
+
+    log "Testing123"
+    info "Hey, this is happening"
+    warn "Be careful, this might be a problem"
+    error "Kaboom!"
 */
 ["log", "info", "warn", "error"].each(function(name) {
   if (typeof console !== "undefined") {
@@ -1079,54 +1078,54 @@ Function.prototype.defer = function() {
 });
 ;
 /**
-* Matrix.js v1.3.0pre
-*
-* Copyright (c) 2010 STRd6
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*
-* Loosely based on flash:
-* http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/flash/geom/Matrix.html
+ Matrix.js v1.3.0pre
+
+ Copyright (c) 2010 STRd6
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+
+ Loosely based on flash:
+ http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/flash/geom/Matrix.html
 */
 (function() {
   /**
-  *<pre>
-  *   _        _
-  *  | a  c tx  |
-  *  | b  d ty  |
-  *  |_0  0  1 _|
-  *</pre>
-  *Creates a matrix for 2d affine transformations.
-  *
-  *concat, inverse, rotate, scale and translate return new matrices with the
-  *transformations applied. The matrix is not modified in place.
-  *
-  *Returns the identity matrix when called with no arguments.
-  *
-  *@name Matrix
-  *@param {Number} [a]
-  *@param {Number} [b]
-  *@param {Number} [c]
-  *@param {Number} [d]
-  *@param {Number} [tx]
-  *@param {Number} [ty]
-  *@constructor
+  <pre>
+     _        _
+    | a  c tx  |
+    | b  d ty  |
+    |_0  0  1 _|
+  </pre>
+  Creates a matrix for 2d affine transformations.
+
+  concat, inverse, rotate, scale and translate return new matrices with the
+  transformations applied. The matrix is not modified in place.
+
+  Returns the identity matrix when called with no arguments.
+
+  @name Matrix
+  @param {Number} [a]
+  @param {Number} [b]
+  @param {Number} [c]
+  @param {Number} [d]
+  @param {Number} [tx]
+  @param {Number} [ty]
+  @constructor
   */
   var Matrix;
   Matrix = function(a, b, c, d, tx, ty) {
@@ -9736,29 +9735,27 @@ Tween = function(I, self) {
   });
   return {
     /**
-    *Modify the object's properties over time.
-    *
-    *    player = GameObject()
-    *
-    *    player.tween 30,
-    *      x: 50
-    *      y: 50
-    *      easing: "quadratic"
-    *    </pre></code>
-    *
-    *    <code><pre>
-    *    player = GameObject()
-    *
-    *    player.tween 30,
-    *      x: 150
-    *      y: 150
-    *      complete: ->
-    *        player.dance()
-    *
-    *@name tween
-    *@methodOf Tween#
-    *@param {Number} duration How long (in frames) until the object's properties reach their final values.
-    *@param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
+    Modify the object's properties over time.
+
+        player = GameObject()
+
+        player.tween 30,
+          x: 50
+          y: 50
+          easing: "quadratic"
+
+        player = GameObject()
+
+        player.tween 30,
+          x: 150
+          y: 150
+          complete: ->
+            player.dance()
+
+    @name tween
+    @methodOf Tween#
+    @param {Number} duration How long (in frames) until the object's properties reach their final values.
+    @param {Object} properties Which properties to tween. Set the `easing` property to specify the easing function.
     */
     tween: function(duration, properties) {
       var complete, easing, property, target, _results;

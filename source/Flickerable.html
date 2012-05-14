@@ -13,58 +13,139 @@
     <nav>
       <a href='/Array.html'>Array</a>
       <a href='/Bindable.html'>Bindable</a>
-      <a href='/Bindable.html'>Bindable</a>
+      <a href='/Bindable..html'>Bindable.</a>
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
+      <a href='/Bounded..html'>Bounded.</a>
+      <a href='/Camera.html'>Camera</a>
       <a href='/Clampable.html'>Clampable</a>
-      <a href='/Collision.html'>Collision</a>
-      <a href='/Controllable.html'>Controllable</a>
-      <a href='/Cooldown.html'>Cooldown</a>
+      <a href='/Clampable..html'>Clampable.</a>
+      <a href='/Collidable..html'>Collidable.</a>
+      <a href='/Collision..html'>Collision.</a>
+      <a href='/Color.html'>Color</a>
+      <a href='/Color..html'>Color.</a>
+      <a href='/Controllable..html'>Controllable.</a>
+      <a href='/Cooldown..html'>Cooldown.</a>
       <a href='/Core.html'>Core</a>
-      <a href='/Core.html'>Core</a>
+      <a href='/Core..html'>Core.</a>
       <a href='/Date.html'>Date</a>
       <a href='/Debuggable.html'>Debuggable</a>
+      <a href='/Debuggable..html'>Debuggable.</a>
       <a href='/Drawable.html'>Drawable</a>
-      <a href='/Drawable.html'>Drawable</a>
-      <a href='/Durable.html'>Durable</a>
+      <a href='/Drawable..html'>Drawable.</a>
+      <a href='/Durable..html'>Durable.</a>
+      <a href='/Engine.html'>Engine</a>
+      <a href='/Engine..html'>Engine.</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
+      <a href='/Fadeable..html'>Fadeable.</a>
       <a class='active' href='/Flickerable.html'>Flickerable</a>
+      <a href='/Flickerable..html'>Flickerable.</a>
       <a href='/Follow.html'>Follow</a>
+      <a href='/Follow..html'>Follow.</a>
       <a href='/Framerate.html'>Framerate</a>
+      <a href='/Framerate..html'>Framerate.</a>
       <a href='/Function.html'>Function</a>
       <a href='/GameObject.html'>GameObject</a>
-      <a href='/GameObject.html'>GameObject</a>
+      <a href='/GameObject..html'>GameObject.</a>
       <a href='/GameOver.html'>GameOver</a>
-      <a href='/GameOver.html'>GameOver</a>
+      <a href='/GameOver..html'>GameOver.</a>
+      <a href='/GameState.html'>GameState</a>
       <a href='/LevelState.html'>LevelState</a>
-      <a href='/LevelState.html'>LevelState</a>
-      <a href='/Math.html'>Math</a>
+      <a href='/LevelState..html'>LevelState.</a>
+      <a href='/Math..html'>Math.</a>
       <a href='/Matrix.html'>Matrix</a>
+      <a href='/Matrix..html'>Matrix.</a>
       <a href='/Metered.html'>Metered</a>
-      <a href='/Movable.html'>Movable</a>
+      <a href='/Metered..html'>Metered.</a>
+      <a href='/Movable..html'>Movable.</a>
       <a href='/Number.html'>Number</a>
       <a href='/Object.html'>Object</a>
-      <a href='/Object.html'>Object</a>
-      <a href='/Oscillator.html'>Oscillator</a>
+      <a href='/Object..html'>Object.</a>
+      <a href='/Oscillator..html'>Oscillator.</a>
+      <a href='/Point.html'>Point</a>
+      <a href='/Point..html'>Point.</a>
+      <a href='/Random..html'>Random.</a>
       <a href='/RegExp.html'>RegExp</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a href='/ResourceLoader.html'>ResourceLoader</a>
+      <a href='/Rotatable..html'>Rotatable.</a>
       <a href='/Sprite.html'>Sprite</a>
+      <a href='/Sprite..html'>Sprite.</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
-      <a href='/TextEffect.html'>TextEffect</a>
+      <a href='/TextEffect..html'>TextEffect.</a>
       <a href='/TextScreen.html'>TextScreen</a>
+      <a href='/TextScreen..html'>TextScreen.</a>
       <a href='/TimedEvents.html'>TimedEvents</a>
+      <a href='/TimedEvents..html'>TimedEvents.</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
-      <a href='/TitleScreen.html'>TitleScreen</a>
+      <a href='/TitleScreen..html'>TitleScreen.</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/Tween.html'>Tween</a>
+      <a href='/Tween..html'>Tween.</a>
+      <a href='/window..html'>window.</a>
     </nav>
     <section class='method_list'>
-      <h3>Flickerable Methods</h3>
+      <h3>Flickerable# Methods</h3>
       <div class='methods'>
+        <a href='Flickerable.html#Flickerable#flicker'>flicker</a>
       </div>
     </section>
     <div class='documentation'>
+      <a name='flicker'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>flicker(duration=30, frequency=3, alpha=0.5)</h1>
+      <div class='description'>
+        <section class='summary'><p>A convenient way to set the flicker instance variables on a sprite. You can modify the<br />instance variables by hand but the suggested way to do it is through this method.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <pre><code>player = GameObject()
+          
+          player.include(Flickerable)
+          
+          player.flicker()
+          # =&gt; This causes the sprite to flicker between full opacity
+          # =&gt; and 50% opacity every 3 frames for 30 frames
+          
+          player.flicker(90, 5, 0.3)
+          # =&gt; This causes the sprite to flicker between full opacity
+          # =&gt; and 30% opacity every 5 frames for 90 frames
+          </code></pre>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>duration=30</span>
+               -
+              <span class='param_description'>How long the effect lasts</span>
+            </li>
+            <li>
+              <span class='param_name'>frequency=3</span>
+               -
+              <span class='param_description'>The number of frames in between opacity changes</span>
+            </li>
+            <li>
+              <span class='param_name'>alpha=0.5</span>
+               -
+              <span class='param_description'>The alpha value to flicker to</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>flicker: function(_arg) {&#x000A;      var alpha, duration, frequency, _ref;&#x000A;      _ref = _arg != null ? _arg : {}, duration = _ref.duration, frequency = _ref.frequency, alpha = _ref.alpha;&#x000A;      if (duration != null) I.flickerDuration = duration;&#x000A;      if (frequency != null) I.flickerFrequency = frequency;&#x000A;      if (alpha != null) return I.flickerAlpha = alpha;&#x000A;    }&#x000A;  };&#x000A;};&#x000A;;</code></pre>
+        </section>
+      </div>
+      <hr />
     </div>
   </body>
 </html>
