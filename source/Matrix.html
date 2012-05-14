@@ -101,7 +101,7 @@
     <div class='documentation'>
       <a name='concat'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>concat(matrix)</h1>
+      <h1>Matrix#concat(matrix)</h1>
       <div class='description'>
         <section class='summary'><p>Returns the result of this matrix multiplied by another matrix<br />combining the geometric effects of the two. In mathematical terms,<br />concatenating two matrixes is the same as combining them using matrix multiplication.<br />If this matrix is A and the matrix passed in is B, the resulting matrix is A x B<br /><a href='http://mathworld.wolfram.com/MatrixMultiplication.html'>http://mathworld.wolfram.com/MatrixMultiplication.html</a></p></section>
         <section class='usage'>
@@ -135,7 +135,7 @@
       <hr />
       <a name='copy'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>copy()</h1>
+      <h1>Matrix#copy()</h1>
       <div class='description'>
         <section class='summary'><p>Copy this matrix.</p></section>
         <section class='usage'>
@@ -159,7 +159,7 @@
       <hr />
       <a name='deltaTransformPoint'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>deltaTransformPoint()</h1>
+      <h1>Matrix#deltaTransformPoint()</h1>
       <div class='description'>
         <section class='summary'><p>Given a point in the pretransform coordinate space, returns the coordinates of<br />that point after the transformation occurs. Unlike the standard transformation<br />applied using the transformPoint() method, the deltaTransformPoint() method<br />does not consider the translation parameters tx and ty.</p></section>
         <section class='usage'>
@@ -183,7 +183,7 @@
       <hr />
       <a name='inverse'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>inverse()</h1>
+      <h1>Matrix#inverse()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the inverse of the matrix.<br /><a href='http://mathworld.wolfram.com/MatrixInverse.html'>http://mathworld.wolfram.com/MatrixInverse.html</a></p></section>
         <section class='usage'>
@@ -207,7 +207,7 @@
       <hr />
       <a name='rotate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>rotate(theta, aboutPoint)</h1>
+      <h1>Matrix#rotate(theta, aboutPoint)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a new matrix that corresponds this matrix multiplied by a<br />a rotation matrix.</p></section>
         <section class='usage'>
@@ -246,7 +246,7 @@
       <hr />
       <a name='scale'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>scale(sx, sy, aboutPoint)</h1>
+      <h1>Matrix#scale(sx, sy, aboutPoint)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a new matrix that corresponds this matrix multiplied by a<br />a scaling matrix.</p></section>
         <section class='usage'>
@@ -290,7 +290,7 @@
       <hr />
       <a name='toString'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>toString()</h1>
+      <h1>Matrix#toString()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a string representation of this matrix.</p></section>
         <section class='usage'>
@@ -314,7 +314,7 @@
       <hr />
       <a name='transformPoint'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>transformPoint()</h1>
+      <h1>Matrix#transformPoint()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the result of applying the geometric transformation represented by the<br />Matrix object to the specified point.</p></section>
         <section class='usage'>
@@ -338,7 +338,7 @@
       <hr />
       <a name='translate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>translate(tx, ty)</h1>
+      <h1>Matrix#translate(tx, ty)</h1>
       <div class='description'>
         <section class='summary'><p>Translates the matrix along the x and y axes, as specified by the tx and ty parameters.</p></section>
         <section class='usage'>

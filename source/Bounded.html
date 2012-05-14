@@ -100,7 +100,7 @@
     <div class='documentation'>
       <a name='distance'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>distance()</h1>
+      <h1>Bounded#distance()</h1>
       <div class='description'>
         <section class='summary'><p>Distance between two objects. Proxies to Point.distance.<br />In order for this to work, <code>otherObj</code> must have a<br />position method.</p></section>
         <section class='usage'>
@@ -140,7 +140,7 @@
       <hr />
       <a name='position'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>position()</h1>
+      <h1>Bounded#position()</h1>
       <div class='description'>
         <section class='summary'><p>The position of this game object. By default it is the top left point.<br />Redefining the center method will change the relative position.</p></section>
         <section class='usage'>
@@ -172,7 +172,7 @@
       <hr />
       <a name='collides'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>collides()</h1>
+      <h1>Bounded#collides()</h1>
       <div class='description'>
         <section class='summary'><p>Does a check to see if this object is overlapping<br />with the bounds passed in.</p></section>
         <section class='usage'>
@@ -206,7 +206,7 @@
       <hr />
       <a name='collisionBounds'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>collisionBounds(xOffset, yOffset)</h1>
+      <h1>Bounded#collisionBounds(xOffset, yOffset)</h1>
       <div class='description'>
         <section class='summary'><p>This returns a modified bounds based on the collision margin.<br />The area of the bounds is reduced if collision margin is positive<br />and increased if collision margin is negative.</p></section>
         <section class='usage'>
@@ -261,7 +261,7 @@
       <hr />
       <a name='bounds'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>bounds(xOffset, yOffset)</h1>
+      <h1>Bounded#bounds(xOffset, yOffset)</h1>
       <div class='description'>
         <section class='summary'><p>Returns infomation about the location of the object and its dimensions with optional offsets.</p></section>
         <section class='usage'>
@@ -313,7 +313,7 @@
       <hr />
       <a name='centeredBounds'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>centeredBounds()</h1>
+      <h1>Bounded#centeredBounds()</h1>
       <div class='description'>
         <section class='summary'><p>The centeredBounds method returns infomation about the center<br />of the object along with the midpoint of the width and height.</p></section>
         <section class='usage'>
@@ -347,7 +347,7 @@
       <hr />
       <a name='center'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>center()</h1>
+      <h1>Bounded#center()</h1>
       <div class='description'>
         <section class='summary'><p>The center method returns the {@link Point} that is<br />the center of the object.</p></section>
         <section class='usage'>
@@ -381,7 +381,7 @@
       <hr />
       <a name='circle'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>circle()</h1>
+      <h1>Bounded#circle()</h1>
       <div class='description'>
         <section class='summary'><p>Return the circular bounds of the object. The circle is<br />centered at the midpoint of the object.</p></section>
         <section class='usage'>

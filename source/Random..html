@@ -84,7 +84,137 @@
       <a href='/Tween..html'>Tween.</a>
       <a href='/window..html'>window.</a>
     </nav>
+    <section class='method_list'>
+      <h3>Random. Methods</h3>
+      <div class='methods'>
+        <a href='Random..html#Random.angle'>angle</a>
+        <a href='Random..html#Random.angleBetween'>angleBetween</a>
+        <a href='Random..html#Random.color'>color</a>
+        <a href='Random..html#Random.often'>often</a>
+        <a href='Random..html#Random.sometimes'>sometimes</a>
+      </div>
+    </section>
     <div class='documentation'>
+      <a name='angle'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Random.angle()</h1>
+      <div class='description'>
+        <section class='summary'><p>Returns a random angle, uniformly distributed, between 0 and 2pi.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='Number.html'>Number</a>
+          </p>
+          <p class='return_description'>A random angle between 0 and 2pi</p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>angle: function() {&#x000A;      return rand() * Math.TAU;&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='angleBetween'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Random.angleBetween()</h1>
+      <div class='description'>
+        <section class='summary'><p>Returns a random angle between the given angles.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='Number.html'>Number</a>
+          </p>
+          <p class='return_description'>A random angle between the angles given.</p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>angleBetween: function(min, max) {&#x000A;      return rand() * (max - min) + min;&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='color'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Random.color()</h1>
+      <div class='description'>
+        <section class='summary'><p>Returns a random color.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='Color.html'>Color</a>
+          </p>
+          <p class='return_description'>A random color</p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>color: function() {&#x000A;      return Color.random();&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='often'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Random.often()</h1>
+      <div class='description'>
+        <section class='summary'><p>Happens often.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>often: function() {&#x000A;      return rand(3);&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='sometimes'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Random.sometimes()</h1>
+      <div class='description'>
+        <section class='summary'><p>Happens sometimes.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>sometimes: function() {&#x000A;      return !rand(3);&#x000A;    }&#x000A;  };</code></pre>
+        </section>
+      </div>
+      <hr />
     </div>
   </body>
 </html>

@@ -19,29 +19,15 @@ module Spacedocs
       processed_data[:docs_data].each do |class_data|
         class_data.each_pair do |class_name, data|
           File.open("source/#{class_name.gsub(/#/, '')}.html", 'w') do |f|
-            class_names = processed_data[:class_names]
-
-            f.write(template.render(self, class_name: class_name, method_list: (class_data[class_name]['method_list'] || []), methods: class_data[class_name]['methods'], class_names: class_names, module_map: processed_data[:module_map]))
+            f.write(template.render self, {
+              class_name: class_name,
+              method_list: class_data[class_name]['method_list'],
+              methods: class_data[class_name]['methods'],
+              class_names: processed_data[:class_names]
+            })
           end
         end
       end
-    end
-
-    def methods_of(source_class, tags)
-      output = []
-      matching_tags = []
-
-      tags.each do |tag|
-        matching_tags << tags if tag['type'] == 'methodOf'
-      end
-
-      matching_tags.each do |tags|
-        tags.each do |tag|
-          output << (source_class + tag['string']) if tag['type'] == 'name'
-        end
-      end
-
-      output
     end
 
     def tags_named(name, tags)
@@ -59,25 +45,26 @@ module Spacedocs
     end
 
     def params_data(tags)
-      params = {}
-
-      tags.each do |tag|
+      tags.each_with_object({}) do |tag, hash|
         if tag['type'] == 'param'
-          params["#{tag['name'].gsub(/[\[\]]/, '')}"] = {
+          hash["#{tag['name'].gsub(/[\[\]]/, '')}"] = {
             "type" => tag['types'].join(', '),
             "description" => tag['description'],
             "optional" => tag['name'].start_with?('[')
           }
         end
       end
-
-      return params
     end
 
     def returns_data(tags)
       tags.map do |tag|
         if tag['type'] == 'returns'
-          { "type" => tag['string'].split(' ').first.gsub(/[{}]/, ''), "description" => tag['string'].split(' ')[1..-1].join(' ') }
+          description = tag['string'].split ' '
+
+          type = description.shift.gsub(/[{}]/, '')
+          remaining = description.join ' '
+
+          { "type" => type, "description" => remaining }
         end
       end.compact
     end
@@ -94,15 +81,11 @@ module Spacedocs
       class_names = []
 
       tags.each do |tag|
-        if tag['type'] == 'methodOf'
-          class_names << format_class_name(tag['string'])
-        end
+        class_names << format_class_name(tag['string']) if tag['type'] == 'methodOf'
 
         if tag['type'] == 'constructor' || tag['type'] == 'namespace'
           tags.each do |tag|
-            if tag['type'] == 'name'
-              class_names << format_class_name(tag['string'])
-            end
+            class_names << format_class_name(tag['string']) if tag['type'] == 'name'
           end
         end
       end
@@ -130,8 +113,9 @@ module Spacedocs
         class_names << class_name_data(tags)
 
         if name && method_of
-          module_map[method_of] ||= {}
-          module_map[method_of][name] = {
+          class_name = format_class_name(method_of)
+          module_map[class_name] ||= {}
+          module_map[class_name][name] = {
             "summary" => item['description']['summary'],
             "code_sample" => item['description']['body'],
             "source" => item['code'],
@@ -160,7 +144,7 @@ module Spacedocs
         f.write(docs_data.to_json)
       end
 
-      return { docs_data: docs_data, class_names: class_names, module_map: module_map }
+      return { docs_data: docs_data, class_names: class_names }
     end
   end
 end

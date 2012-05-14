@@ -111,7 +111,7 @@
     <div class='documentation'>
       <a name='clamp'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>clamp(n)</h1>
+      <h1>Point#clamp(n)</h1>
       <div class='description'>
         <section class='summary'><p>Constrain the magnitude of a vector.</p></section>
         <section class='usage'>
@@ -145,7 +145,7 @@
       <hr />
       <a name='copy'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>copy()</h1>
+      <h1>Point#copy()</h1>
       <div class='description'>
         <section class='summary'><p>Creates a copy of this point.</p></section>
         <section class='usage'>
@@ -169,7 +169,7 @@
       <hr />
       <a name='add'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>add(other)</h1>
+      <h1>Point#add(other)</h1>
       <div class='description'>
         <section class='summary'><p>Adds a point to this one and returns the new point. You may<br />also use a two argument call like <code>point.add(x, y)</code><br />to add x and y values without a second point object.</p></section>
         <section class='usage'>
@@ -218,7 +218,7 @@
       <hr />
       <a name='add$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>add$(other)</h1>
+      <h1>Point#add$(other)</h1>
       <div class='description'>
         <section class='summary'><p>Adds a point to this one, returning a modified point. You may<br />also use a two argument call like <code>point.add(x, y)</code><br />to add x and y values without a second point object.</p></section>
         <section class='usage'>
@@ -276,7 +276,7 @@
       <hr />
       <a name='subtract'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>subtract(other)</h1>
+      <h1>Point#subtract(other)</h1>
       <div class='description'>
         <section class='summary'><p>Subtracts a point to this one and returns the new point.</p></section>
         <section class='usage'>
@@ -325,7 +325,7 @@
       <hr />
       <a name='subtract$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>subtract$(other)</h1>
+      <h1>Point#subtract$(other)</h1>
       <div class='description'>
         <section class='summary'><p>Subtracts a point to this one and returns the new point.</p></section>
         <section class='usage'>
@@ -383,7 +383,7 @@
       <hr />
       <a name='scale'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>scale(scalar)</h1>
+      <h1>Point#scale(scalar)</h1>
       <div class='description'>
         <section class='summary'><p>Scale this Point (Vector) by a constant amount.</p></section>
         <section class='usage'>
@@ -424,7 +424,7 @@
       <hr />
       <a name='scale$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>scale$(scalar)</h1>
+      <h1>Point#scale$(scalar)</h1>
       <div class='description'>
         <section class='summary'><p>Scale this Point (Vector) by a constant amount. Modifies the point in place.</p></section>
         <section class='usage'>
@@ -473,7 +473,7 @@
       <hr />
       <a name='norm'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>norm()</h1>
+      <h1>Point#norm()</h1>
       <div class='description'>
         <section class='summary'><p>The norm of a vector is the unit vector pointing in the same direction. This method<br />treats the point as though it is a vector from the origin to (x, y).</p></section>
         <section class='usage'>
@@ -512,7 +512,7 @@
       <hr />
       <a name='norm$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>norm$()</h1>
+      <h1>Point#norm$()</h1>
       <div class='description'>
         <section class='summary'><p>The norm of a vector is the unit vector pointing in the same direction. This method<br />treats the point as though it is a vector from the origin to (x, y). Modifies the point in place.</p></section>
         <section class='usage'>
@@ -551,7 +551,7 @@
       <hr />
       <a name='floor'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>floor()</h1>
+      <h1>Point#floor()</h1>
       <div class='description'>
         <section class='summary'><p>Floor the x and y values, returning a new point.</p></section>
         <section class='usage'>
@@ -582,7 +582,7 @@
       <hr />
       <a name='floor$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>floor$()</h1>
+      <h1>Point#floor$()</h1>
       <div class='description'>
         <section class='summary'><p>Floor the x and y values, returning a modified point.</p></section>
         <section class='usage'>
@@ -614,7 +614,7 @@
       <hr />
       <a name='equal'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>equal(other)</h1>
+      <h1>Point#equal(other)</h1>
       <div class='description'>
         <section class='summary'><p>Determine whether this point is equal to another point.</p></section>
         <section class='usage'>
@@ -657,7 +657,7 @@
       <hr />
       <a name='length'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>length()</h1>
+      <h1>Point#length()</h1>
       <div class='description'>
         <section class='summary'><p>Computed the length of this point as though it were a vector from (0,0) to (x,y).</p></section>
         <section class='usage'>
@@ -685,7 +685,7 @@
       <hr />
       <a name='magnitude'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>magnitude()</h1>
+      <h1>Point#magnitude()</h1>
       <div class='description'>
         <section class='summary'><p>Calculate the magnitude of this Point (Vector).</p></section>
         <section class='usage'>
@@ -713,7 +713,7 @@
       <hr />
       <a name='direction'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>direction()</h1>
+      <h1>Point#direction()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the direction in radians of this point from the origin.</p></section>
         <section class='usage'>
@@ -741,7 +741,7 @@
       <hr />
       <a name='dot'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>dot(other)</h1>
+      <h1>Point#dot(other)</h1>
       <div class='description'>
         <section class='summary'><p>Calculate the dot product of this point and another point (Vector).</p></section>
         <section class='usage'>
@@ -775,7 +775,7 @@
       <hr />
       <a name='cross'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>cross(other)</h1>
+      <h1>Point#cross(other)</h1>
       <div class='description'>
         <section class='summary'><p>Calculate the cross product of this point and another point (Vector).<br />Usually cross products are thought of as only applying to three dimensional vectors,<br />but z can be treated as zero. The result of this method is interpreted as the magnitude<br />of the vector result of the cross product between [x1, y1, 0] x [x2, y2, 0]<br />perpendicular to the xy plane.</p></section>
         <section class='usage'>
@@ -809,7 +809,7 @@
       <hr />
       <a name='distance'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>distance(other)</h1>
+      <h1>Point#distance(other)</h1>
       <div class='description'>
         <section class='summary'><p>Compute the Euclidean distance between this point and another point.</p></section>
         <section class='usage'>

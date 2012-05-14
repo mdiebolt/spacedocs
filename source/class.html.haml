@@ -31,7 +31,7 @@
           %a(name="#{method_name}")
           / TODO make sure method_data isn't nil
           - if method_data && method_data.first
-            %h1= "#{method_name}(#{method_data['parameters'].keys.join ', '})"
+            %h1= "#{class_name}#{method_name}(#{method_data['parameters'].keys.join ', '})"
             .description
               %section.summary= method_data['summary']
 

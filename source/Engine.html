@@ -117,7 +117,7 @@
     <div class='documentation'>
       <a name='beforeAdd'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>beforeAdd(entityData)</h1>
+      <h1>Engine#beforeAdd(entityData)</h1>
       <div class='description'>
         <section class='summary'><p>Observe or modify the<br />entity data before it is added to the engine.</p></section>
         <section class='usage'>
@@ -151,7 +151,7 @@
       <hr />
       <a name='afterAdd'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>afterAdd(object)</h1>
+      <h1>Engine#afterAdd(object)</h1>
       <div class='description'>
         <section class='summary'><p>Observe or configure a <code>gameObject</code> that has been added<br />to the engine.</p></section>
         <section class='usage'>
@@ -185,7 +185,7 @@
       <hr />
       <a name='update'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>update()</h1>
+      <h1>Engine#update()</h1>
       <div class='description'>
         <section class='summary'><p>Called when the engine updates all the game objects.</p></section>
         <section class='usage'>
@@ -209,7 +209,7 @@
       <hr />
       <a name='afterUpdate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>afterUpdate()</h1>
+      <h1>Engine#afterUpdate()</h1>
       <div class='description'>
         <section class='summary'><p>Called after the engine completes an update. Here it is<br />safe to modify the game objects array.</p></section>
         <section class='usage'>
@@ -233,7 +233,7 @@
       <hr />
       <a name='beforeDraw'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>beforeDraw()</h1>
+      <h1>Engine#beforeDraw()</h1>
       <div class='description'>
         <section class='summary'><p>Called before the engine draws the game objects on the canvas. The current camera transform is applied.</p></section>
         <section class='usage'>
@@ -257,7 +257,7 @@
       <hr />
       <a name='draw'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>draw()</h1>
+      <h1>Engine#draw()</h1>
       <div class='description'>
         <section class='summary'><p>Called after the engine draws on the canvas. The current camera transform is applied.</p></section>
         <section class='usage'>
@@ -287,7 +287,7 @@
       <hr />
       <a name='overlay'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>overlay()</h1>
+      <h1>Engine#overlay()</h1>
       <div class='description'>
         <section class='summary'><p>Called after the engine draws.</p></section>
         <section class='usage'>
@@ -323,7 +323,7 @@
       <hr />
       <a name='start'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>start()</h1>
+      <h1>Engine#start()</h1>
       <div class='description'>
         <section class='summary'><p>Start the game simulation.</p></section>
         <section class='usage'>
@@ -348,7 +348,7 @@
       <hr />
       <a name='stop'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>stop()</h1>
+      <h1>Engine#stop()</h1>
       <div class='description'>
         <section class='summary'><p>Stop the simulation.</p></section>
         <section class='usage'>
@@ -373,7 +373,7 @@
       <hr />
       <a name='frameAdvance'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>frameAdvance()</h1>
+      <h1>Engine#frameAdvance()</h1>
       <div class='description'>
         <section class='summary'><p>Pause the game and step through 1 update of the engine.</p></section>
         <section class='usage'>
@@ -398,7 +398,7 @@
       <hr />
       <a name='play'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>play()</h1>
+      <h1>Engine#play()</h1>
       <div class='description'>
         <section class='summary'><p>Resume the game.</p></section>
         <section class='usage'>
@@ -423,7 +423,7 @@
       <hr />
       <a name='pause'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>pause(setTo)</h1>
+      <h1>Engine#pause(setTo)</h1>
       <div class='description'>
         <section class='summary'><p>Toggle the paused state of the simulation.</p></section>
         <section class='usage'>
@@ -458,7 +458,7 @@
       <hr />
       <a name='paused'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>paused()</h1>
+      <h1>Engine#paused()</h1>
       <div class='description'>
         <section class='summary'><p>Query the engine to see if it is paused.</p></section>
         <section class='usage'>
@@ -491,7 +491,7 @@
       <hr />
       <a name='setFramerate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>setFramerate()</h1>
+      <h1>Engine#setFramerate()</h1>
       <div class='description'>
         <section class='summary'><p>Change the framerate of the game. The default framerate is 30 fps.</p></section>
         <section class='usage'>
@@ -516,7 +516,7 @@
       <hr />
       <a name='collides'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>collides(The, An)</h1>
+      <h1>Engine#collides(The, An)</h1>
       <div class='description'>
         <section class='summary'><p>Detects collisions between a bounds and the game objects.</p></section>
         <section class='usage'>
@@ -555,7 +555,7 @@
       <hr />
       <a name='collidesWith'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>collidesWith(The, An)</h1>
+      <h1>Engine#collidesWith(The, An)</h1>
       <div class='description'>
         <section class='summary'><p>Detects collisions between a bounds and the game objects.<br />Returns an array of objects colliding with the bounds provided.</p></section>
         <section class='usage'>
@@ -594,7 +594,7 @@
       <hr />
       <a name='rayCollides'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>rayCollides(The, A, An)</h1>
+      <h1>Engine#rayCollides(The, A, An)</h1>
       <div class='description'>
         <section class='summary'><p>Detects collisions between a ray and the game objects.</p></section>
         <section class='usage'>
@@ -638,7 +638,7 @@
       <hr />
       <a name='delay'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>delay(steps, callback)</h1>
+      <h1>Engine#delay(steps, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Execute a callback after a number of steps have passed.</p></section>
         <section class='usage'>
@@ -680,7 +680,7 @@
       <hr />
       <a name='nextLevel'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>nextLevel()</h1>
+      <h1>Engine#nextLevel()</h1>
       <div class='description'>
         <section class='summary'><p>Load map for the next level.</p></section>
         <section class='usage'>
@@ -705,7 +705,7 @@
       <hr />
       <a name='goToLevel'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>goToLevel()</h1>
+      <h1>Engine#goToLevel()</h1>
       <div class='description'>
         <section class='summary'><p>Load map named <code>level</code></p></section>
         <section class='usage'>
@@ -730,7 +730,7 @@
       <hr />
       <a name='reloadLevel'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>reloadLevel()</h1>
+      <h1>Engine#reloadLevel()</h1>
       <div class='description'>
         <section class='summary'><p>Reload the current level. Useful for retrying after a player dies.</p></section>
         <section class='usage'>
@@ -755,7 +755,7 @@
       <hr />
       <a name='find'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>find(selector)</h1>
+      <h1>Engine#find(selector)</h1>
       <div class='description'>
         <section class='summary'><p>Get a selection of GameObjects that match the specified selector criteria. The selector language<br />can select objects by id, class, or attributes. Note that this method always returns an Array,<br />so if you are trying to find only one object you will need something like <code>engine.find("Enemy").first()</code></p></section>
         <section class='usage'>
@@ -821,7 +821,7 @@
       <hr />
       <a name='loadMap'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>loadMap()</h1>
+      <h1>Engine#loadMap()</h1>
       <div class='description'>
         <section class='summary'><p>Loads a new may and unloads any existing map or entities.</p></section>
         <section class='usage'>
@@ -845,7 +845,7 @@
       <hr />
       <a name='add'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>add(entityData)</h1>
+      <h1>Engine#add(entityData)</h1>
       <div class='description'>
         <section class='summary'><p>The add method creates and adds an object to the game world. Two<br />other events are triggered around this one: beforeAdd and afterAdd.</p></section>
         <section class='usage'>
@@ -888,7 +888,7 @@
       <hr />
       <a name='cameras'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>cameras()</h1>
+      <h1>Engine#cameras()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the array of camera objects.</p></section>
         <section class='usage'>

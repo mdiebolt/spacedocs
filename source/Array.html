@@ -139,7 +139,7 @@
     <div class='documentation'>
       <a name='average'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>average()</h1>
+      <h1>Array#average()</h1>
       <div class='description'>
         <section class='summary'><p>Calculate the average value of an array. Returns undefined if some elements<br />are not numbers.</p></section>
         <section class='usage'>
@@ -165,7 +165,7 @@
       <hr />
       <a name='compact'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>compact()</h1>
+      <h1>Array#compact()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a copy of the array without null and undefined values.</p></section>
         <section class='usage'>
@@ -191,7 +191,7 @@
       <hr />
       <a name='copy'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>copy()</h1>
+      <h1>Array#copy()</h1>
       <div class='description'>
         <section class='summary'><p>Creates and returns a copy of the array. The copy contains<br />the same objects.</p></section>
         <section class='usage'>
@@ -225,7 +225,7 @@
       <hr />
       <a name='clear'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>clear()</h1>
+      <h1>Array#clear()</h1>
       <div class='description'>
         <section class='summary'><p>Empties the array of its contents. It is modified in place.</p></section>
         <section class='usage'>
@@ -252,7 +252,7 @@
       <hr />
       <a name='flatten'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>flatten()</h1>
+      <h1>Array#flatten()</h1>
       <div class='description'>
         <section class='summary'><p>Flatten out an array of arrays into a single array of elements.</p></section>
         <section class='usage'>
@@ -283,7 +283,7 @@
       <hr />
       <a name='invoke'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>invoke(method, Optional)</h1>
+      <h1>Array#invoke(method, Optional)</h1>
       <div class='description'>
         <section class='summary'><p>Invoke the named method on each element in the array<br />and return a new array containing the results of the invocation.</p></section>
         <section class='usage'>
@@ -327,7 +327,7 @@
       <hr />
       <a name='rand'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>rand()</h1>
+      <h1>Array#rand()</h1>
       <div class='description'>
         <section class='summary'><p>Randomly select an element from the array.</p></section>
         <section class='usage'>
@@ -353,7 +353,7 @@
       <hr />
       <a name='remove'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>remove(object)</h1>
+      <h1>Array#remove(object)</h1>
       <div class='description'>
         <section class='summary'><p>Remove the first occurrence of the given object from the array if it is<br />present. The array is modified in place.</p></section>
         <section class='usage'>
@@ -393,7 +393,7 @@
       <hr />
       <a name='include'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>include(element)</h1>
+      <h1>Array#include(element)</h1>
       <div class='description'>
         <section class='summary'><p>Returns true if the element is present in the array.</p></section>
         <section class='usage'>
@@ -432,7 +432,7 @@
       <hr />
       <a name='each'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>each(iterator, context)</h1>
+      <h1>Array#each(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument, the index of<br />the element as the second argument, and <code>this</code> array as the<br />third argument.</p></section>
         <section class='usage'>
@@ -484,7 +484,7 @@
       <hr />
       <a name='map'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>map(Function)</h1>
+      <h1>Array#map(Function)</h1>
       <div class='description'>
         <section class='summary'><p>Creates a new array with the results of calling a provided function on every<br />element in this array.</p></section>
         <section class='usage'>
@@ -518,7 +518,7 @@
       <hr />
       <a name='eachPair'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>eachPair(iterator, context)</h1>
+      <h1>Array#eachPair(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Call the given iterator once for each pair of objects in the array.</p></section>
         <section class='usage'>
@@ -564,7 +564,7 @@
       <hr />
       <a name='eachWithObject'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>eachWithObject(object, iterator, context)</h1>
+      <h1>Array#eachWithObject(object, iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Call the given iterator once for each element in the array,<br />passing in the element as the first argument and the given object<br />as the second argument. Additional arguments are passed similar to<br /><code>each</code>.</p></section>
         <section class='usage'>
@@ -608,7 +608,7 @@
       <hr />
       <a name='eachSlice'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>eachSlice(n, iterator, context)</h1>
+      <h1>Array#eachSlice(n, iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Call the given iterator once for each group of elements in the array,<br />passing in the elements in groups of n. Additional argumens are<br />passed as in each.</p></section>
         <section class='usage'>
@@ -659,7 +659,7 @@
       <hr />
       <a name='pipeline'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>pipeline(input)</h1>
+      <h1>Array#pipeline(input)</h1>
       <div class='description'>
         <section class='summary'><p>Pipe the input through each function in the array in turn. For example, if you have a<br />list of objects you can perform a series of selection, sorting, and other processing<br />methods and then receive the processed list. This array must contain functions that<br />accept a single input and return the processed input. The output of the first function<br />is fed to the input of the second and so on until the final processed output is returned.</p></section>
         <section class='usage'>
@@ -693,7 +693,7 @@
       <hr />
       <a name='shuffle'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>shuffle()</h1>
+      <h1>Array#shuffle()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a new array with the elements all shuffled up.</p></section>
         <section class='usage'>
@@ -723,7 +723,7 @@
       <hr />
       <a name='first'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>first()</h1>
+      <h1>Array#first()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the first element of the array, undefined if the array is empty.</p></section>
         <section class='usage'>
@@ -749,7 +749,7 @@
       <hr />
       <a name='last'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>last()</h1>
+      <h1>Array#last()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the last element of the array, undefined if the array is empty.</p></section>
         <section class='usage'>
@@ -775,7 +775,7 @@
       <hr />
       <a name='extremes'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>extremes(fn)</h1>
+      <h1>Array#extremes(fn)</h1>
       <div class='description'>
         <section class='summary'><p>Returns an object containing the extremes of this array.</p></section>
         <section class='usage'>
@@ -811,7 +811,7 @@
       <hr />
       <a name='wrap'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>wrap(start, length)</h1>
+      <h1>Array#wrap(start, length)</h1>
       <div class='description'>
         <section class='summary'><p>Pretend the array is a circle and grab a new array containing length elements.<br />If length is not given return the element at start, again assuming the array<br />is a circle.</p></section>
         <section class='usage'>
@@ -858,7 +858,7 @@
       <hr />
       <a name='partition'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>partition(iterator, context)</h1>
+      <h1>Array#partition(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Partitions the elements into two groups: those for which the iterator returns<br />true, and those for which it returns false.</p></section>
         <section class='usage'>
@@ -905,7 +905,7 @@
       <hr />
       <a name='select'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>select(iterator, context)</h1>
+      <h1>Array#select(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Return the group of elements for which the return value of the iterator is true.</p></section>
         <section class='usage'>
@@ -944,7 +944,7 @@
       <hr />
       <a name='without'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>without(values)</h1>
+      <h1>Array#without(values)</h1>
       <div class='description'>
         <section class='summary'><p>Return the group of elements that are not in the passed in set.</p></section>
         <section class='usage'>
@@ -980,7 +980,7 @@
       <hr />
       <a name='reject'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>reject(iterator, context)</h1>
+      <h1>Array#reject(iterator, context)</h1>
       <div class='description'>
         <section class='summary'><p>Return the group of elements for which the return value of the iterator is false.</p></section>
         <section class='usage'>
@@ -1019,7 +1019,7 @@
       <hr />
       <a name='inject'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>inject()</h1>
+      <h1>Array#inject()</h1>
       <div class='description'>
         <section class='summary'><p>Combines all elements of the array by applying a binary operation.<br />for each element in the arra the iterator is passed an accumulator<br />value (memo) and the element.</p></section>
         <section class='usage'>
@@ -1043,7 +1043,7 @@
       <hr />
       <a name='sum'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>sum()</h1>
+      <h1>Array#sum()</h1>
       <div class='description'>
         <section class='summary'><p>Add all the elements in the array.</p></section>
         <section class='usage'>
@@ -1069,7 +1069,7 @@
       <hr />
       <a name='product'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>product()</h1>
+      <h1>Array#product()</h1>
       <div class='description'>
         <section class='summary'><p>Multiply all the elements in the array.</p></section>
         <section class='usage'>
@@ -1095,7 +1095,7 @@
       <hr />
       <a name='zip'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>zip()</h1>
+      <h1>Array#zip()</h1>
       <div class='description'>
         <section class='summary'><p>Merges together the values of each of the arrays with the values at the corresponding position.</p></section>
         <section class='usage'>
@@ -1121,7 +1121,7 @@
       <hr />
       <a name='pop'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>pop()</h1>
+      <h1>Array#pop()</h1>
       <div class='description'>
         <section class='summary'><p>Removes the last element from an array and returns that element.</p></section>
         <section class='usage'>
@@ -1145,7 +1145,7 @@
       <hr />
       <a name='push'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>push(...,)</h1>
+      <h1>Array#push(...,)</h1>
       <div class='description'>
         <section class='summary'><p>Mutates an array by appending the given elements and returning the new length of<br />the array.</p></section>
         <section class='usage'>
@@ -1179,7 +1179,7 @@
       <hr />
       <a name='reverse'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>reverse()</h1>
+      <h1>Array#reverse()</h1>
       <div class='description'>
         <section class='summary'><p>Reverses an array in place.  The first array element becomes the last and the<br />last becomes the first.</p></section>
         <section class='usage'>
@@ -1203,7 +1203,7 @@
       <hr />
       <a name='shift'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>shift()</h1>
+      <h1>Array#shift()</h1>
       <div class='description'>
         <section class='summary'><p>Removes the first element from an array and returns that element. This method<br />changes the length of the array.</p></section>
         <section class='usage'>
@@ -1227,7 +1227,7 @@
       <hr />
       <a name='sort'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>sort(Specifies)</h1>
+      <h1>Array#sort(Specifies)</h1>
       <div class='description'>
         <section class='summary'><p>Sorts the elements of an array in place.</p></section>
         <section class='usage'>
@@ -1261,7 +1261,7 @@
       <hr />
       <a name='splice'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>splice(Index, An, ...,)</h1>
+      <h1>Array#splice(Index, An, ...,)</h1>
       <div class='description'>
         <section class='summary'><p>Changes the content of an array, adding new elements while removing old<br />elements.</p></section>
         <section class='usage'>
@@ -1305,7 +1305,7 @@
       <hr />
       <a name='unshift'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>unshift(...,)</h1>
+      <h1>Array#unshift(...,)</h1>
       <div class='description'>
         <section class='summary'><p>Adds one or more elements to the beginning of an array and returns the new<br />length of the array.</p></section>
         <section class='usage'>
@@ -1339,7 +1339,7 @@
       <hr />
       <a name='concat'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>concat(Arrays)</h1>
+      <h1>Array#concat(Arrays)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a new array comprised of this array joined with other array(s) and/or<br />value(s).</p></section>
         <section class='usage'>
@@ -1373,7 +1373,7 @@
       <hr />
       <a name='join'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>join(Specifies)</h1>
+      <h1>Array#join(Specifies)</h1>
       <div class='description'>
         <section class='summary'><p>Joins all elements of an array into a string.</p></section>
         <section class='usage'>
@@ -1407,7 +1407,7 @@
       <hr />
       <a name='slice'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>slice(Zero-based)</h1>
+      <h1>Array#slice(Zero-based)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a one-level deep copy of a portion of an array.</p></section>
         <section class='usage'>
@@ -1441,7 +1441,7 @@
       <hr />
       <a name='toString'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>toString()</h1>
+      <h1>Array#toString()</h1>
       <div class='description'>
         <section class='summary'><p>Returns a string representing the specified array and its elements.</p></section>
         <section class='usage'>
@@ -1465,7 +1465,7 @@
       <hr />
       <a name='indexOf'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>indexOf(fromIndex)</h1>
+      <h1>Array#indexOf(fromIndex)</h1>
       <div class='description'>
         <section class='summary'><p>Returns the first index at which a given element can be found in the array, or<br />-1 if it is not present.</p></section>
         <section class='usage'>
@@ -1499,7 +1499,7 @@
       <hr />
       <a name='lastIndexOf'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>lastIndexOf(fromIndex)</h1>
+      <h1>Array#lastIndexOf(fromIndex)</h1>
       <div class='description'>
         <section class='summary'><p>Returns the last index at which a given element can be found in the array, or -1<br />if it is not present. The array is searched backwards, starting at fromIndex.</p></section>
         <section class='usage'>
@@ -1533,7 +1533,7 @@
       <hr />
       <a name='filter'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>filter(thisObject)</h1>
+      <h1>Array#filter(thisObject)</h1>
       <div class='description'>
         <section class='summary'><p>Creates a new array with all elements that pass the test implemented by the<br />provided function.</p></section>
         <section class='usage'>
@@ -1567,7 +1567,7 @@
       <hr />
       <a name='forEach'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>forEach(thisObject)</h1>
+      <h1>Array#forEach(thisObject)</h1>
       <div class='description'>
         <section class='summary'><p>Executes a provided function once per array element.</p></section>
         <section class='usage'>
@@ -1601,7 +1601,7 @@
       <hr />
       <a name='every'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>every(Function)</h1>
+      <h1>Array#every(Function)</h1>
       <div class='description'>
         <section class='summary'><p>Tests whether all elements in the array pass the test implemented by the<br />provided function.</p></section>
         <section class='usage'>
@@ -1635,7 +1635,7 @@
       <hr />
       <a name='some'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>some(thisObject)</h1>
+      <h1>Array#some(thisObject)</h1>
       <div class='description'>
         <section class='summary'><p>Tests whether some element in the array passes the test implemented by the<br />provided function.</p></section>
         <section class='usage'>
@@ -1669,7 +1669,7 @@
       <hr />
       <a name='reduce'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>reduce(Function)</h1>
+      <h1>Array#reduce(Function)</h1>
       <div class='description'>
         <section class='summary'><p>Apply a function against an accumulator and each value of the array (from<br />left-to-right) as to reduce it to a single value.</p></section>
         <section class='usage'>
@@ -1703,7 +1703,7 @@
       <hr />
       <a name='reduceRight'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>reduceRight(initialValue)</h1>
+      <h1>Array#reduceRight(initialValue)</h1>
       <div class='description'>
         <section class='summary'><p>Apply a function simultaneously against two values of the array (from<br />right-to-left) as to reduce it to a single value.</p></section>
         <section class='usage'>

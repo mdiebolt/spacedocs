@@ -121,7 +121,7 @@
     <div class='documentation'>
       <a name='channels'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>channels()</h1>
+      <h1>Color#channels()</h1>
       <div class='description'>
         <section class='summary'><p>Returns the rgba color channels in an array.</p></section>
         <section class='usage'>
@@ -159,7 +159,7 @@
       <hr />
       <a name='complement'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>complement()</h1>
+      <h1>Color#complement()</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color that is its complementary color on the color wheel.</p></section>
         <section class='usage'>
@@ -189,7 +189,7 @@
       <hr />
       <a name='complement$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>complement$()</h1>
+      <h1>Color#complement$()</h1>
       <div class='description'>
         <section class='summary'><p>Modifies the calling color to make it the complement of its previous value.</p></section>
         <section class='usage'>
@@ -220,7 +220,7 @@
       <hr />
       <a name='copy'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>copy()</h1>
+      <h1>Color#copy()</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color.</p></section>
         <section class='usage'>
@@ -253,7 +253,7 @@
       <hr />
       <a name='darken'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>darken(amount)</h1>
+      <h1>Color#darken(amount)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a copy of the calling color darkened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p></section>
         <section class='usage'>
@@ -293,7 +293,7 @@
       <hr />
       <a name='darken$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>darken$(amount)</h1>
+      <h1>Color#darken$(amount)</h1>
       <div class='description'>
         <section class='summary'><p>Modifies the color so that it is darkened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p></section>
         <section class='usage'>
@@ -334,7 +334,7 @@
       <hr />
       <a name='desaturate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>desaturate(amount)</h1>
+      <h1>Color#desaturate(amount)</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color with its saturation reduced by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -374,7 +374,7 @@
       <hr />
       <a name='desaturate$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>desaturate$(amount)</h1>
+      <h1>Color#desaturate$(amount)</h1>
       <div class='description'>
         <section class='summary'><p>The modified color with its saturation reduced by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -415,7 +415,7 @@
       <hr />
       <a name='equal'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>equal(other)</h1>
+      <h1>Color#equal(other)</h1>
       <div class='description'>
         <section class='summary'><p>Determine whether two colors are equal. Compares their r, g, b, and alpha values.</p></section>
         <section class='usage'>
@@ -457,7 +457,7 @@
       <hr />
       <a name='grayscale'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>grayscale()</h1>
+      <h1>Color#grayscale()</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color converted to grayscale.</p></section>
         <section class='usage'>
@@ -487,7 +487,7 @@
       <hr />
       <a name='grayscale$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>grayscale$()</h1>
+      <h1>Color#grayscale$()</h1>
       <div class='description'>
         <section class='summary'><p>The calling color converted to grayscale.</p></section>
         <section class='usage'>
@@ -518,7 +518,7 @@
       <hr />
       <a name='hue'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>hue(newVal)</h1>
+      <h1>Color#hue(newVal)</h1>
       <div class='description'>
         <section class='summary'><p>A getter / setter for the hue value of the color. Passing no argument returns the<br />current hue value. Passing a value will set the hue to that value and return the color.</p></section>
         <section class='usage'>
@@ -564,7 +564,7 @@
       <hr />
       <a name='lightness'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>lightness(newVal)</h1>
+      <h1>Color#lightness(newVal)</h1>
       <div class='description'>
         <section class='summary'><p>A getter / setter for the lightness value of the color. Passing no argument returns the<br />current lightness value. Passing a value will set the lightness to that value and return the color.</p></section>
         <section class='usage'>
@@ -610,7 +610,7 @@
       <hr />
       <a name='shiftHue'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>shiftHue(degrees)</h1>
+      <h1>Color#shiftHue(degrees)</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color with its hue shifted by <code>degrees</code>. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.</p></section>
         <section class='usage'>
@@ -662,7 +662,7 @@
       <hr />
       <a name='shiftHue$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>shiftHue$(degrees)</h1>
+      <h1>Color#shiftHue$(degrees)</h1>
       <div class='description'>
         <section class='summary'><p>The calling color with its hue shifted by <code>degrees</code>. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.</p></section>
         <section class='usage'>
@@ -711,7 +711,7 @@
       <hr />
       <a name='lighten'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>lighten(amount)</h1>
+      <h1>Color#lighten(amount)</h1>
       <div class='description'>
         <section class='summary'><p>Returns a copy of the calling color lightened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p></section>
         <section class='usage'>
@@ -751,7 +751,7 @@
       <hr />
       <a name='lighten$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>lighten$(amount)</h1>
+      <h1>Color#lighten$(amount)</h1>
       <div class='description'>
         <section class='summary'><p>The calling color lightened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p></section>
         <section class='usage'>
@@ -794,7 +794,7 @@
       <hr />
       <a name='mixWith'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>mixWith(other, amount)</h1>
+      <h1>Color#mixWith(other, amount)</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color mixed with <code>other</code> using <code>amount</code> as the<br />mixing ratio. If amount is not passed, then the colors are mixed evenly.</p></section>
         <section class='usage'>
@@ -845,7 +845,7 @@
       <hr />
       <a name='mixWith$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>mixWith$(other, amount)</h1>
+      <h1>Color#mixWith$(other, amount)</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color mixed with <code>other</code> using <code>amount</code> as the<br />mixing ratio. If amount is not passed, then the colors are mixed evenly.</p></section>
         <section class='usage'>
@@ -901,7 +901,7 @@
       <hr />
       <a name='saturate'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>saturate(amount)</h1>
+      <h1>Color#saturate(amount)</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color with its saturation increased by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -949,7 +949,7 @@
       <hr />
       <a name='saturate$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>saturate$(amount)</h1>
+      <h1>Color#saturate$(amount)</h1>
       <div class='description'>
         <section class='summary'><p>The calling color with its saturation increased by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -996,7 +996,7 @@
       <hr />
       <a name='saturation'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>saturation(newVal)</h1>
+      <h1>Color#saturation(newVal)</h1>
       <div class='description'>
         <section class='summary'><p>A getter / setter for the saturation value of the color. Passing no argument returns the<br />current saturation value. Passing a value will set the saturation to that value and return the color.</p></section>
         <section class='usage'>
@@ -1040,7 +1040,7 @@
       <hr />
       <a name='toHex'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>toHex(leadingHash)</h1>
+      <h1>Color#toHex(leadingHash)</h1>
       <div class='description'>
         <section class='summary'><p>returns the Hex representation of the color. Exclude the leading <code>#</code> by passing false.</p></section>
         <section class='usage'>
@@ -1083,7 +1083,7 @@
       <hr />
       <a name='toHsl'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>toHsl()</h1>
+      <h1>Color#toHsl()</h1>
       <div class='description'>
         <section class='summary'><p>returns an array of the hue, saturation, lightness, and alpha values of the color.</p></section>
         <section class='usage'>
@@ -1111,7 +1111,7 @@
       <hr />
       <a name='toString'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>toString()</h1>
+      <h1>Color#toString()</h1>
       <div class='description'>
         <section class='summary'><p>returns string rgba representation of the color.</p></section>
         <section class='usage'>
@@ -1139,7 +1139,7 @@
       <hr />
       <a name='transparentize'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>transparentize()</h1>
+      <h1>Color#transparentize()</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color with its alpha reduced by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -1177,7 +1177,7 @@
       <hr />
       <a name='transparentize$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>transparentize$()</h1>
+      <h1>Color#transparentize$()</h1>
       <div class='description'>
         <section class='summary'><p>The calling color with its alpha reduced by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -1211,7 +1211,7 @@
       <hr />
       <a name='opacify'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>opacify()</h1>
+      <h1>Color#opacify()</h1>
       <div class='description'>
         <section class='summary'><p>A copy of the calling color with its alpha increased by <code>amount</code>.</p></section>
         <section class='usage'>
@@ -1249,7 +1249,7 @@
       <hr />
       <a name='opacify$'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>opacify$()</h1>
+      <h1>Color#opacify$()</h1>
       <div class='description'>
         <section class='summary'><p>The calling color with its alpha increased by <code>amount</code>.</p></section>
         <section class='usage'>
