@@ -4,10 +4,6 @@ require 'json'
 
 module Spacedocs
   class << self
-    def partial(template_name, locals={})
-      Tilt.new("source/#{template_name}").render self, locals
-    end
-
     def doc
       buffer = File.read 'game.json'
       doc_json = JSON.parse buffer
@@ -18,18 +14,37 @@ module Spacedocs
 
       processed_data[:docs_data].each do |class_data|
         class_data.each_pair do |class_name, data|
+          next unless class_name.end_with?('#')
+
           File.open("source/#{class_name.gsub(/#/, '')}.html", 'w') do |f|
+            # TODO concat the static methods in. Sooo close!
+            method_list = class_data[class_name]['method_list']
+            method_list = (method_list + class_data[class_name.gsub('#', '.')]['method_list']) if class_data[class_name.gsub('#', '.')]
+
+            methods = class_data[class_name]['methods']
+            methods = methods + class_data[class_name.gsub('#', '.')]['method_list'] if class_data[class_name.gsub('#', '.')]
+
+            class_names = processed_data[:class_names].map do |name|
+              name = name.gsub('#', '')
+              name = name.gsub('.', '')
+            end.compact.flatten.uniq.sort
+
             f.write(template.render self, {
               class_name: class_name,
-              method_list: class_data[class_name]['method_list'],
-              methods: class_data[class_name]['methods'],
-              class_names: processed_data[:class_names]
+              method_list: method_list,
+              methods: methods,
+              class_names: class_names
             })
           end
         end
       end
     end
 
+    def partial(template_name, locals={})
+      Tilt.new("source/#{template_name}").render self, locals
+    end
+
+    private
     def tags_named(name, tags)
       tags.map do |tag|
         tag['string'] if tag['type'] == name
