@@ -60,124 +60,24 @@
       <a href='/window.html'>window</a>
     </nav>
     <section class='method_list'>
-      <h3>Sprite# Methods</h3>
+      <h3>Sprite. Methods</h3>
       <div class='methods'>
-        <a href='Sprite.html#Sprite#draw'>draw</a>
-        <a href='Sprite.html#Sprite#fill'>fill</a>
-        <a href='Sprite.html#Sprite#loadSheet'>loadSheet</a>
-        <a href='Sprite.html#Sprite#load'>load</a>
-        <a href='Sprite.html#Sprite#fromPixieId'>fromPixieId</a>
-        <a href='Sprite.html#Sprite#fromURL'>fromURL</a>
-        <a href='Sprite.html#Sprite#loadByName'>loadByName</a>
+        <a href='Sprite..html#Sprite.loadSheet'>loadSheet</a>
+        <a href='Sprite..html#Sprite.load'>load</a>
+        <a href='Sprite..html#Sprite.fromPixieId'>fromPixieId</a>
+        <a href='Sprite..html#Sprite.fromURL'>fromURL</a>
+        <a href='Sprite..html#Sprite.loadByName'>loadByName</a>
+        <a href='Sprite..html#Sprite.loadSheet'>loadSheet</a>
+        <a href='Sprite..html#Sprite.load'>load</a>
+        <a href='Sprite..html#Sprite.fromPixieId'>fromPixieId</a>
+        <a href='Sprite..html#Sprite.fromURL'>fromURL</a>
+        <a href='Sprite..html#Sprite.loadByName'>loadByName</a>
       </div>
     </section>
     <div class='documentation'>
-      <a name='draw'></a>
-      <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#draw(canvas, x, y)</h1>
-      <div class='description'>
-        <section class='summary'><p>Draw this sprite on the given canvas at the given position.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>canvas</span>
-               -
-              <span class='param_description'>Reference to the canvas to draw the sprite on</span>
-            </li>
-            <li>
-              <span class='param_name'>x</span>
-               -
-              <span class='param_description'>Position on the x axis to draw the sprite</span>
-            </li>
-            <li>
-              <span class='param_name'>y</span>
-               -
-              <span class='param_description'>Position on the y axis to draw the sprite</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='.html'></a>
-          </p>
-          <p class='return_description'></p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>draw: function(canvas, x, y) {&#x000A;        return canvas.drawImage(image, sourceX, sourceY, width, height, x, y, width, height);&#x000A;      },</code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='fill'></a>
-      <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#fill(canvas, x, y, width, height, repeat)</h1>
-      <div class='description'>
-        <section class='summary'><p>Draw this sprite on the given canvas tiled to the x, y,<br />width, and height dimensions specified.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>canvas</span>
-               -
-              <span class='param_description'>Reference to the canvas to draw the sprite on</span>
-            </li>
-            <li>
-              <span class='param_name'>x</span>
-               -
-              <span class='param_description'>Position on the x axis to draw the sprite</span>
-            </li>
-            <li>
-              <span class='param_name'>y</span>
-               -
-              <span class='param_description'>Position on the y axis to draw the sprite</span>
-            </li>
-            <li>
-              <span class='param_name'>width</span>
-               -
-              <span class='param_description'>How far to tile the sprite on the x-axis</span>
-            </li>
-            <li>
-              <span class='param_name'>height</span>
-               -
-              <span class='param_description'>How far to tile the sprite on the y-axis</span>
-            </li>
-            <li>
-              <span class='param_name'>repeat</span>
-               -
-              <span class='param_description'>Repeat options. Can be `repeat-x`, `repeat-y`, `no-repeat`, or `repeat`. Defaults to `repeat`</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='.html'></a>
-          </p>
-          <p class='return_description'></p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>fill: function(canvas, x, y, width, height, repeat) {&#x000A;        var pattern;&#x000A;        if (repeat == null) repeat = "repeat";&#x000A;        pattern = canvas.createPattern(image, repeat);&#x000A;        return canvas.drawRect({&#x000A;          x: x,&#x000A;          y: y,&#x000A;          width: width,&#x000A;          height: height,&#x000A;          color: pattern&#x000A;        });&#x000A;      },&#x000A;      width: width,&#x000A;      height: height&#x000A;    };&#x000A;  };</code></pre>
-        </section>
-      </div>
-      <hr />
       <a name='loadSheet'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#loadSheet(name, tileWidth, tileHeight)</h1>
+      <h1>Sprite.loadSheet(name, tileWidth, tileHeight)</h1>
       <div class='description'>
         <section class='summary'><p>Loads all sprites from a sprite sheet found in<br />your images directory, specified by the name passed in.</p></section>
         <section class='usage'>
@@ -221,7 +121,7 @@
       <hr />
       <a name='load'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#load(url, loadedCallback)</h1>
+      <h1>Sprite.load(url, loadedCallback)</h1>
       <div class='description'>
         <section class='summary'><p>Loads a sprite from a given url.</p></section>
         <section class='usage'>
@@ -260,7 +160,7 @@
       <hr />
       <a name='fromPixieId'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#fromPixieId(id, callback)</h1>
+      <h1>Sprite.fromPixieId(id, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Loads a sprite with the given pixie id.</p></section>
         <section class='usage'>
@@ -299,7 +199,7 @@
       <hr />
       <a name='fromURL'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#fromURL(url, callback)</h1>
+      <h1>Sprite.fromURL(url, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Loads a sprite from a given url.</p></section>
         <section class='usage'>
@@ -338,7 +238,7 @@
       <hr />
       <a name='loadByName'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Sprite#loadByName(name, callback)</h1>
+      <h1>Sprite.loadByName(name, callback)</h1>
       <div class='description'>
         <section class='summary'><p>Loads a sprite with the given name.</p></section>
         <section class='usage'>

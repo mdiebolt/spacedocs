@@ -14,15 +14,19 @@ module Spacedocs
 
       processed_data[:docs_data].each do |class_data|
         class_data.each_pair do |class_name, data|
-          next unless class_name.end_with?('#')
-
           File.open("source/#{class_name.gsub(/#/, '')}.html", 'w') do |f|
-            # TODO concat the static methods in. Sooo close!
             method_list = class_data[class_name]['method_list']
-            method_list = (method_list + class_data[class_name.gsub('#', '.')]['method_list']) if class_data[class_name.gsub('#', '.')]
-
             methods = class_data[class_name]['methods']
-            methods = methods + class_data[class_name.gsub('#', '.')]['method_list'] if class_data[class_name.gsub('#', '.')]
+
+            processed_data[:docs_data].each do |class_data|
+              class_data.each_pair do |static_class, static_data|
+                next unless static_class == class_name.gsub('#', '.')
+
+                method_list = (method_list + static_data['method_list']) if static_data['method_list']
+
+                methods = methods.merge(static_data['methods'])
+              end
+            end
 
             class_names = processed_data[:class_names].map do |name|
               name = name.gsub('#', '')

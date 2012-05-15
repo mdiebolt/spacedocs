@@ -81,6 +81,7 @@
         <a href='Point.html#Point#dot'>dot</a>
         <a href='Point.html#Point#cross'>cross</a>
         <a href='Point.html#Point#distance'>distance</a>
+        <a href='Point.html#Point#centroid'>centroid</a>
       </div>
     </section>
     <div class='documentation'>
@@ -818,6 +819,40 @@
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
           <pre><code>distance: function(other) {&#x000A;      return Point.distance(this, other);&#x000A;    },</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='centroid'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Point#centroid(The)</h1>
+      <div class='description'>
+        <section class='summary'><p>The centroid of a set of points is their arithmetic mean.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>The</span>
+               -
+              <span class='param_description'>points to find the centroid of.</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code>Point.centroid = function() {&#x000A;    var points;&#x000A;    points = 1 <= arguments.length ? __slice.call(arguments, 0) : [];&#x000A;    return points.inject(Point(0, 0), function(sumPoint, point) {&#x000A;      return sumPoint.add(point);&#x000A;    }).scale(1 / points.length);&#x000A;  };</code></pre>
         </section>
       </div>
       <hr />
