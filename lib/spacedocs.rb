@@ -166,5 +166,3 @@ module Spacedocs
     end
   end
 end
-
-Spacedocs.doc
