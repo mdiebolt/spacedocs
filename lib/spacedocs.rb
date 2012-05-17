@@ -5,8 +5,10 @@ require 'json'
 
 module Spacedocs
   class << self
-    def doc
-      buffer = File.read 'game.json'
+    def doc(file, output_dir)
+      #TODO dox < file > temp_file.json
+
+      buffer = File.read file
       doc_json = JSON.parse buffer
 
       processed_data = process_data doc_json
@@ -156,9 +158,9 @@ module Spacedocs
         }
       end
 
-      File.open("source/sanity.json", 'w') do |f|
-        f.write(JSON.pretty_generate(docs_data))
-      end
+      #File.open("source/sanity.json", 'w') do |f|
+      #  f.write(JSON.pretty_generate(docs_data))
+      #end
 
       return { docs_data: docs_data, class_names: class_names }
     end
