@@ -16,7 +16,7 @@
       <a href='/Boolean.html'>Boolean</a>
       <a href='/Bounded.html'>Bounded</a>
       <a href='/Camera.html'>Camera</a>
-      <a class='active' href='/Clampable.html'>Clampable</a>
+      <a href='/Clampable.html'>Clampable</a>
       <a href='/Collidable.html'>Collidable</a>
       <a href='/Collision.html'>Collision</a>
       <a href='/Color.html'>Color</a>
@@ -57,40 +57,30 @@
       <a href='/TimedEvents.html'>TimedEvents</a>
       <a href='/TitleScreen.html'>TitleScreen</a>
       <a href='/Tween.html'>Tween</a>
-      <a href='/window.html'>window</a>
+      <a class='active' href='/window.html'>window</a>
     </nav>
     <section class='method_list'>
-      <h3>Clampable Methods</h3>
+      <h3>window Methods</h3>
       <div class='methods'>
-        <a href='Clampable.html##clamp'>#clamp</a>
-        <a href='Clampable.html##clampToBounds'>#clampToBounds</a>
+        <a href='window.html#.rand'>.rand</a>
+        <a href='window.html#.signedRand'>.signedRand</a>
       </div>
     </section>
     <div class='documentation'>
-      <a name='#clamp'></a>
+      <a name='.rand'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Clampable#clamp(data)</h1>
+      <h1>window.rand(n)</h1>
       <div class='description'>
-        <section class='summary'><p>Keep an objects attributes within a given range.</p></section>
+        <section class='summary'><p>Returns random integers from [0, n) if n is given.<br />Otherwise returns random float between 0 and 1.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
-          <pre><code># Player's health will be within [0, 100] at the end of every update
-          player.clamp
-            health:
-              min: 0
-              max: 100
           
-          # Score can only be positive
-          player.clamp
-            score:
-              min: 0
-          </code></pre>
         </section>
         <section class='parameters'>
           <h3>Parameters</h3>
           <ul>
             <li>
-              <span class='param_name'>data</span>
+              <span class='param_name'>n</span>
                -
               <span class='param_description'></span>
             </li>
@@ -100,22 +90,22 @@
           <h3>Returns</h3>
           <p>
             Type:
-            <a href='.html'></a>
+            <a href='Number.html'>Number</a>
           </p>
-          <p class='return_description'></p>
+          <p class='return_description'>A random integer from 0 to n - 1 if n is given. If n is not given, a random float between 0 and 1.</p>
         </section>
         <section class='source'>
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
-          <pre><code>clamp: function(data) {&#x000A;      return Object.extend(I.clampData, data);&#x000A;    },</code></pre>
+          <pre><code>(typeof exports !== "undefined" && exports !== null ? exports : this)["rand"] = function(n) {&#x000A;    if (n) {&#x000A;      return Math.floor(n * Math.random());&#x000A;    } else {&#x000A;      return Math.random();&#x000A;    }&#x000A;  };</code></pre>
         </section>
       </div>
       <hr />
-      <a name='#clampToBounds'></a>
+      <a name='.signedRand'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Clampable#clampToBounds(bounds)</h1>
+      <h1>window.signedRand(n)</h1>
       <div class='description'>
-        <section class='summary'><p>Helper to clamp the <code>x</code> and <code>y</code> properties of the object to be within a given bounds.</p></section>
+        <section class='summary'><p>Returns random float from [-n / 2, n / 2] if n is given.<br />Otherwise returns random float between -0.5 and 0.5.</p></section>
         <section class='usage'>
           <h3>Usage</h3>
           
@@ -124,9 +114,9 @@
           <h3>Parameters</h3>
           <ul>
             <li>
-              <span class='param_name'>bounds</span>
+              <span class='param_name'>n</span>
                -
-              <span class='param_description'>The bounds to clamp the object's position within. Defaults to the app size if none given.</span>
+              <span class='param_description'></span>
             </li>
           </ul>
         </section>
@@ -134,14 +124,14 @@
           <h3>Returns</h3>
           <p>
             Type:
-            <a href='.html'></a>
+            <a href='Number.html'>Number</a>
           </p>
-          <p class='return_description'></p>
+          <p class='return_description'>A random float from -n / 2 to n / 2 if n is given. If n is not given, a random float between -0.5 and 0.5.</p>
         </section>
         <section class='source'>
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
-          <pre><code>clampToBounds: function(bounds) {&#x000A;      bounds || (bounds = Rectangle({&#x000A;        x: 0,&#x000A;        y: 0,&#x000A;        width: App.width,&#x000A;        height: App.height&#x000A;      }));&#x000A;      return self.clamp({&#x000A;        x: {&#x000A;          min: bounds.x + I.width / 2,&#x000A;          max: bounds.width - I.width / 2&#x000A;        },&#x000A;        y: {&#x000A;          min: bounds.y + I.height / 2,&#x000A;          max: bounds.height - I.height / 2&#x000A;        }&#x000A;      });&#x000A;    }&#x000A;  };&#x000A;};&#x000A;;&#x000A;&#x000A;(function() {</code></pre>
+          <pre><code>return (typeof exports !== "undefined" && exports !== null ? exports : this)["signedRand"] = function(n) {&#x000A;    if (n) {&#x000A;      return (n * Math.random()) - (n / 2);&#x000A;    } else {&#x000A;      return Math.random() - 0.5;&#x000A;    }&#x000A;  };&#x000A;})();&#x000A;;&#x000A;&#x000A;(function() {&#x000A;  var Rectangle;&#x000A;  Rectangle = function(_arg) {&#x000A;    var height, width, x, y;&#x000A;    x = _arg.x, y = _arg.y, width = _arg.width, height = _arg.height;&#x000A;    return {&#x000A;      __proto__: Rectangle.prototype,&#x000A;      x: x || 0,&#x000A;      y: y || 0,&#x000A;      width: width || 0,&#x000A;      height: height || 0&#x000A;    };&#x000A;  };&#x000A;  Rectangle.prototype = {&#x000A;    center: function() {&#x000A;      return Point(this.x + this.width / 2, this.y + this.height / 2);&#x000A;    },&#x000A;    equal: function(other) {&#x000A;      return this.x === other.x && this.y === other.y && this.width === other.width && this.height === other.height;&#x000A;    }&#x000A;  };&#x000A;  Rectangle.prototype.__defineGetter__('left', function() {&#x000A;    return this.x;&#x000A;  });&#x000A;  Rectangle.prototype.__defineGetter__('right', function() {&#x000A;    return this.x + this.width;&#x000A;  });&#x000A;  Rectangle.prototype.__defineGetter__('top', function() {&#x000A;    return this.y;&#x000A;  });&#x000A;  Rectangle.prototype.__defineGetter__('bottom', function() {&#x000A;    return this.y + this.height;&#x000A;  });&#x000A;  return (typeof exports !== "undefined" && exports !== null ? exports : this)["Rectangle"] = Rectangle;&#x000A;})();&#x000A;;</code></pre>
         </section>
       </div>
       <hr />

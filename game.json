@@ -7265,9 +7265,9 @@
       }
     ],
     "description": {
-      "full": "<p>Sets the day of the month for a specified date according to universal time.</p>\n\n<p><code><br />setUTCDate(<i>dayValue</i>)<br /></code></p>",
+      "full": "<p>Sets the day of the month for a specified date according to universal time.</p>",
       "summary": "<p>Sets the day of the month for a specified date according to universal time.</p>",
-      "body": "<p><code><br />setUTCDate(<i>dayValue</i>)<br /></code></p>"
+      "body": ""
     },
     "isPrivate": false,
     "ignore": false

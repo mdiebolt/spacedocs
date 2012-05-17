@@ -23,8 +23,8 @@
       %section.method_list
         %h3= "#{class_name} Methods"
         .methods
-          -method_list.each do |m|
-            %a(href="#{class_name.gsub('#', '')}.html##{class_name}#{m}")= m
+          -method_list.each do |method_name|
+            %a(href="#{class_name}.html##{method_name}")= method_name
     .documentation
       -if methods.first
         -methods.each_pair do |method_name, method_data|

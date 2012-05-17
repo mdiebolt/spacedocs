@@ -28,7 +28,7 @@
       <a href='/Drawable.html'>Drawable</a>
       <a href='/Durable.html'>Durable</a>
       <a href='/Engine.html'>Engine</a>
-      <a href='/EngineJoysticks.html'>EngineJoysticks</a>
+      <a href='/Engine.Joysticks.html'>Engine.Joysticks</a>
       <a href='/Fadeable.html'>Fadeable</a>
       <a href='/Flickerable.html'>Flickerable</a>
       <a href='/Follow.html'>Follow</a>
@@ -43,7 +43,7 @@
       <a href='/Metered.html'>Metered</a>
       <a href='/Movable.html'>Movable</a>
       <a href='/Number.html'>Number</a>
-      <a href='/Object.html'>Object</a>
+      <a class='active' href='/Object.html'>Object</a>
       <a href='/Oscillator.html'>Oscillator</a>
       <a href='/Point.html'>Point</a>
       <a href='/Random.html'>Random</a>
@@ -60,54 +60,20 @@
       <a href='/window.html'>window</a>
     </nav>
     <section class='method_list'>
-      <h3>Object# Methods</h3>
+      <h3>Object Methods</h3>
       <div class='methods'>
-        <a href='Object.html#Object#hasOwnProperty'>hasOwnProperty</a>
-        <a href='Object.html#Object#isArray'>isArray</a>
-        <a href='Object.html#Object#isString'>isString</a>
-        <a href='Object.html#Object#reverseMerge'>reverseMerge</a>
-        <a href='Object.html#Object#extend'>extend</a>
-        <a href='Object.html#Object#isObject'>isObject</a>
+        <a href='Object.html#.isArray'>.isArray</a>
+        <a href='Object.html#.isString'>.isString</a>
+        <a href='Object.html#.reverseMerge'>.reverseMerge</a>
+        <a href='Object.html#.extend'>.extend</a>
+        <a href='Object.html#.isObject'>.isObject</a>
+        <a href='Object.html##hasOwnProperty'>#hasOwnProperty</a>
       </div>
     </section>
     <div class='documentation'>
-      <a name='hasOwnProperty'></a>
+      <a name='.isArray'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#hasOwnProperty(The)</h1>
-      <div class='description'>
-        <section class='summary'><p>Returns a boolean indicating whether the object has the specified property.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          <p><code><em>obj</em>.hasOwnProperty(<em>prop</em>)</code></p>
-        </section>
-        <section class='parameters'>
-          <h3>Parameters</h3>
-          <ul>
-            <li>
-              <span class='param_name'>The</span>
-               -
-              <span class='param_description'>name of the property to test.</span>
-            </li>
-          </ul>
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='.html'></a>
-          </p>
-          <p class='return_description'></p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code></code></pre>
-        </section>
-      </div>
-      <hr />
-      <a name='isArray'></a>
-      <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#isArray(object)</h1>
+      <h1>Object.isArray(object)</h1>
       <div class='description'>
         <section class='summary'><p>Checks whether an object is an array.</p></section>
         <section class='usage'>
@@ -144,9 +110,9 @@
         </section>
       </div>
       <hr />
-      <a name='isString'></a>
+      <a name='.isString'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#isString(object)</h1>
+      <h1>Object.isString(object)</h1>
       <div class='description'>
         <section class='summary'><p>Checks whether an object is a string.</p></section>
         <section class='usage'>
@@ -186,9 +152,9 @@
         </section>
       </div>
       <hr />
-      <a name='reverseMerge'></a>
+      <a name='.reverseMerge'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#reverseMerge(target)</h1>
+      <h1>Object.reverseMerge(target)</h1>
       <div class='description'>
         <section class='summary'><p>Merges properties from objects into target without overiding.<br />First come, first served.</p></section>
         <section class='usage'>
@@ -230,9 +196,9 @@
         </section>
       </div>
       <hr />
-      <a name='extend'></a>
+      <a name='.extend'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#extend(target)</h1>
+      <h1>Object.extend(target)</h1>
       <div class='description'>
         <section class='summary'><p>Merges properties from sources into target with overiding.<br />Last in covers earlier properties.</p></section>
         <section class='usage'>
@@ -274,9 +240,9 @@
         </section>
       </div>
       <hr />
-      <a name='isObject'></a>
+      <a name='.isObject'></a>
       <!-- TODO make sure method_data isn't nil -->
-      <h1>Object#isObject(object)</h1>
+      <h1>Object.isObject(object)</h1>
       <div class='description'>
         <section class='summary'><p>Helper method that tells you if something is an object.</p></section>
         <section class='usage'>
@@ -309,6 +275,40 @@
           <h3>Source</h3>
           <a class='toggle_source'>Toggle</a>
           <pre><code>Object.isObject = function(object) {&#x000A;  return Object.prototype.toString.call(object) === '[object Object]';&#x000A;};&#x000A;;&#x000A;var __slice = Array.prototype.slice;&#x000A;&#x000A;(function() {</code></pre>
+        </section>
+      </div>
+      <hr />
+      <a name='#hasOwnProperty'></a>
+      <!-- TODO make sure method_data isn't nil -->
+      <h1>Object#hasOwnProperty(The)</h1>
+      <div class='description'>
+        <section class='summary'><p>Returns a boolean indicating whether the object has the specified property.</p></section>
+        <section class='usage'>
+          <h3>Usage</h3>
+          <p><code><em>obj</em>.hasOwnProperty(<em>prop</em>)</code></p>
+        </section>
+        <section class='parameters'>
+          <h3>Parameters</h3>
+          <ul>
+            <li>
+              <span class='param_name'>The</span>
+               -
+              <span class='param_description'>name of the property to test.</span>
+            </li>
+          </ul>
+        </section>
+        <section class='returns'>
+          <h3>Returns</h3>
+          <p>
+            Type:
+            <a href='.html'></a>
+          </p>
+          <p class='return_description'></p>
+        </section>
+        <section class='source'>
+          <h3>Source</h3>
+          <a class='toggle_source'>Toggle</a>
+          <pre><code></code></pre>
         </section>
       </div>
       <hr />

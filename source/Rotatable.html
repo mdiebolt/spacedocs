@@ -37,7 +37,7 @@
       <a href='/GameObject.html'>GameObject</a>
       <a href='/GameOver.html'>GameOver</a>
       <a href='/GameState.html'>GameState</a>
-      <a class='active' href='/LevelState.html'>LevelState</a>
+      <a href='/LevelState.html'>LevelState</a>
       <a href='/Math.html'>Math</a>
       <a href='/Matrix.html'>Matrix</a>
       <a href='/Metered.html'>Metered</a>
@@ -49,7 +49,7 @@
       <a href='/Random.html'>Random</a>
       <a href='/RegExp.html'>RegExp</a>
       <a href='/ResourceLoader.html'>ResourceLoader</a>
-      <a href='/Rotatable.html'>Rotatable</a>
+      <a class='active' href='/Rotatable.html'>Rotatable</a>
       <a href='/Sprite.html'>Sprite</a>
       <a href='/String.html'>String</a>
       <a href='/TextEffect.html'>TextEffect</a>
@@ -59,37 +59,7 @@
       <a href='/Tween.html'>Tween</a>
       <a href='/window.html'>window</a>
     </nav>
-    <section class='method_list'>
-      <h3>LevelState Methods</h3>
-      <div class='methods'>
-        <a href='LevelState.html##enter'>#enter</a>
-      </div>
-    </section>
     <div class='documentation'>
-      <a name='#enter'></a>
-      <!-- TODO make sure method_data isn't nil -->
-      <h1>LevelState#enter()</h1>
-      <div class='description'>
-        <section class='summary'><p>Fades in the current level and loads the map.</p></section>
-        <section class='usage'>
-          <h3>Usage</h3>
-          
-        </section>
-        <section class='returns'>
-          <h3>Returns</h3>
-          <p>
-            Type:
-            <a href='.html'></a>
-          </p>
-          <p class='return_description'></p>
-        </section>
-        <section class='source'>
-          <h3>Source</h3>
-          <a class='toggle_source'>Toggle</a>
-          <pre><code>var LevelState;&#x000A;&#x000A;LevelState = function(I) {&#x000A;  var self;&#x000A;  if (I == null) I = {};&#x000A;  Object.reverseMerge(I, {&#x000A;    duration: 10,&#x000A;    level: 'level1'&#x000A;  });&#x000A;  self = GameState(I);&#x000A;  self.bind("enter", function() {&#x000A;    engine.fadeIn({&#x000A;      duration: I.duration&#x000A;    });&#x000A;    return engine.loadMap(I.level, function() {&#x000A;      return engine.I.transitioning = false;&#x000A;    });&#x000A;  });&#x000A;  return self;&#x000A;};&#x000A;;</code></pre>
-        </section>
-      </div>
-      <hr />
     </div>
   </body>
 </html>

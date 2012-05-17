@@ -12,34 +12,24 @@ module Spacedocs
 
       template = Tilt.new("source/class.html.haml")
 
-      processed_data[:docs_data].each do |class_data|
-        class_data.each_pair do |class_name, data|
-          File.open("source/#{class_name.gsub(/#/, '')}.html", 'w') do |f|
-            method_list = class_data[class_name]['method_list']
-            methods = class_data[class_name]['methods']
+      files = {}
 
-            processed_data[:docs_data].each do |class_data|
-              class_data.each_pair do |static_class, static_data|
-                next unless static_class == class_name.gsub('#', '.')
+      class_data = processed_data[:docs_data]
 
-                method_list = (method_list + static_data['method_list']) if static_data['method_list']
+      class_data.each_key do |namespace|
+        files[namespace] = true
+      end
 
-                methods = methods.merge(static_data['methods'])
-              end
-            end
+      files.each_key do |file_name|
+        methods = class_data[file_name]['methods']
 
-            class_names = processed_data[:class_names].map do |name|
-              name = name.gsub('#', '')
-              name = name.gsub('.', '')
-            end.compact.flatten.uniq.sort
-
-            f.write(template.render self, {
-              class_name: class_name,
-              method_list: method_list,
-              methods: methods,
-              class_names: class_names
-            })
-          end
+        File.open("source/#{file_name}.html", 'w') do |f|
+          f.write(template.render self, {
+            class_name: file_name,
+            method_list: methods.keys,
+            methods: methods,
+            class_names: files.keys
+          })
         end
       end
     end
@@ -61,6 +51,14 @@ module Spacedocs
 
     def name_data(tags)
       tags_named('name', tags)
+    end
+
+    def format_class_name(name)
+      if name.end_with?('#')
+        name[0...-1]
+      else
+        name
+      end
     end
 
     def params_data(tags)
@@ -92,10 +90,6 @@ module Spacedocs
       tags_named('see', tags)
     end
 
-    def format_class_name(name)
-      name.end_with?('#') ? name : name + '.'
-    end
-
     def class_name_data(tags)
       class_names = []
 
@@ -104,18 +98,18 @@ module Spacedocs
 
         if tag['type'] == 'constructor' || tag['type'] == 'namespace'
           tags.each do |tag|
-            class_names << format_class_name(tag['string']) if tag['type'] == 'name'
+            class_names << tag['string'] if tag['type'] == 'name'
           end
         end
       end
 
-      class_names.compact.flatten.uniq
+      class_names.first
     end
 
     def process_data(json)
       class_names = []
       tags_list = []
-      docs_data = []
+      docs_data = {}
       module_map = {}
 
       json.each do |item|
@@ -132,9 +126,15 @@ module Spacedocs
         class_names << class_name_data(tags)
 
         if name && method_of
-          class_name = format_class_name(method_of)
-          module_map[class_name] ||= {}
-          module_map[class_name][name] = {
+          if method_of.end_with?('#')
+            name = "##{name}"
+            method_of = method_of[0...-1]
+          else
+            name = ".#{name}"
+          end
+
+          module_map[method_of] ||= {}
+          module_map[method_of][name] = {
             "summary" => item['description']['summary'],
             "code_sample" => item['description']['body'],
             "source" => item['code'],
@@ -148,19 +148,15 @@ module Spacedocs
       class_names = class_names.compact.flatten.uniq.sort
 
       class_names.each do |source_class|
-        method_list = module_map[source_class] ? module_map[source_class].keys : []
-        method_data = module_map[source_class] ? module_map[source_class] : {}
+        method_data = module_map[source_class] || {}
 
-        docs_data << {
-          "#{source_class}" => {
-            "method_list" => method_list,
-            "methods" => method_data
-          }
+        docs_data[source_class] = {
+          'methods' => method_data
         }
       end
 
       File.open("source/sanity.json", 'w') do |f|
-        f.write(docs_data.to_json)
+        f.write(JSON.pretty_generate(docs_data))
       end
 
       return { docs_data: docs_data, class_names: class_names }

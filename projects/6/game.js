@@ -3924,10 +3924,7 @@ January 1970, 00:00:00 UTC.
 /**
 Sets the day of the month for a specified date according to universal time.
 
-<code>
-setUTCDate(<i>dayValue</i>)
-</code>
-@param  dayValue   An integer from 1 to 31, representing the day of the month.
+@param dayValue An integer from 1 to 31, representing the day of the month.
 @name setUTCDate
 @methodOf Date#
 */
