@@ -1,3 +1,4 @@
+require 'spacedocs/version'
 require 'tilt'
 require 'haml'
 require 'json'
