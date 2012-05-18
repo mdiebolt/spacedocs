@@ -6,6 +6,8 @@ require 'fileutils'
 module Spacedocs
   class << self
     def doc(project_dir, file)
+      tilt_path = File.dirname(__FILE__)
+
       #TODO Dangerous
       json = %x[dox < "#{File.join project_dir, file}"]
 
@@ -13,7 +15,7 @@ module Spacedocs
 
       processed_data = process_data doc_json
 
-      template = Tilt.new("source/class.html.haml")
+      template = Tilt.new(File.join tilt_path, "../source/class.html.haml")
 
       files = {}
 
@@ -37,10 +39,6 @@ module Spacedocs
           })
         end
       end
-    end
-
-    def partial(template_name, locals={})
-      Tilt.new("source/#{template_name}").render self, locals
     end
 
     private
