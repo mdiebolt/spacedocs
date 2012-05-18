@@ -1,10 +1,12 @@
 require 'tilt'
 require 'haml'
 require 'json'
+require 'fileutils'
 
 module Spacedocs
   class << self
     def doc(project_dir, file)
+      #TODO Dangerous
       json = %x[dox < "#{File.join project_dir, file}"]
 
       doc_json = JSON.parse json
@@ -21,7 +23,7 @@ module Spacedocs
         files[namespace] = true
       end
 
-      Dir.mkdir File.join(project_dir, 'docs') unless Dir.exists? File.join(project_dir, 'docs')
+      FileUtils.mkdir_p File.join(project_dir, 'docs')
 
       files.each_key do |file_name|
         methods = class_data[file_name]['methods']
