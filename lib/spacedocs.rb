@@ -1,15 +1,13 @@
-require 'spacedocs/version'
 require 'tilt'
 require 'haml'
 require 'json'
 
 module Spacedocs
   class << self
-    def doc(file, output_dir)
-      #TODO dox < file > temp_file.json
+    def doc(project_dir, file)
+      json = %x[dox < "#{File.join project_dir, file}"]
 
-      buffer = File.read file
-      doc_json = JSON.parse buffer
+      doc_json = JSON.parse json
 
       processed_data = process_data doc_json
 
@@ -23,10 +21,12 @@ module Spacedocs
         files[namespace] = true
       end
 
+      Dir.mkdir File.join(project_dir, 'docs') unless Dir.exists? File.join(project_dir, 'docs')
+
       files.each_key do |file_name|
         methods = class_data[file_name]['methods']
 
-        File.open("source/#{file_name}.html", 'w') do |f|
+        File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
           f.write(template.render self, {
             class_name: file_name,
             method_list: methods.keys,
