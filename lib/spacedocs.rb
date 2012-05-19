@@ -16,6 +16,7 @@ module Spacedocs
       processed_data = process_data doc_json
 
       template = Tilt.new(File.join tilt_path, "../source/class.html.haml")
+      index_template = Tilt.new(File.join tilt_path, "../source/index.html.haml")
 
       files = {}
 
@@ -26,6 +27,10 @@ module Spacedocs
       end
 
       FileUtils.mkdir_p File.join(project_dir, 'docs')
+
+      File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
+        f.write(index_template.render self, { class_names: files.keys })
+      end
 
       files.each_key do |file_name|
         methods = class_data[file_name]['methods']
@@ -165,4 +170,8 @@ module Spacedocs
       return { docs_data: docs_data, class_names: class_names }
     end
   end
+end
+
+if __FILE__ == $0
+  Spacedocs.doc 'projects/6', 'game.js'
 end

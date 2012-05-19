@@ -14,9 +14,9 @@
         - name = doc_class.gsub('#', '')
 
         -if doc_class == class_name
-          %a.active(href="/#{name}.html")= name
+          %a.active(href="#{name}.html")= name
         -else
-          %a(href="/#{name}.html")= name
+          %a(href="#{name}.html")= name
     - if method_list.length > 0
       %section.method_list
         %h3= "#{class_name} Methods"
