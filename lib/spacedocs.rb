@@ -26,7 +26,10 @@ module Spacedocs
         files[namespace] = true
       end
 
-      FileUtils.mkdir_p File.join(project_dir, 'docs')
+      docs_dir = File.join(project_dir, 'docs')
+
+      FileUtils.rm_rf docs_dir
+      FileUtils.mkdir_p docs_dir
 
       File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
         f.write(index_template.render self, { class_names: files.keys })
