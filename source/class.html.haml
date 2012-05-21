@@ -6,7 +6,11 @@
 
     %title= class_name
 
-    %link(href="/assets/spacedocs/docs.css" media="screen, projection" rel="stylesheet" type="text/css")
+    - if dev
+      %link(href="/stylesheets/spacedocs/docs.css" media="screen, projection" rel="stylesheet" type="text/css")
+    - else
+      %link(href="/assets/spacedocs/docs.css" media="screen, projection" rel="stylesheet" type="text/css")
+
     %script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript")
   %body
     %pre
@@ -25,8 +29,18 @@
           -method_list.sort.each do |method_name|
             %a(href="#{class_name}.html##{method_name}")= method_name
     .documentation
+      -if class_summary
+        %h1= "#{class_name} Summary"
+        .description
+          %section.summary
+          = class_summary['description']['summary']
+          %section.usage
+            %h3 Usage
+            = class_summary['description']['body']
+        %hr
       -if methods.first
-        -methods.each_pair do |method_name, method_data|
+        -methods.keys.sort.each do |method_name|
+          - method_data = methods[method_name]
           %a(name="#{method_name}")
           / TODO make sure method_data isn't nil
           - if method_data && method_data.first

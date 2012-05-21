@@ -31,20 +31,42 @@ module Spacedocs
       FileUtils.rm_rf docs_dir
       FileUtils.mkdir_p docs_dir
 
-      File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
-        f.write(index_template.render self, { class_names: files.keys })
-      end
+      if __FILE__ == $0
+        File.open("source/index.html", 'w') do |f|
+          f.write(index_template.render self, { class_names: files.keys, dev: true })
+        end
 
-      files.each_key do |file_name|
-        methods = class_data[file_name]['methods']
+        files.each_key do |file_name|
+          methods = class_data[file_name]['methods']
 
-        File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
-          f.write(template.render self, {
-            class_name: file_name,
-            method_list: methods.keys,
-            methods: methods,
-            class_names: files.keys
-          })
+          File.open("source/#{file_name}.html", 'w') do |f|
+            f.write(template.render self, {
+              class_name: file_name,
+              method_list: methods.keys,
+              methods: methods,
+              class_names: files.keys,
+              class_summary: class_data[file_name]['summary'],
+              dev: true
+            })
+          end
+        end
+      else
+        File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
+          f.write(index_template.render self, { class_names: files.keys })
+        end
+
+        files.each_key do |file_name|
+          methods = class_data[file_name]['methods']
+
+          File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
+            f.write(template.render self, {
+              class_name: file_name,
+              method_list: methods.keys,
+              methods: methods,
+              class_names: files.keys,
+              class_summary: class_data[file_name]['description']
+            })
+          end
         end
       end
     end
@@ -107,7 +129,7 @@ module Spacedocs
       tags.each do |tag|
         class_names << format_class_name(tag['string']) if tag['type'] == 'methodOf'
 
-        if tag['type'] == 'constructor' || tag['type'] == 'namespace'
+        if ['constructor', 'namespace'].include? tag['type']
           tags.each do |tag|
             class_names << tag['string'] if tag['type'] == 'name'
           end
@@ -122,9 +144,20 @@ module Spacedocs
       tags_list = []
       docs_data = {}
       module_map = {}
+      class_summaries = {}
 
       json.each do |item|
         tags = item['tags']
+
+        tags.each do |tag|
+          if ['constructor', 'namespace'].include? tag['type']
+            class_summaries[class_name_data(tags)] ||= {}
+            class_summaries[class_name_data(tags)]['description'] ||= {}
+
+            class_summaries[class_name_data(tags)]['description']['summary'] = item['description']['summary'] || ""
+            class_summaries[class_name_data(tags)]['description']['body'] = item['description']['body'] || ""
+          end
+        end
 
         tags_list << tags
 
@@ -162,13 +195,14 @@ module Spacedocs
         method_data = module_map[source_class] || {}
 
         docs_data[source_class] = {
+          'summary' => class_summaries[source_class],
           'methods' => method_data
         }
       end
 
-      #File.open("source/sanity.json", 'w') do |f|
-      #  f.write(JSON.pretty_generate(docs_data))
-      #end
+      # File.open("source/sanity.json", 'w') do |f|
+      #   f.write(JSON.pretty_generate(docs_data))
+      # end
 
       return { docs_data: docs_data, class_names: class_names }
     end
