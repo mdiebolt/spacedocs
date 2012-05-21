@@ -64,7 +64,8 @@ module Spacedocs
               method_list: methods.keys,
               methods: methods,
               class_names: files.keys,
-              class_summary: class_data[file_name]['description']
+              class_summary: class_data[file_name]['summary'],
+              dev: false
             })
           end
         end
