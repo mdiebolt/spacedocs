@@ -2,6 +2,8 @@ require 'tilt'
 require 'haml'
 require 'json'
 require 'fileutils'
+require 'spacedocs/engine'
+require 'spacedocs/version'
 
 module Spacedocs
   class << self
