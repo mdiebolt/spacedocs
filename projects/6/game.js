@@ -1,3 +1,132 @@
+
+;
+;
+/**
+Checks whether an object is an array.
+
+    Object.isArray([1, 2, 4])
+    # => true
+
+    Object.isArray({key: "value"})
+    # => false
+
+@name isArray
+@methodOf Object
+@param {Object} object The object to check for array-ness.
+@returns {Boolean} A boolean expressing whether the object is an instance of Array
+*/
+var __slice = Array.prototype.slice;
+
+Object.isArray = function(object) {
+  return Object.prototype.toString.call(object) === "[object Array]";
+};
+
+/**
+Checks whether an object is a string.
+
+    Object.isString("a string")
+    # => true
+
+    Object.isString([1, 2, 4])
+    # => false
+
+    Object.isString({key: "value"})
+    # => false
+
+@name isString
+@methodOf Object
+@param {Object} object The object to check for string-ness.
+@returns {Boolean} A boolean expressing whether the object is an instance of String
+*/
+
+Object.isString = function(object) {
+  return Object.prototype.toString.call(object) === "[object String]";
+};
+
+/**
+Merges properties from objects into target without overiding.
+First come, first served.
+
+      I =
+        a: 1
+        b: 2
+        c: 3
+
+      Object.reverseMerge I,
+        c: 6
+        d: 4
+
+      I # => {a: 1, b:2, c:3, d: 4}
+
+@name reverseMerge
+@methodOf Object
+@param {Object} target The object to merge the properties into.
+@returns {Object} target
+*/
+
+Object.reverseMerge = function() {
+  var name, object, objects, target, _i, _len;
+  target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+  for (_i = 0, _len = objects.length; _i < _len; _i++) {
+    object = objects[_i];
+    for (name in object) {
+      if (!target.hasOwnProperty(name)) target[name] = object[name];
+    }
+  }
+  return target;
+};
+
+/**
+Merges properties from sources into target with overiding.
+Last in covers earlier properties.
+
+      I =
+        a: 1
+        b: 2
+        c: 3
+
+      Object.extend I,
+        c: 6
+        d: 4
+
+      I # => {a: 1, b:2, c:6, d: 4}
+
+@name extend
+@methodOf Object
+@param {Object} target The object to merge the properties into.
+@returns {Object} target
+*/
+
+Object.extend = function() {
+  var name, source, sources, target, _i, _len;
+  target = arguments[0], sources = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+  for (_i = 0, _len = sources.length; _i < _len; _i++) {
+    source = sources[_i];
+    for (name in source) {
+      target[name] = source[name];
+    }
+  }
+  return target;
+};
+
+/**
+Helper method that tells you if something is an object.
+
+    object = {a: 1}
+
+    Object.isObject(object)
+    # => true
+
+@name isObject
+@methodOf Object
+@param {Object} object Maybe this guy is an object.
+@returns {Boolean} true if this guy is an object.
+*/
+
+Object.isObject = function(object) {
+  return Object.prototype.toString.call(object) === '[object Object]';
+};
+;
 /**
 Calculate the average value of an array. Returns undefined if some elements
 are not numbers.
@@ -60,10 +189,10 @@ Array.prototype.copy = function() {
 /**
 Empties the array of its contents. It is modified in place.
 
-<pre><code>fullArray = [1, 2, 3]
-fullArray.clear()
-fullArray
-# => []</code></pre>
+    fullArray = [1, 2, 3]
+    fullArray.clear()
+    fullArray
+    # => []
 
 @name clear
 @methodOf Array#
@@ -186,7 +315,7 @@ Array.prototype.include = function(element) {
 /**
 Call the given iterator once for each element in the array,
 passing in the element as the first argument, the index of
-the element as the second argument, and `this` array as the
+the element as the second argument, and <code>this</code> array as the
 third argument.
 
     word = ""
@@ -294,7 +423,7 @@ Array.prototype.eachPair = function(iterator, context) {
 Call the given iterator once for each element in the array,
 passing in the element as the first argument and the given object
 as the second argument. Additional arguments are passed similar to
-`each`.
+<code>each</code>.
 
 @see Array#each
 @name eachWithObject
@@ -685,55 +814,92 @@ Bindable module.
 var Bindable,
   __slice = Array.prototype.slice;
 
-Bindable = function() {
+Bindable = function(I, self) {
   var eventCallbacks;
+  if (I == null) I = {};
   eventCallbacks = {};
   return {
+    bind: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return self.on.apply(self, args);
+    },
+    unbind: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return self.off.apply(self, args);
+    },
     /**
     Adds a function as an event listener.
 
         # this will call coolEventHandler after
         # yourObject.trigger "someCustomEvent" is called.
-        yourObject.bind "someCustomEvent", coolEventHandler
+        yourObject.on "someCustomEvent", coolEventHandler
 
         #or
-        yourObject.bind "anotherCustomEvent", ->
+        yourObject.on "anotherCustomEvent", ->
           doSomething()
 
-    @name bind
+    @name on
     @methodOf Bindable#
     @param {String} event The event to listen to.
-    @param {Function} callback The function to be called when the specified event is triggered.
+    @param {Function} callback The function to be called when the specified event
+    is triggered.
     */
-    bind: function(event, callback) {
-      eventCallbacks[event] = eventCallbacks[event] || [];
-      return eventCallbacks[event].push(callback);
+    on: function(namespacedEvent, callback) {
+      var event, namespace, _ref;
+      _ref = namespacedEvent.split("."), event = _ref[0], namespace = _ref[1];
+      if (namespace) {
+        callback.__PIXIE || (callback.__PIXIE = {});
+        callback.__PIXIE[namespace] = true;
+      }
+      eventCallbacks[event] || (eventCallbacks[event] = []);
+      eventCallbacks[event].push(callback);
+      return this;
     },
     /**
     Removes a specific event listener, or all event listeners if
     no specific listener is given.
 
-    Another paragraph.
-
         #  removes the handler coolEventHandler from the event
         # "someCustomEvent" while leaving the other events intact.
-        yourObject.unbind "someCustomEvent", coolEventHandler
+        yourObject.off "someCustomEvent", coolEventHandler
 
         # removes all handlers attached to "anotherCustomEvent"
-        yourObject.unbind "anotherCustomEvent"
+        yourObject.off "anotherCustomEvent"
 
-    @name unbind
+    @name off
     @methodOf Bindable#
     @param {String} event The event to remove the listener from.
     @param {Function} [callback] The listener to remove.
     */
-    unbind: function(event, callback) {
-      eventCallbacks[event] = eventCallbacks[event] || [];
-      if (callback) {
-        return eventCallbacks[event].remove(callback);
-      } else {
-        return eventCallbacks[event] = [];
+    off: function(namespacedEvent, callback) {
+      var callbacks, event, key, namespace, _ref;
+      _ref = namespacedEvent.split("."), event = _ref[0], namespace = _ref[1];
+      if (event) {
+        eventCallbacks[event] || (eventCallbacks[event] = []);
+        if (namespace) {
+          eventCallbacks[event] = eventCallbacks.select(function(callback) {
+            var _ref2;
+            return !(((_ref2 = callback.__PIXIE) != null ? _ref2[namespace] : void 0) != null);
+          });
+        } else {
+          if (callback) {
+            eventCallbacks[event].remove(callback);
+          } else {
+            eventCallbacks[event] = [];
+          }
+        }
+      } else if (namespace) {
+        for (key in eventCallbacks) {
+          callbacks = eventCallbacks[key];
+          eventCallbacks[key] = callbacks.select(function(callback) {
+            var _ref2;
+            return !(((_ref2 = callback.__PIXIE) != null ? _ref2[namespace] : void 0) != null);
+          });
+        }
       }
+      return this;
     },
     /**
     Calls all listeners attached to the specified event.
@@ -747,7 +913,7 @@ Bindable = function() {
     @param {Array} [parameters] Additional parameters to pass to the event listener.
     */
     trigger: function() {
-      var callbacks, event, parameters, self;
+      var callbacks, event, parameters;
       event = arguments[0], parameters = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       callbacks = eventCallbacks[event];
       if (callbacks && callbacks.length) {
@@ -800,6 +966,8 @@ CommandStack = function() {
     }
   };
 };
+
+(typeof exports !== "undefined" && exports !== null ? exports : this)["CommandStack"] = CommandStack;
 ;
 /**
 The Core class is used to add extended functionality to objects without
@@ -811,159 +979,195 @@ methods.
 
 @param {Object} I Instance variables
 */
-var Core,
-  __slice = Array.prototype.slice;
+var __slice = Array.prototype.slice;
 
-Core = function(I) {
-  var self;
-  if (I == null) I = {};
-  return self = {
-    /**
-    External access to instance variables. Use of this property should be avoided
-    in general, but can come in handy from time to time.
+(function() {
+  var root;
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+  return root.Core = function(I) {
+    var Module, moduleName, self, _i, _len, _ref;
+    if (I == null) I = {};
+    Object.reverseMerge(I, {
+      includedModules: []
+    });
+    self = {
+      /**
+      External access to instance variables. Use of this property should be avoided
+      in general, but can come in handy from time to time.
 
-        I =
-          r: 255
-          g: 0
-          b: 100
+          I =
+            r: 255
+            g: 0
+            b: 100
 
-        myObject = Core(I)
+          myObject = Core(I)
 
-        # a bad idea most of the time, but it's
-        # pretty convenient to have available.
-        myObject.I.r
-        # => 255
+          # a bad idea most of the time, but it's
+          # pretty convenient to have available.
+          myObject.I.r
+          # => 255
 
-        myObject.I.g
-        # => 0
+          myObject.I.g
+          # => 0
 
-        myObject.I.b
-        # => 100
+          myObject.I.b
+          # => 100
 
-    @name I
-    @fieldOf Core#
-    */
-    I: I,
-    /**
-    Generates a public jQuery style getter / setter method for each
-    String argument.
+      @name I
+      @fieldOf Core#
+      */
+      I: I,
+      /**
+      Generates a public jQuery style getter / setter method for each
+      String argument.
 
-        myObject = Core
-          r: 255
-          g: 0
-          b: 100
+          myObject = Core
+            r: 255
+            g: 0
+            b: 100
 
-        myObject.attrAccessor "r", "g", "b"
+          myObject.attrAccessor "r", "g", "b"
 
-        myObject.r(254)
-        myObject.r()
+          myObject.r(254)
+          myObject.r()
 
-        => 254
+          => 254
 
-    @name attrAccessor
-    @methodOf Core#
-    */
-    attrAccessor: function() {
-      var attrNames;
-      attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      return attrNames.each(function(attrName) {
-        return self[attrName] = function(newValue) {
-          if (newValue != null) {
-            I[attrName] = newValue;
-            return self;
-          } else {
+      @name attrAccessor
+      @methodOf Core#
+      */
+      attrAccessor: function() {
+        var attrNames;
+        attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        return attrNames.each(function(attrName) {
+          return self[attrName] = function(newValue) {
+            if (newValue != null) {
+              I[attrName] = newValue;
+              return self;
+            } else {
+              return I[attrName];
+            }
+          };
+        });
+      },
+      /**
+      Generates a public jQuery style getter method for each String argument.
+
+          myObject = Core
+            r: 255
+            g: 0
+            b: 100
+
+          myObject.attrReader "r", "g", "b"
+
+          myObject.r()
+          => 255
+
+          myObject.g()
+          => 0
+
+          myObject.b()
+          => 100
+
+      @name attrReader
+      @methodOf Core#
+      */
+      attrReader: function() {
+        var attrNames;
+        attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        return attrNames.each(function(attrName) {
+          return self[attrName] = function() {
             return I[attrName];
+          };
+        });
+      },
+      /**
+      Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)
+
+          I =
+            x: 30
+            y: 40
+            maxSpeed: 5
+
+          # we are using extend to give player
+          # additional methods that Core doesn't have
+          player = Core(I).extend
+            increaseSpeed: ->
+              I.maxSpeed += 1
+
+          player.I.maxSpeed
+          => 5
+
+          player.increaseSpeed()
+
+          player.I.maxSpeed
+          => 6
+
+      @name extend
+      @methodOf Core#
+      @see Object.extend
+      @returns self
+      */
+      extend: function(options) {
+        Object.extend(self, options);
+        return self;
+      },
+      /**
+      Includes a module in this object.
+
+          myObject = Core()
+          myObject.include(Bindable)
+
+          # now you can bind handlers to functions
+          myObject.bind "someEvent", ->
+            alert("wow. that was easy.")
+
+      @name include
+      @methodOf Core#
+      @param {String} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.
+      */
+      include: function() {
+        var Module, key, moduleName, modules, value, _i, _len;
+        modules = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        for (_i = 0, _len = modules.length; _i < _len; _i++) {
+          Module = modules[_i];
+          if (typeof Module.isString === "function" ? Module.isString() : void 0) {
+            moduleName = Module;
+            Module = Module.constantize();
+          } else if (moduleName = Module._name) {} else {
+            for (key in root) {
+              value = root[key];
+              if (value === Module) Module._name = moduleName = key;
+            }
           }
-        };
-      });
-    },
-    /**
-    Generates a public jQuery style getter method for each String argument.
-
-        myObject = Core
-          r: 255
-          g: 0
-          b: 100
-
-        myObject.attrReader "r", "g", "b"
-
-        myObject.r()
-        => 255
-
-        myObject.g()
-        => 0
-
-        myObject.b()
-        => 100
-
-    @name attrReader
-    @methodOf Core#
-    */
-    attrReader: function() {
-      var attrNames;
-      attrNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      return attrNames.each(function(attrName) {
-        return self[attrName] = function() {
-          return I[attrName];
-        };
-      });
-    },
-    /**
-    Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)
-
-        I =
-          x: 30
-          y: 40
-          maxSpeed: 5
-
-        # we are using extend to give player
-        # additional methods that Core doesn't have
-        player = Core(I).extend
-          increaseSpeed: ->
-            I.maxSpeed += 1
-
-        player.I.maxSpeed
-        => 5
-
-        player.increaseSpeed()
-
-        player.I.maxSpeed
-        => 6
-
-    @name extend
-    @methodOf Core#
-    @see Object.extend
-    @returns self
-    */
-    extend: function(options) {
-      Object.extend(self, options);
-      return self;
-    },
-    /**
-    Includes a module in this object.
-
-        myObject = Core()
-        myObject.include(Bindable)
-
-        # now you can bind handlers to functions
-        myObject.bind "someEvent", ->
-          alert("wow. that was easy.")
-
-    @name include
-    @methodOf Core#
-    @param {Module} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.
-    */
-    include: function() {
-      var Module, modules, _i, _len;
-      modules = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      for (_i = 0, _len = modules.length; _i < _len; _i++) {
-        Module = modules[_i];
-        self.extend(Module(I, self));
+          if (moduleName) {
+            if (!I.includedModules.include(moduleName)) {
+              I.includedModules.push(moduleName);
+              self.extend(Module(I, self));
+            }
+          } else {
+            warn("Unable to discover name for module: ", Module, "\nSerialization issues may occur.");
+            self.extend(Module(I, self));
+          }
+        }
+        return self;
+      },
+      send: function() {
+        var args, name;
+        name = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+        return self[name].apply(self, args);
       }
-      return self;
+    };
+    self.include("Bindable");
+    _ref = I.includedModules;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      moduleName = _ref[_i];
+      Module = moduleName.constantize();
+      self.extend(Module(I, self));
     }
+    return self;
   };
-};
+})();
 ;
 var __slice = Array.prototype.slice;
 
@@ -976,26 +1180,6 @@ Function.prototype.once = function() {
     if (ran) return memo;
     ran = true;
     return memo = func.apply(this, arguments);
-  };
-};
-
-Function.prototype.withBefore = function(interception) {
-  var method;
-  method = this;
-  return function() {
-    interception.apply(this, arguments);
-    return method.apply(this, arguments);
-  };
-};
-
-Function.prototype.withAfter = function(interception) {
-  var method;
-  method = this;
-  return function() {
-    var result;
-    result = method.apply(this, arguments);
-    interception.apply(this, arguments);
-    return result;
   };
 };
 
@@ -1062,15 +1246,19 @@ Function.prototype.defer = function() {
 
 Gives you some convenience methods for outputting data while developing.
 
-    log "Testing123"
-    info "Hey, this is happening"
-    warn "Be careful, this might be a problem"
-    error "Kaboom!"
+      log "Testing123"
+      info "Hey, this is happening"
+      warn "Be careful, this might be a problem"
+      error "Kaboom!"
 */
+var __slice = Array.prototype.slice;
+
 ["log", "info", "warn", "error"].each(function(name) {
   if (typeof console !== "undefined") {
-    return (typeof exports !== "undefined" && exports !== null ? exports : this)[name] = function(message) {
-      if (console[name]) return console[name](message);
+    return (typeof exports !== "undefined" && exports !== null ? exports : this)[name] = function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      if (console[name]) return console[name].apply(console, args);
     };
   } else {
     return (typeof exports !== "undefined" && exports !== null ? exports : this)[name] = function() {};
@@ -1078,30 +1266,30 @@ Gives you some convenience methods for outputting data while developing.
 });
 ;
 /**
- Matrix.js v1.3.0pre
-
- Copyright (c) 2010 STRd6
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
-
- Loosely based on flash:
- http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/flash/geom/Matrix.html
+* Matrix.js v1.3.0pre
+*
+* Copyright (c) 2010 STRd6
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*
+* Loosely based on flash:
+* http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/flash/geom/Matrix.html
 */
 (function() {
   /**
@@ -1129,6 +1317,10 @@ Gives you some convenience methods for outputting data while developing.
   */
   var Matrix;
   Matrix = function(a, b, c, d, tx, ty) {
+    var _ref;
+    if (Object.isObject(a)) {
+      _ref = a, a = _ref.a, b = _ref.b, c = _ref.c, d = _ref.d, tx = _ref.tx, ty = _ref.ty;
+    }
     return {
       __proto__: Matrix.prototype,
       /**
@@ -1240,6 +1432,19 @@ Gives you some convenience methods for outputting data while developing.
       return this.concat(Matrix.scale(sx, sy, aboutPoint));
     },
     /**
+    Returns a new matrix that corresponds this matrix multiplied by a
+    a skewing matrix.
+
+    @name skew
+    @methodOf Matrix#
+    @see Matrix.skew
+    @param {Number} skewX The angle of skew in the x dimension.
+    @param {Number} skewY The angle of skew in the y dimension.
+    */
+    skew: function(skewX, skewY) {
+      return this.concat(Matrix.skew(skewX, skewY));
+    },
+    /**
     Returns a string representation of this matrix.
 
     @name toString
@@ -1309,6 +1514,17 @@ Gives you some convenience methods for outputting data while developing.
       scaleMatrix = Matrix.translation(aboutPoint.x, aboutPoint.y).concat(scaleMatrix).concat(Matrix.translation(-aboutPoint.x, -aboutPoint.y));
     }
     return scaleMatrix;
+  };
+  /**
+  Returns a matrix that corresponds to a skew of skewX, skewY.
+
+  @see Matrix#skew
+  @param {Number} skewX The angle of skew in the x dimension.
+  @param {Number} skewY The angle of skew in the y dimension.
+  @return {Matrix} A matrix transformation representing a skew by skewX and skewY.
+  */
+  Matrix.skew = function(skewX, skewY) {
+    return Matrix(0, Math.tan(skewY), Math.tan(skewX), 0);
   };
   /**
   Returns a matrix that corresponds to a translation of tx, ty.
@@ -1573,7 +1789,7 @@ current iteration as a parameter: 0 on first call, 1 on the second call, etc.
 @name times
 @methodOf Number#
 @param {Function} iterator The iterator takes a single parameter, the number of the current iteration.
-@param {Object} [context] The optional context parameter specifies an object to treat as `this` in the iterator block.
+@param {Object} [context] The optional context parameter specifies an object to treat as <code>this</code> in the iterator block.
 @returns {Number} The number of times the iterator was called.
 */
 
@@ -1757,16 +1973,9 @@ Number.prototype.constrainRotation = function() {
 /**
 The mathematical d operator. Useful for simulating dice rolls.
 
-    # Simulates rolling 5 6-sided dice
-    5.d(6)
-
-    # Simulates rolling 3 20-sided dice
-    3.d(20)
-
 @name d
 @methodOf Number#
-@param {Number} sides Number of sides on the simulated die
-@returns {Number} Sum of rolling `this` many `sides`-sided dice
+@returns {Number} The sum of rolling <code>this</code> many <code>sides</code>-sided dice
 */
 
 Number.prototype.d = function(sides) {
@@ -1906,132 +2115,6 @@ The mathematical circle constant of 1 turn.
 
 Math.TAU = 2 * Math.PI;
 ;
-/**
-Checks whether an object is an array.
-
-    Object.isArray([1, 2, 4])
-    # => true
-
-    Object.isArray({key: "value"})
-    # => false
-
-@name isArray
-@methodOf Object
-@param {Object} object The object to check for array-ness.
-@returns {Boolean} A boolean expressing whether the object is an instance of Array
-*/
-var __slice = Array.prototype.slice;
-
-Object.isArray = function(object) {
-  return Object.prototype.toString.call(object) === "[object Array]";
-};
-
-/**
-Checks whether an object is a string.
-
-    Object.isString("a string")
-    # => true
-
-    Object.isString([1, 2, 4])
-    # => false
-
-    Object.isString({key: "value"})
-    # => false
-
-@name isString
-@methodOf Object
-@param {Object} object The object to check for string-ness.
-@returns {Boolean} A boolean expressing whether the object is an instance of String
-*/
-
-Object.isString = function(object) {
-  return Object.prototype.toString.call(object) === "[object String]";
-};
-
-/**
-Merges properties from objects into target without overiding.
-First come, first served.
-
-    I =
-      a: 1
-      b: 2
-      c: 3
-
-    Object.reverseMerge I,
-      c: 6
-      d: 4
-
-    I # => {a: 1, b:2, c:3, d: 4}
-
-@name reverseMerge
-@methodOf Object
-@param {Object} target The object to merge the properties into.
-@returns {Object} target
-*/
-
-Object.reverseMerge = function() {
-  var name, object, objects, target, _i, _len;
-  target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-  for (_i = 0, _len = objects.length; _i < _len; _i++) {
-    object = objects[_i];
-    for (name in object) {
-      if (!target.hasOwnProperty(name)) target[name] = object[name];
-    }
-  }
-  return target;
-};
-
-/**
-Merges properties from sources into target with overiding.
-Last in covers earlier properties.
-
-    I =
-      a: 1
-      b: 2
-      c: 3
-
-    Object.extend I,
-      c: 6
-      d: 4
-
-    I # => {a: 1, b:2, c:6, d: 4}
-
-@name extend
-@methodOf Object
-@param {Object} target The object to merge the properties into.
-@returns {Object} target
-*/
-
-Object.extend = function() {
-  var name, source, sources, target, _i, _len;
-  target = arguments[0], sources = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-  for (_i = 0, _len = sources.length; _i < _len; _i++) {
-    source = sources[_i];
-    for (name in source) {
-      target[name] = source[name];
-    }
-  }
-  return target;
-};
-
-/**
-Helper method that tells you if something is an object.
-
-    object = {a: 1}
-
-    Object.isObject(object)
-    # => true
-
-@name isObject
-@methodOf Object
-@param {Object} object Maybe this guy is an object.
-@returns {Boolean} true if this guy is an object.
-*/
-
-Object.isObject = function(object) {
-  return Object.prototype.toString.call(object) === '[object Object]';
-};
-;
 var __slice = Array.prototype.slice;
 
 (function() {
@@ -2062,6 +2145,8 @@ var __slice = Array.prototype.slice;
   */
   var Point;
   Point = function(x, y) {
+    var _ref;
+    if (Object.isObject(x)) _ref = x, x = _ref.x, y = _ref.y;
     return {
       __proto__: Point.prototype,
       /**
@@ -2112,14 +2197,13 @@ var __slice = Array.prototype.slice;
 
         point == pointCopy
         # => false
-
     */
     copy: function() {
       return Point(this.x, this.y);
     },
     /**
     Adds a point to this one and returns the new point. You may
-    also use a two argument call like `point.add(x, y)`
+    also use a two argument call like <code>point.add(x, y)</code>
     to add x and y values without a second point object.
 
         point = Point(2, 3).add(Point(3, 4))
@@ -2148,7 +2232,7 @@ var __slice = Array.prototype.slice;
     },
     /**
     Adds a point to this one, returning a modified point. You may
-    also use a two argument call like `point.add(x, y)`
+    also use a two argument call like <code>point.add(x, y)</code>
     to add x and y values without a second point object.
 
         point = Point(2, 3)
@@ -2865,6 +2949,7 @@ String.prototype.capitalize = function() {
 /**
 Return the class or constant named in this string.
 
+
     "Constant".constantize()
     # => Constant
     # notice this isn't a string. Useful for calling methods on class with the same name as `this`.
@@ -2875,11 +2960,33 @@ Return the class or constant named in this string.
 */
 
 String.prototype.constantize = function() {
-  if (this.match(/[A-Z][A-Za-z0-9]*/)) {
-    eval("var that = " + this);
-    return that;
+  var item, target, _i, _len, _ref;
+  target = typeof exports !== "undefined" && exports !== null ? exports : window;
+  _ref = this.split('.');
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    item = _ref[_i];
+    target = target[item];
+  }
+  return target;
+};
+
+/**
+Get the file extension of a string.
+
+    "README.md".extension() # => "md"
+    "README".extension() # => ""
+
+@name extension
+@methodOf String#
+@returns {String} File extension
+*/
+
+String.prototype.extension = function() {
+  var extension, _ref;
+  if (extension = (_ref = this.match(/\.([^\.]*)$/, '')) != null ? _ref.last() : void 0) {
+    return extension;
   } else {
-    throw "String#constantize: '" + this + "' is not a valid constant name.";
+    return '';
   }
 };
 
@@ -2924,6 +3031,7 @@ is not valid JSON returns the string itself.
     # double quoting instead isn't valid JSON so a string is returned
     "{'a': 3}".parse()
     # => "{'a': 3}"
+
 
 @name parse
 @methodOf String#
@@ -3053,7 +3161,7 @@ String.prototype.parseHex = function() {
 /**
 Returns a string representing the specified Boolean object.
 
-`bool.toString()`
+<code><em>bool</em>.toString()</code>
 
 @name toString
 @methodOf Boolean#
@@ -3061,7 +3169,7 @@ Returns a string representing the specified Boolean object.
 /**
 Returns the primitive value of a Boolean object.
 
-`bool.valueOf()`
+<code><em>bool</em>.valueOf()</code>
 
 @name valueOf
 @methodOf Boolean#
@@ -3348,7 +3456,7 @@ the array.
 Reverses an array in place.  The first array element becomes the last and the
 last becomes the first.
 
-`array.reverse()`
+<code><em>array</em>.reverse()</code>
 
 @name reverse
 @methodOf Array#
@@ -3924,7 +4032,10 @@ January 1970, 00:00:00 UTC.
 /**
 Sets the day of the month for a specified date according to universal time.
 
-@param dayValue An integer from 1 to 31, representing the day of the month.
+<code>
+setUTCDate(<i>dayValue</i>)
+</code>
+@param  dayValue   An integer from 1 to 31, representing the day of the month.
 @name setUTCDate
 @methodOf Date#
 */
@@ -4180,17 +4291,55 @@ Generate a random uuid.
   };
 })();;
 ;
-;
+
+/**
+The ActiveBounds module automatically destroys objects that
+are outside of the specified bounds. The default bounds are
+the dimensions of your game. Useful for bullet type objects.
+
+    bullet = GameObject
+      x: 10
+      y: 50
+      width: 20
+      height: 20
+      velocity: Point(120, 0)
+
+    bullet.include ActiveBounds
+
+    # => bullet will be removed when it
+         goes outside of the game bounds.
+
+    bullet2 = GameObject
+      x: 50
+      y: 50
+      width: 30
+      height: 20
+      activeBounds: Rectangle
+        x: 30
+        y: 20
+        width: 100
+        height 100
+
+    # => bullet2 will be removed unless 30 <= I.x <= 130
+         and 20 <= I.y <= 120
+
+@name ActiveBounds
+@module
+@constructor
+@param {Object} I Instance variables
+@param {Core} self Reference to including object
+*/
 var ActiveBounds;
 
 ActiveBounds = function(I, self) {
   if (I == null) I = {};
   Object.reverseMerge(I, {
-    x: 0,
-    y: 0,
-    width: 8,
-    height: 8,
-    activeBounds: Rectangle(0, 0, App.width, App.height)
+    activeBounds: Rectangle({
+      x: 0,
+      y: 0,
+      width: App.width,
+      height: App.height
+    })
   });
   return self.bind('update', function() {
     var _ref, _ref2;
@@ -4202,11 +4351,39 @@ ActiveBounds = function(I, self) {
     }
   });
 };
-;
+
+/**
+The Ageable module handles keeping track of an object's age.
+
+    player = GameObject()
+
+    player.update(1)
+
+    #=> player.I.age == 1
+
+@name Ageable
+@module
+@constructor
+@param {Object} I Instance variables
+@param {Core} self Reference to including object
+*/
+var Ageable;
+
+Ageable = function(I, self) {
+  if (I == null) I = {};
+  Object.reverseMerge(I, {
+    age: 0
+  });
+  self.bind('afterUpdate', function(dt) {
+    return I.age += dt;
+  });
+  return {};
+};
+
 /**
 The Bounded module is used to provide basic data about the
 location and dimensions of the including object. This module is included
-by default in `GameObject`
+by default in `GameObject`.
 
     player = Core
       x: 10
@@ -4246,6 +4423,25 @@ Bounded = function(I, self) {
     collisionMargin: Point(0, 0)
   });
   return {
+    /**
+    Get the object closest to this one.
+
+    @name closest
+    @methodOf Bounded#
+    @param {Object|Array|String} selector An object or set of objects to find the closest from.
+    */
+    closest: function(selector) {
+      var position;
+      if (Object.isString(selector)) {
+        selector = engine.find(selector);
+      } else {
+        selector = [].concat(selector);
+      }
+      position = self.position();
+      return selector.sort(function(a, b) {
+        return Point.distanceSquared(position, a.position()) - Point.distanceSquared(position, b.position());
+      }).first();
+    },
     /**
     Distance between two objects. Proxies to Point.distance.
     In order for this to work, `otherObj` must have a
@@ -4474,11 +4670,13 @@ Bounded = function(I, self) {
     }
   };
 };
-;
-var Camera;
+
+var Camera, oldCamera;
+
+oldCamera = Camera;
 
 Camera = function(I) {
-  var currentObject, currentType, focusOn, followTypes, objectFilters, self, transformFilters;
+  var currentObject, currentType, focusOn, followTypes, moduleName, objectFilters, self, transformFilters, _i, _len, _ref;
   if (I == null) I = {};
   Object.reverseMerge(I, {
     cameraBounds: Rectangle({
@@ -4506,22 +4704,16 @@ Camera = function(I) {
   currentObject = null;
   objectFilters = [];
   transformFilters = [];
-  focusOn = function(object) {
-    var c, dampingFactor, delta, dt, force, objectCenter, objectVelocity, target;
-    dt = 1 / 30;
+  focusOn = function(object, elapsedTime) {
+    var c, dampingFactor, delta, force, objectCenter, target;
     dampingFactor = 2;
-    c = dt * 3.75 / I.t90;
+    c = elapsedTime * 3.75 / I.t90;
     if (c >= 1) {
       self.position(target);
       return I.velocity = Point.ZERO;
     } else {
       objectCenter = object.center();
-      objectVelocity = object.I.velocity;
-      if (objectVelocity) {
-        target = objectCenter.add(objectVelocity.scale(5));
-      } else {
-        target = objectCenter;
-      }
+      target = objectCenter;
       delta = target.subtract(self.position());
       force = delta.subtract(I.velocity.scale(dampingFactor));
       self.changePosition(I.velocity.scale(c).clamp(I.maxSpeed));
@@ -4529,22 +4721,22 @@ Camera = function(I) {
     }
   };
   followTypes = {
-    centered: function(object) {
+    centered: function(object, elapsedTime) {
       I.deadzone = Point(0, 0);
-      return focusOn(object);
+      return focusOn(object, elapsedTime);
     },
-    topdown: function(object) {
+    topdown: function(object, elapsedTime) {
       var helper;
       helper = Math.max(I.screen.width, I.screen.height) / 4;
       I.deadzone = Point(helper, helper);
-      return focusOn(object);
+      return focusOn(object, elapsedTime);
     },
-    platformer: function(object) {
+    platformer: function(object, elapsedTime) {
       var height, width;
       width = I.screen.width / 8;
       height = I.screen.height / 3;
       I.deadzone = Point(width, height);
-      return focusOn(object);
+      return focusOn(object, elapsedTime);
     }
   };
   self = Core(I).extend({
@@ -4560,10 +4752,9 @@ Camera = function(I) {
       return transformFilters.push(fn);
     }
   });
-  self.include(Bindable);
   self.attrAccessor("transform");
-  self.bind("afterUpdate", function() {
-    if (currentObject) followTypes[currentType](currentObject);
+  self.bind("afterUpdate", function(elapsedTime) {
+    if (currentObject) followTypes[currentType](currentObject, elapsedTime);
     I.x = I.x.clamp(I.cameraBounds.left + I.screen.width / 2, I.cameraBounds.right - I.screen.width / 2);
     I.y = I.y.clamp(I.cameraBounds.top + I.screen.height / 2, I.cameraBounds.bottom - I.screen.height / 2);
     return I.transform = Matrix.translate(-I.x, -I.y);
@@ -4590,18 +4781,21 @@ Camera = function(I) {
       return objects.invoke("trigger", "overlay", canvas);
     });
   });
-  self.include(Bounded);
-  self.include(Camera.ZSort);
-  self.include(Camera.Zoom);
-  self.include(Camera.Rotate);
-  self.include(Camera.Shake);
-  self.include(Camera.Flash);
-  self.include(Camera.Fade);
+  self.include("Bounded");
+  _ref = Camera.defaultModules;
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    moduleName = _ref[_i];
+    self.include("Camera." + moduleName);
+  }
   return self;
 };
-;
+
+Camera.defaultModules = ["ZSort", "Zoom", "Rotate", "Shake", "Flash", "Fade"];
+
+Object.extend(Camera, oldCamera);
+
 /**
-The `Fade` module provides convenience methods for accessing common Engine.Flash presets.
+The <code>Fade</code> module provides convenience methods for accessing common Engine.Flash presets.
 
 @name Fade
 @fieldOf Camera
@@ -4673,9 +4867,9 @@ Camera.Fade = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `Flash` module allows you to flash a color onscreen and then fade to transparent over a time period.
+The <code>Flash</code> module allows you to flash a color onscreen and then fade to transparent over a time period.
 This is nice for lightning type effects or to accentuate major game events.
 
 @name Flash
@@ -4746,7 +4940,7 @@ Camera.Flash = function(I, self) {
     }
   };
 };
-;
+
 
 Camera.Rotate = function(I, self) {
   Object.reverseMerge(I, {
@@ -4762,7 +4956,7 @@ Camera.Rotate = function(I, self) {
     }
   };
 };
-;
+
 
 Camera.Shake = function(I, self) {
   var defaultParams;
@@ -4795,7 +4989,7 @@ Camera.Shake = function(I, self) {
     }
   };
 };
-;
+
 
 Camera.Zoom = function(I, self) {
   var clampZoom;
@@ -4827,7 +5021,7 @@ Camera.Zoom = function(I, self) {
     }
   };
 };
-;
+
 
 Camera.ZSort = function(I, self) {
   Object.reverseMerge(I, {
@@ -4843,9 +5037,15 @@ Camera.ZSort = function(I, self) {
   });
   return {};
 };
-;
+
 /**
-The `Clampable` module provides helper methods to clamp object properties.
+The `Clampable` module provides helper methods to clamp object properties. This module is included by default in `GameObject`
+
+    player = GameObject
+      x: 40
+      y: 30
+
+    player.include Clampable
 
 @name Clampable
 @module
@@ -4919,16 +5119,9 @@ Clampable = function(I, self) {
     }
   };
 };
-;
+
 
 (function() {
-  /**
-  Use this to handle generic rectangular collisions among game object a-la Flixel.
-
-  @name Collidable
-  @module
-  @constructor
-  */
   var ANY, CEILING, Collidable, DOWN, FLOOR, LEFT, NONE, RIGHT, UP, WALL, _ref, _ref2;
   Collidable = function(I, self) {
     Object.reverseMerge(I, {
@@ -4955,8 +5148,6 @@ Clampable = function(I, self) {
     };
   };
   (typeof exports !== "undefined" && exports !== null ? exports : this)["Collidable"] = Collidable;
-  /**
-  */
   _ref = Object.extend(Collidable, {
     NONE: 0x0000,
     LEFT: 0x0001,
@@ -5044,21 +5235,19 @@ Clampable = function(I, self) {
     }
   });
 })();
-;
+
 
 (function() {
   var Collision, collides;
   collides = function(a, b) {
     return Collision.rectangular(a.bounds(), b.bounds());
   };
-/**
-Collision holds many useful class methods for checking geometric overlap of various objects.
+  /**
+  Collision holds many useful class methods for checking geometric overlap of various objects.
 
-    Collision
-
-@name Collision
-@namespace
-*/
+  @name Collision
+  @namespace
+  */
   Collision = {
     /**
     Collision holds many useful class methods for checking geometric overlap of various objects.
@@ -5304,24 +5493,30 @@ Collision holds many useful class methods for checking geometric overlap of vari
   };
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Collision"] = Collision;
 })();
-;
+
 var CollisionResponse;
 
 CollisionResponse = function(I, self) {
   if (I == null) I = {};
-  self.bind('update', function() {
-    I.velocity.x.abs().times(function() {
-      if (self.collide(I.velocity.x.sign(), 0, ".solid")) {
+  self.unbind(".Movable");
+  self.bind('update.Movable', function(elapsedTime) {
+    var t, unit;
+    t = (elapsedTime * I.velocity.x).abs();
+    unit = I.velocity.x.sign();
+    t.times(function() {
+      if (self.collide(unit, 0, ".solid")) {
         return I.velocity.x = 0;
       } else {
-        return I.x += I.velocity.x.sign();
+        return I.x += unit;
       }
     });
-    return I.velocity.y.abs().times(function() {
-      if (self.collide(0, I.velocity.y.sign(), ".solid")) {
+    t = (elapsedTime * I.velocity.y).abs();
+    unit = I.velocity.y.sign();
+    return t.times(function() {
+      if (self.collide(0, unit, ".solid")) {
         return I.velocity.y = 0;
       } else {
-        return I.y += I.velocity.y.sign();
+        return I.y += unit;
       }
     });
   });
@@ -5333,7 +5528,7 @@ CollisionResponse = function(I, self) {
     }
   });
 };
-;
+
 var __slice = Array.prototype.slice;
 
 (function() {
@@ -5483,46 +5678,44 @@ var __slice = Array.prototype.slice;
   and even the named colors from the xkcd survey: http://blog.xkcd.com/2010/05/03/color-survey-results/.
   If no arguments are given, defaults to transparent.
 
-  <code class="run"><pre>
-  individualRgb = Color(23, 56, 49, 0.4)
+      individualRgb = Color(23, 56, 49, 0.4)
 
-  arrayRgb = Color([59, 100, 230])
+      arrayRgb = Color([59, 100, 230])
 
-  hex = Color('#ff0000')
+      hex = Color('#ff0000')
 
-  rgb = Color('rgb(0, 255, 0)')
+      rgb = Color('rgb(0, 255, 0)')
 
-  hsl = Color('hsl(180, 1, 0.5)')
+      hsl = Color('hsl(180, 1, 0.5)')
 
-  anotherColor = Color('blue')
+      anotherColor = Color('blue')
 
-  Color(anotherColor)
-  # => a new color with the same r, g, b, and alpha values as `anotherColor`
+      Color(anotherColor)
+      # => a new color with the same r, g, b, and alpha values as `anotherColor`
 
-  # You have access to all sorts of weird colors.
-  # We give you all the named colors the browser recognizes
-  # and the ones from this survey
-  # http://blog.xkcd.com/2010/05/03/color-survey-results/
-  namedBrown = Color('Fuzzy Wuzzy Brown')
+      # You have access to all sorts of weird colors.
+      # We give you all the named colors the browser recognizes
+      # and the ones from this survey
+      # http://blog.xkcd.com/2010/05/03/color-survey-results/
+      namedBrown = Color('Fuzzy Wuzzy Brown')
 
-  # Uutput color in Hex format
-  namedBrown.toHex()
-  # => '#c45655'
+      # Uutput color in Hex format
+      namedBrown.toHex()
+      # => '#c45655'
 
-  # Default behavior
-  transparent = Color()
+      # Default behavior
+      transparent = Color()
 
-  transparent.toString()
-  # => 'rgba(0, 0, 0, 0)'
+      transparent.toString()
+      # => 'rgba(0, 0, 0, 0)'
 
-  # let's print out the colors on a canvas to see what they look like
-  canvas.font('14px Helvetica')
-  for color, index in ['individualRgb', 'arrayRgb', 'hex', 'rgb', 'hsl', 'anotherColor', 'namedBrown']
-    canvas.centerText
-      color: eval(color)
-      text: color
-      y: 20 * (index + 1)
-  </pre></code>
+      # let's print out the colors on a canvas to see what they look like
+      canvas.font('14px Helvetica')
+      for color, index in ['individualRgb', 'arrayRgb', 'hex', 'rgb', 'hsl', 'anotherColor', 'namedBrown']
+        canvas.centerText
+          color: eval(color)
+          text: color
+          y: 20 * (index + 1)
 
   @name Color
   @param {Array|Number|String|Color} args... An Array, r, g, b values,
@@ -5583,20 +5776,18 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color that is its complementary color on the color wheel.
 
-    <code class="run"><pre>
-    red = Color(255, 0, 0)
+        red = Color(255, 0, 0)
 
-    cyan = red.complement()
+        cyan = red.complement()
 
-    # to see what they look like
-    for color, index in [red, cyan]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [red, cyan]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name complement
     @methodOf Color#
@@ -5649,20 +5840,18 @@ var __slice = Array.prototype.slice;
     /**
     Returns a copy of the calling color darkened by `amount` (Lightness of the color ranges from 0 to 1).
 
-    <code class="run"><pre>
-    green = Color(0, 255, 0)
+        green = Color(0, 255, 0)
 
-    darkGreen = green.darken(0.3)
+        darkGreen = green.darken(0.3)
 
-    # to see what they look like
-    for color, index in [green, darkGreen]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [green, darkGreen]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name darken
     @methodOf Color#
@@ -5700,20 +5889,18 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color with its saturation reduced by `amount`.
 
-    <code class="run"><pre>
-    blue = Color(0, 0, 255)
+        blue = Color(0, 0, 255)
 
-    desaturatedBlue = blue.desaturate(0.4)
+        desaturatedBlue = blue.desaturate(0.4)
 
-    # to see what they look like
-    for color, index in [blue, desaturatedBlue]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [blue, desaturatedBlue]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name desaturate
     @methodOf Color#
@@ -5772,20 +5959,18 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color converted to grayscale.
 
-    <code class="run"><pre>
-    yellow = Color(255, 255, 0)
+        yellow = Color(255, 255, 0)
 
-    gray = yellow.grayscale()
+        gray = yellow.grayscale()
 
-    # to see what they look like
-    for color, index in [yellow, gray]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [yellow, gray]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name grayscale
     @methodOf Color#
@@ -5822,23 +6007,21 @@ var __slice = Array.prototype.slice;
     A getter / setter for the hue value of the color. Passing no argument returns the
     current hue value. Passing a value will set the hue to that value and return the color.
 
-    <code class="run"><pre>
-    magenta = Color(255, 0, 255)
+        magenta = Color(255, 0, 255)
 
-    magenta.hue()
-    # => 300
+        magenta.hue()
+        # => 300
 
-    # modifies the color to be yellow
-    magenta.hue(60)
+        # modifies the color to be yellow
+        magenta.hue(60)
 
-    # to see what it looks like
-    canvas.drawRect
-      color: magenta
-      x: 50
-      y: 30
-      width: 80
-      height: 80
-    </pre></code>
+        # to see what it looks like
+        canvas.drawRect
+          color: magenta
+          x: 50
+          y: 30
+          width: 80
+          height: 80
 
     @name hue
     @methodOf Color#
@@ -5861,23 +6044,21 @@ var __slice = Array.prototype.slice;
     A getter / setter for the lightness value of the color. Passing no argument returns the
     current lightness value. Passing a value will set the lightness to that value and return the color.
 
-    <code class="run"><pre>
-    magenta = Color(255, 0, 255)
+        magenta = Color(255, 0, 255)
 
-    magenta.lightness()
-    # => 0.9
+        magenta.lightness()
+        # => 0.9
 
-    # modifies magenta in place to be lighter
-    magenta.lightness(0.75)
+        # modifies magenta in place to be lighter
+        magenta.lightness(0.75)
 
-    # to see what it looks like
-    canvas.drawRect
-      color: magenta
-      x: 50
-      y: 30
-      width: 80
-      height: 80
-    </pre></code>
+        # to see what it looks like
+        canvas.drawRect
+          color: magenta
+          x: 50
+          y: 30
+          width: 80
+          height: 80
 
     @name lightness
     @methodOf Color#
@@ -5910,28 +6091,26 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color with its hue shifted by `degrees`. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.
 
-    <code class="run"><pre>
-    magenta = Color(255, 0, 255)
+        magenta = Color(255, 0, 255)
 
-    magenta.hue()
-    # => 300
+        magenta.hue()
+        # => 300
 
-    yellow = magenta.shiftHue(120)
+        yellow = magenta.shiftHue(120)
 
-    # since magenta's hue is 300 we have wrapped
-    # around 360 to end up at 60
-    yellow.hue()
-    # => 60
+        # since magenta's hue is 300 we have wrapped
+        # around 360 to end up at 60
+        yellow.hue()
+        # => 60
 
-    # to see what they look like
-    for color, index in [magenta, yellow]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [magenta, yellow]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name shiftHue
     @methodOf Color#
@@ -5977,20 +6156,18 @@ var __slice = Array.prototype.slice;
     /**
     Returns a copy of the calling color lightened by `amount` (Lightness of the color ranges from 0 to 1).
 
-    <code class="run"><pre>
-    green = Color(0, 255, 0)
+        green = Color(0, 255, 0)
 
-    lightGreen = green.lighten(0.3)
+        lightGreen = green.lighten(0.3)
 
-    # to see what they look like
-    for color, index in [green, lightGreen]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [green, lightGreen]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name lighten
     @methodOf Color#
@@ -6030,25 +6207,23 @@ var __slice = Array.prototype.slice;
     A copy of the calling color mixed with `other` using `amount` as the
     mixing ratio. If amount is not passed, then the colors are mixed evenly.
 
-    <code class="run"><pre>
-    red = Color(255, 0, 0)
-    yellow = Color(255, 255, 0)
+        red = Color(255, 0, 0)
+        yellow = Color(255, 255, 0)
 
-    # With no amount argument the colors are mixed evenly
-    orange = red.mixWith(yellow)
+        # With no amount argument the colors are mixed evenly
+        orange = red.mixWith(yellow)
 
-    # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
-    somethingCloseToOrange = red.mixWith(yellow, 0.3)
+        # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
+        somethingCloseToOrange = red.mixWith(yellow, 0.3)
 
-    # to see what they look like
-    for color, index in [red, yellow, orange, somethingCloseToOrange]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * (index % 2))
-        y: 20 + (60 * (if index > 1 then 1 else 0))
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [red, yellow, orange, somethingCloseToOrange]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * (index % 2))
+            y: 20 + (60 * (if index > 1 then 1 else 0))
+            width: 60
+            height: 60
 
     @name mixWith
     @methodOf Color#
@@ -6103,26 +6278,24 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color with its saturation increased by `amount`.
 
-    <code class="run"><pre>
-    color = Color(50, 50, 200)
+        color = Color(50, 50, 200)
 
-    color.saturation()
-    # => 0.6
+        color.saturation()
+        # => 0.6
 
-    saturatedColor = color.saturate(0.2)
+        saturatedColor = color.saturate(0.2)
 
-    saturatedColor.saturation()
-    # => 0.8
+        saturatedColor.saturation()
+        # => 0.8
 
-    # to see what they look like
-    for color, index in [color, saturatedColor]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [color, saturatedColor]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name saturate
     @methodOf Color#
@@ -6167,22 +6340,20 @@ var __slice = Array.prototype.slice;
     A getter / setter for the saturation value of the color. Passing no argument returns the
     current saturation value. Passing a value will set the saturation to that value and return the color.
 
-    <code class="run"><pre>
-    yellow = Color('hsl(60, 0.5, 0.5)')
+        yellow = Color('hsl(60, 0.5, 0.5)')
 
-    yellow.saturation()
-    # => 0.5
+        yellow.saturation()
+        # => 0.5
 
-    yellow.saturation(0.8)
+        yellow.saturation(0.8)
 
-    # to see what it looks like
-    canvas.drawRect
-      color: yellow
-      x: 50
-      y: 30
-      width: 80
-      height: 80
-    </pre></code>
+        # to see what it looks like
+        canvas.drawRect
+          color: yellow
+          x: 50
+          y: 30
+          width: 80
+          height: 80
 
     @name saturation
     @methodOf Color#
@@ -6343,26 +6514,24 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color with its alpha reduced by `amount`.
 
-    <code class="run"><pre>
-    color = Color(0, 0, 0, 1)
+        color = Color(0, 0, 0, 1)
 
-    color.a
-    # => 1
+        color.a
+        # => 1
 
-    transparentColor = color.transparentize(0.5)
+        transparentColor = color.transparentize(0.5)
 
-    transparentColor.a
-    # => 0.5
+        transparentColor.a
+        # => 0.5
 
-    # to see what they look like
-    for color, index in [color, transparentColor]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [color, transparentColor]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name transparentize
     @methodOf Color#
@@ -6398,26 +6567,24 @@ var __slice = Array.prototype.slice;
     /**
     A copy of the calling color with its alpha increased by `amount`.
 
-    <code class="run"><pre>
-    color = Color(0, 0, 0, 0.25)
+        color = Color(0, 0, 0, 0.25)
 
-    color.a
-    # => 0.25
+        color.a
+        # => 0.25
 
-    opaqueColor = color.opacify(0.5)
+        opaqueColor = color.opacify(0.5)
 
-    opaqueColor.a
-    # => 0.75
+        opaqueColor.a
+        # => 0.75
 
-    # to see what they look like
-    for color, index in [color, opaqueColor]
-      canvas.drawRect
-        color: color
-        x: 20 + (60 * index)
-        y: 20 + (60 * index)
-        width: 60
-        height: 60
-    </pre></code>
+        # to see what they look like
+        for color, index in [color, opaqueColor]
+          canvas.drawRect
+            color: color
+            x: 20 + (60 * index)
+            y: 20 + (60 * index)
+            width: 60
+            height: 60
 
     @name opacify
     @methodOf Color#
@@ -6505,7 +6672,7 @@ var __slice = Array.prototype.slice;
   };
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Color"] = Color;
 })();
-;
+
 
 (function() {
   var lookup, names, normalizeKey;
@@ -6521,34 +6688,34 @@ var __slice = Array.prototype.slice;
     return lookup[normalizeKey(color)];
   };
 })();
-;
+
 /**
 The Controllable module adds simple movement
 when up, down, left, or right are held.
 
-    # create a player and include Controllable
-    player = GameObject
-      width: 5
-      height: 17
-      x: 15
-      y: 30
-      speed:  2
+      # create a player and include Controllable
+      player = GameObject
+        width: 5
+        height: 17
+        x: 15
+        y: 30
+        speed:  2
 
-    player.include Controllable
+      player.include Controllable
 
-    # hold the left arrow key, then
-    # update the player
-    player.update()
+      # hold the left arrow key, then
+      # update the player
+      player.update()
 
-    # the player is moved left according to his speed
-    player.I.x
-    # => 13
+      # the player is moved left according to his speed
+      player.I.x
+      # => 13
 
-    # We keep track of the direction the object is
-    # facing in case you need that (eg. for attack direction)
-    player.I.facing
-    # => player.I.facing
-    # => Point(-1, 0)
+      # We keep track of the direction the object is
+      # facing in case you need that (eg. for attack direction)
+      player.I.facing
+      # => player.I.facing
+      # => Point(-1, 0)
 
 @name Controllable
 @module
@@ -6582,7 +6749,7 @@ Controllable = function(I, self) {
     }
   };
 };
-;
+
 /**
 The Cooldown module provides a declarative way to manage cooldowns on
 GameObject's properties.
@@ -6594,7 +6761,7 @@ GameObject's properties.
     player.cooldown "health",
       target: 100
 
-    player.update()
+    player.update(1)
 
     # Shoot Timeout
     player = GameObject()
@@ -6603,7 +6770,7 @@ GameObject's properties.
 
     player.I.shootTimer = 10 # => Pew! Pew!
 
-    player.update()
+    player.update(1)
 
     player.I.shootTimer # => 9
 
@@ -6619,14 +6786,14 @@ Cooldown = function(I, self) {
   Object.reverseMerge(I, {
     cooldowns: {}
   });
-  self.bind("update", function() {
+  self.bind("update", function(dt) {
     var approachBy, cooldownOptions, name, target, _ref, _results;
     _ref = I.cooldowns;
     _results = [];
     for (name in _ref) {
       cooldownOptions = _ref[name];
       approachBy = cooldownOptions.approachBy, target = cooldownOptions.target;
-      _results.push(I[name] = I[name].approach(target, approachBy));
+      _results.push(I[name] = I[name].approach(target, approachBy * dt));
     }
     return _results;
   });
@@ -6649,7 +6816,7 @@ Cooldown = function(I, self) {
     }
   };
 };
-;
+
 /**
 The Debuggable Module provides a simple API to easily display
 an object's properties onscreen. This mixin comes with predefined
@@ -6668,7 +6835,6 @@ attribute filters so that you can exclude irrelevant data.
     player.debug
       filter: 'all'
 
-Debuggable module
 @name Debuggable
 @module
 @constructor
@@ -6708,14 +6874,13 @@ Debuggable = function(I, self) {
   debugVelocity = function(canvas) {
     if (I.velocity != null) {
       return canvas.withTransform(Matrix.translation(I.x, I.y), function(canvas) {
-        var color, length, thickness;
+        var color, thickness;
         thickness = 4;
-        length = 10;
         color = 'rgba(255, 0, 0, 0.5)';
         canvas.drawRect({
           x: 0,
           y: -thickness / 2,
-          width: I.velocity.x * length,
+          width: I.velocity.x,
           height: thickness,
           color: color
         });
@@ -6723,7 +6888,7 @@ Debuggable = function(I, self) {
           x: -thickness / 2,
           y: 0,
           width: thickness,
-          height: I.velocity.y * length,
+          height: I.velocity.y,
           color: color
         });
       });
@@ -6926,7 +7091,7 @@ Debuggable = function(I, self) {
     }
   };
 };
-;
+
 /**
 The Drawable module is used to provide a simple draw method to the including
 object.
@@ -7007,13 +7172,13 @@ var Drawable;
 
 Drawable = function(I, self) {
   var setSizeCallback, _ref;
-  I || (I = {});
+  if (I == null) I = {};
   Object.reverseMerge(I, {
     alpha: 1,
     color: "#196",
-    hflip: false,
-    vflip: false,
-    spriteName: null,
+    scale: 1,
+    scaleX: 1,
+    scaleY: 1,
     zIndex: 0
   });
   setSizeCallback = function(sprite) {
@@ -7026,10 +7191,8 @@ Drawable = function(I, self) {
     } else {
       I.sprite = Sprite.loadByName(I.sprite, setSizeCallback);
     }
-  } else if (I.spriteName) {
-    I.sprite = Sprite.loadByName(I.spriteName, setSizeCallback);
   }
-  self.bind('draw', function(canvas) {
+  self.bind('draw.Drawable', function(canvas) {
     var previousAlpha, sprite;
     if ((I.alpha != null) && I.alpha !== 1) {
       previousAlpha = canvas.context().globalAlpha;
@@ -7092,13 +7255,9 @@ Drawable = function(I, self) {
     transform: function() {
       var center, transform;
       center = self.center();
-      transform = Matrix.translation(center.x, center.y);
-      if ((I.scale != null) && I.scale !== 1) {
-        transform = transform.concat(Matrix.scale(I.scale));
-      }
+      transform = Matrix.translation(center.x.floor(), center.y.floor());
+      transform = transform.concat(Matrix.scale(I.scale * I.scaleX, I.scale * I.scaleY));
       if (I.rotation) transform = transform.concat(Matrix.rotation(I.rotation));
-      if (I.hflip) transform = transform.concat(Matrix.HORIZONTAL_FLIP);
-      if (I.vflip) transform = transform.concat(Matrix.VERTICAL_FLIP);
       if (I.spriteOffset) {
         transform = transform.concat(Matrix.translation(I.spriteOffset.x, I.spriteOffset.y));
       }
@@ -7108,46 +7267,43 @@ Drawable = function(I, self) {
 };
 
 Drawable.setSizeCallback = function(sprite) {};
-;
-/**
-The Durable module deactives a `GameObject` after a specified duration.
-If a duration is specified the object will update that many times. If -1 is
-specified the object will have an unlimited duration.
 
-    enemy = GameObject
-      x: 50
-      y: 30
-      duration: 5
+var DustEmitter, DustParticle;
 
-    enemy.include(Durable)
-
-    enemy.I.active
-    # => true
-
-    5.times ->
-      enemy.update()
-
-    enemy.I.active
-    # => false
-
-@name Durable
-@module
-@constructor
-@param {Object} I Instance variables
-@param {Core} self Reference to including object
-*/
-var Durable;
-
-Durable = function(I, self) {
-  Object.reverseMerge(I, {
-    duration: -1
+DustParticle = function(I, self) {
+  if (I == null) I = {};
+  Object.extend(I, {
+    color: 'rgb(100, 100, 100)',
+    duration: 0.2,
+    fadeOut: true,
+    maxSpeed: 90
   });
-  self.bind("update", function() {
-    if (I.duration !== -1 && I.age >= I.duration) return I.active = false;
-  });
+  I.velocity = [Point(-60, -30), Point(40, -15), Point(-20, -7), Point(60, -30), Point(40, -15), Point(20, -7)].rand();
+  I.acceleration = Point(0, 60);
   return {};
 };
-;
+
+DustEmitter = function(I) {
+  var self;
+  if (I == null) I = {};
+  Object.reverseMerge(I, {
+    duration: 3,
+    particleCount: 20,
+    batchSize: 5,
+    x: 0,
+    y: 0,
+    zIndex: 50,
+    generator: {
+      includedModules: ["DustParticle"],
+      radius: function(n) {
+        return [2, 3, 1].wrap(n);
+      }
+    }
+  });
+  self = Emitter(I);
+  return self;
+};
+
 
 (function() {
   var Easing, polynomialEasings;
@@ -7204,17 +7360,17 @@ Durable = function(I, self) {
   });
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Easing"] = Easing;
 })();
-;
+
 var Emitter;
 
 Emitter = function(I) {
   var self;
   if (I == null) I = {};
   self = GameObject(I);
-  self.include(Emitterable);
+  self.include("Emitterable");
   return self;
 };
-;
+
 var Emitterable;
 
 Emitterable = function(I, self) {
@@ -7223,20 +7379,21 @@ Emitterable = function(I, self) {
   Object.reverseMerge(I, {
     batchSize: 1,
     emissionRate: 1,
-    color: "blue",
     width: 0,
     height: 0,
+    sprite: Sprite.EMPTY,
     generator: {},
     particles: [],
     particleCount: Infinity,
+    x: I.x,
+    y: I.y,
     particleData: {
       acceleration: Point(0, 0.1),
       age: 0,
       color: "blue",
-      duration: 30,
-      includedModules: ["Movable"],
+      duration: 1.5,
       height: 2,
-      maxSpeed: 2,
+      maxSpeed: 120,
       offset: Point(0, 0),
       sprite: false,
       spriteName: false,
@@ -7250,7 +7407,16 @@ Emitterable = function(I, self) {
   self.bind('draw', function(canvas) {
     return I.particles.invoke("draw", canvas);
   });
-  self.bind('update', function() {
+  self.bind('overlay', function(canvas) {
+    return I.particles.invoke("trigger", "overlay", canvas);
+  });
+  self.bind('beforeUpdate', function(dt) {
+    return I.particles.invoke("trigger", "beforeUpdate", dt);
+  });
+  self.bind('afterUpdate', function(dt) {
+    return I.particles.invoke("trigger", "afterUpdate", dt);
+  });
+  self.bind('update', function(dt) {
     I.batchSize.times(function() {
       var key, particleProperties, value, _ref;
       if (n < I.particleCount && rand() < I.emissionRate) {
@@ -7271,21 +7437,19 @@ Emitterable = function(I, self) {
       }
     });
     I.particles = I.particles.select(function(particle) {
-      return particle.update();
+      return particle.update(dt);
     });
     if (n === I.particleCount && !I.particles.length) return I.active = false;
   });
   return {};
 };
-;
+
 
 (function() {
   var Engine, defaults;
   defaults = {
     FPS: 30,
     age: 0,
-    excludedModules: [],
-    includedModules: [],
     paused: false,
     showFPS: false,
     zSort: false
@@ -7300,7 +7464,7 @@ Emitterable = function(I, self) {
   to the engine.
 
   The engine fires events that you  may bind listeners to. Event listeners
-  may be bound with `engine.bind(eventName, callback)`
+  may be bound with <code>engine.bind(eventName, callback)</code>
 
   @name Engine
   @constructor
@@ -7315,7 +7479,7 @@ Emitterable = function(I, self) {
   @param {Object} entityData
   */
   /**
-  Observe or configure a `gameObject` that has been added
+  Observe or configure a <code>gameObject</code> that has been added
   to the engine.
   @name afterAdd
   @methodOf Engine#
@@ -7329,6 +7493,7 @@ Emitterable = function(I, self) {
   @name update
   @methodOf Engine#
   @event
+  @param {Number} elapsedTime The time in seconds that has elapsed since the last update.
   */
   /**
   Called after the engine completes an update. Here it is
@@ -7384,7 +7549,7 @@ Emitterable = function(I, self) {
   @params {PixieCanvas} canvas A reference to the canvas to draw on.
   */
   Engine = function(I) {
-    var animLoop, defaultModules, draw, frameAdvance, lastStepTime, modules, running, self, startTime, step, update;
+    var animLoop, draw, frameAdvance, lastStepTime, running, self, startTime, step, update;
     if (I == null) I = {};
     Object.reverseMerge(I, defaults);
     frameAdvance = false;
@@ -7416,10 +7581,10 @@ Emitterable = function(I, self) {
       return self.trigger("overlay", I.canvas);
     };
     step = function() {
-      var msPerFrame;
+      var secondsPerFrame;
       if (!I.paused || frameAdvance) {
-        msPerFrame = 1000 / I.FPS;
-        update(msPerFrame);
+        secondsPerFrame = 1 / I.FPS;
+        update(secondsPerFrame);
         I.age += 1;
       }
       return draw();
@@ -7526,22 +7691,21 @@ Emitterable = function(I, self) {
       update: update,
       draw: draw
     });
-    self.include(Bindable);
-    defaultModules = ["Keyboard", "Mouse", "Background", "Delay", "GameState", "Selector", "Collision"];
-    modules = defaultModules.concat(I.includedModules);
-    modules = modules.without([].concat(I.excludedModules));
-    modules.each(function(moduleName) {
+    Engine.defaultModules.each(function(moduleName) {
+      var fullModuleName;
+      fullModuleName = "Engine." + moduleName;
       if (!Engine[moduleName]) {
-        throw "#Engine." + moduleName + " is not a valid engine module";
+        throw "#" + fullModuleName + " is not a valid engine module";
       }
-      return self.include(Engine[moduleName]);
+      return self.include(fullModuleName);
     });
     self.trigger("init");
     return self;
   };
+  Engine.defaultModules = ["Data", "Keyboard", "Mouse", "Background", "Delay", "GameState", "Selector", "Collision", "Tilemap", "Levels"];
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Engine"] = Engine;
 })();
-;
+
 /**
 This module clears or fills the canvas before drawing the scene.
 
@@ -7575,9 +7739,9 @@ Engine.Background = function(I, self) {
   });
   return {};
 };
-;
+
 /**
-The `Collision` module provides some simple collision detection methods to engine.
+The <code>Collision</code> module provides some simple collision detection methods to engine.
 
 @name Collision
 @fieldOf Engine
@@ -7652,9 +7816,36 @@ Engine.Collision = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `Delay` module provides methods to trigger events after a number of steps have passed.
+The <code>Data</code> module provides methods to store global and persistent data in the engine.
+
+    engine.data.score = 0
+    engine.data.score += 10
+
+    engine.data.score # => 10
+
+@name Data
+@fieldOf Engine
+@module
+@param {Object} I Instance variables
+@param {Object} self Reference to the engine
+*/
+Engine.Data = function(I, self) {
+  if (I == null) I = {};
+  Object.reverseMerge(I, {
+    data: {}
+  });
+  Object.defineProperty(self, 'data', {
+    get: function() {
+      return I.data;
+    }
+  });
+  return {};
+};
+
+/**
+The <code>Delay</code> module provides methods to trigger events after a number of steps have passed.
 
 @name Delay
 @fieldOf Engine
@@ -7665,10 +7856,10 @@ The `Delay` module provides methods to trigger events after a number of steps ha
 Engine.Delay = function(I, self) {
   var delayedEvents;
   delayedEvents = [];
-  self.bind('afterUpdate', function() {
+  self.bind('afterUpdate', function(elapsedTime) {
     var firingEvents, _ref;
     _ref = delayedEvents.partition(function(event) {
-      return (event.delay -= 1) >= 0;
+      return (event.delay -= elapsedTime) >= 0;
     }), delayedEvents = _ref[0], firingEvents = _ref[1];
     firingEvents.each(function(event) {
       return event.callback();
@@ -7676,7 +7867,7 @@ Engine.Delay = function(I, self) {
   });
   return {
     /**
-    Execute a callback after a number of steps have passed.
+    Execute a callback after a number of seconds have passed.
 
         engine.delay 5, ->
           engine.add
@@ -7684,25 +7875,26 @@ Engine.Delay = function(I, self) {
 
     @name delay
     @methodOf Engine#
-    @param {Number} steps The number of steps to wait before executing the callback
+    @param {Number} seconds The number of steps to wait before executing the callback
     @param {Function} callback The callback to be executed.
 
     @returns {Engine} self
     */
-    delay: function(steps, callback) {
+    delay: function(seconds, callback) {
       delayedEvents.push({
-        delay: steps,
+        delay: seconds,
         callback: callback
       });
       return self;
     }
   };
 };
-;
+
 /**
-The `FPSCounter` module tracks and displays the framerate.
+The <code>FPSCounter</code> module tracks and displays the framerate.
 
     window.engine = Engine
+      ...
       includedModules: ["FPSCounter"]
       FPSColor: "#080"
 
@@ -7732,7 +7924,7 @@ Engine.FPSCounter = function(I, self) {
     return framerate.rendered();
   });
 };
-;
+
 
 Engine.GameState = function(I, self) {
   var requestedState;
@@ -7740,10 +7932,10 @@ Engine.GameState = function(I, self) {
     currentState: GameState()
   });
   requestedState = null;
-  self.bind("update", function() {
-    I.currentState.trigger("beforeUpdate");
-    I.currentState.trigger("update");
-    return I.currentState.trigger("afterUpdate");
+  self.bind("update", function(elapsedTime) {
+    I.currentState.trigger("beforeUpdate", elapsedTime);
+    I.currentState.trigger("update", elapsedTime);
+    return I.currentState.trigger("afterUpdate", elapsedTime);
   });
   self.bind("afterUpdate", function() {
     var previousState;
@@ -7763,8 +7955,14 @@ Engine.GameState = function(I, self) {
     return I.currentState.trigger("overlay", canvas);
   });
   return {
-    add: function(entityData) {
+    add: function(classNameOrEntityData, entityData) {
       var object;
+      if (entityData == null) entityData = {};
+      if (typeof classNameOrEntityData.isString === "function" ? classNameOrEntityData.isString() : void 0) {
+        entityData["class"] = classNameOrEntityData;
+      } else {
+        entityData = classNameOrEntityData;
+      }
       self.trigger("beforeAdd", entityData);
       object = I.currentState.add(entityData);
       self.trigger("afterAdd", object);
@@ -7815,12 +8013,13 @@ Engine.GameState = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `Joysticks` module gives the engine access to joysticks.
+The <code>Joysticks</code> module gives the engine access to joysticks.
 
     # First you need to add the joysticks module to the engine
     window.engine = Engine
+      ...
       includedModules: ["Joysticks"]
     # Then you need to get a controller reference
     # id = 0 for player 1, etc.
@@ -7862,7 +8061,7 @@ Engine.Joysticks = function(I, self) {
     }
   };
 };
-;
+
 /**
 This module sets up the keyboard inputs for each engine update.
 
@@ -7878,7 +8077,7 @@ Engine.Keyboard = function(I, self) {
   });
   return {};
 };
-;
+
 /**
 This module provides methods for transitioning between levels.
 
@@ -7928,7 +8127,7 @@ Engine.Levels = function(I, self) {
       }
     },
     /**
-    Load map named `level`
+    Load map named <code>level</code>
 
         engine.goToLevel 'bossFight'
 
@@ -7946,12 +8145,15 @@ Engine.Levels = function(I, self) {
     @name reloadLevel
     @methodOf Engine#
     */
-    reloadLevel: function() {
+    restartLevel: function() {
       return loadLevel(I.currentLevelName);
+    },
+    reloadLevel: function() {
+      return self.restartLevel();
     }
   };
 };
-;
+
 /**
 This module sets up the mouse inputs for each engine update.
 
@@ -7967,9 +8169,9 @@ Engine.Mouse = function(I, self) {
   });
   return {};
 };
-;
+
 /**
-The `Selector` module provides methods to query the engine to find game objects.
+The <code>Selector</code> module provides methods to query the engine to find game objects.
 
 @name Selector
 @fieldOf Engine
@@ -7988,9 +8190,43 @@ Engine.Selector = function(I, self) {
   };
   return {
     /**
+    Get the game object matching the given selector that is closest to the given position.
+
+        player = engine.add
+          x: 0
+          y: 0
+
+        enemy1 = engine.add
+          enemy: true
+          x: 10
+          y: 0
+
+        enemy2 = engine.add
+          enemy: true
+          x: 0
+          y: 15
+
+        player2 = engine.add
+          x: 0
+          y: 10
+
+        equals engine.closest(".enemy", player.position()), enemy1
+        equals engine.closest(".enemy", player2.position()), enemy2
+
+    @name closest
+    @methodOf Engine.selector
+    @param {String} selector
+    @param {Point} position
+    */
+    closest: function(selector, position) {
+      return self.find(selector).sort(function(a, b) {
+        return Point.distanceSquared(position, a.position()) - Point.distanceSquared(position, b.position());
+      }).first();
+    },
+    /**
     Get a selection of GameObjects that match the specified selector criteria. The selector language
     can select objects by id, class, or attributes. Note that this method always returns an Array,
-    so if you are trying to find only one object you will need something like `engine.find("Enemy").first()`
+    so if you are trying to find only one object you will need something like <code>engine.find("Enemy").first()</code>.
 
         player = engine.add
           class: "Player"
@@ -8035,6 +8271,14 @@ Engine.Selector = function(I, self) {
         return fn(obj, index);
       });
     },
+    /**
+    Find all game objects that match the given selector.
+
+    @name find
+    @methodOf Engine.selector
+
+    @param {String} selector
+    */
     find: function(selector) {
       var matcher, results;
       results = [];
@@ -8044,6 +8288,14 @@ Engine.Selector = function(I, self) {
       });
       return Object.extend(results, instanceMethods);
     },
+    /**
+    Find the first game object that matches the given selector.
+
+    @name find
+    @methodOf Engine.selector
+
+    @param {String} selector
+    */
     first: function(selector) {
       return self.find(selector).first();
     }
@@ -8096,9 +8348,9 @@ Object.extend(Engine.Selector, {
     };
   }
 });
-;
+
 /**
-The `Stats` module provides methods to query the engine to find game objects.
+The <code>Stats</code> module provides methods to query the engine to find game objects.
 
 @name Stats
 @fieldOf Engine
@@ -8116,9 +8368,9 @@ Engine.Stats = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `Tilemap` module provides a way to load tilemaps in the engine.
+The <code>Tilemap</code> module provides a way to load tilemaps in the engine.
 
 @name Tilemap
 @fieldOf Engine
@@ -8161,73 +8413,67 @@ Engine.Tilemap = function(I, self) {
     }
   };
 };
-;
-/**
-The `Fadeable` module provides a method to fade a sprite to transparent.
-You may also provide a callback function that is executed when the sprite has finished fading out.
 
-@name Fadeable
+/**
+The Expirable module deactivates a <code>GameObject</code> after a specified duration.
+If a duration is specified the object will update that many times. If -1 is
+specified the object will have an unlimited duration.
+
+This module is included by default in <code>GameObjects</code>
+
+    enemy = GameObject
+      x: 50
+      y: 30
+      duration: 5
+
+    enemy.include Expirable
+
+    enemy.I.active
+    # => true
+
+    5.times ->
+      enemy.update(1)
+
+    enemy.I.active
+    # => false
+
+@name Expirable
 @module
 @constructor
 @param {Object} I Instance variables
 @param {Core} self Reference to including object
 */
-var Fadeable;
+var Expirable;
 
-Fadeable = function(I, self) {
+Expirable = function(I, self) {
+  var startingAlpha;
+  if (I == null) I = {};
   Object.reverseMerge(I, {
-    fadeDuration: 30,
-    fadeCooldown: null,
-    fadeCallback: null
+    duration: -1,
+    alpha: 1,
+    fadeOut: false
   });
-  self.bind("update", function() {
-    if (I.fadeCooldown != null) {
-      I.fadeCooldown = I.fadeCooldown.approach(0, 1);
-      I.alpha = I.fadeCooldown / I.fadeDuration;
-    }
-    if (I.fadeCooldown === 0) {
-      I.fadeCooldown = null;
-      return typeof I.fadeCallback === "function" ? I.fadeCallback(self) : void 0;
-    }
+  startingAlpha = I.alpha;
+  self.bind("update", function(dt) {
+    if (I.fadeOut) I.alpha = startingAlpha * (1 - (I.age / I.duration));
+    if (I.duration !== -1 && I.age >= I.duration) I.active = false;
+    return I.alpha = I.alpha.clamp(0, 1);
   });
-  return {
-    /**
-    A convenient way to set the fade instance variables on a sprite. You can modify the
-    instance variables by hand but the suggested way to do it is through this method.
-
-        player = GameObject()
-
-        player.include(Fadeable)
-
-        fadedOut = false
-
-        # this will fade the player object out over the next 30 frames.
-        # once the player is faded out the fadedOut variable will be set to true.
-        player.fadeOut 30, (player) ->
-          fadedOut = true
-
-        30.times ->
-          player.update()
-
-        fadedOut
-        # => true
-
-    @name fadeOut
-    @methodOf Fadeable#
-    @param {Number} [duration=30] How long the effect lasts
-    @param {Function} [callback=null] The function to execute when the sprite has finished fading.
-    */
-    fadeOut: function(duration, callback) {
-      if (duration == null) duration = 30;
-      I.fadeDuration = duration;
-      I.fadeCooldown = duration;
-      return I.fadeCallback = callback;
-    }
-  };
+  return {};
 };
-;
+
 /**
-The `Flickerable` module provides a method to flicker a sprite between solid and 50% opacity.
+The `Flickerable` module provides a method to flicker a sprite between its current opacity (alpha) and a given opacity.
+
+    player = GameObject
+      alpha: 0.9
+
+    player.include 'Flickerable'
+
+    # called with no arguments, flicker will toggle the player's alpha
+    # value between 0.9 (value provided above) and 0.5 (flickerable default)
+    # every 0.1 second, for a total of 2 seconds
+    player.flicker()
 
 @name Flickerable
 @module
@@ -8238,18 +8484,21 @@ The `Flickerable` module provides a method to flicker a sprite between solid and
 var Flickerable;
 
 Flickerable = function(I, self) {
-  var originalAlpha;
+  var frequencyLength, originalAlpha;
   if (I == null) I = {};
   Object.reverseMerge(I, {
     flickerAlpha: 0.5,
-    flickerDuration: 30,
-    flickerFrequency: 3
+    flickerDuration: 0,
+    flickerFrequency: 0.1
   });
   originalAlpha = I.alpha;
-  self.bind('update', function() {
-    I.flickerDuration = I.flickerDuration.approach(0, 1);
+  frequencyLength = 0;
+  self.bind('update', function(elapsedTime) {
+    I.flickerDuration = I.flickerDuration.approach(0, elapsedTime);
+    frequencyLength += elapsedTime;
     if (I.flickerDuration > 0) {
-      if (I.age.mod(I.flickerFrequency) === 0) {
+      if (frequencyLength >= I.flickerFrequency) {
+        frequencyLength = 0;
         if (I.alpha === I.flickerAlpha) {
           return I.alpha = originalAlpha;
         } else {
@@ -8269,30 +8518,36 @@ Flickerable = function(I, self) {
 
         player.include(Flickerable)
 
-        player.flicker()
-        # => This causes the sprite to flicker between full opacity
-        # => and 50% opacity every 3 frames for 30 frames
+        player.flicker
+          duration: 5
+          frequency: 0.2
+          alpha: 0.3
 
-        player.flicker(90, 5, 0.3)
         # => This causes the sprite to flicker between full opacity
-        # => and 30% opacity every 5 frames for 90 frames
+        # => and 30% opacity every 0.2 seconds for 5 seconds
 
     @name flicker
     @methodOf Flickerable#
-    @param {Number} [duration=30] How long the effect lasts
-    @param {Number} [frequency=3] The number of frames in between opacity changes
-    @param {Number} [alpha=0.5] The alpha value to flicker to
+    @param {Number} [duration=2] How long the effect lasts in seconds
+    @param {Number} [frequency=0.1] Number of seconds in between opacity changes
+    @param {Number} [alpha=0.5] Alpha value to toggle between
+    @returns {GameObject} The calling object
     */
-    flicker: function(_arg) {
-      var alpha, duration, frequency, _ref;
-      _ref = _arg != null ? _arg : {}, duration = _ref.duration, frequency = _ref.frequency, alpha = _ref.alpha;
-      if (duration != null) I.flickerDuration = duration;
-      if (frequency != null) I.flickerFrequency = frequency;
-      if (alpha != null) return I.flickerAlpha = alpha;
+    flicker: function(options) {
+      if (options == null) options = {};
+      Object.reverseMerge(options, {
+        duration: 2,
+        frequency: 0.1,
+        alpha: 0.5
+      });
+      I.flickerDuration = options.duration;
+      I.flickerFrequency = options.frequency;
+      I.flickerAlpha = options.alpha;
+      return self;
     }
   };
 };
-;
+
 /**
 The Follow module provides a simple method to set an object's
 direction so that it is pointed at another object.
@@ -8300,9 +8555,9 @@ direction so that it is pointed at another object.
 The calculated direction is based on the center point of
 each object.
 
-This method relies on both objects having `position` methods.
+This method relies on both objects having <code>position</code> methods.
 
-Include this module by calling `self.include Follow`
+Include this module by calling <code>self.include Follow</code>
 
     player = GameObject
       x: 50
@@ -8329,6 +8584,7 @@ Include this module by calling `self.include Follow`
 
     # you can use this direction to set a velocity for your object.
     enemy.I.velocity = enemy.I.direction.scale(I.speed)
+
 
 @name Follow
 @module
@@ -8365,7 +8621,7 @@ Follow = function(I, self) {
     }
   };
 };
-;
+
 /**
 This object keeps track of framerate and displays it by creating and appending an
 html element to the DOM.
@@ -8412,12 +8668,12 @@ Framerate = function(options) {
     }
   };
 };
-;
+
 /**
 The default base class for all objects you can add to the engine.
 
 GameObjects fire events that you may bind listeners to. Event listeners
-may be bound with `object.bind(eventName, callback)`
+may be bound with <code>object.bind(eventName, callback)</code>
 
 @name GameObject
 @extends Core
@@ -8456,7 +8712,7 @@ the destroy event to add particle effects, play sounds, etc.
 /**
 Triggered during every update step.
 
-player = GameObject()
+    player = GameObject()
 
     player.bind 'step', ->
       # check to see if keys are being pressed and
@@ -8473,7 +8729,7 @@ player = GameObject()
 @event
 */
 /**
-Triggered every update after the `step` event is triggered.
+Triggered every update after the <code>step</code> event is triggered.
 
     player = GameObject()
 
@@ -8509,20 +8765,16 @@ the engine. Use the remove event to handle any clean up.
 var GameObject;
 
 GameObject = function(I) {
-  var autobindEvents, defaultModules, modules, self;
+  var self;
   I || (I = {});
   /**
   @name {Object} I Instance variables
   @memberOf GameObject#
   */
   Object.reverseMerge(I, {
-    age: 0,
     active: true,
     created: false,
-    destroyed: false,
-    solid: false,
-    includedModules: [],
-    excludedModules: []
+    destroyed: false
   });
   self = Core(I).extend({
     /**
@@ -8532,11 +8784,7 @@ GameObject = function(I) {
     @methodOf GameObject#
     */
     update: function(elapsedTime) {
-      if (I.active) {
-        self.trigger('step', elapsedTime);
-        self.trigger('update', elapsedTime);
-        I.age += 1;
-      }
+      if (I.active) self.trigger('update', elapsedTime);
       return I.active;
     },
     /**
@@ -8561,26 +8809,13 @@ GameObject = function(I) {
       return I.active = false;
     }
   });
-  defaultModules = [Bindable, Bounded, Clampable, Cooldown, Drawable, Durable, Metered, TimedEvents, Tween];
-  modules = defaultModules.concat(I.includedModules.invoke('constantize'));
-  modules = modules.without(I.excludedModules.invoke('constantize'));
-  modules.each(function(Module) {
-    return self.include(Module);
-  });
-  self.attrAccessor("solid");
-  autobindEvents = ['create', 'destroy', 'step'];
-  autobindEvents.each(function(eventName) {
-    var event;
-    if (event = I[eventName]) {
-      if (typeof event === "function") {
-        return self.bind(eventName, event);
-      } else {
-        return self.bind(eventName, eval("(function() {" + event + "})"));
-      }
-    }
+  GameObject.defaultModules.each(function(moduleName) {
+    return self.include(moduleName);
   });
   return self;
 };
+
+GameObject.defaultModules = ["Ageable", "Bounded", "Clampable", "Cooldown", "Drawable", "Expirable", "Follow", "GameObject.Meter", "Movable", "Rotatable", "TimedEvents", "Tween", "GameObject.Effect"];
 
 /**
 Construct an object instance from the given entity data.
@@ -8596,7 +8831,241 @@ GameObject.construct = function(entityData) {
     return GameObject(entityData);
   }
 };
-;
+
+/**
+A collection of effects to make your game juicy.
+
+@name Effect
+@fieldOf GameObject
+@module
+@constructor
+@param {Object} I Instance variables
+@param {Core} self Reference to including object
+*/
+GameObject.Effect = function(I, self) {
+  if (I == null) I = {};
+  return {
+    /**
+    A convenient way to fade out this object over time.
+
+        player = GameObject()
+
+        # Fade the player object out over the next 2 seconds.
+        player.fadeOut 2
+
+        # Fade out and then destroy
+        player.fadeOut, 0.25, ->
+          self.destroy()
+
+    @name fadeOut
+    @methodOf GameObject#
+    @param {Number} [duration=1] Time to fade out in seconds
+    @param {Function} [complete=null] The function to execute when fade out completes.
+    */
+    fadeOut: function(duration, complete) {
+      if (duration == null) duration = 1;
+      return self.tween(duration, {
+        alpha: 0,
+        complete: complete
+      });
+    }
+  };
+};
+
+/**
+The Metered module provides a simple drop-in
+meter ui to track arbitrary numeric attributes.
+
+    player = GameObject
+      health: 100
+      heathMax: 100
+
+    enemy = GameObject
+      health: 500
+
+    someOtherObject = GameObject
+
+    player.meter 'health'
+    # => Sets up a health meter that will be drawn during the player overlay event
+
+    enemy.meter 'health'
+    # => Sets up a health meter that will be drawn during the enemy overlay event.
+    # Since healthMax wasn't provided, it is set to the value of I.health (500)
+
+    someOtherObject.meter 'turbo'
+    # => Sets up a turbo meter that will be drawn during the someOtherObject overlay event.
+    # Since neither turbo or turboMax were provided, they are both set to 100.
+
+Metered module
+@name Metered
+@module
+@constructor
+@param {Object} I Instance variables
+@param {GameObject} self Reference to including object
+*/
+GameObject.Meter = function(I, self) {
+  if (I == null) I = {};
+  Object.reverseMerge(I, {
+    meters: {}
+  });
+  self.bind('overlay', function(canvas) {
+    var backgroundColor, borderColor, borderRadius, borderWidth, color, height, meterData, name, ratio, show, width, x, y, _ref, _ref2, _ref3;
+    _ref = I.meters;
+    for (name in _ref) {
+      meterData = _ref[name];
+      backgroundColor = meterData.backgroundColor, (_ref2 = meterData.border, borderColor = _ref2.color, borderRadius = _ref2.radius, borderWidth = _ref2.width), color = meterData.color, height = meterData.height, show = meterData.show, width = meterData.width, x = meterData.x, y = meterData.y;
+      if (meterData.position != null) {
+        _ref3 = meterData.position, x = _ref3.x, y = _ref3.y;
+      }
+      if (!show) return;
+      ratio = (I[name] / I["" + name + "Max"]).clamp(0, 1);
+      canvas.drawRoundRect({
+        color: backgroundColor,
+        radius: borderRadius,
+        x: x,
+        y: y,
+        width: width,
+        height: height
+      });
+      canvas.drawRoundRect({
+        color: color,
+        x: x,
+        y: y,
+        radius: borderRadius,
+        width: width * ratio,
+        height: height
+      });
+      canvas.drawRoundRect({
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        radius: borderRadius,
+        stroke: {
+          color: borderColor,
+          width: borderWidth
+        }
+      });
+    }
+  });
+  return {
+    /**
+    Configures a meter to be drawn each overlay event.
+
+        player = GameObject
+
+        player.meter 'health',
+          border
+            color: 'brown'
+            radius: 3
+          color: 'pink'
+          height: 20
+          x: 5
+          y: 5
+          show: true
+          width: 150
+
+        # => Sets up a health meter, using all the configuration options
+
+    @name meter
+    @methodOf Metered#
+    @param {String} name The name of the property to meter
+    @param {Object} options The meter configuration options
+    @param {String} border: color Color of the meter's border
+    @param {Number} border: width Width of the meter's border
+    @param {String} color Color of the meter's inner rectangle
+    @param {Number} height Height of the meter
+    @param {Object} position An x, y object representing the position of the meter
+    @param {Number} x x position of the meter
+    @param {Number} y y position of the meter
+    @param {Number} border: radius Border radius of the meter
+    @param {Boolean} show Boolean to toggle whether of not to display the meter
+    @param {Number} width How wide the meter is
+    */
+    meter: function(name, options) {
+      if (options == null) options = {};
+      Object.reverseMerge(options, {
+        backgroundColor: 'black',
+        border: {
+          color: 'white',
+          radius: 2,
+          width: 1.5
+        },
+        color: 'green',
+        height: 10,
+        x: 0,
+        y: 0,
+        show: true,
+        width: 100
+      });
+      if (I[name] == null) I[name] = 100;
+      if (!I["" + name + "Max"]) {
+        if (I[name]) {
+          I["" + name + "Max"] = I[name];
+        } else {
+          I["" + name + "Max"] = 100;
+        }
+      }
+      return I.meters[name] = options;
+    },
+    /**
+    Shows the named meter
+
+        player = GameObject
+
+        # creates a health meter but disables visibility
+        player.meter 'health'
+          show: false
+
+        # enables visibility for the meter named 'health'
+        player.showMeter 'health'
+
+    @name showMeter
+    @methodOf Metered#
+    @param {String} name The name of the meter to show
+    */
+    showMeter: function(name) {
+      return I.meters[name].show = true;
+    },
+    /**
+    Hides the named meter
+
+        player = GameObject
+
+        # creates a health meter
+        player.meter 'health'
+
+        # disables visibility for the meter named 'health'
+        player.hideMeter 'health'
+
+    @name hideMeter
+    @methodOf Metered#
+    @param {String} name The name of the meter to hide
+    */
+    hideMeter: function(name) {
+      return I.meters[name].show = false;
+    },
+    /**
+    Toggles visibility of the named meter
+
+        player = GameObject
+
+        # creates a health meter
+        player.meter 'health'
+
+        # toggles visibility for the meter named 'health'
+        player.toggleMeter 'health'
+
+    @name toggleMeter
+    @methodOf Metered#
+    @param {String} name The name of the meter to toggle
+    */
+    toggleMeter: function(name) {
+      return I.meters[name].show = !I.meters[name].show;
+    }
+  };
+};
+
 /**
 The Game Over class sets up a simple game state with restart instructions.
 
@@ -8641,7 +9110,7 @@ GameOver = function(I) {
   });
   return self;
 };
-;
+
 var GameState;
 
 GameState = function(I) {
@@ -8688,34 +9157,33 @@ GameState = function(I) {
       return I.objects.copy();
     }
   });
-  self.include(Bindable);
   self.bind("update", function(elapsedTime) {
     var toKeep, toRemove, _ref;
     I.updating = true;
-    I.objects.invoke("trigger", "beforeUpdate");
+    I.objects.invoke("trigger", "beforeUpdate", elapsedTime);
     _ref = I.objects.partition(function(object) {
       return object.update(elapsedTime);
     }), toKeep = _ref[0], toRemove = _ref[1];
-    I.objects.invoke("trigger", "afterUpdate");
+    I.objects.invoke("trigger", "afterUpdate", elapsedTime);
     toRemove.invoke("trigger", "remove");
     I.objects = toKeep.concat(queuedObjects);
     queuedObjects = [];
     return I.updating = false;
   });
-  self.include(GameState.Cameras);
-  self.include(GameState.SaveState);
+  self.include("GameState.Cameras");
+  self.include("GameState.SaveState");
   return self;
 };
-;
+
 
 GameState.Cameras = function(I, self) {
   var cameras;
   cameras = [Camera()];
-  self.bind('update', function() {
-    return self.cameras().invoke('trigger', 'update');
+  self.bind('update', function(elapsedTime) {
+    return self.cameras().invoke('trigger', 'update', elapsedTime);
   });
-  self.bind('afterUpdate', function() {
-    return self.cameras().invoke('trigger', 'afterUpdate');
+  self.bind('afterUpdate', function(elapsedTime) {
+    return self.cameras().invoke('trigger', 'afterUpdate', elapsedTime);
   });
   self.bind('draw', function(canvas) {
     return self.cameras().invoke('trigger', 'draw', canvas, self.objects());
@@ -8744,9 +9212,9 @@ GameState.Cameras = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `SaveState` module provides methods to save and restore the current game state.
+The <code>SaveState</code> module provides methods to save and restore the current game state.
 
 @name SaveState
 @fieldOf GameState
@@ -8826,9 +9294,9 @@ GameState.SaveState = function(I, self) {
     }
   };
 };
-;
+
 /**
-The `SingleCamera` module provides provides a single camera view of the game.
+The <code>SingleCamera</code> module provides provides a single camera view of the game.
 Its transform can be adjusted to view different areas and provide various camera effects.
 
 @name SingleCamera
@@ -8857,7 +9325,7 @@ GameState.SingleCamera = function(I, self) {
   });
   return {};
 };
-;
+
 /**
 A Game State that loads the map for a given level and transitions into the level.
 
@@ -8894,217 +9362,7 @@ LevelState = function(I) {
   });
   return self;
 };
-;
-/**
-The Metered module provides a simple drop-in
-meter ui to track arbitrary numeric attributes.
 
-    player = GameObject
-      health: 100
-      maxHealth: 100
-
-    player.include Metered
-
-    enemy = GameObject
-      health: 500
-
-    enemy.include Metered
-
-    someOtherObject = GameObject
-
-    someOtherObject.include Metered
-
-    player.meter 'health'
-    # => Sets up a health meter that will be drawn during the player overlay event
-
-    enemy.meter 'health'
-    # => Sets up a health meter that will be drawn during the enemy overlay event.
-    # Since maxHealth wasn't provided, it is set to the value of I.health (500)
-
-    someOtherObject.meter 'turbo'
-    # => Sets up a turbo meter that will be drawn during the someOtherObject overlay event.
-    # Since neither turbo maxTurbo were provided, they are both set to 100.
-
-Metered module
-@name Metered
-@module
-@constructor
-@param {Object} I Instance variables
-@param {GameObject} self Reference to including object
-*/
-var Metered;
-
-Metered = function(I, self) {
-  if (I == null) I = {};
-  Object.reverseMerge(I, {
-    meters: {}
-  });
-  self.bind('overlay', function(canvas) {
-    var backgroundColor, borderColor, borderRadius, borderWidth, color, height, meterData, name, ratio, show, width, x, y, _ref, _ref2, _ref3;
-    _ref = I.meters;
-    for (name in _ref) {
-      meterData = _ref[name];
-      backgroundColor = meterData.backgroundColor, (_ref2 = meterData.border, borderColor = _ref2.color, borderRadius = _ref2.radius, borderWidth = _ref2.width), color = meterData.color, height = meterData.height, show = meterData.show, width = meterData.width, x = meterData.x, y = meterData.y;
-      if (meterData.position != null) {
-        _ref3 = meterData.position, x = _ref3.x, y = _ref3.y;
-      }
-      if (!show) return;
-      ratio = I[name] / I["max" + (name.capitalize())];
-      canvas.drawRoundRect({
-        color: backgroundColor,
-        radius: borderRadius,
-        x: x,
-        y: y,
-        width: width,
-        height: height
-      });
-      canvas.drawRoundRect({
-        color: color,
-        x: x,
-        y: y,
-        radius: borderRadius,
-        width: width * ratio,
-        height: height
-      });
-      canvas.drawRoundRect({
-        x: x,
-        y: y,
-        width: width,
-        height: height,
-        radius: borderRadius,
-        stroke: {
-          color: borderColor,
-          width: borderWidth
-        }
-      });
-    }
-  });
-  return {
-    /**
-    Configures a meter to be drawn each overlay event.
-
-        player = GameObject
-
-        player.include Metered
-
-        player.meter 'health',
-          border
-            color: 'brown'
-            radius: 3
-          color: 'pink'
-          height: 20
-          x: 5
-          y: 5
-          show: true
-          width: 150
-
-        # => Sets up a health meter, using all the configuration options
-
-    @name meter
-    @methodOf Metered#
-    @param {String} name The name of the property to meter
-    @param {Object} options The meter configuration options
-    @param {String} border: color Color of the meter's border
-    @param {Number} border: width Width of the meter's border
-    @param {String} color Color of the meter's inner rectangle
-    @param {Number} height Height of the meter
-    @param {Object} position An x, y object representing the position of the meter
-    @param {Number} x x position of the meter
-    @param {Number} y y position of the meter
-    @param {Number} border: radius Border radius of the meter
-    @param {Boolean} show Boolean to toggle whether of not to display the meter
-    @param {Number} width How wide the meter is
-    */
-    meter: function(name, options) {
-      if (options == null) options = {};
-      Object.reverseMerge(options, {
-        backgroundColor: 'black',
-        border: {
-          color: 'white',
-          radius: 2,
-          width: 1.5
-        },
-        color: 'green',
-        height: 10,
-        x: 0,
-        y: 0,
-        show: true,
-        width: 100
-      });
-      if (I[name] == null) I[name] = 100;
-      if (!I["max" + (name.capitalize())]) {
-        if (I[name]) {
-          I["max" + (name.capitalize())] = I[name];
-        } else {
-          I["max" + (name.capitalize())] = 100;
-        }
-      }
-      return I.meters[name] = options;
-    },
-    /**
-    Shows the named meter
-
-        player = GameObject
-
-        player.include Metered
-
-        # creates a health meter but disables visibility
-        player.meter 'health'
-          show: false
-
-        # enables visibility for the meter named 'health'
-        player.showMeter 'health'
-
-    @name showMeter
-    @methodOf Metered#
-    @param {String} name The name of the meter to show
-    */
-    showMeter: function(name) {
-      return I.meters[name].show = true;
-    },
-    /**
-    Hides the named meter
-
-        player = GameObject
-
-        player.include Metered
-
-        # creates a health meter
-        player.meter 'health'
-
-        # disables visibility for the meter named 'health'
-        player.hideMeter 'health'
-
-    @name hideMeter
-    @methodOf Metered#
-    @param {String} name The name of the meter to hide
-    */
-    hideMeter: function(name) {
-      return I.meters[name].show = false;
-    },
-    /**
-    Toggles visibility of the named meter
-
-        player = GameObject
-
-        player.include Metered
-
-        # creates a health meter
-        player.meter 'health'
-
-        # toggles visibility for the meter named 'health'
-        player.toggleMeter 'health'
-
-    @name toggleMeter
-    @methodOf Metered#
-    @param {String} name The name of the meter to toggle
-    */
-    toggleMeter: function(name) {
-      return I.meters[name].show = !I.meters[name].show;
-    }
-  };
-};
-;
 /**
 The Movable module automatically updates the position and velocity of
 GameObjects based on the velocity and acceleration. It does not check
@@ -9121,14 +9379,14 @@ collisions so is probably best suited to particle effect like things.
 
     # => `velocity is {x: 0, y: 0} and position is {x: 0, y: 0}`
 
-    player.update()
+    player.update(1)
     # => `velocity is {x: 1, y: 0} and position is {x: 1, y: 0}`
 
-    player.update()
+    player.update(1)
     # => `velocity is {x: 2, y: 0} and position is {x: 3, y: 0}`
 
     # we've hit our maxSpeed so our velocity won't increase
-    player.update()
+    player.update(1)
     # => `velocity is {x: 2, y: 0} and position is {x: 5, y: 0}`
 
 @name Movable
@@ -9147,20 +9405,21 @@ Movable = function(I, self) {
   });
   I.acceleration = Point(I.acceleration.x, I.acceleration.y);
   I.velocity = Point(I.velocity.x, I.velocity.y);
-  return self.bind('update', function() {
+  self.unbind(".Movable");
+  return self.bind('update.Movable', function(dt) {
     var currentSpeed;
-    I.velocity = I.velocity.add(I.acceleration);
+    I.velocity = I.velocity.add(I.acceleration.scale(dt));
     if (I.maxSpeed != null) {
       currentSpeed = I.velocity.magnitude();
       if (currentSpeed > I.maxSpeed) {
         I.velocity = I.velocity.scale(I.maxSpeed / currentSpeed);
       }
     }
-    I.x += I.velocity.x;
-    return I.y += I.velocity.y;
+    I.x += I.velocity.x * dt;
+    return I.y += I.velocity.y * dt;
   });
 };
-;
+
 /**
 Creates an oscillator function with the given parameters.
 
@@ -9183,7 +9442,7 @@ Oscillator = function(options) {
     return amplitude * Math.cos(Math.TAU * t / period + offset);
   };
 };
-;
+
 /**
 @name ResourceLoader
 @namespace
@@ -9219,7 +9478,7 @@ Helps access the assets in your game.
   };
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["ResourceLoader"] = ResourceLoader;
 })();
-;
+
 /**
 The Rotatable module rotates the object
 based on its rotational velocity.
@@ -9229,17 +9488,15 @@ based on its rotational velocity.
       y: 0
       rotationalVelocity: Math.PI / 64
 
-    player.include(Rotatable)
-
     player.I.rotation
     # => 0
 
-    player.update()
+    player.update(1)
 
     player.I.rotation
     # => 0.04908738521234052 # Math.PI / 64
 
-    player.update()
+    player.update(1)
 
     player.I.rotation
     # => 0.09817477042468103 # 2 * (Math.PI / 64)
@@ -9258,12 +9515,12 @@ Rotatable = function(I, self) {
     rotation: 0,
     rotationalVelocity: 0
   });
-  self.bind('update', function() {
-    return I.rotation += I.rotationalVelocity;
+  self.bind('update', function(dt) {
+    return I.rotation += I.rotationalVelocity * dt;
   });
   return {};
 };
-;
+
 /**
 The Sprite class provides a way to load images for use in games.
 
@@ -9275,7 +9532,7 @@ draw anything to the screen until the image has been loaded.
 @constructor
 */
 (function() {
-  var LoaderProxy, Sprite;
+  var LoaderProxy, Sprite, spriteCache;
   LoaderProxy = function() {
     return {
       draw: function() {},
@@ -9286,6 +9543,7 @@ draw anything to the screen until the image has been loaded.
       height: null
     };
   };
+  spriteCache = {};
   Sprite = function(image, sourceX, sourceY, width, height) {
     sourceX || (sourceX = 0);
     sourceY || (sourceY = 0);
@@ -9371,14 +9629,16 @@ draw anything to the screen until the image has been loaded.
   @returns {Sprite} A sprite object
   */
   Sprite.load = function(url, loadedCallback) {
-    var img, proxy;
+    var img, proxy, sprite;
+    if (sprite = spriteCache[url]) {
+      if (loadedCallback != null) loadedCallback.defer(sprite);
+      return sprite;
+    }
     img = new Image();
     proxy = LoaderProxy();
     img.onload = function() {
-      var tile;
-      tile = Sprite(this);
-      Object.extend(proxy, tile);
-      if (loadedCallback) return loadedCallback(proxy);
+      spriteCache[url] = Object.extend(proxy, Sprite(this));
+      return typeof loadedCallback === "function" ? loadedCallback(proxy) : void 0;
     };
     img.src = url;
     return proxy;
@@ -9436,28 +9696,28 @@ draw anything to the screen until the image has been loaded.
   };
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Sprite"] = Sprite;
 })();
-;
+
 /**
 The Text Effect class provides a method to display moving text onscreen, fading out the text over the effect duration.
 
-By default, images are loaded asynchronously. A proxy object is
-returned immediately. Even though it has a draw method it will not
-draw anything to the screen until the image has been loaded.
+    # adds a TextEffect to the engine at (60, 100)
+    engine.add 'TextEffect'
+      x: 60
+      y: 100
 
 @name TextEffect
 @constructor
 */
 /**
 Updates the position of the text based on the effect velocity. Updates the
-alpha based on the elapsed time since the effect creation. If `rotationalVelocity`
-is provided then the text rotation is updated as well.
+alpha based on the elapsed time since the effect creation.
 
 @name update
 @methodOf TextEffect#
 @event
 */
 /**
-Draws the `textShadow` text and the `text` text.
+Draws text from `I.textShadow` `I.text`.
 
 @name draw
 @methodOf TextEffect#
@@ -9471,21 +9731,18 @@ TextEffect = function(I) {
   if (I == null) I = {};
   Object.reverseMerge(I, {
     color: Color('green'),
-    duration: 40,
+    duration: -1,
     font: '20px Helvetica',
     text: '100',
     textShadow: Color('black'),
     alpha: 1,
     rotation: 0,
-    rotationalVelocity: 0,
-    velocity: Point(0, -1)
+    velocity: Point(0, 0)
   });
   self = GameObject(I);
   self.bind("update", function() {
-    I.rotation += I.rotationalVelocity;
-    I.x += I.velocity.x;
-    I.y += I.velocity.y;
-    return I.alpha = 1 - (I.age / I.duration);
+    if (I.rotationalVelocity != null) I.rotation += I.rotationalVelocity;
+    return I.alpha = (1 - (I.age / I.duration)).clamp(0, 1);
   });
   self.unbind("draw");
   self.bind("draw", function(canvas) {
@@ -9493,23 +9750,49 @@ TextEffect = function(I) {
     if (!I.textShadow.channels) I.textShadow = Color(I.textShadow);
     I.color.a = I.alpha;
     I.textShadow.a = I.alpha;
+    I.width = canvas.measureText(I.text);
     canvas.font(I.font);
     canvas.drawText({
       color: I.textShadow,
-      x: 1,
+      x: 1 - I.width,
       y: 1,
       text: I.text
     });
     return canvas.drawText({
       color: I.color,
-      x: 0,
+      x: 0 - I.width,
       y: 0,
       text: I.text
     });
   });
   return self;
 };
-;
+
+/**
+`TextEffect.Floating` is a simple subclass of `TextEffect`. It provides some defaults
+to move the text upward and fade it out over 0.5 seconds.
+
+    # adds a FloatingTextEffect to the engine
+    # at (50, 50). This effect will float upward
+    # at 90 pixels/sec and will fadeOut over 0.5 seconds
+    engine.add 'TextEffect.Floating'
+      x: 50
+      y: 50
+
+@see TextEffect
+@name Floating
+@fieldOf TextEffect
+@constructor
+*/
+TextEffect.Floating = function(I) {
+  if (I == null) I = {};
+  Object.reverseMerge(I, {
+    duration: 0.5,
+    velocity: Point(0, -90)
+  });
+  return TextEffect(I);
+};
+
 /**
 The Text Screen class is a GameState that provides convenience methods for drawing text to screen.
 
@@ -9556,7 +9839,7 @@ TextScreen = function(I) {
     }
   });
 };
-;
+
 
 (function() {
   var Map, Tilemap, loadByName;
@@ -9616,9 +9899,9 @@ TextScreen = function(I) {
   };
   return (typeof exports !== "undefined" && exports !== null ? exports : this)["Tilemap"] = Tilemap;
 })();
-;
+
 /**
-The TimedEvents module allows arbitrary code to be executed at set intervals. `GameObject` includes this module by default
+The TimedEvents module allows arbitrary code to be executed at set intervals. <code>GameObject</code> includes this module by default
 
 TimedEvents module
 @name TimedEvents
@@ -9626,35 +9909,93 @@ TimedEvents module
 @constructor
 @param {Object} I Instance variables
 */
-var TimedEvents;
+var TimedEvents,
+  __slice = Array.prototype.slice;
 
-TimedEvents = function(I) {
+TimedEvents = function(I, self) {
   if (I == null) I = {};
+  Object.reverseMerge(I, {
+    everyEvents: [],
+    delayEvents: []
+  });
+  self.bind("update", function(elapsedTime) {
+    var event, firingEvents, fn, period, _i, _len, _ref, _ref2;
+    _ref = I.everyEvents;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      event = _ref[_i];
+      fn = event.fn, period = event.period;
+      while (event.lastFired < I.age + elapsedTime) {
+        self.sendOrApply(fn);
+        event.lastFired += period;
+      }
+    }
+    _ref2 = I.delayEvents.partition(function(event) {
+      return (event.delay -= elapsedTime) >= 0;
+    }), I.delayEvents = _ref2[0], firingEvents = _ref2[1];
+    return firingEvents.each(function(event) {
+      return self.sendOrApply(event.fn);
+    });
+  });
   return {
     /**
-    Execute `fn` every `n` frames.
+    Execute <code>fn</code> every <code>n</code> frames.
 
         player = GameObject()
 
         player.include TimedEvents
 
-        # doSomething is called every 4 frames
+        # doSomething is called every 4 seconds
         player.every 4, ->
           doSomething()
 
     @name every
     @methodOf TimedEvents#
     @param {Number} n Number of frames to wait before executing the callback
-    @param {Function} fn Code to execute after `n` frames has passed
+    @param {Function} fn Code to execute after <code>n</code> frames has passed
     */
-    every: function(n, fn) {
-      if (I.age.mod(n) === 0) return fn();
+    every: function(period, fn) {
+      if (!(period > 0)) return;
+      return I.everyEvents.push({
+        fn: fn,
+        period: period,
+        lastFired: I.age
+      });
+      /**
+        Execute a callback after a number of seconds have passed.
+
+        self.delay 5, ->
+          engine.add
+            class: "Ghost"
+
+        @name delay
+        @methodOf TimedEvents#
+        @param {Number} steps The number of steps to wait before executing the callback
+        @param {Function} callback The callback to be executed.
+
+        @returns {Engine} self
+      */
+    },
+    delay: function(seconds, fn) {
+      I.delayEvents.push({
+        delay: seconds,
+        fn: fn
+      });
+      return self;
+    },
+    sendOrApply: function() {
+      var args, fn;
+      fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      if (typeof fn === "function") {
+        return fn.apply(self, args);
+      } else {
+        return self.send.apply(self, [fn].concat(__slice.call(args)));
+      }
     }
   };
 };
-;
+
 /**
-The Title Screen class sets up a simple game title screen using `App.name`
+The Title Screen class sets up a simple game title screen using <code>App.name</code>
 
 @see TextScreen
 @name TitleScreen
@@ -9668,7 +10009,7 @@ Goes to the next level on any user input.
 @event
 */
 /**
-Overlays the title text in the middle of the screen. Uses `App.name`
+Overlays the title text in the middle of the screen. Uses <code>App.name</code>
 
 @name overlay
 @methodOf TitleScreen#
@@ -9693,9 +10034,9 @@ TitleScreen = function(I) {
   });
   return self;
 };
-;
+
 /**
-The `Tween` module provides a method to tween object properties.
+The <code>Tween</code> module provides a method to tween object properties.
 
 @name Tween
 @module
@@ -9710,22 +10051,26 @@ Tween = function(I, self) {
   Object.reverseMerge(I, {
     activeTweens: {}
   });
-  self.bind("update", function() {
-    var data, f, property, t, _base, _ref, _results;
+  self.bind("update", function(elapsedTime) {
+    var data, easingFunction, property, t, _base, _base2, _ref, _results;
+    t = I.age + elapsedTime;
     _ref = I.activeTweens;
     _results = [];
     for (property in _ref) {
       data = _ref[property];
-      if (I.age >= data.endTime) {
+      if (t >= data.endTime) {
         I[property] = data.end;
         if (typeof (_base = I.activeTweens[property]).complete === "function") {
           _base.complete();
         }
         _results.push(delete I.activeTweens[property]);
       } else {
-        f = Easing[data.easing](data.start, data.end);
-        t = (I.age - data.startTime) / data.duration;
-        _results.push(I[property] = f(t));
+        if (typeof (_base2 = data.easing).isString === "function" ? _base2.isString() : void 0) {
+          easingFunction = Easing[data.easing](data.start, data.end);
+        } else {
+          easingFunction = data.easing;
+        }
+        _results.push(I[property] = easingFunction((t - data.startTime) / data.duration));
       }
     }
     return _results;
@@ -9778,5 +10123,4 @@ Tween = function(I, self) {
     }
   };
 };
-;
-;
+

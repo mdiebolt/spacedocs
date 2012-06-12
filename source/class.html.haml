@@ -50,7 +50,7 @@
 
               %section.usage
                 %h3 Usage
-                = method_data['code_sample']
+                = preserve(method_data['code_sample'])
 
               - if method_data['parameters'].keys.length > 0
                 %section.parameters
@@ -74,7 +74,8 @@
                 %h3 Source
                 %a.toggle_source Toggle
                 %pre
-                  %code= method_data['source']
+                  %code
+                    = preserve(method_data['source'])
             %hr
 
 :javascript
