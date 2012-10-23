@@ -3339,9 +3339,9 @@
       }
     ],
     "description": {
-      "full": "<p>Adds a point to this one and returns the new point. You may<br />also use a two argument call like <code>point.add(x, y)</code><br />to add x and y values without a second point object.</p>\n\n<pre><code>point = Point(2, 3).add(Point(3, 4))\n\npoint.x\n</code></pre>\n\n<h1>=> 5</h1>\n\n<pre><code>point.y\n# =&gt; 7\n\nanotherPoint = Point(2, 3).add(3, 4)\n\nanotherPoint.x\n# =&gt; 5\n\nanotherPoint.y\n# =&gt; 7\n</code></pre>",
+      "full": "<p>Adds a point to this one and returns the new point. You may<br />also use a two argument call like <code>point.add(x, y)</code><br />to add x and y values without a second point object.</p>\n\n<pre><code>point = Point(2, 3).add(Point(3, 4))\n\npoint.x\n# =&gt; 5\n\npoint.y\n# =&gt; 7\n\nanotherPoint = Point(2, 3).add(3, 4)\n\nanotherPoint.x\n# =&gt; 5\n\nanotherPoint.y\n# =&gt; 7\n</code></pre>",
       "summary": "<p>Adds a point to this one and returns the new point. You may<br />also use a two argument call like <code>point.add(x, y)</code><br />to add x and y values without a second point object.</p>",
-      "body": "<pre><code>point = Point(2, 3).add(Point(3, 4))\n\npoint.x\n</code></pre>\n\n<h1>=> 5</h1>\n\n<pre><code>point.y\n# =&gt; 7\n\nanotherPoint = Point(2, 3).add(3, 4)\n\nanotherPoint.x\n# =&gt; 5\n\nanotherPoint.y\n# =&gt; 7\n</code></pre>"
+      "body": "<pre><code>point = Point(2, 3).add(Point(3, 4))\n\npoint.x\n# =&gt; 5\n\npoint.y\n# =&gt; 7\n\nanotherPoint = Point(2, 3).add(3, 4)\n\nanotherPoint.x\n# =&gt; 5\n\nanotherPoint.y\n# =&gt; 7\n</code></pre>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -8646,9 +8646,9 @@
       }
     ],
     "description": {
-      "full": "<p>Collision holds many useful class methods for checking geometric overlap of various objects.</p>\n\n<pre><code>player = engine.add\n  class: \"Player\"\n  x: 0\n  y: 0\n  width: 10\n  height: 10\n\nenemy = engine.add\n</code></pre>\n\n<p>class: \"Enemy\"<br />      x: 5<br />      y: 5<br />      width: 10<br />      height: 10</p>\n\n<pre><code>enemy2 = engine.add\n  class: \"Enemy\"\n  x: -5\n  y: -5\n  width: 10\n  height: 10\n\nCollision.collide(player, enemy, (p, e) -&gt; ...)\n# =&gt; callback is called once\n\nCollision.collide(player, [enemy, enemy2], (p, e) -&gt; ...)\n# =&gt; callback is called twice\n\nCollision.collide(\"Player\", \"Enemy\", (p, e) -&gt; ...)\n# =&gt; callback is also called twice\n</code></pre>",
+      "full": "<p>Collision holds many useful class methods for checking geometric overlap of various objects.</p>\n\n<pre><code>player = engine.add\n  class: \"Player\"\n  x: 0\n  y: 0\n  width: 10\n  height: 10\n\nenemy = engine.add\n  class: \"Enemy\"\n  x: 5\n  y: 5\n  width: 10\n  height: 10\n\nenemy2 = engine.add\n  class: \"Enemy\"\n  x: -5\n  y: -5\n  width: 10\n  height: 10\n\nCollision.collide(player, enemy, (p, e) -&gt; ...)\n# =&gt; callback is called once\n\nCollision.collide(player, [enemy, enemy2], (p, e) -&gt; ...)\n# =&gt; callback is called twice\n\nCollision.collide(\"Player\", \"Enemy\", (p, e) -&gt; ...)\n# =&gt; callback is also called twice\n</code></pre>",
       "summary": "<p>Collision holds many useful class methods for checking geometric overlap of various objects.</p>",
-      "body": "<pre><code>player = engine.add\n  class: \"Player\"\n  x: 0\n  y: 0\n  width: 10\n  height: 10\n\nenemy = engine.add\n</code></pre>\n\n<p>class: \"Enemy\"<br />      x: 5<br />      y: 5<br />      width: 10<br />      height: 10</p>\n\n<pre><code>enemy2 = engine.add\n  class: \"Enemy\"\n  x: -5\n  y: -5\n  width: 10\n  height: 10\n\nCollision.collide(player, enemy, (p, e) -&gt; ...)\n# =&gt; callback is called once\n\nCollision.collide(player, [enemy, enemy2], (p, e) -&gt; ...)\n# =&gt; callback is called twice\n\nCollision.collide(\"Player\", \"Enemy\", (p, e) -&gt; ...)\n# =&gt; callback is also called twice\n</code></pre>"
+      "body": "<pre><code>player = engine.add\n  class: \"Player\"\n  x: 0\n  y: 0\n  width: 10\n  height: 10\n\nenemy = engine.add\n  class: \"Enemy\"\n  x: 5\n  y: 5\n  width: 10\n  height: 10\n\nenemy2 = engine.add\n  class: \"Enemy\"\n  x: -5\n  y: -5\n  width: 10\n  height: 10\n\nCollision.collide(player, enemy, (p, e) -&gt; ...)\n# =&gt; callback is called once\n\nCollision.collide(player, [enemy, enemy2], (p, e) -&gt; ...)\n# =&gt; callback is called twice\n\nCollision.collide(\"Player\", \"Enemy\", (p, e) -&gt; ...)\n# =&gt; callback is also called twice\n</code></pre>"
     },
     "isPrivate": false,
     "ignore": false,
@@ -9421,9 +9421,9 @@
       }
     ],
     "description": {
-      "full": "<p>The calling color lightened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p>\n\n<pre><code>green = Color(0, 255, 0)\n\ngreen.lighten$(0.2)\n\n# we have modified green in place\n# to become lightGreen\ngreen.toString()\n</code></pre>\n\n<h1>=> 'rgba(102, 255, 102, 1)'</h1>",
+      "full": "<p>The calling color lightened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p>\n\n<pre><code>green = Color(0, 255, 0)\n\ngreen.lighten$(0.2)\n\n# we have modified green in place\n# to become lightGreen\ngreen.toString()\n# =&gt; 'rgba(102, 255, 102, 1)'\n</code></pre>",
       "summary": "<p>The calling color lightened by <code>amount</code> (Lightness of the color ranges from 0 to 1).</p>",
-      "body": "<pre><code>green = Color(0, 255, 0)\n\ngreen.lighten$(0.2)\n\n# we have modified green in place\n# to become lightGreen\ngreen.toString()\n</code></pre>\n\n<h1>=> 'rgba(102, 255, 102, 1)'</h1>"
+      "body": "<pre><code>green = Color(0, 255, 0)\n\ngreen.lighten$(0.2)\n\n# we have modified green in place\n# to become lightGreen\ngreen.toString()\n# =&gt; 'rgba(102, 255, 102, 1)'\n</code></pre>"
     },
     "isPrivate": false,
     "ignore": false,
