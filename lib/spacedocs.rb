@@ -15,8 +15,8 @@ module Spacedocs
 
       processed_data = process_data doc_json
 
-      template = Tilt.new(File.join tilt_path, "../source/class.html.haml")
-      index_template = Tilt.new(File.join tilt_path, "../source/index.html.haml")
+      template = Tilt.new(File.join tilt_path, "templates/class.html.haml")
+      index_template = Tilt.new(File.join tilt_path, "templates/index.html.haml")
 
       files = {}
 
@@ -31,43 +31,22 @@ module Spacedocs
       FileUtils.rm_rf docs_dir
       FileUtils.mkdir_p docs_dir
 
-      if __FILE__ == $0
-        File.open("source/index.html", 'w') do |f|
-          f.write(index_template.render self, { class_names: files.keys, dev: true })
-        end
+      File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
+        f.write(index_template.render self, { class_names: files.keys })
+      end
 
-        files.each_key do |file_name|
-          methods = class_data[file_name]['methods']
+      files.each_key do |file_name|
+        methods = class_data[file_name]['methods']
 
-          File.open("source/#{file_name}.html", 'w') do |f|
-            f.write(template.render self, {
-              class_name: file_name,
-              method_list: methods.keys,
-              methods: methods,
-              class_names: files.keys,
-              class_summary: class_data[file_name]['summary'],
-              dev: true
-            })
-          end
-        end
-      else
-        File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
-          f.write(index_template.render self, { class_names: files.keys })
-        end
-
-        files.each_key do |file_name|
-          methods = class_data[file_name]['methods']
-
-          File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
-            f.write(template.render self, {
-              class_name: file_name,
-              method_list: methods.keys,
-              methods: methods,
-              class_names: files.keys,
-              class_summary: class_data[file_name]['summary'],
-              dev: false
-            })
-          end
+        File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
+          f.write(template.render self, {
+            class_name: file_name,
+            method_list: methods.keys,
+            methods: methods,
+            class_names: files.keys,
+            class_summary: class_data[file_name]['summary'],
+            dev: false
+          })
         end
       end
     end
@@ -201,15 +180,7 @@ module Spacedocs
         }
       end
 
-      # File.open("source/sanity.json", 'w') do |f|
-      #   f.write(JSON.pretty_generate(docs_data))
-      # end
-
       return { docs_data: docs_data, class_names: class_names }
     end
   end
-end
-
-if __FILE__ == $0
-  Spacedocs.doc 'projects/6', 'game.js'
 end

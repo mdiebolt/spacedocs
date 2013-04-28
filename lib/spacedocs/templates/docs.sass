@@ -1,5 +1,3 @@
-@import compass/css3
-
 $width: 600px
 
 html
@@ -7,7 +5,7 @@ html
   height: 100%
 
 body
-  +background-image(linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent))
+  //+background-image(linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent))
   -webkit-background-size: 4px 4px
 
   font-family: 'Lucida Grande', Arial, sans-serif
@@ -16,8 +14,8 @@ body
   margin: 0
 
 .method_list
-  +border-radius(5px)
-  +box-shadow(rgba(0,0,0,0.15) 0 0 15px)
+  //+border-radius(5px)
+  //+box-shadow(rgba(0,0,0,0.15) 0 0 15px)
 
   position: fixed
   top: 20px
@@ -41,8 +39,8 @@ body
     text-decoration: none
 
 nav
-  +background-image(linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent))
-  +box-shadow(rgba(0, 0, 0, 0.15) -1px 0 4px inset)
+  //+background-image(linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent))
+  //+box-shadow(rgba(0, 0, 0, 0.15) -1px 0 4px inset)
   -webkit-background-size: 12px 12px
   display: inline-block
   width: 130px
@@ -56,7 +54,7 @@ nav
   top: 0
 
   a
-    +box-sizing(border-box)
+    //+box-sizing(border-box)
 
     border: 1px solid transparent
     color: #222
@@ -65,8 +63,8 @@ nav
     padding: 0.5em 0 0.5em 1em
 
     &.active
-      +border-left-radius(5px)
-      +box-shadow(rgba(0, 0, 0, 0.2) 0 0 4px)
+      //+border-left-radius(5px)
+      //+box-shadow(rgba(0, 0, 0, 0.2) 0 0 4px)
 
       background-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent)
       background-color: white

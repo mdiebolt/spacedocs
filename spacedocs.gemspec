@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "spacedocs"
   gem.require_paths = ["lib"]
   gem.version       = Spacedocs::VERSION
+
+  gem.add_dependency 'rake'
 end

@@ -1,7 +1,4 @@
-source :rubygems
-
-gem 'middleman', '~>3.0.0.beta.2'
-gem 'rake'
+source 'https://rubygems.org'
 
 # Specify your gem's dependencies in spacedocs.gemspec
 gemspec
