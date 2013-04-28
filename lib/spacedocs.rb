@@ -17,8 +17,6 @@ module Spacedocs
 
       FileUtils.mkdir_p stylesheets_dir
 
-      p Compass.sass_engine_options
-
       stylesheet_template = Tilt.new(File.join(tilt_path, 'spacedocs.sass'), Compass.configuration.to_sass_engine_options)
 
       File.open(File.join(stylesheets_dir, 'spacedocs.css'), 'w') do |f|
