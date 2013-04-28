@@ -1,6 +1,6 @@
 # Spacedocs
 
-TODO: Write a gem description
+Generate beautiful html and css for your JavaDoc'd source code.
 
 ## Installation
 
@@ -18,7 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`Spacedoc.doc(output_path, source_path)` will generate html files at `output_path/docs`
+
+If you don't feel like writing your own css
+
+`Spacedoc.generate_css(output_path)` will generate a default stylesheet at `output_path/docs/stylesheets`
 
 ## Contributing
 
