@@ -1,10 +1,28 @@
 require 'tilt'
+
 require 'haml'
+require 'sass'
+
 require 'json'
+
 require 'fileutils'
 
 module Spacedocs
   class << self
+    def generate_stylesheet(project_dir)
+      tilt_path = File.dirname(__FILE__)
+
+      stylesheets_dir = File.join(project_dir, 'docs/stylesheets')
+
+      FileUtils.mkdir_p stylesheets_dir
+
+      stylesheet_template = Tilt.new(File.join tilt_path, 'spacedocs.sass')
+
+      File.open(File.join(stylesheets_dir, 'spacedocs.css'), 'w') do |f|
+        f.write(stylesheet_template.render self)
+      end
+    end
+
     def doc(project_dir, file)
       tilt_path = File.dirname(__FILE__)
 
@@ -15,8 +33,8 @@ module Spacedocs
 
       processed_data = process_data doc_json
 
-      template = Tilt.new(File.join tilt_path, "templates/class.html.haml")
-      index_template = Tilt.new(File.join tilt_path, "templates/index.html.haml")
+      template = Tilt.new(File.join tilt_path, "class.html.haml")
+      index_template = Tilt.new(File.join tilt_path, "index.html.haml")
 
       files = {}
 
@@ -32,7 +50,9 @@ module Spacedocs
       FileUtils.mkdir_p docs_dir
 
       File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
-        f.write(index_template.render self, { class_names: files.keys })
+        f.write(index_template.render self, {
+          class_names: files.keys,
+        })
       end
 
       files.each_key do |file_name|
@@ -45,7 +65,6 @@ module Spacedocs
             methods: methods,
             class_names: files.keys,
             class_summary: class_data[file_name]['summary'],
-            dev: false
           })
         end
       end

@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Spacedocs::VERSION
 
   gem.add_dependency 'rake'
+  gem.add_dependency 'sass'
 end
