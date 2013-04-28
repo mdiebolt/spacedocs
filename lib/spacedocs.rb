@@ -27,7 +27,7 @@ module Spacedocs
       tilt_path = File.dirname(__FILE__)
 
       #TODO Dangerous
-      json = %x[dox < "#{File.join project_dir, file}"]
+      json = %x[#{tilt_path}/node_modules/.bin/dox < "#{File.join project_dir, file}"]
 
       doc_json = JSON.parse json
 
