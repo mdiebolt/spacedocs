@@ -18,11 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-`Spacedoc.doc(output_path, source_path)` will generate html files at `output_path/docs`
+`Spacedocs.doc(output_path, source_file)` generates html files at `output_path/docs` based on JavaDoc style comments from `source_file`
 
 If you don't feel like writing your own css
 
-`Spacedoc.generate_css(output_path)` will generate a default stylesheet at `output_path/docs/stylesheets`
+`Spacedocs.generate_css(output_path)` generates a default stylesheet at `output_path/docs/stylesheets`
 
 ## Contributing
 

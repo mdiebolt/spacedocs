@@ -2,6 +2,7 @@ require 'tilt'
 
 require 'haml'
 require 'sass'
+require 'compass'
 
 require 'json'
 
@@ -16,7 +17,9 @@ module Spacedocs
 
       FileUtils.mkdir_p stylesheets_dir
 
-      stylesheet_template = Tilt.new(File.join tilt_path, 'spacedocs.sass')
+      p Compass.sass_engine_options
+
+      stylesheet_template = Tilt.new(File.join(tilt_path, 'spacedocs.sass'), Compass.configuration.to_sass_engine_options)
 
       File.open(File.join(stylesheets_dir, 'spacedocs.css'), 'w') do |f|
         f.write(stylesheet_template.render self)
