@@ -24,11 +24,10 @@ module Spacedocs
       end
     end
 
-    def doc(project_dir, file)
+    def doc(file_path, output_dir)
       tilt_path = File.dirname(__FILE__)
 
-      #TODO Dangerous
-      json = %x[#{tilt_path}/node_modules/.bin/dox < "#{File.join project_dir, file}"]
+      json = `#{File.join tilt_path, 'node_modules/dox/bin/dox'} < #{file_path}`
 
       doc_json = JSON.parse json
 
@@ -45,12 +44,12 @@ module Spacedocs
         files[namespace] = true
       end
 
-      docs_dir = File.join(project_dir, 'docs')
+      docs_dir = File.join(File.expand_path(output_dir), 'docs')
 
       FileUtils.rm_rf docs_dir
       FileUtils.mkdir_p docs_dir
 
-      File.open(File.join(project_dir, "docs/index.html"), 'w') do |f|
+      File.open(File.join(docs_dir, "index.html"), 'w') do |f|
         f.write(index_template.render self, {
           class_names: files.keys,
         })
@@ -59,7 +58,7 @@ module Spacedocs
       files.each_key do |file_name|
         methods = class_data[file_name]['methods']
 
-        File.open(File.join(project_dir, "docs/#{file_name}.html"), 'w') do |f|
+        File.open(File.join(docs_dir, "#{file_name}.html"), 'w') do |f|
           f.write(template.render self, {
             class_name: file_name,
             method_list: methods.keys,

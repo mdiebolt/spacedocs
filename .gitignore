@@ -4,3 +4,4 @@ source/docs/
 .DS_Store
 .mm-pid-4567
 projects/
+pkg/
