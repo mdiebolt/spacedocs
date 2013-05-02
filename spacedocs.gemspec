@@ -16,7 +16,9 @@ Gem::Specification.new do |gem|
   gem.version       = Spacedocs::VERSION
 
   gem.add_dependency 'compass'
+  gem.add_dependency 'haml'
   gem.add_dependency 'rake'
   gem.add_dependency 'sass'
   gem.add_dependency 'thor'
+  gem.add_dependency 'tilt'
 end
