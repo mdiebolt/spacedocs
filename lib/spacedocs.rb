@@ -28,7 +28,7 @@ module Spacedocs
       tilt_path = File.dirname(__FILE__)
 
       # can't use < unless it's a file
-      json = `#{File.join tilt_path, 'node_modules/dox/bin/dox'} < #{File.join(tilt_path, 'temp.js')}`
+      json = `#{File.join tilt_path, 'node_modules/dox/bin/dox'} < #{file_path}`
 
       doc_json = JSON.parse json
 
@@ -45,7 +45,7 @@ module Spacedocs
         files[namespace] = true
       end
 
-      docs_dir = File.join(File.expand_path(output_dir), 'docs')
+      docs_dir = output_dir
 
       FileUtils.rm_rf docs_dir
       FileUtils.mkdir_p docs_dir

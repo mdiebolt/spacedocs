@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "spacedocs"
+
+require 'tempfile'
+
+file = Tempfile.new('spacedocs')
+file.write $<.read
+file.close
+
+Spacedocs.doc(file.path, "docs")
+
+file.unlink

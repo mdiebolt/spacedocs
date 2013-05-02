@@ -10,14 +10,16 @@ module Spacedocs
     end
 
     desc "doc source_file output_directory", "Build API docs based on source_file to output_directory"
-    def doc
+    def doc(source_file, output_directory)
       current_path = File.dirname(__FILE__)
+
+      puts ARGV
 
       # TODO figure out how to actually write
       # STDIN to a file. Need to do this because
       # dox uses < which can only be a file in the filesystem
       File.open(File.join(current_path, 'temp.js'), 'w') do |f|
-        f.write(ARGF)
+        f.write(ARGF.read())
       end
 
       ::Spacedocs.doc(ARGF, '.')
