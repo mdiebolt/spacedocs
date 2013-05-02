@@ -15,7 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Spacedocs::VERSION
 
+  gem.add_dependency 'compass'
   gem.add_dependency 'rake'
   gem.add_dependency 'sass'
-  gem.add_dependency 'compass'
+  gem.add_dependency 'thor'
 end

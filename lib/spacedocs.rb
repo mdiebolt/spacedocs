@@ -27,7 +27,8 @@ module Spacedocs
     def doc(file_path, output_dir)
       tilt_path = File.dirname(__FILE__)
 
-      json = `#{File.join tilt_path, 'node_modules/dox/bin/dox'} < #{file_path}`
+      # can't use < unless it's a file
+      json = `#{File.join tilt_path, 'node_modules/dox/bin/dox'} < #{File.join(tilt_path, 'temp.js')}`
 
       doc_json = JSON.parse json
 
