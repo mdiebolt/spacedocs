@@ -1,6 +1,7 @@
 .sass-cache/
 source/docs/
 .rvmrc
+.rbenv-version
 .DS_Store
 .mm-pid-4567
 projects/
