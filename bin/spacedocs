@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# sample call:
+# wget -qO- https://raw.github.com/PixieEngine/PixieDust/pixie/game.js | bin/spacedocs
+
 require "spacedocs"
 
 require 'tempfile'
@@ -8,6 +11,7 @@ file = Tempfile.new('spacedocs')
 file.write $<.read
 file.close
 
-Spacedocs.doc(file.path, "docs")
+Spacedocs.doc(file.path, 'docs')
+Spacedocs.generate_stylesheet('docs')
 
 file.unlink

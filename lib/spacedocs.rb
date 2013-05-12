@@ -10,10 +10,10 @@ require 'fileutils'
 
 module Spacedocs
   class << self
-    def generate_stylesheet(project_dir)
+    def generate_stylesheet(output_dir)
       tilt_path = File.dirname(__FILE__)
 
-      stylesheets_dir = File.join(project_dir, 'docs/stylesheets')
+      stylesheets_dir = File.join(output_dir, 'stylesheets')
 
       FileUtils.mkdir_p stylesheets_dir
 
@@ -45,12 +45,10 @@ module Spacedocs
         files[namespace] = true
       end
 
-      docs_dir = output_dir
+      FileUtils.rm_rf output_dir
+      FileUtils.mkdir_p output_dir
 
-      FileUtils.rm_rf docs_dir
-      FileUtils.mkdir_p docs_dir
-
-      File.open(File.join(docs_dir, "index.html"), 'w') do |f|
+      File.open(File.join(output_dir, "index.html"), 'w') do |f|
         f.write(index_template.render self, {
           class_names: files.keys,
         })
@@ -59,7 +57,7 @@ module Spacedocs
       files.each_key do |file_name|
         methods = class_data[file_name]['methods']
 
-        File.open(File.join(docs_dir, "#{file_name}.html"), 'w') do |f|
+        File.open(File.join(output_dir, "#{file_name}.html"), 'w') do |f|
           f.write(template.render self, {
             class_name: file_name,
             method_list: methods.keys,
