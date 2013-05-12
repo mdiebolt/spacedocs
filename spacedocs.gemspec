@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Documentation from space}
   gem.homepage      = "http://mdiebolt.github.com/spacedocs"
 
-  gem.files         = Dir.glob("{lib}/**/*") + %w(README.md)
+  gem.files         = Dir.glob("{lib}/**/*") + %w[README.md bin/spacedocs]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.name          = "spacedocs"
   gem.require_paths = ["lib"]
