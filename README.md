@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/spacedocs.png)](http://badge.fury.io/rb/spacedocs)
+
 # Spacedocs
 
 Generate beautiful html and css for your JavaDoc'd source code.
