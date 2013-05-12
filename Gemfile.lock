@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spacedocs (0.0.2)
+    spacedocs (0.0.3)
       compass
       haml
       rake
